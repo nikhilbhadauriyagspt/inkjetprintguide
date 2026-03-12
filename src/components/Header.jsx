@@ -120,12 +120,6 @@ export default function Header() {
     { name: 'FAQ', path: '/faq' },
   ];
 
-  const marqueeItems = [
-    { text: "Free Express Shipping On Orders Over $150" },
-    { text: "Genuine Products With Full Warranty" },
-    { text: "Always Available Help" },
-    { text: "Premium Printing Solutions For Business" },
-  ];
 
   const handleSearchTrigger = (term) => {
     const searchParam = term || searchValue;
@@ -148,16 +142,7 @@ export default function Header() {
               <span className="lowercase">info@optimumprints.shop</span>
             </a>
           </div>
-          <div className="flex-1 max-w-[45%] overflow-hidden relative border-x border-white/10 mx-4">
-            <div className="flex animate-marquee whitespace-nowrap">
-              {[...marqueeItems, ...marqueeItems].map((item, index) => (
-                <div key={index} className="flex items-center px-10">
-                  <span className="text-white/90">{item.text}</span>
-                  <Sparkles size={10} className="ml-6 text-[#10b981]" />
-                </div>
-              ))}
-            </div>
-          </div>
+
           <div className="flex items-center justify-end gap-6 w-[25%]">
             <Link to="/track-order" className="flex items-center gap-2 hover:text-white transition-colors">
               <Truck size={14} className="text-[#10b981]" />

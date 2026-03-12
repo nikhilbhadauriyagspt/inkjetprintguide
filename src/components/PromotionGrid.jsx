@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 // Import local assets
@@ -18,21 +17,19 @@ export default function PromotionGrid() {
       <div className="max-w-[1920px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {promotions.map((promo) => (
-            <motion.div
+            <div
               key={promo.id}
-              whileHover={{ y: -8 }}
-              transition={{ duration: 0.4 }}
-              className="relative group overflow-hidden rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-2xl hover:shadow-blue-500/10 transition-all"
+              className="relative group overflow-hidden rounded-[2rem] border border-gray-100 shadow-sm transition-all"
             >
               <Link to={promo.link}>
                 <img 
                   src={promo.image} 
                   alt={`Promotion ${promo.id}`} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500" />
               </Link>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

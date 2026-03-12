@@ -125,9 +125,6 @@ export default function Home() {
         popular={data.all}
         loading={data.loading}
       />
-      <BrandMarquee />
-
-
 
     </div>
   );

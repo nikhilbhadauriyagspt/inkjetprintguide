@@ -93,7 +93,7 @@ export default function CategorySpotlight({
               <img
                 src={bannerImage}
                 alt={title}
-                className="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110"
+                className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/20 to-transparent"></div>
 
@@ -102,7 +102,7 @@ export default function CategorySpotlight({
                 <h3 className="text-white text-3xl font-black leading-tight mb-6 capitalize ">
                   Professional <br /> {title}
                 </h3>
-                <div className="inline-flex items-center gap-3 text-white text-sm font-bold uppercase tracking-widest group-hover:gap-5 transition-all">
+                <div className="inline-flex items-center gap-3 text-white text-sm font-bold uppercase tracking-widest transition-all">
                   Shop collection <ArrowRight size={18} />
                 </div>
               </div>
@@ -134,7 +134,7 @@ export default function CategorySpotlight({
             >
               {products.map((p) => (
                 <SwiperSlide key={p.id} className="!h-[calc((100%-24px)/2)]">
-                  <div className="group relative flex flex-col h-full bg-white border border-slate-100 rounded-3xl p-3 hover:shadow-2xl hover:shadow-slate-100 transition-all duration-500">
+                  <div className="group relative flex flex-col h-full bg-white border border-slate-100 rounded-3xl p-3 transition-all duration-500">
 
                     {/* Image Area */}
                     <div className="relative aspect-square mb-3 bg-slate-50/50 rounded-2xl flex items-center justify-center p-6 transition-all group-hover:bg-white h-[200px]">
@@ -142,7 +142,7 @@ export default function CategorySpotlight({
                         <img
                           src={getImagePath(p.images)}
                           alt={p.name}
-                          className="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
+                          className="w-full h-full object-contain mix-blend-multiply"
                           onError={(e) => { e.currentTarget.src = "/logo/fabicon.png"; }}
                         />
                       </Link>

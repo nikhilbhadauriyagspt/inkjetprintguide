@@ -61,10 +61,8 @@ export default function Hero() {
             {/* TOP: BANNER SLIDER */}
             <div className="w-full h-[400px] md:h-[530px]  overflow-hidden border border-gray-400">
               <Swiper
-                modules={[Autoplay, Pagination, EffectFade]}
-                effect="fade"
-                speed={1000}
-                autoplay={{ delay: 4000, disableOnInteraction: false }}
+                modules={[Pagination]}
+                speed={500}
                 pagination={{
                   clickable: true,
                   bulletClass: 'swiper-pagination-bullet !bg-white/50 !opacity-100',
@@ -78,7 +76,7 @@ export default function Hero() {
                       <img
                         src={item.image}
                         alt={item.title || "Promotion"}
-                        className="w-full h-full object-cover transition-transform duration-[8000ms] group-hover:scale-110"
+                        className="w-full h-full object-cover"
                       />
                     </Link>
                   </SwiperSlide>
@@ -96,7 +94,7 @@ export default function Hero() {
                 </div>
                 <div>
                   <h4 className="font-bold text-slate-900 text-sm capitalize">Free shipping</h4>
-                  <p className="text-slate-500 text-[12px]">On all orders over $150</p>
+                  <p className="text-slate-500 text-[12px]">On all orders</p>
                 </div>
               </div>
 
