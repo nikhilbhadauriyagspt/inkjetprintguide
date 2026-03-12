@@ -59,7 +59,7 @@ export default function Hero() {
           <div className="flex-1 lg:w-[80%] flex flex-col gap-8">
 
             {/* TOP: BANNER SLIDER */}
-            <div className="w-full h-[400px] md:h-[600px]  overflow-hidden border border-gray-400">
+            <div className="w-full h-[400px] md:h-[530px]  overflow-hidden border border-gray-400">
               <Swiper
                 modules={[Autoplay, Pagination, EffectFade]}
                 effect="fade"
