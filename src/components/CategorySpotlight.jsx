@@ -179,7 +179,7 @@ export default function CategorySpotlight({
                     <div className="px-2 flex flex-col flex-1">
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-[9px] font-black text-[#FF2D37] uppercase tracking-widest">
-                          {p.brand_name || 'Hardware'}
+                          {p.brand_name || 'Printer'}
                         </span>
                         <div className="flex items-center gap-1.5">
                           <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />

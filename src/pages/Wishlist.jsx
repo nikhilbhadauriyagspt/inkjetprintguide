@@ -25,7 +25,7 @@ export default function Wishlist() {
           <Heart size={40} className="text-secondary opacity-30" />
         </div>
         <h2 className="text-3xl font-bold text-foreground mb-4 tracking-tight">Your Wishlist is Empty</h2>
-        <p className="text-secondary font-medium text-base mb-12 max-w-md">Save your favorite hardware and supplies to this collection for easy access later.</p>
+        <p className="text-secondary font-medium text-base mb-12 max-w-md">Save your favorite printer and supplies to this collection for easy access later.</p>
         <Link to="/shop" className="px-10 py-4 bg-primary text-white font-bold text-[13px] uppercase tracking-widest hover:bg-primary-hover transition-all rounded-full shadow-xl shadow-primary/20 active:scale-95">
           Explore All Products
         </Link>
@@ -43,7 +43,7 @@ export default function Wishlist() {
             <nav className="flex items-center gap-2 text-[11px] font-bold text-secondary uppercase tracking-[0.2em]">
               <Link to="/" className="hover:text-primary transition-colors">Home</Link>
               <ChevronRight size={12} className="opacity-50" />
-              <span className="text-primary">Saved Hardware</span>
+              <span className="text-primary">Saved Printer</span>
             </nav>
             <h1 className="text-3xl md:text-5xl font-bold text-foreground tracking-tight">
               Your Favorites

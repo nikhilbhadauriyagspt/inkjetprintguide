@@ -104,9 +104,9 @@ export default function Shop() {
           </nav>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <h1 className="text-3xl md:text-5xl font-bold text-foreground tracking-tight">Professional Hardware</h1>
+              <h1 className="text-3xl md:text-5xl font-bold text-foreground tracking-tight">Professional Printer</h1>
               <p className="text-secondary text-sm md:text-base font-medium mt-3 max-w-2xl">
-                Browse our complete collection of high-performance printers, genuine ink, and premium office supplies.
+                Browse our complete collection of high-performance printers, premium ink, and premium office supplies.
               </p>
             </div>
             <div className="text-secondary text-sm font-bold uppercase tracking-widest bg-white px-5 py-2 border border-border rounded-full shadow-sm">
@@ -207,7 +207,7 @@ export default function Shop() {
             <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-border">
               <Search size={32} className="text-secondary" />
             </div>
-            <h2 className="text-2xl font-bold text-foreground mb-3">No matching hardware found</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-3">No matching printer found</h2>
             <p className="text-secondary font-medium mb-8">Try adjusting your filters or search terms to find what you're looking for.</p>
             <button
               onClick={() => {
@@ -246,7 +246,7 @@ export default function Shop() {
                 {/* Content */}
                 <div className="px-1">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] bg-primary/5 px-2.5 py-1 rounded-full">Hardware</span>
+                    <span className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] bg-primary/5 px-2.5 py-1 rounded-full">Printer</span>
                     <div className="flex gap-0.5">
                       {[...Array(5)].map((_, i) => <div key={i} className="w-1 h-1 rounded-full bg-amber-400" />)}
                     </div>

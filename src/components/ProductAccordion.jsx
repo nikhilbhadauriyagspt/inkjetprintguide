@@ -5,7 +5,7 @@ import { useCart } from "../context/CartContext";
 
 export default function ProductAccordion({ 
   products = [], 
-  title = "Hardware", 
+  title = "Printer", 
   subtitle = "Archive", 
   categorySlug = "printers" 
 }) {
@@ -25,7 +25,7 @@ export default function ProductAccordion({
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <div className="h-px w-8 bg-[#1447E6] rounded-full" />
-              <span className="text-[10px] font-bold text-[#1447E6] uppercase tracking-[0.3em]">Hardware Collection</span>
+              <span className="text-[10px] font-bold text-[#1447E6] uppercase tracking-[0.3em]">Printer Collection</span>
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 leading-none">
               {title} <span className="text-[#1447E6]">{subtitle}.</span>
@@ -58,7 +58,7 @@ export default function ProductAccordion({
                     src={p.images ? (typeof p.images === 'string' ? JSON.parse(p.images)[0] : p.images[0]) : ''} 
                     alt="" 
                     className="w-full h-full object-contain mix-blend-multiply transition-transform duration-700 group-hover:scale-110"
-                    onError={(e) => { e.target.src = "https://via.placeholder.com/400x400?text=Hardware"; }}
+                    onError={(e) => { e.target.src = "https://via.placeholder.com/400x400?text=Printer"; }}
                   />
                 </Link>
                 

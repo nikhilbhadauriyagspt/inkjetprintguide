@@ -26,7 +26,7 @@ export default function PromoSection() {
               </h2>
 
               <p className="text-base md:text-lg text-[#64748B] mb-8 max-w-md font-medium leading-relaxed">
-                Discover high-performance hardware and quality supplies designed for superior quality and maximum productivity.
+                Discover high-performance printer and quality supplies designed for superior quality and maximum productivity.
               </p>
 
               <div className="flex items-center gap-4">

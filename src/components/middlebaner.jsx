@@ -13,8 +13,7 @@ export default function MiddleBanner() {
         },
         {
             title: "Exclusive Ink Collection",
-            subtitle: "Genuine Supplies",
-            image: "/midbanner/A premium printer support service hero banner for a website, featuring one large modern printer and one smaller accessory element on the right, bright and colorful background with blue, aqua, amber, .jpg",
+            subtitle: "Premium Supplies",            image: "/midbanner/A premium printer support service hero banner for a website, featuring one large modern printer and one smaller accessory element on the right, bright and colorful background with blue, aqua, amber, .jpg",
             link: "/shop",
             className: "md:col-span-1 h-[280px] md:h-[320px]"
         }

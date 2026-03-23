@@ -37,7 +37,7 @@ export default function Footer() {
                 <img src="/logo/logo.png" alt="Vital Print" className="h-10 object-contain w-fit" />
               </Link>
               <p className="text-secondary text-[14px] font-medium leading-relaxed max-w-sm">
-                Providing hardware solutions and expert guidance for all your home and business printing requirements.
+                Providing printer solutions and expert guidance for all your home and business printing requirements.
               </p>
             </div>
 
@@ -75,12 +75,12 @@ export default function Footer() {
           <div className="col-span-2 xl:col-span-2 flex flex-col gap-8">
             <h4 className="text-foreground font-bold text-[16px] uppercase tracking-[0.15em]">About Our Vision</h4>
             <p className="text-secondary text-[15px] font-medium leading-relaxed max-w-md">
-              At Vital Print, we believe in combining cutting-edge technology with world-class service. Our curated selection of hardware is built to ensure reliability and excellence in every print job you perform.
+              At Vital Print, we believe in combining cutting-edge technology with world-class service. Our curated selection of printer is built to ensure reliability and excellence in every print job you perform.
             </p>
           </div>
 
           <div>
-            <h4 className="text-foreground font-bold text-[14px] uppercase tracking-wider mb-8">Hardware</h4>
+            <h4 className="text-foreground font-bold text-[14px] uppercase tracking-wider mb-8">Printer</h4>
             <ul className="space-y-4">
               {categories.map(cat => (
                 <li key={cat.id}>

@@ -32,7 +32,7 @@ export default function About() {
     {
       icon: Headphones,
       title: "Professional Support",
-      desc: "Experts providing seamless setup guidance, troubleshooting, and long-term maintenance for your hardware."
+      desc: "Experts providing seamless setup guidance, troubleshooting, and long-term maintenance for your printer."
     }
   ];
 
@@ -41,7 +41,7 @@ export default function About() {
     { title: "Reliable Parts", icon: Package },
     { title: "Rapid Service", icon: Zap },
     { title: "Secure Logistics", icon: Globe },
-    { title: "New Hardware", icon: CheckCircle2 },
+    { title: "New Printer", icon: CheckCircle2 },
     { title: "Expert Care", icon: Headphones },
     { title: "Eco-Tech", icon: Leaf },
     { title: "Service Hub", icon: Wrench }
@@ -100,7 +100,7 @@ export default function About() {
           </div>
           <div className="bg-[#F5F5F5] p-10 md:p-16 rounded-[32px] border border-border relative overflow-hidden">
             <p className="text-xl md:text-2xl text-foreground leading-relaxed font-bold italic relative z-10">
-              "Our goal is to provide a destination where professionals can find top-tier hardware without complexity."
+              "Our goal is to provide a destination where professionals can find top-tier printer without complexity."
             </p>
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white/50 rounded-full blur-3xl" />
           </div>
@@ -150,7 +150,7 @@ export default function About() {
               <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary mb-6 block">Our Mission</span>
               <h3 className="text-3xl md:text-4xl font-bold mb-8 leading-tight">Empowering Modern <br /> Workspaces.</h3>
               <p className="text-lg text-white/70 leading-relaxed font-medium max-w-md">
-                To equip professionals with dependable and sustainable hardware solutions. We provide expert advice and high-quality products to ensure your operations never slow down.
+                To equip professionals with dependable and sustainable printer solutions. We provide expert advice and high-quality products to ensure your operations never slow down.
               </p>
             </div>
           </div>
@@ -161,7 +161,7 @@ export default function About() {
             </div>
             <div className="relative z-10">
               <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary mb-6 block">Our Reach</span>
-              <h3 className="text-3xl md:text-4xl font-bold mb-8 leading-tight">Nationwide Hardware <br /> Support Network.</h3>
+              <h3 className="text-3xl md:text-4xl font-bold mb-8 leading-tight">Nationwide Printer <br /> Support Network.</h3>
               <p className="text-lg text-secondary leading-relaxed font-medium max-w-md">
                 Serving the entire United States with a commitment to fast logistics and long-term service value. Our team is always available to assist with your needs.
               </p>

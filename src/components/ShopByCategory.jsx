@@ -52,7 +52,7 @@ export default function ShopByCategory({ categories = [], loading = false }) {
             <h2 className="text-2xl md:text-4xl font-bold text-foreground tracking-tight">
               Browse Categories
             </h2>
-            <p className="text-secondary text-sm md:text-base font-medium mt-2">Find the perfect hardware for your specific needs</p>
+            <p className="text-secondary text-sm md:text-base font-medium mt-2">Find the perfect printer for your specific needs</p>
           </div>
           <div className="flex gap-3">
             <button className="shop-cat-prev w-10 h-10 rounded-full border border-border bg-white text-foreground hover:bg-primary hover:text-white hover:border-primary transition-all flex items-center justify-center shadow-sm">

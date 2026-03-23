@@ -86,7 +86,7 @@ export default function SearchOverlay() {
             <div className="p-6 md:p-8 border-b border-slate-100 flex items-center justify-between bg-slate-50">
               <div>
                 <h2 className="text-xl md:text-2xl font-bold text-slate-900 tracking-tight">Search catalog</h2>
-                <p className="text-[10px] font-black uppercase tracking-widest text-[#1447E6] mt-1">Find your hardware</p>
+                <p className="text-[10px] font-black uppercase tracking-widest text-[#1447E6] mt-1">Find your printer</p>
               </div>
               <button
                 onClick={closeSearch}

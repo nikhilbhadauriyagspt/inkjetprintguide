@@ -76,7 +76,7 @@ export default function Contact() {
           <h1 className="text-4xl md:text-6xl font-bold text-foreground tracking-tight mb-6">
             Get in <span className="text-primary">Touch.</span>
           </h1>
-          <p className="text-secondary max-w-2xl mx-auto font-medium text-lg">Have specialized hardware questions? Our team is here to provide expert guidance and support for your workspace.</p>
+          <p className="text-secondary max-w-2xl mx-auto font-medium text-lg">Have specialized printer questions? Our team is here to provide expert guidance and support for your workspace.</p>
         </div>
       </div>
 

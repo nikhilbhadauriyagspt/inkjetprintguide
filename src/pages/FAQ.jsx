@@ -32,7 +32,7 @@ const faqData = [
     questions: [
       { q: "Are your products covered under warranty?", a: "Yes. All products come with a manufacturer's warranty." },
       { q: "What brands do you sell?", a: "We sell printers and accessories from various trusted manufacturers." },
-      { q: "How can I choose the right hardware?", a: "You can contact our support for personalized buying recommendations based on your usage and budget." },
+      { q: "How can I choose the right printer?", a: "You can contact our support for personalized buying recommendations based on your usage and budget." },
       { q: "What if an item is out of stock?", a: "You can join the Back in Stock alert on the product page, and we’ll notify you as soon as it becomes available." }
     ]
   },
@@ -140,7 +140,7 @@ export default function FAQ() {
               <HelpCircle size={32} className="text-primary" />
             </div>
             <h3 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">Still need assistance?</h3>
-            <p className="text-secondary mb-10 font-medium max-w-md mx-auto">Our dedicated support team is ready to help you with any specialized hardware questions.</p>
+            <p className="text-secondary mb-10 font-medium max-w-md mx-auto">Our dedicated support team is ready to help you with any specialized printer questions.</p>
             <Link to="/contact" className="inline-flex items-center gap-3 px-10 py-4 bg-primary text-white rounded-full font-bold text-[14px] uppercase tracking-widest shadow-xl shadow-primary/20 hover:bg-primary-hover transition-all active:scale-95">
               Contact Support Team <ArrowRight size={18} />
             </Link>

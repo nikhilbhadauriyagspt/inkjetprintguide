@@ -74,8 +74,7 @@ export default function CartDrawer() {
                         <div className="flex-1 min-w-0 flex flex-col justify-between">
                           <div className="relative pr-8">
                             <div className="flex items-center gap-2 mb-1">
-                               <span className="text-[9px] font-bold text-primary uppercase tracking-widest">Hardware</span>
-                               <div className="h-1 w-1 rounded-full bg-border" />
+                               <span className="text-[9px] font-bold text-primary uppercase tracking-widest">Printer</span>                               <div className="h-1 w-1 rounded-full bg-border" />
                             </div>
                             <h3 className="text-[14px] font-bold text-foreground leading-tight line-clamp-2 hover:text-primary transition-colors">
                               <Link to={`/product/${item.slug}`} onClick={closeCartDrawer}>{item.name}</Link>

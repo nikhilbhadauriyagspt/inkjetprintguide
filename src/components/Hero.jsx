@@ -20,9 +20,9 @@ const slides = [
   },
   {
     id: 3,
-    title: "Reliable Hardware & Expert Printing Support",
-    subtitle: "Professional Setup",
-    desc: "Whether you need a compact inkjet or a heavy-duty laser printer, we offer the best hardware and advice to keep your business running smoothly.",
+    title: "Reliable Printer & Expert Printing Support",
+    subtitle: "Printing Essentials",
+    desc: "Whether you need a compact inkjet or a heavy-duty laser printer, we offer the best printer and advice to keep your business running smoothly.",
     image: "/category/laser-printers.png",
   },
   {

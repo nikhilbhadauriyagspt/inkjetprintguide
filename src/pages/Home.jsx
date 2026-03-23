@@ -123,7 +123,7 @@ export default function Home() {
 
       <CategoryShowcase
         title="Professional Business Printers"
-        subtitle="Hardware Series"
+        subtitle="Printer Series"
         products={data.printers}
         adImage="/category/all-in-one-printers.png"
         adBg="bg-blue-50"

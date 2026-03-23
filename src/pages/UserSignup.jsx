@@ -80,7 +80,7 @@ export default function UserSignup() {
                 Unlock exclusive <br /> <span className="text-primary">benefits.</span>
               </h2>
               <p className="text-white/60 text-lg font-medium leading-relaxed max-w-sm">
-                Register today to track your orders, manage hardware subscriptions, and access premium technical support.
+                Register today to track your orders, manage printer subscriptions, and access premium technical support.
               </p>
             </div>
           </div>

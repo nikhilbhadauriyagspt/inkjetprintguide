@@ -209,7 +209,7 @@ export default function SpotlightSection({
             <h2 className="text-2xl md:text-4xl font-bold text-foreground tracking-tight">
               Spotlight Collections
             </h2>
-            <p className="text-secondary text-sm md:text-base font-medium mt-2">Explore our most curated printer and hardware series</p>
+            <p className="text-secondary text-sm md:text-base font-medium mt-2">Explore our most curated printer and series collections</p>
           </div>
           <div className="hidden md:flex items-center gap-2 text-primary font-bold uppercase text-[12px] tracking-widest pb-1">
              <Sparkles size={16} /> Trending Series

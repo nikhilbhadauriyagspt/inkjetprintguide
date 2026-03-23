@@ -137,7 +137,7 @@ export default function ProductDetail() {
           {/* --- INFO --- */}
           <div className="space-y-8">
             <div>
-              <span className="text-[10px] font-bold text-primary uppercase tracking-widest block mb-2">Hardware Collection</span>
+              <span className="text-[10px] font-bold text-primary uppercase tracking-widest block mb-2">Printer Collection</span>
               <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">{product.name}</h1>
               <div className="flex items-center gap-4">
                 <span className="text-3xl font-bold text-foreground">${Number(product.price).toLocaleString()}</span>
@@ -146,7 +146,7 @@ export default function ProductDetail() {
             </div>
 
             <p className="text-secondary leading-relaxed font-medium">
-              {product.description || 'Reliable hardware solution for professional workflows. Designed for performance and efficiency.'}
+              {product.description || 'Reliable printer solution for professional workflows. Designed for performance and efficiency.'}
             </p>
 
             <div className="pt-6 border-t border-border space-y-6">

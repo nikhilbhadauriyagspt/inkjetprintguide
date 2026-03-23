@@ -368,7 +368,7 @@ export default function Header() {
                   </div>
                 </div>
                 <div>
-                  <p className="text-[11px] font-black text-secondary uppercase tracking-[0.3em] mb-6">Hardware Categories</p>
+                  <p className="text-[11px] font-black text-secondary uppercase tracking-[0.3em] mb-6">Printer Categories</p>
                   <div className="grid grid-cols-1 gap-2">
                     {categories.map(cat => (
                       <Link key={cat.id} to={`/shop?category=${cat.slug}`} onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-between text-[14px] font-semibold text-secondary py-3 border-b border-background">

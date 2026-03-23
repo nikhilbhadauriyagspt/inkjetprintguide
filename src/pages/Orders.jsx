@@ -121,7 +121,7 @@ export default function Orders() {
           <div className="text-center py-32 bg-white border border-slate-200 shadow-sm">
             <Package size={48} className="text-slate-300 mx-auto mb-6" />
             <h3 className="text-xl font-bold text-slate-900">No history detected</h3>
-            <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mt-2 mb-10">You haven't initiated any hardware acquisitions yet.</p>
+            <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mt-2 mb-10">You haven't initiated any printer acquisitions yet.</p>
             <Link to="/shop" className="px-10 py-4 bg-[#1447E6] text-white text-[11px] font-black uppercase tracking-widest hover:bg-slate-900 shadow-lg transition-all">Begin shopping</Link>
           </div>
         ) : (

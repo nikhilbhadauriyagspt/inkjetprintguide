@@ -162,7 +162,7 @@ export default function Profile() {
               <div className="space-y-3">
                 {[
                   { id: 'profile', label: 'Identity Settings', icon: User },
-                  { id: 'orders', label: 'Hardware Logs', icon: Package },
+                  { id: 'orders', label: 'Printer Logs', icon: Package },
                   { id: 'security', label: 'Access Protocols', icon: Shield }
                 ].map((tab) => (
                   <button
@@ -272,7 +272,7 @@ export default function Profile() {
                       <div className="w-20 h-20 bg-white rounded-[2rem] flex items-center justify-center mx-auto mb-8 border border-border shadow-sm">
                         <LayoutGrid size={32} className="text-border" />
                       </div>
-                      <p className="text-secondary font-bold uppercase text-[11px] tracking-[0.3em]">No hardware records in current stream.</p>
+                      <p className="text-secondary font-bold uppercase text-[11px] tracking-[0.3em]">No printer records in current stream.</p>
                     </div>
                   ) : (
                     <div className="grid grid-cols-1 gap-6">
@@ -292,7 +292,7 @@ export default function Profile() {
                           </div>
                           <div className="p-6 bg-background/50 group-hover:bg-white transition-colors">
                             <Link to={`/checkout?order_id=${order.id}`} className="flex items-center justify-center gap-3 text-[11px] font-bold text-foreground uppercase tracking-widest hover:text-primary transition-all group/btn">
-                              <span>Track Hardware Status</span> <ChevronRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+                              <span>Track Printer Status</span> <ChevronRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
                             </Link>
                           </div>
                         </div>
