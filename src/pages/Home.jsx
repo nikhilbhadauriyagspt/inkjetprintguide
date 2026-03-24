@@ -5,20 +5,17 @@ import SpotlightSection from "@/components/SpotlightSection";
 import ShopByCategory from "@/components/ShopByCategory";
 import CategoryShowcase from "@/components/CategoryShowcase";
 import FeaturedTabs from "@/components/FeaturedTabs";
-import CategorySpotlight from "@/components/CategorySpotlight";
 import BrandMarquee from "@/components/BrandMarquee";
-import ProductAccordion from "@/components/ProductAccordion";
-import Techprint from "@/components/TechBlueprints"
-import SaleBanners from "@/components/SaleBanners";
-import PromoSection from "@/components/PromoSection";
-import Middlebaner from "@/components/middlebaner"
-import BottomWideBanner from "@/components/BottomWideBanner"
-
 import Showcase from "@/components/ShowcaseStrip";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { ChevronRight, ArrowRight } from "lucide-react";
+import Middlebaner from "@/components/middlebaner";
+import BottomWideBanner from "@/components/BottomWideBanner";
+import { useState, useEffect, useMemo } from "react";
 import API_BASE_URL from "../config";
+
+// Import side banners
+import inkjetSide from "@/assets/bannerr/inkjet-side.png";
+import laserSide from "@/assets/bannerr/laser-side.png";
+import bannerSide from "@/assets/bannerr/banner-side.png";
 
 export default function Home() {
   const [data, setData] = useState({
@@ -58,10 +55,8 @@ export default function Home() {
             (cat) => cat.slug === 'printers' || cat.id === 46
           );
 
-          // Get the base categories to display
           const baseCategories = (printerParent && printerParent.children ? printerParent.children : catRes.data.filter(c => !c.name.toLowerCase().includes('laptop')));
 
-          // Parallel fetch counts for each category
           const categoriesWithCounts = await Promise.all(baseCategories.map(async (cat) => {
             try {
               const res = await fetch(`${API_BASE_URL}/products?category=${cat.slug}&limit=1`).then(r => r.json());
@@ -78,7 +73,6 @@ export default function Home() {
             all,
             printers,
             accessories,
-            laserPrinters: all.filter(p => p.name.toLowerCase().includes('laserjet') || p.name.toLowerCase().includes('laser')),
             categories: categoriesWithCounts,
             brands: brandRes.data,
             loading: false
@@ -93,43 +87,68 @@ export default function Home() {
     fetchData();
   }, []);
 
+  const inkjetPrinters = useMemo(() =>
+    data.all.filter(p => p.name.toLowerCase().includes('inkjet') || p.name.toLowerCase().includes('pixma')),
+    [data.all]);
+
+  const laserPrinters = useMemo(() =>
+    data.all.filter(p => p.name.toLowerCase().includes('laserjet') || p.name.toLowerCase().includes('laser')),
+    [data.all]);
+
+  const trendingMix = useMemo(() =>
+    [...data.all].sort(() => 0.5 - Math.random()).slice(0, 20),
+    [data.all]);
+
   return (
     <div className="bg-white font-sans overflow-x-hidden text-slate-900">
       <SEO
-        title="Vital Print | High-Performance Printing Solutions"
-        description="Shop printers, ink, and toner in Sacramento, CA. Professional business printing solutions with nationwide shipping."
-        keywords="Buy Printers Online, Ink and Toner, LaserJet, OfficeJet, Printer Accessories, Business Printing Solutions, Sacramento Tech Store"
+        title="Dashing Printers | High-Performance Printing Solutions"
+        description="Shop printers, ink, and toner globally. Professional business printing solutions with international shipping."
+        keywords="Buy Printers Online, Ink and Toner, LaserJet, OfficeJet, Printer Accessories, Business Printing Solutions"
       />
-      {/* 1. FULL WIDTH HERO */}
-      <div className="w-full">
-        <Hero products={data.all} />
-      </div>
 
-      <FlashSalesSlider />
-      <Middlebaner />
-
-
-      {/* 2. CATEGORY SECTION */}
+      <Hero products={data.all} />
+      <Showcase />
       <ShopByCategory categories={data.categories} loading={data.loading} />
-      {/* 3. FEATURED PRODUCTS (TABS) */}
+
       <FeaturedTabs
         printers={data.printers}
         accessories={data.accessories}
         loading={data.loading}
       />
 
+
+      {/* Inkjet Category Showcase with 15% Discount */}
+      <CategoryShowcase
+        title="Premium Inkjet Printers"
+        products={inkjetPrinters}
+        adImage={inkjetSide}
+        link="/shop?category=inkjet-printers"
+        discount={15}
+      />
+
+      {/* Trending Mix Showcase - NO BADGE, NO OFF TEXT OVERLAY */}
+      <CategoryShowcase
+        title="Trending Mix Collection"
+        products={trendingMix}
+        adImage={bannerSide}
+        link="/shop"
+        discount={0}
+        showBadge={false}
+      />
       <BottomWideBanner />
 
-
+      {/* Laser Category Showcase with 10% Discount */}
       <CategoryShowcase
-        title="Professional Business Printers"
-        subtitle="Printer Series"
-        products={data.printers}
-        adImage="/category/all-in-one-printers.png"
-        adBg="bg-blue-50"
-        link="/shop?category=all-in-one-printers"
+        title="High-Speed Laser Printers"
+        products={laserPrinters}
+        adImage={laserSide}
+        link="/shop?category=laser-printers"
+        discount={10}
       />
-      {/* 4. NEW ARRIVALS */}
+
+
+
       <SpotlightSection
         newArrivals={data.all}
         topRated={data.all}
@@ -137,26 +156,7 @@ export default function Home() {
         loading={data.loading}
       />
 
-      <CategoryShowcase
-        title="Ink & Toner "
-        subtitle="Printing Solutions"
-        products={data.accessories}
-        adImage="/category/printer-accessories.png"
-        adBg="bg-rose-50"
-        link="/shop?category=printer-accessories"
-      />
 
-
-
-
-
-
-
-
-
-
-
-      <Showcase />
     </div>
   );
 }

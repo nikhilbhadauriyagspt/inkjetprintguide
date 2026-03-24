@@ -1,41 +1,64 @@
-import React from "react";
-import { ArrowRight } from "lucide-react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+
+// Import images
+import bannerSide from "@/assets/bannerr/bootombaner-side.png";
+import banner1 from "@/assets/bannerr/banner-1.png";
+import banner2 from "@/assets/bannerr/banner-2.png";
+import banner3 from "@/assets/bannerr/banner-3.png";
+
+const slides = [banner1, banner2, banner3];
 
 export default function BottomWideBanner() {
-    const banner = {
-        title: "Home Office Excellence & Smart Workspace Setup",
-        subtitle: "Smart Setup",
-        image: "/midbanner/A realistic premium website hero banner with one large modern wireless printer placed on the right side in a bright stylish office environment, full background image, clean premium desk and modern de.jpg",
-        link: "/shop",
-    };
+    const [index, setIndex] = useState(0);
+
+    // Auto-play for the slider
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setIndex((prev) => (prev + 1) % slides.length);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, []);
 
     return (
-        <section className="w-full pt-4 pb-12 bg-white font-['Rubik']">
-            <div className="max-w-[1800px] mx-auto px-0 md:px-10">
-                <div className="relative group overflow-hidden flex items-center h-[280px] md:h-[450px]">
-                    {/* Background Image - No rounding, No shadow */}
-                    <div
-                        className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
-                        style={{ backgroundImage: `url("${banner.image}")` }}
-                    />
+        <section className="w-full pt-4 pb-12 bg-[#F1F3F6] font-['Rubik']">
+            <div className="max-w-[1800px] mx-auto px-4 md:px-10">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-0 h-auto ">
 
-                    {/* Content - Directly on image, no overlay */}
-                    <div className="relative z-10 px-8 md:px-12 w-full max-w-2xl">
-                        <span className="text-[11px] font-bold text-primary uppercase tracking-[0.3em] block mb-3">
-                            {banner.subtitle}
-                        </span>
-                        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-white mb-6">
-                            {banner.title}
-                        </h2>
-                        <Link
-                            to={banner.link}
-                            className="inline-flex items-center gap-2 px-7 py-3 bg-primary text-white text-[13px] font-bold uppercase tracking-wider transition-all duration-300 hover:bg-primary-hover active:scale-95"
-                        >
-                            Explore More
-                            <ArrowRight size={16} />
+                    {/* Left Side - Static Image (3/12 width) */}
+                    <div className="md:col-span-3 h-[300px] md:h-full relative overflow-hidden ">
+                        <Link to="/shop" className="block w-full h-full">
+                            <img
+                                src={bannerSide}
+                                alt="Exclusive Offer"
+                                className="w-full h-full object-contain "
+                            />
                         </Link>
                     </div>
+
+                    {/* Right Side - Slider (9/12 width) */}
+                    <div className="md:col-span-9 h-[200px] md:h-full relative ">
+                        <AnimatePresence initial={false} mode="wait">
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.8, ease: "easeInOut" }}
+                                className="absolute inset-0 w-full h-full"
+                            >
+                                <Link to="/shop" className="block w-full h-full">
+                                    <img
+                                        src={slides[index]}
+                                        alt={`Slide ${index + 1}`}
+                                        className="w-full h-full object-contain"
+                                    />
+                                </Link>
+                            </motion.div>
+                        </AnimatePresence>
+                    </div>
+
                 </div>
             </div>
         </section>

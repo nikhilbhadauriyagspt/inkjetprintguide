@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
+  ChevronUp,
   Mail,
   MapPin,
-  Lock,
-  ArrowRight,
-  ShieldCheck,
 } from 'lucide-react';
 import API_BASE_URL from '../config';
 
@@ -19,143 +17,120 @@ export default function Footer() {
         if (data.status === 'success') {
           const printerParent = data.data.find(cat => cat.slug === 'printers' || cat.id === 46);
           if (printerParent && printerParent.children) {
-            setCategories(printerParent.children.slice(0, 5));
+            setCategories(printerParent.children.slice(0, 8));
           }
         }
       })
       .catch(err => console.error(err));
   }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <footer className="w-full bg-white font-['Rubik'] border-t border-border mt-12">
-      {/* TOP BRANDING & CONTACT INFO */}
-      <div className="bg-background/50 border-b border-border">
-        <div className="max-w-[1800px] mx-auto px-4 md:px-10 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 items-center">
-            <div className="flex flex-col gap-4">
-              <Link to="/">
-                <img src="/logo/logo.png" alt="Vital Print" className="h-10 object-contain w-fit" />
-              </Link>
-              <p className="text-secondary text-[14px] font-medium leading-relaxed max-w-sm">
-                Providing printer solutions and expert guidance for all your home and business printing requirements.
-              </p>
-            </div>
+    <footer className="w-full bg-[#131921] text-white font-['Rubik'] mt-12">
+      {/* Back to Top */}
+      <button
+        onClick={scrollToTop}
+        className="w-full bg-[#37475a] hover:bg-[#485769] py-4 text-[13px] font-medium transition-colors flex items-center justify-center gap-2 cursor-pointer"
+      >
+        <ChevronUp size={16} />
+        Back to top
+      </button>
 
-            <div className="flex items-center gap-5 p-6 bg-white border border-border rounded-2xl shadow-sm group hover:border-primary/30 transition-all">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
-                <Mail size={22} />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[10px] font-bold text-secondary uppercase tracking-[0.2em] mb-1">Send an Email</span>
-                <a href="mailto:info@vitalprint.shop" className="text-foreground font-bold text-[15px] hover:text-primary transition-colors">
-                  info@vitalprint.shop
-                </a>
-              </div>
-            </div>
+      {/* Main Footer Content */}
+      <div className="max-w-[1800px] mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 border-b border-gray-700 pb-12">
 
-            <div className="flex items-center gap-5 p-6 bg-white border border-border rounded-2xl shadow-sm group hover:border-primary/30 transition-all">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
-                <MapPin size={22} />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[10px] font-bold text-secondary uppercase tracking-[0.2em] mb-1">Our Location</span>
-                <p className="text-foreground font-bold text-[15px]">
-                  3100 Folsom Blvd, Sacramento, CA 95816, USA
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* NAVIGATION LINKS AREA */}
-      <div className="max-w-[1800px] mx-auto px-4 md:px-10 py-16 md:py-24">
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-12 md:gap-16">
-
-          <div className="col-span-2 xl:col-span-2 flex flex-col gap-8">
-            <h4 className="text-foreground font-bold text-[16px] uppercase tracking-[0.15em]">About Our Vision</h4>
-            <p className="text-secondary text-[15px] font-medium leading-relaxed max-w-md">
-              At Vital Print, we believe in combining cutting-edge technology with world-class service. Our curated selection of printer is built to ensure reliability and excellence in every print job you perform.
-            </p>
+          {/* Column 1: Get to Know Us */}
+          <div className="space-y-4">
+            <h4 className="text-[16px] font-bold text-white mb-4">Get to Know Us</h4>
+            <ul className="space-y-2 text-[14px] text-gray-300">
+              <li><Link to="/about" className="hover:underline">About Us</Link></li>
+              <li><Link to="/contact" className="hover:underline">Contact Us</Link></li>
+              <li><Link to="/faq" className="hover:underline">FAQs</Link></li>
+              <li><Link to="/" className="hover:underline">Home</Link></li>
+            </ul>
           </div>
 
-          <div>
-            <h4 className="text-foreground font-bold text-[14px] uppercase tracking-wider mb-8">Printer</h4>
-            <ul className="space-y-4">
+          {/* Column 2: Policy */}
+          <div className="space-y-4">
+            <h4 className="text-[16px] font-bold text-white mb-4">Policy</h4>
+            <ul className="space-y-2 text-[14px] text-gray-300">
+              <li><Link to="/return-policy" className="hover:underline">Return Policy</Link></li>
+              <li><Link to="/terms-and-conditions" className="hover:underline">Terms of Use</Link></li>
+              <li><Link to="/privacy-policy" className="hover:underline">Privacy Policy</Link></li>
+              <li><Link to="/shipping-policy" className="hover:underline">Shipping Policy</Link></li>
+            </ul>
+          </div>
+
+          {/* Column 3: Categories */}
+          <div className="space-y-4">
+            <h4 className="text-[16px] font-bold text-white mb-4">Top Categories</h4>
+            <ul className="space-y-2 text-[14px] text-gray-300">
               {categories.map(cat => (
                 <li key={cat.id}>
-                  <Link to={`/shop?category=${cat.slug}`} className="text-secondary hover:text-primary font-semibold text-[14px] transition-all flex items-center gap-2 group">
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary opacity-0 group-hover:opacity-100 transition-all" />
-                    <span className="capitalize">{cat.name}</span>
+                  <Link to={`/shop?category=${cat.slug}`} className="hover:underline capitalize">
+                    {cat.name}
                   </Link>
                 </li>
               ))}
+              <li><Link to="/shop" className="hover:underline">Shop All</Link></li>
             </ul>
           </div>
-
-          <div>
-            <h4 className="text-foreground font-bold text-[14px] uppercase tracking-wider mb-8">Quick Access</h4>
-            <ul className="space-y-4">
-              {['Home', 'Shop', 'About', 'Contact', 'FAQ'].map(item => (
-                <li key={item}>
-                  <Link to={item === 'Home' ? '/' : `/${item.toLowerCase()}`} className="text-secondary hover:text-primary font-semibold text-[14px] transition-all flex items-center gap-2 group">
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary opacity-0 group-hover:opacity-100 transition-all" />
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-foreground font-bold text-[14px] uppercase tracking-wider mb-8">Legal Docs</h4>
-            <ul className="space-y-4">
-              {[
-                { name: 'Privacy Policy', path: '/privacy-policy' },
-                { name: 'Terms & Conditions', path: '/terms-and-conditions' },
-                { name: 'Shipping Policy', path: '/shipping-policy' },
-                { name: 'Return Policy', path: '/return-policy' }
-              ].map(link => (
-                <li key={link.name}>
-                  <Link to={link.path} className="text-secondary hover:text-primary font-semibold text-[14px] transition-all flex items-center gap-2 group">
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary opacity-0 group-hover:opacity-100 transition-all" />
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
         </div>
-      </div>
 
-      {/* BOTTOM STRIP */}
-      <div className="w-full border-t border-border py-10">
-        <div className="max-w-[1800px] mx-auto px-4 md:px-10 flex flex-col md:flex-row items-center justify-between gap-10">
-
-          <div className="flex flex-col items-center md:items-start gap-3">
-            <p className="text-secondary text-[13px] font-semibold text-center md:text-left">
-              &copy; {new Date().getFullYear()} <span className="text-foreground font-bold tracking-tight">Vital Print Inc.</span> All rights reserved.
+        {/* Branding and Contact Section */}
+        <div className="py-12 flex flex-col lg:flex-row items-center justify-between gap-8 border-b border-gray-700">
+          <div className="flex flex-col items-center lg:items-start gap-4">
+            <Link to="/">
+              <img src="/logo/logo.png" alt="Logo" className="h-10 brightness-0 invert" />
+            </Link>
+            <p className="text-gray-400 text-sm max-w-md text-center lg:text-left">
+              Dashing Printers is your one-stop shop for all your printing needs. We provide high-quality printers, accessories, and expert support.
             </p>
-            <p className="text-[10px] text-secondary font-bold uppercase tracking-[0.2em] opacity-60 text-center md:text-left">
-              Disclaimer - For Informational only. No software installation or distribution.
-            </p>
-
           </div>
 
-          <div className="flex items-center gap-8 md:gap-12">
-            <div className="flex items-center gap-6 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all">
-              <img src="/logo/PayPal.svg.webp" alt="PayPal" className="h-4" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
+                <Mail size={18} className="text-primary" />
+              </div>
+              <div>
+                <p className="text-[10px] text-gray-500 uppercase tracking-wider">Email Us</p>
+                <p className="text-sm font-medium">info@dashingprinters.shop</p>
+              </div>
             </div>
-            <div className="flex items-center gap-2.5 px-5 py-2.5 bg-background rounded-full border border-border shadow-sm">
-              <Lock size={14} className="text-primary" />
-              <span className="text-foreground text-[11px] font-bold uppercase tracking-widest">SSL Encrypted Checkout</span>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
+                <MapPin size={18} className="text-primary" />
+              </div>
+              <div>
+                <p className="text-[10px] text-gray-500 uppercase tracking-wider">Location</p>
+                <p className="text-sm font-medium">Sacramento, CA, USA</p>
+              </div>
             </div>
           </div>
+        </div>
 
+        {/* Bottom Strip */}
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="text-[12px] text-gray-400 space-y-2 text-center md:text-left">
+            <p>© 2026, Dashing Printers Inc. or its affiliates</p>
+            <p className="text-[13px] font-medium opacity-80 leading-relaxed">
+              Disclaimer: All product names, logos, and brands are property of their respective owners. All company, product and service names used in this website are for identification purposes only. Use of these names, logos, and brands does not imply endorsement.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-6 items-center grayscale opacity-70">
+            <img src="/logo/PayPal.svg.webp" alt="PayPal" className="h-4 invert" />
+            <div className="flex items-center gap-2 border border-gray-700 px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest text-gray-400">
+              <span className="text-primary">●</span> SSL SECURE
+            </div>
+          </div>
         </div>
       </div>
     </footer>
   );
 }
-

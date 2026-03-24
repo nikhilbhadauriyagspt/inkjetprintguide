@@ -11,9 +11,19 @@ import {
   X,
   ChevronDown,
   LayoutGrid,
-  ArrowRight,
-  Mail,
+  MapPin,
+  LogOut,
+  Package,
   Headphones,
+  Truck,
+  Globe,
+  Zap,
+  Printer,
+  Droplets,
+  Layers,
+  Cpu,
+  ChevronRight,
+  ShieldCheck,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -27,40 +37,63 @@ export default function Header() {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isAccountOpen, setIsAccountOpen] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
+  const [userLocation, setUserLocation] = useState('Noida, IN');
 
   const navigate = useNavigate();
   const location = useLocation();
   const searchRef = useRef(null);
+  const accountRef = useRef(null);
+
+  useEffect(() => {
+    const processLocationName = (city, countryCode) => {
+      let displayCity = city || '';
+      const noidaRegion = ['Dadri', 'Greater Noida', 'Gautam Buddh Nagar', 'Ghaziabad'];
+      if (noidaRegion.some(region => displayCity.includes(region))) displayCity = 'Noida';
+      setUserLocation(`${displayCity || 'Global'}, ${countryCode || 'Store'}`);
+    };
+
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          try {
+            const res = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&localityLanguage=en`);
+            const data = await res.json();
+            processLocationName(data.city || data.locality, data.countryCode);
+          } catch { setUserLocation('Noida, IN'); }
+        },
+        () => { setUserLocation('Noida, IN'); },
+        { timeout: 5000 }
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => setIsSticky(window.scrollY > 40);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/categories`)
       .then((res) => res.json())
       .then((data) => {
         if (data.status === 'success') {
-          const printerParent = data.data.find(
-            (cat) => cat.slug === 'printers' || cat.id === 46
-          );
-          if (printerParent && printerParent.children) {
-            setCategories(printerParent.children);
-          }
+          const printerParent = data.data.find(cat => cat.slug === 'printers' || cat.id === 46);
+          if (printerParent && printerParent.children) setCategories(printerParent.children);
         }
       })
-      .catch((err) => console.error(err));
+      .catch(err => console.error(err));
 
-    const checkUser = () => {
-      const storedUser = localStorage.getItem('user');
-      setUser(storedUser ? JSON.parse(storedUser) : null);
-    };
-
+    const checkUser = () => setUser(localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null);
     checkUser();
     window.addEventListener('storage', checkUser);
 
-    const handleClickOutside = (event) => {
-      if (searchRef.current && !searchRef.current.contains(event.target)) {
-        setIsSearchFocused(false);
-      }
+    const handleClickOutside = (e) => {
+      if (searchRef.current && !searchRef.current.contains(e.target)) setIsSearchFocused(false);
+      if (accountRef.current && !accountRef.current.contains(e.target)) setIsAccountOpen(false);
     };
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       window.removeEventListener('storage', checkUser);
@@ -73,25 +106,14 @@ export default function Header() {
       if (searchValue.length > 1) {
         setIsLoading(true);
         fetch(`${API_BASE_URL}/products?search=${encodeURIComponent(searchValue)}`)
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.status === 'success') {
-              setSearchResults(data.data);
-            } else {
-              setSearchResults([]);
-            }
+          .then(res => res.json())
+          .then(data => {
+            setSearchResults(data.status === 'success' ? data.data : []);
             setIsLoading(false);
           })
-          .catch((err) => {
-            console.error(err);
-            setSearchResults([]);
-            setIsLoading(false);
-          });
-      } else {
-        setSearchResults([]);
-      }
+          .catch(() => { setSearchResults([]); setIsLoading(false); });
+      } else setSearchResults([]);
     }, 300);
-
     return () => clearTimeout(timer);
   }, [searchValue]);
 
@@ -99,8 +121,8 @@ export default function Header() {
     { name: 'Home', path: '/' },
     { name: 'Shop', path: '/shop' },
     { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' },
     { name: 'FAQ', path: '/faq' },
+    { name: 'Contact', path: '/contact' },
   ];
 
   const handleSearchTrigger = (term) => {
@@ -113,293 +135,226 @@ export default function Header() {
   };
 
   const getImagePath = (product) => {
-    let imagePath = '/logo/fabicon.png';
     try {
       const images = JSON.parse(product.images);
-      if (images && images.length > 0) {
-        imagePath = `/${images[0].replace(/\\/g, '/')}`;
-      }
-    } catch (e) { }
-    return imagePath;
+      return images?.length > 0 ? `/${images[0].replace(/\\/g, '/')}` : '/logo/fabicon.png';
+    } catch { return '/logo/fabicon.png'; }
   };
 
   return (
-    <header className="w-full font-['Rubik'] relative z-[1000] bg-white ">
-      {/* PART 1: TOP ROW - LOGO, CAT, SEARCH, CONTACT, AUTH */}
-      <div className="max-w-[1800px] mx-auto px-4 md:px-6 py-4 flex items-center gap-4 md:gap-8 lg:gap-10">
-        {/* LOGO */}
-        <Link to="/" className="shrink-0">
-          <img src="/logo/logo.png" alt="Logo" className="h-7 md:h-9 object-contain" />
-        </Link>
-
-        {/* CATEGORY BUTTON */}
-        <div
-          className="relative hidden xl:block shrink-0"
-          onMouseEnter={() => setIsCategoryOpen(true)}
-          onMouseLeave={() => setIsCategoryOpen(false)}
-        >
-          <button className="flex items-center gap-2.5 px-5 py-2.5 bg-background border border-border rounded-full text-foreground font-semibold text-[13px] uppercase tracking-wider transition-all hover:bg-primary/5">
-            <LayoutGrid size={18} className="text-primary" />
-            Categories
-            <ChevronDown size={14} className={`transition-transform duration-300 ${isCategoryOpen ? 'rotate-180' : ''}`} />
-          </button>
-
-          <AnimatePresence>
-            {isCategoryOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                className="absolute top-full left-0 w-[240px] bg-white border border-border z-[2200] py-1 shadow-2xl rounded-2xl overflow-hidden mt-2"
-              >
-                {categories.map((cat) => (
-                  <Link
-                    key={cat.id}
-                    to={`/shop?category=${cat.slug}`}
-                    className="flex items-center justify-between px-6 py-3.5 text-[14px] font-semibold text-secondary hover:bg-primary/5 hover:text-primary transition-all border-b border-background last:border-0"
-                  >
-                    {cat.name}
-                    <ArrowRight size={14} className="opacity-20" />
-                  </Link>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-
-        {/* SEARCH BAR */}
-        <div ref={searchRef} className="flex-1 max-w-[600px] relative hidden lg:block">
-          <div className={`relative h-[46px] flex items-center border transition-all duration-300 rounded-full ${isSearchFocused ? 'border-primary ring-4 ring-primary/5' : 'border-border hover:border-secondary/30 bg-background'}`}>
-            <input
-              type="text"
-              placeholder="Search for printers, ink & toner..."
-              className="w-full h-full bg-transparent pl-6 pr-14 text-[13px] outline-none font-semibold text-foreground"
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-              onFocus={() => setIsSearchFocused(true)}
-              onKeyDown={(e) => e.key === 'Enter' && handleSearchTrigger()}
-            />
-            <button
-              onClick={() => handleSearchTrigger()}
-              className="absolute right-1.5 h-[36px] w-[36px] flex items-center justify-center bg-primary text-white hover:bg-primary-hover transition-colors rounded-full"
-            >
-              <Search size={18} />
-            </button>
-          </div>
-
-          <AnimatePresence>
-            {isSearchFocused && (
-              <motion.div
-                initial={{ opacity: 0, y: 5 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 5 }}
-                className="absolute top-[calc(100%+8px)] left-0 w-full bg-white border border-border z-[2200] overflow-hidden shadow-2xl rounded-2xl"
-              >
-                <div className="p-4">
-                  {searchValue.length > 1 ? (
-                    <div className="space-y-1 max-h-[350px] overflow-y-auto custom-scrollbar">
-                      {searchResults.length > 0 ? (
-                        searchResults.map((product) => (
-                          <Link
-                            key={product.id}
-                            to={`/product/${product.slug}`}
-                            onClick={() => setIsSearchFocused(false)}
-                            className="flex items-center gap-4 p-3 hover:bg-background transition-all group/item border-b border-background last:border-0 rounded-xl"
-                          >
-                            <div className="w-12 h-12 bg-white border border-border flex items-center justify-center shrink-0 rounded-lg">
-                              <img src={getImagePath(product)} alt="" className="w-full h-full object-contain p-1" />
-                            </div>
-                            <div className="min-w-0">
-                              <p className="text-[13px] font-semibold text-foreground truncate group-hover/item:text-primary">{product.name}</p>
-                              <p className="text-[13px] font-bold text-primary mt-0.5">${product.price}</p>
-                            </div>
-                          </Link>
-                        ))
-                      ) : !isLoading && <p className="text-[13px] text-secondary text-center py-8">No matches found for "{searchValue}"</p>}
-                    </div>
-                  ) : (
-                    <div className="px-2 pb-2">
-                      <p className="text-[11px] font-semibold text-secondary uppercase mb-4 tracking-widest">Trending Searches</p>
-                      <div className="flex flex-wrap gap-2">
-                        {['EcoTank', 'LaserJet', 'Brother', 'Toner'].map((tag) => (
-                          <button
-                            key={tag}
-                            onClick={() => handleSearchTrigger(tag)}
-                            className="px-5 py-2 border border-border text-[12px] font-semibold text-secondary hover:border-primary hover:text-primary transition-all rounded-full"
-                          >
-                            {tag}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-
-        {/* CONTACT SECTION */}
-        <div className="hidden xl:flex items-center gap-4 shrink-0 border-l border-border pl-8">
-          <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-            <Mail size={20} />
-          </div>
-          <div className="flex flex-col leading-tight">
-            <span className="text-[10px] font-semibold text-secondary uppercase tracking-widest mb-1">Email Support</span>
-            <a href="mailto:info@vitalprint.shop" className="text-[13px] font-semibold text-foreground hover:text-primary transition-colors">info@vitalprint.shop</a>
-          </div>
-        </div>
-
-        {/* AUTH BUTTONS */}
-        <div className="flex items-center gap-4 ml-auto shrink-0 border-l border-border pl-8">
-          {user ? (
-            <Link to="/profile" className="flex items-center gap-3 px-5 py-2 border border-border rounded-full hover:border-primary transition-all group">
-              <div className="w-8 h-8 rounded-full bg-foreground text-white flex items-center justify-center text-[12px] font-semibold group-hover:bg-primary">
-                {user.name.charAt(0)}
-              </div>
-              <div className="hidden 2xl:block text-left">
-                <p className="text-[11px] text-secondary font-semibold uppercase leading-none mb-1">Authenticated</p>
-                <p className="text-[13px] font-semibold text-foreground truncate max-w-[80px]">{user.name.split(' ')[0]}</p>
-              </div>
-            </Link>
-          ) : (
-            <div className="flex items-center gap-2">
-              <Link to="/login" className="px-5 py-2.5 text-[13px] font-semibold text-foreground uppercase tracking-wider hover:text-primary transition-colors hidden sm:block">
-                Sign In
-              </Link>
-              <Link to="/signup" className="px-6 py-2.5 bg-primary text-white text-[13px] font-semibold uppercase tracking-widest hover:bg-primary-hover transition-all shadow-lg shadow-primary/10 rounded-full">
-                Sign Up
-              </Link>
+    <header className={`w-full font-['Rubik'] relative z-[1000] transition-all duration-300 ${isSticky ? 'fixed top-0 left-0 shadow-xl' : ''}`}>
+      
+      {/* 1. TOP BAR */}
+      {!isSticky && (
+        <div className="bg-[#0f172a] text-white py-1.5 text-[11px] font-normal w-full border-b border-white/5">
+          <div className="w-full px-4 md:px-10 flex justify-between items-center opacity-80 font-medium">
+            <div className="flex items-center gap-8">
+               <span className="flex items-center gap-1.5"><Globe size={12} className="text-[#f59e0b]" /> Worldwide Shipping Hub</span>
+               <span className="flex items-center gap-1.5 uppercase tracking-widest text-[9px]"><Truck size={12} className="text-[#f59e0b]" /> Express Global Delivery</span>
             </div>
-          )}
-          <button className="lg:hidden text-foreground ml-2" onClick={() => setIsMobileMenuOpen(true)}>
+            <div className="flex items-center gap-6">
+               <Link to="/orders" className="hover:text-[#f59e0b] transition-colors">Track Order</Link>
+               <Link to="/faq" className="hover:text-[#f59e0b] transition-colors">Support</Link>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 2. MAIN HEADER */}
+      <div className={`bg-[#1e1b4b] text-white py-2.5 w-full border-b border-white/5 transition-all ${isSearchFocused ? 'bg-[#16143a]' : ''}`}>
+        <div className="w-full px-4 md:px-10 flex items-center gap-4 lg:gap-8">
+          
+          <button className="lg:hidden p-1.5 hover:bg-white/10 rounded-md transition-colors" onClick={() => setIsMobileMenuOpen(true)}>
             <Menu size={28} />
           </button>
-        </div>
-      </div>
 
-      {/* PART 2: BOTTOM ROW - NAVIGATION & ICONS */}
-      <div className="bg-white border-t border-border hidden lg:block">
-        <div className="max-w-[1800px] mx-auto px-6 h-[64px] flex items-center justify-between">
-          <nav className="flex items-center gap-1 h-full">
-            {navLinks.map((link) => {
-              const isActive = location.pathname === link.path;
-              return (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  className={`px-6 h-full flex items-center text-[13px] font-semibold uppercase tracking-[0.1em] transition-all relative ${isActive ? 'text-primary' : 'text-secondary hover:text-primary'
-                    }`}
-                >
-                  {link.name}
-                  {isActive && <div className="absolute bottom-0 left-0 w-full h-[3px] bg-primary rounded-t-full" />}
-                </Link>
-              );
-            })}
-          </nav>
+          <Link to="/" className="shrink-0 flex items-center p-1.5 hover:outline hover:outline-1 outline-white/30 rounded-sm transition-all">
+            <img src="/logo/logo.png" alt="Logo" className="h-7 md:h-9 object-contain brightness-0 invert" />
+          </Link>
 
-          <div className="flex items-center gap-8 h-full">
-            {/* WISHLIST SECTION */}
-            <Link to="/wishlist" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all relative shrink-0">
-                <Heart size={18} />
-                {wishlistCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-foreground text-white text-[8px] font-bold flex items-center justify-center rounded-full border border-white">
-                    {wishlistCount}
-                  </span>
+          {/* DELIVER TO */}
+          <div className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 hover:outline hover:outline-1 outline-white/30 rounded-sm cursor-pointer border border-transparent">
+             <MapPin size={16} className="text-[#f59e0b]" />
+             <div className="flex flex-col">
+                <span className="text-[10px] font-light leading-none opacity-60">Deliver to</span>
+                <span className="text-[13px] font-medium leading-none truncate max-w-[120px]">{userLocation}</span>
+             </div>
+          </div>
+
+          {/* SEARCH BAR */}
+          <div ref={searchRef} className="flex-1 max-w-[800px] relative hidden sm:block">
+            <div className={`flex items-center h-[40px] bg-white rounded-[4px] overflow-hidden transition-all ${isSearchFocused ? 'ring-2 ring-[#f59e0b]' : ''}`}>
+               <div className="hidden md:flex items-center gap-1 px-4 py-2 bg-gray-50 border-r border-gray-200 text-gray-600 text-[12px] font-semibold cursor-pointer hover:bg-gray-200">
+                  All <ChevronDown size={14} className="opacity-50" />
+               </div>
+               <input
+                 type="text"
+                 placeholder="Search printers and accessories..."
+                 className="flex-1 h-full px-4 text-[14px] text-gray-900 outline-none placeholder:text-gray-400 font-normal"
+                 value={searchValue}
+                 onChange={(e) => setSearchValue(e.target.value)}
+                 onFocus={() => setIsSearchFocused(true)}
+                 onKeyDown={(e) => e.key === 'Enter' && handleSearchTrigger()}
+               />
+               <button onClick={() => handleSearchTrigger()} className="bg-[#f59e0b] hover:bg-[#d97706] text-[#1e1b4b] h-full w-[50px] flex items-center justify-center">
+                 <Search size={20} strokeWidth={2.5} />
+               </button>
+            </div>
+
+            <AnimatePresence>
+              {isSearchFocused && (
+                <motion.div initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 5 }} className="absolute top-full left-0 w-full bg-white border border-gray-100 z-[2200] shadow-2xl rounded-b-sm overflow-hidden">
+                  <div className="p-0">
+                    {searchValue.length > 1 ? (
+                      <div className="max-h-[450px] overflow-y-auto custom-scrollbar p-1">
+                        {isLoading ? (
+                           <div className="p-10 text-center"><div className="w-8 h-8 border-3 border-[#1e1b4b] border-t-transparent animate-spin mx-auto rounded-full"></div></div>
+                        ) : searchResults.length > 0 ? (
+                          searchResults.map((product) => (
+                            <Link key={product.id} to={`/product/${product.slug}`} onClick={() => setIsSearchFocused(false)} className="flex items-center gap-4 px-4 py-3 hover:bg-gray-50 border-b border-gray-50 last:border-0">
+                              <div className="w-10 h-10 bg-white rounded border border-gray-100 p-0.5 shrink-0"><img src={getImagePath(product)} alt="" className="w-full h-full object-contain" /></div>
+                              <div className="min-w-0"><p className="text-[13px] font-semibold text-gray-900 truncate">{product.name}</p><p className="text-[12px] text-[#1e1b4b] font-bold mt-0.5">${product.price}</p></div>
+                            </Link>
+                          ))
+                        ) : <p className="text-[13px] text-gray-500 text-center py-10 font-medium">No matches found globally</p>}
+                      </div>
+                    ) : (
+                      <div className="p-5 text-gray-800">
+                        <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-4">Trending Collections</p>
+                        <div className="flex flex-wrap gap-2">{['LaserJet', 'Inkjet', 'Brother', 'Cartridge'].map(tag => (
+                          <button key={tag} onClick={() => handleSearchTrigger(tag)} className="px-4 py-2 bg-gray-100 text-[12px] text-gray-700 font-medium hover:bg-[#1e1b4b] hover:text-white rounded-sm transition-all">{tag}</button>
+                        ))}</div>
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* ACTIONS */}
+          <div className="flex items-center gap-1 md:gap-4 ml-auto h-full">
+            <div className="relative h-full flex items-center" ref={accountRef}>
+               <button onMouseEnter={() => setIsAccountOpen(true)} className="flex flex-col items-start px-2 py-1 border border-transparent hover:border-white rounded-sm h-[80%] justify-center group transition-all">
+                  <span className="text-[11px] font-light leading-none opacity-70 mb-0.5">Hello, {user ? user.name.split(' ')[0] : 'Sign In'}</span>
+                  <span className="text-[13px] font-medium flex items-center gap-0.5">Account & Lists <ChevronDown size={14} className="opacity-50" /></span>
+               </button>
+               <AnimatePresence>
+                {isAccountOpen && (
+                  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }} onMouseLeave={() => setIsAccountOpen(false)} className="absolute top-full right-0 w-[240px] bg-white text-gray-800 border border-gray-100 shadow-2xl z-[2200] mt-0.5 rounded-sm p-3">
+                    {!user ? <Link to="/login" className="block w-full py-2 bg-[#f59e0b] hover:bg-[#d97706] rounded-[3px] text-[13px] text-center font-bold text-[#1e1b4b]">Sign In</Link> : <p className="text-[12px] font-bold border-b pb-2 mb-2 truncate">Hi, {user.name}!</p>}
+                    <ul className="space-y-1 mt-2 font-medium">
+                       <li><Link to="/profile" className="block text-[12px] py-1.5 px-2 hover:bg-gray-50 rounded transition-colors text-gray-600">Your Account</Link></li>
+                       <li><Link to="/orders" className="block text-[12px] py-1.5 px-2 hover:bg-gray-50 rounded transition-colors text-gray-600">Your Orders</Link></li>
+                       <li><Link to="/wishlist" className="block text-[12px] py-1.5 px-2 hover:bg-gray-50 rounded transition-colors text-gray-600">Your Wishlist ({wishlistCount})</Link></li>
+                       {user && <li><button onClick={() => { localStorage.removeItem('user'); window.location.reload(); }} className="w-full text-left text-[12px] text-red-600 font-bold py-1.5 px-2 hover:bg-red-50 rounded transition-colors mt-2">Sign Out</button></li>}
+                    </ul>
+                  </motion.div>
                 )}
-              </div>
-              <div className="flex flex-col leading-tight">
-                <span className="text-[9px] font-semibold text-secondary uppercase tracking-widest mb-0.5">Favorites</span>
-                <span className="text-[13px] font-semibold text-foreground group-hover:text-primary transition-colors">Wishlist</span>
-              </div>
+               </AnimatePresence>
+            </div>
+
+            <Link to="/orders" className="hidden lg:flex flex-col items-start px-2 py-1 border border-transparent hover:border-white rounded-sm h-[80%] justify-center">
+               <span className="text-[11px] font-light leading-none opacity-70 mb-0.5">Returns</span>
+               <span className="text-[13px] font-medium">& Orders</span>
             </Link>
 
-            {/* CART SECTION */}
-            <button onClick={openCartDrawer} className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all relative shrink-0">
-                <ShoppingCart size={18} />
-                {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-foreground text-white text-[8px] font-bold flex items-center justify-center rounded-full border border-white">
-                    {cartCount}
-                  </span>
-                )}
-              </div>
-              <div className="flex flex-col text-left leading-tight">
-                <span className="text-[9px] font-semibold text-secondary uppercase tracking-widest mb-0.5">Your Cart</span>
-                <span className="text-[13px] font-semibold text-foreground group-hover:text-primary transition-colors">{cartCount > 0 ? `${cartCount} items` : "$0.00"}</span>
-              </div>
+            <button onClick={openCartDrawer} className="flex items-end gap-1.5 px-2 py-1 border border-transparent hover:border-white rounded-sm relative group h-[80%] justify-center">
+               <div className="relative"><ShoppingCart size={28} className="group-hover:scale-105 transition-transform" />
+                  <span className="absolute -top-1 -right-1 bg-[#f59e0b] text-[#1e1b4b] text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full border-2 border-[#1e1b4b]">{cartCount}</span>
+               </div>
+               <span className="text-[13px] font-bold mb-0.5 hidden lg:block">Cart</span>
             </button>
           </div>
         </div>
       </div>
 
-      {/* MOBILE MENU */}
+      {/* 3. SUB NAVIGATION */}
+      <div className="bg-[#4f46e5] text-white w-full shadow-md overflow-x-auto no-scrollbar">
+        <div className="w-full px-4 md:px-10 h-[40px] flex items-center gap-1">
+          
+          <button 
+            className="flex items-center gap-1.5 px-4 h-[40px] bg-white/10 hover:bg-white/20 transition-all font-bold text-[13px] whitespace-nowrap border-r border-white/10"
+            onMouseEnter={() => setIsCategoryOpen(true)}
+            onMouseLeave={() => setIsCategoryOpen(false)}
+          >
+            <Menu size={20} className="text-[#f59e0b]" />
+            Departments
+          </button>
+
+          <div className="flex items-center gap-1">
+            {navLinks.map((link) => (
+              <Link key={link.name} to={link.path} className={`px-4 py-1.5 border border-transparent hover:border-white rounded-sm text-[12px] font-medium whitespace-nowrap transition-all nav-link-ltr ${location.pathname === link.path ? 'bg-white/20' : ''}`}>{link.name}</Link>
+            ))}
+          </div>
+
+          <p className="ml-auto hidden xl:block text-[11px] font-medium text-[#f59e0b] uppercase tracking-wide"><Zap size={14} className="inline-block mr-1 mb-0.5" /> Premium Printing Solutions & Professional Support</p>
+        </div>
+      </div>
+
+      {/* REFINED MEGA MENU OVERLAY */}
+      <AnimatePresence>
+        {isCategoryOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
+            onMouseEnter={() => setIsCategoryOpen(true)} onMouseLeave={() => setIsCategoryOpen(false)}
+            className="absolute top-full left-0 w-full bg-white text-gray-800 shadow-[0_30px_60px_rgba(0,0,0,0.15)] z-[900] border-t border-gray-100 py-12 px-10 hidden lg:block"
+          >
+            <div className="w-full px-10 grid grid-cols-12 gap-12">
+               
+               {/* HARDWARE SECTION */}
+               <div className="col-span-4">
+                  <div className="flex items-center gap-2 mb-6 text-[#1e1b4b]"><Printer size={18} className="text-[#f59e0b]" /> <h3 className="text-[14px] font-bold uppercase tracking-widest">Printing Hardware</h3></div>
+                  <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+                    {categories.map(cat => (
+                      <div key={cat.id} className="group">
+                        <Link to={`/shop?category=${cat.slug}`} className="text-[13px] font-medium text-gray-600 hover:text-[#4f46e5] flex items-center justify-between group-hover:translate-x-1 transition-transform">
+                          {cat.name} <ChevronRight size={14} className="opacity-0 group-hover:opacity-100 transition-all text-[#f59e0b]" />
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
+               </div>
+
+               {/* RIGHT PROMO SECTION */}
+               <div className="col-span-8 bg-indigo-50/50 rounded-2xl p-10 flex flex-col justify-center border border-indigo-100 relative overflow-hidden group">
+                  <div className="relative z-10">
+                     <span className="bg-[#f59e0b] text-[#1e1b4b] text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-4 inline-block">Support Hub</span>
+                     <p className="text-[#1e1b4b] text-[26px] font-bold mb-3 leading-tight">Need Expert Setup Help?</p>
+                     <p className="text-gray-600 text-[14px] mb-8 font-medium leading-relaxed">Our technical experts are available 24/7 to assist you with printer installation, driver setup, and troubleshooting.</p>
+                     <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-3 bg-[#1e1b4b] text-white font-bold text-[13px] rounded-lg hover:bg-[#0f172a] transition-all shadow-lg shadow-indigo-100">
+                        TALK TO EXPERT <ChevronRight size={16} />
+                     </Link>
+                  </div>
+                  <ShieldCheck size={180} className="absolute -right-10 -bottom-10 text-indigo-500 opacity-[0.03] rotate-12 group-hover:scale-110 transition-transform duration-700" />
+               </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/70 z-[2000] backdrop-blur-sm"
-              onClick={() => setIsMobileMenuOpen(false)}
-            />
-            <motion.div
-              initial={{ x: '-100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
-              className="fixed top-0 left-0 bottom-0 w-[85%] max-w-[340px] bg-white z-[2100] flex flex-col shadow-2xl"
-            >
-              <div className="p-6 border-b border-border flex items-center justify-between bg-background">
-                <img src="/logo/logo.png" alt="Logo" className="h-8 object-contain" />
-                <button onClick={() => setIsMobileMenuOpen(false)} className="w-10 h-10 flex items-center justify-center bg-white border border-border text-foreground hover:bg-primary hover:text-white transition-all">
-                  <X size={24} />
-                </button>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/60 z-[2000] backdrop-blur-sm" onClick={() => setIsMobileMenuOpen(false)} />
+            <motion.div initial={{ x: '-100%' }} animate={{ x: 0 }} exit={{ x: '-100%' }} className="fixed top-0 left-0 bottom-0 w-[80%] max-w-[320px] bg-white z-[2100] flex flex-col shadow-2xl">
+              <div className="bg-[#1e1b4b] text-white p-6 flex items-center justify-between"><div className="flex items-center gap-3"><div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center border border-white/20"><User size={22} /></div><span className="font-bold text-[16px]">Hi, {user ? user.name.split(' ')[0] : 'Sign In'}</span></div><button onClick={() => setIsMobileMenuOpen(false)}><X size={26} /></button></div>
+              <div className="flex-1 overflow-y-auto p-5 space-y-10">
+                <div><h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-2 mb-4">By Category</h3>{categories.map(cat => (<Link key={cat.id} to={`/shop?category=${cat.slug}`} onClick={() => setIsMobileMenuOpen(false)} className="block py-3 px-3 text-[14px] font-medium text-gray-700 hover:bg-gray-50 rounded-lg">{cat.name}</Link>))}</div>
+                <div><h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-2 mb-4">Quick Links</h3>{navLinks.map(link => (<Link key={link.name} to={link.path} onClick={() => setIsMobileMenuOpen(false)} className="block py-3 px-3 text-[14px] font-medium text-gray-700 hover:bg-gray-50 rounded-lg">{link.name}</Link>))}</div>
               </div>
-
-              <div className="flex-1 overflow-y-auto p-6 space-y-10">
-                <div>
-                  <p className="text-[11px] font-black text-secondary uppercase tracking-[0.3em] mb-6">Navigation</p>
-                  <div className="space-y-1">
-                    {navLinks.map(link => (
-                      <Link key={link.name} to={link.path} onClick={() => setIsMobileMenuOpen(false)} className="block py-3.5 text-[16px] font-bold text-foreground border-b border-background last:border-0">{link.name}</Link>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <p className="text-[11px] font-black text-secondary uppercase tracking-[0.3em] mb-6">Printer Categories</p>
-                  <div className="grid grid-cols-1 gap-2">
-                    {categories.map(cat => (
-                      <Link key={cat.id} to={`/shop?category=${cat.slug}`} onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-between text-[14px] font-semibold text-secondary py-3 border-b border-background">
-                        {cat.name}
-                        <ArrowRight size={14} className="opacity-20" />
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="p-6 border-t border-border bg-background">
-                <Link to={user ? '/profile' : '/login'} onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-4 w-full p-5 bg-white border border-border shadow-sm">
-                  <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white">
-                    <User size={24} />
-                  </div>
-                  <div className="text-left">
-                    <p className="text-[15px] font-bold text-foreground leading-none mb-1">{user ? user.name : 'Client Access'}</p>
-                    <p className="text-[12px] text-secondary font-medium">{user ? 'Manage Profile' : 'Sign in to your account'}</p>
-                  </div>
-                </Link>
-              </div>
+              <div className="p-5 border-t border-gray-100 bg-gray-50/50"><Link to="/contact" className="flex items-center gap-4 w-full p-4 bg-white border border-gray-100 rounded-xl"><div className="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center text-[#1e1b4b]"><Headphones size={20} /></div><div><p className="text-[13px] font-bold text-gray-900">24/7 Support</p><p className="text-[11px] text-gray-500 font-semibold">Always here to help</p></div></Link></div>
             </motion.div>
           </>
         )}
       </AnimatePresence>
 
       <style>{`
-        .custom-scrollbar::-webkit-scrollbar { width: 5px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 10px; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f8fafc; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
       `}</style>
     </header>
   );

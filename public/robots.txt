@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vitalprint.shop/sitemap.xml
+Sitemap: https://dashingprinters.shop/sitemap.xml

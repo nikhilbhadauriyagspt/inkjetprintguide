@@ -1,27 +1,30 @@
 @import "tailwindcss";
 
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&display=swap');
+
 :root {
-  --font-sans: "Rubik", sans-serif;
-  --primary: #2563EB;
-  --primary-hover: #1D4ED8;
+  --font-sans: 'Rubik', sans-serif;
+  --primary: #4f46e5;
+  --primary-dark: #1e1b4b;
+  --primary-hover: #4338ca;
+  --accent: #f59e0b;
+  --accent-hover: #d97706;
   --secondary: #64748B;
-  --accent: #60A5FA;
-  --background: #FFFFFF;
-  --foreground: #1A1A1A;
+  --background: #f8fafc;
+  --foreground: #0f172a;
   --card: #ffffff;
-  --border: #F1F1F1;
+  --border: #e2e8f0;
   font-family: var(--font-sans);
 }
 
 @theme {
-  --font-sans: "Rubik", sans-serif;
-  --font-urbanist: "Rubik", sans-serif;
-  --font-snpro: "Rubik", sans-serif;
+  --font-sans: 'Rubik', sans-serif;
   --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
   --color-primary-hover: var(--primary-hover);
-  --color-secondary: var(--secondary);
   --color-accent: var(--accent);
-  --color-brand: var(--primary);
+  --color-accent-hover: var(--accent-hover);
+  --color-secondary: var(--secondary);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-border: var(--border);
@@ -54,19 +57,35 @@ body {
   }
 
   @keyframes pulse {
-
-    0%,
-    100% {
-      opacity: 1;
-    }
-
-    50% {
-      opacity: .5;
-    }
+    0%, 100% { opacity: 1; }
+    50% { opacity: .5; }
   }
 
   .animate-pulse {
     animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .nav-link-ltr {
+    position: relative;
+  }
+  
+  .nav-link-ltr::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    right: 0;
+    background: #f59e0b;
+    transition: width 0.3s ease;
+    -webkit-transition: width 0.3s ease;
+  }
+  
+  .nav-link-ltr:hover::after {
+    width: 100%;
+    left: 0;
+    background: #f59e0b;
   }
 
   .custom-scrollbar::-webkit-scrollbar {

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Mail, Lock, User, Eye, EyeOff, ArrowRight, Loader2, ShieldCheck, ChevronLeft, Sparkles, LayoutGrid } from 'lucide-react';
+import { Mail, Lock, User, Eye, EyeOff, ArrowRight, Loader2, ShieldCheck, Sparkles } from 'lucide-react';
 import API_BASE_URL from '../config';
 import SEO from '@/components/SEO';
 
@@ -56,145 +55,122 @@ export default function UserSignup() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#F8FAFC] font-['Rubik'] px-4 md:px-6 py-12 md:py-20">
-      <SEO title="Create Your Account | Vital Print" />
+    <div className="min-h-screen flex items-center justify-center bg-[#F8FAFC] font-['Rubik'] px-4 py-12 md:py-20">
+      <SEO title="Create Your Account | Dashing Printers" />
 
-      <div className="max-w-[1100px] w-full grid grid-cols-1 lg:grid-cols-2 bg-white rounded-[32px] overflow-hidden border border-border shadow-2xl shadow-black/5">
+      <div className="w-full max-w-[500px] bg-white rounded-[2rem] border border-gray-100 shadow-[0_20px_60px_rgba(0,0,0,0.06)] overflow-hidden">
+        {/* Top Decorative Gradient */}
+        <div className="h-2 bg-gradient-to-r from-[#4f46e5] via-[#1e1b4b] to-[#f59e0b]"></div>
 
-        {/* --- LEFT: BRAND STAGE --- */}
-        <div className="hidden lg:flex flex-col justify-between p-12 md:p-16 bg-foreground relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-primary opacity-10 blur-[120px] rounded-full pointer-events-none" />
-
-          <div className="relative z-10">
-            <Link to="/" className="inline-flex items-center gap-2.5 text-white/60 hover:text-white transition-all mb-16 group">
-              <ChevronLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-              <span className="text-[11px] font-bold uppercase tracking-widest">Back to Homepage</span>
+        <div className="p-8 md:p-12">
+          <div className="text-center mb-10">
+            <Link to="/" className="inline-block mb-6">
+              <img src="/logo/logo.png" alt="Logo" className="h-10 object-contain" />
             </Link>
-
-            <div className="space-y-8">
-              <div className="flex items-center gap-3 text-primary">
-                <Sparkles size={20} fill="currentColor" />
-                <span className="text-[11px] font-bold uppercase tracking-[0.3em]">Join Our Community</span>
-              </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">
-                Unlock exclusive <br /> <span className="text-primary">benefits.</span>
-              </h2>
-              <p className="text-white/60 text-lg font-medium leading-relaxed max-w-sm">
-                Register today to track your orders, manage printer subscriptions, and access premium technical support.
-              </p>
+            <div className="flex items-center justify-center gap-2 text-[#f59e0b] mb-2">
+                <Sparkles size={16} fill="currentColor" />
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Join Dashing Printers</span>
             </div>
+            <h1 className="text-3xl font-bold text-[#1e1b4b] tracking-tight">Create Account</h1>
+            <p className="text-gray-500 mt-2 text-sm">Experience premium printing benefits</p>
           </div>
 
-          <div className="relative z-10 flex items-center gap-3 text-white/40 text-[11px] font-bold uppercase tracking-[0.2em]">
-            <ShieldCheck size={18} className="text-primary" />
-            <span>Secure & Private Connection</span>
-          </div>
-        </div>
-
-        {/* --- RIGHT: FORM STAGE --- */}
-        <div className="p-8 md:p-16 flex flex-col justify-center bg-white">
-          <div className="mb-10">
-            <h1 className="text-3xl font-bold text-foreground tracking-tight mb-2">Create Account</h1>
-            <p className="text-[13px] font-semibold text-secondary">Join Vital Print for a better experience</p>
-          </div>
-
-          <form onSubmit={handleSignup} className="space-y-6">
+          <form onSubmit={handleSignup} className="space-y-5">
             {error && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="p-4 bg-primary/5 text-primary text-[12px] font-bold uppercase tracking-widest rounded-xl border border-primary/10 text-center"
-              >
+              <div className="p-4 bg-red-50 text-red-600 text-xs font-bold rounded-xl border border-red-100 text-center">
                 {error}
-              </motion.div>
+              </div>
             )}
 
-            <div className="space-y-5">
-              <div className="space-y-2">
-                <label className="text-[11px] font-bold text-secondary uppercase tracking-widest ml-1">Full Name</label>
-                <div className="relative group">
-                  <User className="absolute left-5 top-1/2 -translate-y-1/2 text-secondary group-focus-within:text-primary transition-colors" size={18} />
-                  <input
-                    required
-                    type="text"
-                    placeholder="e.g. John Doe"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full h-14 pl-14 pr-6 bg-[#F5F5F5] border border-transparent focus:border-primary/20 focus:bg-white focus:ring-4 focus:ring-primary/5 rounded-2xl outline-none text-[15px] font-medium text-foreground transition-all"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-[11px] font-bold text-secondary uppercase tracking-widest ml-1">Email Address</label>
-                <div className="relative group">
-                  <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-secondary group-focus-within:text-primary transition-colors" size={18} />
-                  <input
-                    required
-                    type="email"
-                    placeholder="name@email.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full h-14 pl-14 pr-6 bg-[#F5F5F5] border border-transparent focus:border-primary/20 focus:bg-white focus:ring-4 focus:ring-primary/5 rounded-2xl outline-none text-[15px] font-medium text-foreground transition-all"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div className="space-y-2">
-                  <label className="text-[11px] font-bold text-secondary uppercase tracking-widest ml-1">Password</label>
-                  <div className="relative group">
-                    <Lock className="absolute left-5 top-1/2 -translate-y-1/2 text-secondary group-focus-within:text-primary transition-colors" size={18} />
-                    <input
-                      required
-                      type={showPassword ? "text" : "password"}
-                      placeholder="••••••••"
-                      value={formData.password}
-                      onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                      className="w-full h-14 pl-14 pr-6 bg-[#F5F5F5] border border-transparent focus:border-primary/20 focus:bg-white focus:ring-4 focus:ring-primary/5 rounded-2xl outline-none text-[15px] font-medium text-foreground transition-all"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-[11px] font-bold text-secondary uppercase tracking-widest ml-1">Confirm Password</label>
-                  <div className="relative group">
-                    <ShieldCheck className="absolute left-5 top-1/2 -translate-y-1/2 text-secondary group-focus-within:text-primary transition-colors" size={18} />
-                    <input
-                      required
-                      type={showPassword ? "text" : "password"}
-                      placeholder="••••••••"
-                      value={formData.confirmPassword}
-                      onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                      className="w-full h-14 pl-14 pr-6 bg-[#F5F5F5] border border-transparent focus:border-primary/20 focus:bg-white focus:ring-4 focus:ring-primary/5 rounded-2xl outline-none text-[15px] font-medium text-foreground transition-all"
-                    />
-                  </div>
-                </div>
+            <div className="space-y-1.5">
+              <label className="text-[13px] font-bold text-[#1e1b4b] ml-1">Full Name</label>
+              <div className="relative group">
+                <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#4f46e5] transition-colors" size={18} />
+                <input
+                  required
+                  type="text"
+                  placeholder="John Doe"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="w-full h-12 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:border-[#4f46e5] focus:bg-white focus:ring-4 focus:ring-[#4f46e5]/5 transition-all text-sm font-medium"
+                />
               </div>
             </div>
 
-            <div className="flex items-center gap-2 px-1">
+            <div className="space-y-1.5">
+              <label className="text-[13px] font-bold text-[#1e1b4b] ml-1">Email Address</label>
+              <div className="relative group">
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#4f46e5] transition-colors" size={18} />
+                <input
+                  required
+                  type="email"
+                  placeholder="name@email.com"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full h-12 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:border-[#4f46e5] focus:bg-white focus:ring-4 focus:ring-[#4f46e5]/5 transition-all text-sm font-medium"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                    <label className="text-[13px] font-bold text-[#1e1b4b] ml-1">Password</label>
+                    <div className="relative group">
+                        <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#4f46e5] transition-colors" size={18} />
+                        <input
+                            required
+                            type={showPassword ? "text" : "password"}
+                            placeholder="••••••••"
+                            value={formData.password}
+                            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                            className="w-full h-12 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:border-[#4f46e5] focus:bg-white focus:ring-4 focus:ring-[#4f46e5]/5 transition-all text-sm font-medium"
+                        />
+                    </div>
+                </div>
+
+                <div className="space-y-1.5">
+                    <label className="text-[13px] font-bold text-[#1e1b4b] ml-1">Confirm</label>
+                    <div className="relative group">
+                        <ShieldCheck className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#4f46e5] transition-colors" size={18} />
+                        <input
+                            required
+                            type={showPassword ? "text" : "password"}
+                            placeholder="••••••••"
+                            value={formData.confirmPassword}
+                            onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                            className="w-full h-12 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:border-[#4f46e5] focus:bg-white focus:ring-4 focus:ring-[#4f46e5]/5 transition-all text-sm font-medium"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="flex items-center gap-2 px-1 py-2">
               <input
                 type="checkbox"
                 id="showPass"
                 onChange={(e) => setShowPassword(e.target.checked)}
-                className="w-4 h-4 accent-primary"
+                className="w-4 h-4 rounded border-gray-300 text-[#4f46e5] focus:ring-[#4f46e5] cursor-pointer"
               />
-              <label htmlFor="showPass" className="text-[12px] font-bold text-secondary uppercase tracking-wider cursor-pointer">Show Passwords</label>
+              <label htmlFor="showPass" className="text-[12px] font-bold text-gray-500 uppercase tracking-wider cursor-pointer">Show Passwords</label>
             </div>
 
             <button
               disabled={loading}
-              className="w-full h-16 bg-foreground text-white flex items-center justify-center gap-4 text-[14px] font-bold uppercase tracking-[0.15em] rounded-full hover:bg-primary transition-all active:scale-[0.98] disabled:opacity-70 group shadow-xl shadow-foreground/10 mt-4"
+              className="w-full h-14 bg-[#1e1b4b] text-white rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-[#4f46e5] transition-all disabled:opacity-70 shadow-xl shadow-[#1e1b4b]/10 cursor-pointer flex items-center justify-center gap-3 active:scale-[0.98] mt-2"
             >
-              {loading ? <Loader2 className="animate-spin" size={24} /> : <>Create Account <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" /></>}
+              {loading ? <Loader2 className="animate-spin" size={20} /> : (
+                <>
+                    Create Account
+                    <ArrowRight size={18} />
+                </>
+              )}
             </button>
           </form>
 
-          <div className="mt-10 pt-8 border-t border-border text-center">
-            <p className="text-[13px] font-semibold text-secondary">
+          <div className="mt-10 pt-8 border-t border-gray-100 text-center">
+            <p className="text-sm text-gray-500 font-medium">
               Already have an account?{' '}
-              <Link to="/login" className="text-primary hover:text-primary-hover ml-1 font-bold transition-colors underline decoration-2 underline-offset-4">Sign In Here</Link>
+              <Link to="/login" className="text-[#4f46e5] font-bold hover:underline">Sign In Instead</Link>
             </p>
           </div>
         </div>
@@ -202,4 +178,3 @@ export default function UserSignup() {
     </div>
   );
 }
-

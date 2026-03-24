@@ -6,7 +6,7 @@ import API_BASE_URL from '../config';
 import {
   User,
   Lock,
-  ShoppingBag, ArrowRight,
+  ArrowRight,
   Package,
   ChevronRight,
   LogOut,
@@ -14,11 +14,14 @@ import {
   Eye,
   EyeOff,
   Loader2,
-  Sparkles,
-  LayoutGrid,
+  Settings,
   Shield,
+  CreditCard,
   MapPin,
-  Phone
+  Phone,
+  Mail,
+  Clock,
+  ExternalLink
 } from 'lucide-react';
 import SEO from '@/components/SEO';
 
@@ -35,7 +38,9 @@ export default function Profile() {
   const [profileForm, setProfileForm] = useState({
     name: user?.name || '',
     phone: user?.phone || '',
-    address: user?.address || ''
+    address: user?.address || '',
+    city: user?.city || '',
+    zipCode: user?.zip_code || user?.zipCode || ''
   });
   const [securityForm, setSecurityForm] = useState({
     password: '',
@@ -76,10 +81,10 @@ export default function Profile() {
       if (data.status === 'success') {
         localStorage.setItem('user', JSON.stringify(data.data));
         setUser(data.data);
-        showToast("Identity parameters synchronized.");
+        showToast("Profile updated successfully.");
       }
     } catch (err) {
-      showToast("Update sequence failed", "error");
+      showToast("Update failed", "error");
     } finally {
       setIsUpdating(false);
     }
@@ -88,7 +93,7 @@ export default function Profile() {
   const handleSecurityUpdate = async (e) => {
     e.preventDefault();
     if (securityForm.password !== securityForm.confirmPassword) {
-      showToast("Credential mismatch", "error");
+      showToast("Passwords do not match", "error");
       return;
     }
     setIsUpdating(true);
@@ -100,7 +105,7 @@ export default function Profile() {
       });
       const data = await response.json();
       if (data.status === 'success') {
-        showToast("Protocol updated.");
+        showToast("Security updated.");
         setSecurityForm({ password: '', confirmPassword: '' });
       }
     } catch (err) {
@@ -119,131 +124,155 @@ export default function Profile() {
   if (!user) return null;
 
   return (
-    <div className="bg-white min-h-screen font-['Rubik'] text-foreground pb-20">
-      <SEO title="User Dashboard | Account Management" />
+    <div className="bg-[#F8FAFC] min-h-screen font-['Rubik'] text-[#1e1b4b] pb-20">
+      <SEO title="Your Account | Dashing Printers" />
 
-      {/* --- REFINED PAGE HEADER --- */}
-      <div className="bg-background border-b border-border py-12 md:py-16 mb-16 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/4 h-full bg-primary/5 skew-x-12 translate-x-1/2" />
-
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-10 flex flex-col md:flex-row md:items-end justify-between gap-8 relative z-10">
-          <div>
-            <nav className="flex items-center gap-2 text-[11px] font-bold text-primary uppercase tracking-[0.4em] mb-6">
-              <Link to="/" className="hover:text-foreground transition-colors">Home</Link>
-              <ChevronRight size={14} className="text-border" />
-              <span className="text-secondary">Professional Hub</span>
-            </nav>
-            <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-none tracking-tight">
-              Control <span className="text-primary italic">Panel.</span>
-            </h1>
-          </div>
-
-          <div className="flex items-center gap-3 px-6 py-3 bg-white text-foreground rounded-2xl border border-border shadow-sm">
-            <ShieldCheck size={20} className="text-primary" />
-            <span className="text-[11px] font-black uppercase tracking-widest text-secondary">Authenticated Stream Active</span>
-          </div>
+      {/* --- PAGE HEADER --- */}
+      <div className="bg-white border-b border-gray-200 py-8 md:py-12 mb-12 shadow-sm">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-8">
+          <nav className="flex items-center gap-2 text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-4">
+            <Link to="/" className="hover:text-[#4f46e5] transition-colors">Home</Link>
+            <ChevronRight size={14} />
+            <span className="text-[#1e1b4b]">Account Management</span>
+          </nav>
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight">Your Dashboard</h1>
         </div>
       </div>
 
-      <div className="max-w-[1800px] mx-auto px-6 lg:px-10 mt-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-20">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-          {/* --- SIDEBAR PANEL --- */}
-          <div className="lg:col-span-4">
-            <div className="bg-background p-10 rounded-[3rem] border border-border sticky top-32">
-              <div className="flex flex-col items-center text-center mb-12">
-                <div className="h-24 w-24 bg-foreground text-white flex items-center justify-center text-3xl font-bold rounded-3xl mb-6 shadow-xl shadow-foreground/10 border-4 border-white">
+          {/* --- SIDEBAR --- */}
+          <aside className="lg:col-span-4 space-y-6">
+            <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-xl shadow-[#1e1b4b]/5">
+              <div className="flex flex-col items-center text-center mb-8">
+                <div className="h-20 w-20 bg-gradient-to-br from-[#1e1b4b] to-[#4f46e5] text-white flex items-center justify-center text-2xl font-bold rounded-2xl mb-4 shadow-lg shadow-[#1e1b4b]/20">
                   {user.name.charAt(0).toUpperCase()}
                 </div>
-                <h2 className="text-2xl font-bold text-foreground capitalize tracking-tight">{user.name}</h2>
-                <p className="text-sm font-medium text-secondary mt-2 uppercase tracking-widest text-[10px]">{user.email}</p>
+                <h2 className="text-xl font-bold tracking-tight">{user.name}</h2>
+                <div className="flex items-center gap-1.5 text-gray-500 text-[13px] mt-1">
+                    <Mail size={14} />
+                    <span>{user.email}</span>
+                </div>
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-2">
                 {[
-                  { id: 'profile', label: 'Identity Settings', icon: User },
-                  { id: 'orders', label: 'Printer Logs', icon: Package },
-                  { id: 'security', label: 'Access Protocols', icon: Shield }
+                  { id: 'profile', label: 'Personal Information', icon: User },
+                  { id: 'orders', label: 'Order History', icon: Package },
+                  { id: 'security', label: 'Security & Password', icon: Shield }
                 ].map((tab) => (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`w-full flex items-center gap-4 px-6 py-4 text-[14px] font-bold transition-all rounded-2xl border-2 ${activeTab === tab.id
-                      ? 'bg-white text-primary border-primary shadow-xl shadow-primary/5'
-                      : 'text-secondary border-transparent hover:bg-white hover:text-foreground hover:border-border'
+                    className={`w-full flex items-center gap-3 px-5 py-3.5 text-[14px] font-bold transition-all rounded-xl border cursor-pointer ${activeTab === tab.id
+                      ? 'bg-[#1e1b4b] text-white border-[#1e1b4b] shadow-lg shadow-[#1e1b4b]/10'
+                      : 'text-gray-600 border-transparent hover:bg-gray-50 hover:text-[#1e1b4b]'
                       }`}
                   >
                     <tab.icon size={18} />
-                    <span className="tracking-tight">{tab.label}</span>
+                    <span>{tab.label}</span>
                   </button>
                 ))}
 
-                <div className="pt-8 mt-8 border-t border-border">
+                <div className="pt-6 mt-6 border-t border-gray-100">
                   <button
                     onClick={handleLogout}
-                    className="w-full flex items-center gap-4 px-6 py-4 text-[14px] font-bold text-red-500 hover:bg-red-50 transition-all rounded-2xl group"
+                    className="w-full flex items-center gap-3 px-5 py-3.5 text-[14px] font-bold text-red-500 hover:bg-red-50 transition-all rounded-xl cursor-pointer group"
                   >
                     <LogOut size={18} className="group-hover:-translate-x-1 transition-transform" />
-                    Terminate Session
+                    Sign Out
                   </button>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* --- MAIN STAGE PANEL --- */}
-          <div className="lg:col-span-8">
+            <div className="bg-[#1e1b4b] text-white p-8 rounded-3xl relative overflow-hidden group">
+                <div className="relative z-10">
+                    <div className="bg-[#f59e0b] text-[#1e1b4b] text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-widest mb-4 inline-block">Support</div>
+                    <h4 className="text-lg font-bold mb-2 leading-snug">Need help with your printer?</h4>
+                    <p className="text-white/60 text-[13px] leading-relaxed mb-6">Our tech experts are available 24/7 to assist with setup and troubleshooting.</p>
+                    <Link to="/contact" className="inline-flex items-center gap-2 text-[13px] font-bold text-[#f59e0b] hover:text-white transition-colors">
+                        Get Support <ArrowRight size={16} />
+                    </Link>
+                </div>
+                <ShieldCheck size={140} className="absolute -right-8 -bottom-8 text-white opacity-[0.03] rotate-12 group-hover:scale-110 transition-transform duration-700" />
+            </div>
+          </aside>
+
+          {/* --- MAIN CONTENT --- */}
+          <main className="lg:col-span-8">
             <AnimatePresence mode="wait">
               {activeTab === 'profile' && (
                 <motion.div
-                  key="profile" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }}
-                  className="bg-white p-8 md:p-16 rounded-[3rem] border border-border/60 shadow-sm"
+                  key="profile" initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }}
+                  className="bg-white p-8 md:p-12 rounded-[2rem] border border-gray-100 shadow-xl shadow-[#1e1b4b]/5"
                 >
-                  <div className="flex items-center gap-5 mb-16 pb-8 border-b border-background">
-                    <div className="h-14 w-14 bg-background text-primary flex items-center justify-center rounded-2xl border border-border">
-                      <User size={28} />
+                  <div className="flex items-center gap-4 mb-10 pb-6 border-b border-gray-50">
+                    <div className="h-12 w-12 bg-[#1e1b4b]/5 text-[#1e1b4b] flex items-center justify-center rounded-xl">
+                      <User size={24} />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-foreground tracking-tight">Identity Parameters</h3>
-                      <p className="text-[11px] font-bold text-secondary uppercase tracking-[0.2em] mt-1">Update your verified contact data</p>
+                      <h3 className="text-xl font-bold">Personal Information</h3>
+                      <p className="text-[12px] font-medium text-gray-400 mt-0.5 uppercase tracking-widest">Update your contact and shipping details</p>
                     </div>
                   </div>
 
-                  <form onSubmit={handleProfileUpdate} className="space-y-10">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                      <div className="space-y-3">
-                        <label className="text-[11px] font-black text-secondary uppercase tracking-[0.2em] ml-4">Full Identifier</label>
+                  <form onSubmit={handleProfileUpdate} className="space-y-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-1.5">
+                        <label className="text-[13px] font-bold text-gray-500 ml-1">Full Name</label>
                         <input
                           required value={profileForm.name}
                           onChange={(e) => setProfileForm({ ...profileForm, name: e.target.value })}
-                          className="w-full h-16 px-8 bg-background border border-border rounded-2xl focus:bg-white focus:border-primary outline-none text-[15px] font-medium text-foreground transition-all"
+                          className="w-full h-12 px-4 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-[#4f46e5] outline-none text-sm font-medium transition-all"
                         />
                       </div>
-                      <div className="space-y-3">
-                        <label className="text-[11px] font-black text-secondary uppercase tracking-[0.2em] ml-4">Communication Line</label>
+                      <div className="space-y-1.5">
+                        <label className="text-[13px] font-bold text-gray-500 ml-1">Phone Number</label>
                         <input
                           value={profileForm.phone}
                           onChange={(e) => setProfileForm({ ...profileForm, phone: e.target.value })}
                           placeholder="+1 (000) 000-0000"
-                          className="w-full h-16 px-8 bg-background border border-border rounded-2xl focus:bg-white focus:border-primary outline-none text-[15px] font-medium text-foreground transition-all"
+                          className="w-full h-12 px-4 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-[#4f46e5] outline-none text-sm font-medium transition-all"
                         />
                       </div>
                     </div>
-                    <div className="space-y-3">
-                      <label className="text-[11px] font-black text-secondary uppercase tracking-[0.2em] ml-4">Standard Deployment Address</label>
+
+                    <div className="space-y-1.5">
+                      <label className="text-[13px] font-bold text-gray-500 ml-1">Delivery Address</label>
                       <textarea
-                        rows="4" value={profileForm.address}
+                        rows="3" value={profileForm.address}
                         onChange={(e) => setProfileForm({ ...profileForm, address: e.target.value })}
-                        placeholder="Complete logistics coordinates..."
-                        className="w-full p-8 bg-background border border-border rounded-[2.5rem] focus:bg-white focus:border-primary outline-none text-[15px] font-medium text-foreground transition-all resize-none"
+                        placeholder="Street address, building, suite..."
+                        className="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-[#4f46e5] outline-none text-sm font-medium transition-all resize-none"
                       ></textarea>
                     </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-1.5">
+                        <label className="text-[13px] font-bold text-gray-500 ml-1">City</label>
+                        <input
+                          value={profileForm.city}
+                          onChange={(e) => setProfileForm({ ...profileForm, city: e.target.value })}
+                          className="w-full h-12 px-4 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-[#4f46e5] outline-none text-sm font-medium transition-all"
+                        />
+                      </div>
+                      <div className="space-y-1.5">
+                        <label className="text-[13px] font-bold text-gray-500 ml-1">Zip Code</label>
+                        <input
+                          value={profileForm.zipCode}
+                          onChange={(e) => setProfileForm({ ...profileForm, zipCode: e.target.value })}
+                          className="w-full h-12 px-4 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-[#4f46e5] outline-none text-sm font-medium transition-all"
+                        />
+                      </div>
+                    </div>
+
                     <button
                       disabled={isUpdating}
-                      className="h-16 px-12 bg-foreground text-white font-bold text-sm uppercase tracking-widest rounded-2xl hover:bg-primary transition-all disabled:opacity-50 shadow-xl shadow-foreground/10 flex items-center gap-3"
+                      className="h-12 px-10 bg-[#1e1b4b] text-white font-bold text-[13px] uppercase tracking-widest rounded-xl hover:bg-[#4f46e5] transition-all disabled:opacity-50 shadow-lg shadow-[#1e1b4b]/10 flex items-center gap-3 cursor-pointer active:scale-95"
                     >
-                      {isUpdating ? "Synchronizing..." : "Commit Changes"}
-                      {!isUpdating && <ArrowRight size={18} />}
+                      {isUpdating ? <Loader2 className="animate-spin" size={18} /> : "Save Changes"}
                     </button>
                   </form>
                 </motion.div>
@@ -251,52 +280,61 @@ export default function Profile() {
 
               {activeTab === 'orders' && (
                 <motion.div
-                  key="orders" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }}
-                  className="space-y-8"
+                  key="orders" initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }}
+                  className="space-y-6"
                 >
-                  <div className="bg-white p-10 md:p-12 rounded-[3rem] border border-border/60 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
-                    <div className="flex items-center gap-5">
-                      <div className="h-14 w-14 bg-background text-primary flex items-center justify-center rounded-2xl border border-border">
-                        <Package size={28} />
+                  <div className="bg-white p-6 md:p-8 rounded-[2rem] border border-gray-100 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div className="flex items-center gap-4">
+                      <div className="h-12 w-12 bg-[#1e1b4b]/5 text-[#1e1b4b] flex items-center justify-center rounded-xl">
+                        <Package size={24} />
                       </div>
                       <div>
-                        <h3 className="text-2xl font-bold text-foreground tracking-tight">Deployment Logs</h3>
-                        <p className="text-[11px] font-bold text-secondary uppercase tracking-[0.2em] mt-1">{orders.length} Active Procurements</p>
+                        <h3 className="text-xl font-bold">Recent Orders</h3>
+                        <p className="text-[12px] font-medium text-gray-400 mt-0.5 uppercase tracking-widest">{orders.length} orders found</p>
                       </div>
                     </div>
-                    <Link to="/shop" className="h-12 px-6 flex items-center justify-center bg-background text-[11px] font-bold text-primary uppercase tracking-widest rounded-xl border border-border hover:bg-primary hover:text-white transition-all">New Acquisition</Link>
+                    <Link to="/shop" className="text-[13px] font-bold text-[#4f46e5] hover:underline flex items-center gap-1.5 group">
+                        Browse Catalog <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                    </Link>
                   </div>
 
                   {orders.length === 0 ? (
-                    <div className="bg-background p-24 text-center rounded-[3rem] border border-border">
-                      <div className="w-20 h-20 bg-white rounded-[2rem] flex items-center justify-center mx-auto mb-8 border border-border shadow-sm">
-                        <LayoutGrid size={32} className="text-border" />
-                      </div>
-                      <p className="text-secondary font-bold uppercase text-[11px] tracking-[0.3em]">No printer records in current stream.</p>
+                    <div className="bg-white py-20 text-center rounded-[2rem] border border-gray-100 border-dashed">
+                      <Package size={40} className="text-gray-200 mx-auto mb-4" />
+                      <p className="text-gray-400 font-bold uppercase text-[11px] tracking-widest">No order history available.</p>
                     </div>
                   ) : (
-                    <div className="grid grid-cols-1 gap-6">
-                      {orders.map((order) => (
-                        <div key={order.id} className="bg-white border border-border/60 rounded-[2.5rem] overflow-hidden group hover:border-primary/30 transition-all duration-500 shadow-sm">
-                          <div className="p-10 flex flex-col md:flex-row md:items-center justify-between gap-8 border-b border-background">
-                            <div>
-                              <p className="text-[10px] font-black text-secondary uppercase tracking-[0.3em] mb-3">Unit ID #DSP-{order.id}</p>
-                              <span className={`px-4 py-1.5 text-[10px] font-bold uppercase rounded-lg border ${order.status === 'delivered' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-blue-50 text-primary border-blue-100'}`}>
-                                {order.status}
-                              </span>
+                    <div className="grid grid-cols-1 gap-4">
+                      {orders.slice(0, 5).map((order) => (
+                        <div key={order.id} className="bg-white border border-gray-100 rounded-[1.5rem] p-6 flex flex-col md:flex-row items-center justify-between gap-6 hover:shadow-lg transition-all group">
+                          <div className="flex items-center gap-5 w-full md:w-auto">
+                            <div className="h-14 w-14 bg-gray-50 border border-gray-100 rounded-2xl flex items-center justify-center text-[#1e1b4b] group-hover:bg-[#1e1b4b] group-hover:text-white transition-all duration-500">
+                                <Clock size={24} />
                             </div>
-                            <div className="md:text-right space-y-1">
-                              <p className="text-3xl font-black text-foreground tracking-tighter">${Number(order.total_amount).toLocaleString()}</p>
-                              <p className="text-[11px] font-bold text-secondary uppercase tracking-widest">{new Date(order.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+                            <div>
+                              <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1">#DSP-{order.id}</p>
+                              <div className="flex items-center gap-2">
+                                <span className={`w-2 h-2 rounded-full ${order.status === 'delivered' ? 'bg-emerald-500' : 'bg-[#f59e0b]'}`} />
+                                <span className="text-sm font-bold capitalize">{order.status.replace(/_/g, ' ')}</span>
+                              </div>
                             </div>
                           </div>
-                          <div className="p-6 bg-background/50 group-hover:bg-white transition-colors">
-                            <Link to={`/checkout?order_id=${order.id}`} className="flex items-center justify-center gap-3 text-[11px] font-bold text-foreground uppercase tracking-widest hover:text-primary transition-all group/btn">
-                              <span>Track Printer Status</span> <ChevronRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+                          
+                          <div className="flex items-center justify-between w-full md:w-auto md:gap-12">
+                            <div className="text-right">
+                                <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1">{new Date(order.created_at).toLocaleDateString()}</p>
+                                <p className="text-lg font-black tracking-tight">${Number(order.total_amount).toLocaleString()}</p>
+                            </div>
+                            <Link to="/orders" className="h-10 w-10 rounded-full border border-gray-100 flex items-center justify-center text-gray-400 hover:bg-[#1e1b4b] hover:text-white hover:border-[#1e1b4b] transition-all">
+                                <ExternalLink size={18} />
                             </Link>
                           </div>
                         </div>
                       ))}
+                      
+                      <Link to="/orders" className="block text-center py-4 text-[13px] font-bold text-[#4f46e5] hover:underline uppercase tracking-widest">
+                        View All Orders History
+                      </Link>
                     </div>
                   )}
                 </motion.div>
@@ -304,59 +342,57 @@ export default function Profile() {
 
               {activeTab === 'security' && (
                 <motion.div
-                  key="security" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -15 }}
-                  className="bg-white p-8 md:p-16 rounded-[3rem] border border-border/60 shadow-sm"
+                  key="security" initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }}
+                  className="bg-white p-8 md:p-12 rounded-[2rem] border border-gray-100 shadow-xl shadow-[#1e1b4b]/5"
                 >
-                  <div className="flex items-center gap-5 mb-16 pb-8 border-b border-background">
-                    <div className="h-14 w-14 bg-red-50 text-red-500 flex items-center justify-center rounded-2xl border border-red-100">
-                      <Shield size={28} />
+                  <div className="flex items-center gap-4 mb-10 pb-6 border-b border-gray-50">
+                    <div className="h-12 w-12 bg-red-50 text-red-500 flex items-center justify-center rounded-xl">
+                      <Shield size={24} />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-foreground tracking-tight">Access Protocols</h3>
-                      <p className="text-[11px] font-bold text-secondary uppercase tracking-[0.2em] mt-1">Manage your authentication layer</p>
+                      <h3 className="text-xl font-bold">Account Security</h3>
+                      <p className="text-[12px] font-medium text-gray-400 mt-0.5 uppercase tracking-widest">Manage your login credentials</p>
                     </div>
                   </div>
 
-                  <form onSubmit={handleSecurityUpdate} className="space-y-10">
-                    <div className="space-y-3">
-                      <label className="text-[11px] font-black text-secondary uppercase tracking-[0.2em] ml-4">New Protocol Code</label>
+                  <form onSubmit={handleSecurityUpdate} className="space-y-8">
+                    <div className="space-y-1.5">
+                      <label className="text-[13px] font-bold text-gray-500 ml-1">New Password</label>
                       <div className="relative group">
                         <input
                           type={showPass ? "text" : "password"} required
                           placeholder="••••••••"
                           value={securityForm.password} onChange={(e) => setSecurityForm({ ...securityForm, password: e.target.value })}
-                          className="w-full h-16 pl-8 pr-16 bg-background border border-border rounded-2xl focus:bg-white focus:border-primary outline-none text-[15px] font-medium text-foreground transition-all"
+                          className="w-full h-12 pl-4 pr-12 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-[#4f46e5] outline-none text-sm font-medium transition-all"
                         />
-                        <button type="button" onClick={() => setShowPass(!showPass)} className="absolute right-6 top-1/2 -translate-y-1/2 text-border hover:text-primary transition-colors">
-                          {showPass ? <EyeOff size={22} /> : <Eye size={22} />}
+                        <button type="button" onClick={() => setShowPass(!showPass)} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#1e1b4b] cursor-pointer transition-colors">
+                          {showPass ? <EyeOff size={20} /> : <Eye size={20} />}
                         </button>
                       </div>
                     </div>
-                    <div className="space-y-3">
-                      <label className="text-[11px] font-black text-secondary uppercase tracking-[0.2em] ml-4">Verify Access Key</label>
+                    <div className="space-y-1.5">
+                      <label className="text-[13px] font-bold text-gray-500 ml-1">Confirm New Password</label>
                       <input
                         type={showPass ? "text" : "password"} required
                         placeholder="••••••••"
                         value={securityForm.confirmPassword} onChange={(e) => setSecurityForm({ ...securityForm, confirmPassword: e.target.value })}
-                        className="w-full h-16 px-8 bg-background border border-border rounded-2xl focus:bg-white focus:border-primary outline-none text-[15px] font-medium text-foreground transition-all"
+                        className="w-full h-12 px-4 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-[#4f46e5] outline-none text-sm font-medium transition-all"
                       />
                     </div>
                     <button
                       disabled={isUpdating}
-                      className="h-16 px-12 bg-foreground text-white font-bold text-sm uppercase tracking-widest rounded-2xl hover:bg-primary transition-all disabled:opacity-50 shadow-xl shadow-foreground/10 flex items-center gap-3"
+                      className="h-12 px-10 bg-[#1e1b4b] text-white font-bold text-[13px] uppercase tracking-widest rounded-xl hover:bg-red-600 transition-all disabled:opacity-50 shadow-lg shadow-[#1e1b4b]/10 flex items-center gap-3 cursor-pointer active:scale-95"
                     >
-                      {isUpdating ? "Encoding..." : "Update Security Credentials"}
-                      {!isUpdating && <ShieldCheck size={18} />}
+                      {isUpdating ? <Loader2 className="animate-spin" size={18} /> : "Update Security"}
                     </button>
                   </form>
                 </motion.div>
               )}
             </AnimatePresence>
-          </div>
+          </main>
 
         </div>
       </div>
     </div>
   );
 }
-

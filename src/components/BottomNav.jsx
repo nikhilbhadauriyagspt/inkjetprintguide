@@ -28,7 +28,7 @@ export default function BottomNav() {
               <button
                 key={item.name}
                 onClick={item.onClick}
-                className="flex flex-col items-center justify-center gap-1 w-full"
+                className="flex flex-col items-center justify-center gap-1 w-full cursor-pointer"
               >
                 <div className="relative text-slate-400">
                   <Icon size={22} strokeWidth={isActive ? 2.5 : 2} />

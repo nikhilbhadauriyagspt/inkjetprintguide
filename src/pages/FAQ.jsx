@@ -49,109 +49,129 @@ export default function FAQ() {
   };
 
   return (
-    <div className="bg-white min-h-screen font-['Rubik'] text-foreground pb-20">
-      <SEO title="FAQ | Vital Print" />
+    <div className="bg-[#eaeded] min-h-screen font-['Rubik'] text-[#0f1111] pb-20">
+      <SEO title="FAQ | Dashing Printers" />
+
+      {/* --- BREADCRUMBS --- */}
+      <div className="bg-white border-b border-gray-300 py-3 shadow-sm">
+        <div className="max-w-[1500px] mx-auto px-4 md:px-8">
+          <nav className="flex items-center gap-1 text-[12px] text-[#565959]">
+            <Link to="/" className="hover:underline hover:text-[#c45500]">Home</Link>
+            <ChevronRight size={12} className="mx-1" />
+            <span className="text-[#0f1111] font-bold">Help Center</span>
+          </nav>
+        </div>
+      </div>
 
       {/* --- PAGE HEADER --- */}
-      <div className="bg-background py-16 md:py-24 border-b border-border">
-        <div className="max-w-[1800px] mx-auto px-4 md:px-10 text-center">
-          <nav className="flex items-center justify-center gap-2 text-[11px] font-bold text-secondary uppercase tracking-[0.2em] mb-6">
-            <Link to="/" className="hover:text-primary transition-colors">Home</Link>
-            <ChevronRight size={12} className="opacity-50" />
-            <span className="text-primary">Help Center</span>
-          </nav>
-
-          <h1 className="text-4xl md:text-6xl font-bold text-foreground tracking-tight mb-8">
-            How can we <span className="text-primary">help you?</span>
+      <div className="bg-[#232f3e] text-white py-12 md:py-16">
+        <div className="max-w-[1500px] mx-auto px-4 md:px-8 text-center">
+          <h1 className="text-2xl md:text-4xl font-bold tracking-normal mb-8">
+            How can we help you?
           </h1>
 
           <div className="max-w-2xl mx-auto relative group">
-            <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-secondary group-focus-within:text-primary transition-colors" size={20} />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
             <input
               type="text"
               placeholder="Search for answers about orders, shipping, or products..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full h-14 pl-14 pr-6 bg-white border border-border rounded-full focus:border-primary focus:ring-4 focus:ring-primary/5 outline-none shadow-xl shadow-black/5 transition-all font-medium text-[15px]"
+              className="w-full h-12 pl-12 pr-6 bg-white border border-gray-400 rounded-sm outline-none focus:border-[#e77600] focus:ring-1 focus:ring-[#e77600] text-[#0f1111] text-sm"
             />
           </div>
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 md:px-10 py-16 md:py-24">
-        {faqData.map((cat, catIdx) => {
-          const filteredQuestions = cat.questions.filter(q =>
-            q.q.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            q.a.toLowerCase().includes(searchQuery.toLowerCase())
-          );
+      <div className="max-w-[1500px] mx-auto px-4 md:px-8 py-8 md:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            {/* --- SIDEBAR CATEGORIES (Amazon style) --- */}
+            <div className="hidden lg:block lg:col-span-3 space-y-4">
+                <div className="bg-white p-4 border border-gray-300 rounded-sm shadow-sm">
+                    <h3 className="text-[14px] font-bold mb-4 border-b border-gray-200 pb-2">Help Categories</h3>
+                    <ul className="space-y-3">
+                        {faqData.map((cat, idx) => (
+                            <li key={idx}>
+                                <a href={`#cat-${idx}`} className="text-[13px] text-[#007185] hover:text-[#c45500] hover:underline flex items-center gap-2">
+                                    <ChevronRight size={12} />
+                                    {cat.category}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
 
-          if (filteredQuestions.length === 0) return null;
+            {/* --- MAIN CONTENT --- */}
+            <div className="lg:col-span-9 space-y-8">
+                {faqData.map((cat, catIdx) => {
+                    const filteredQuestions = cat.questions.filter(q =>
+                        q.q.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        q.a.toLowerCase().includes(searchQuery.toLowerCase())
+                    );
 
-          return (
-            <div key={catIdx} className="mb-16 md:mb-24 last:mb-0">
-              <div className="flex items-center gap-4 mb-8 px-2">
-                <div className="w-10 h-[2px] bg-primary rounded-full" />
-                <h2 className="text-[13px] font-bold text-primary uppercase tracking-[0.3em]">{cat.category}</h2>
-              </div>
+                    if (filteredQuestions.length === 0) return null;
 
-              <div className="space-y-4">
-                {filteredQuestions.map((faq, qIdx) => {
-                  const id = `${catIdx}-${qIdx}`;
-                  const isOpen = openIndex === id;
-
-                  return (
-                    <div key={qIdx} className={`border transition-all duration-300 rounded-[20px] overflow-hidden ${isOpen ? 'border-primary shadow-lg shadow-primary/5' : 'border-border hover:border-secondary/30'}`}>
-                      <button
-                        onClick={() => toggleAccordion(catIdx, qIdx)}
-                        className={`w-full px-6 md:px-8 py-5 flex items-center justify-between text-left transition-all ${isOpen ? 'bg-primary/5' : 'bg-white'}`}
-                      >
-                        <span className={`text-[15px] md:text-[16px] font-bold ${isOpen ? 'text-primary' : 'text-foreground'}`}>{faq.q}</span>
-                        <div className={`w-8 h-8 rounded-full border border-border flex items-center justify-center transition-all ${isOpen ? 'bg-primary border-primary text-white rotate-180' : 'text-secondary'}`}>
-                          <ChevronDown size={18} />
-                        </div>
-                      </button>
-                      <AnimatePresence>
-                        {isOpen && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: 'auto', opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.3 }}
-                          >
-                            <div className="px-6 md:px-8 pb-6 pt-2 text-secondary text-[15px] leading-relaxed font-medium bg-primary/5">
-                              <div className="h-px bg-primary/10 mb-4" />
-                              {faq.a}
+                    return (
+                        <div key={catIdx} id={`cat-${catIdx}`} className="bg-white border border-gray-300 rounded-sm shadow-sm overflow-hidden">
+                            <div className="bg-[#f0f2f2] px-6 py-3 border-b border-gray-300">
+                                <h2 className="text-[14px] font-bold text-[#0f1111] uppercase tracking-wider">{cat.category}</h2>
                             </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  );
+
+                            <div className="divide-y divide-gray-200">
+                                {filteredQuestions.map((faq, qIdx) => {
+                                    const id = `${catIdx}-${qIdx}`;
+                                    const isOpen = openIndex === id;
+
+                                    return (
+                                        <div key={qIdx} className="transition-all duration-300">
+                                            <button
+                                                onClick={() => toggleAccordion(catIdx, qIdx)}
+                                                className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-gray-50 transition-all"
+                                            >
+                                                <span className={`text-[14px] font-bold ${isOpen ? 'text-[#c45500]' : 'text-[#0f1111]'}`}>{faq.q}</span>
+                                                <ChevronDown size={16} className={`text-gray-500 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                                            </button>
+                                            <AnimatePresence>
+                                                {isOpen && (
+                                                <motion.div
+                                                    initial={{ height: 0, opacity: 0 }}
+                                                    animate={{ height: 'auto', opacity: 1 }}
+                                                    exit={{ height: 0, opacity: 0 }}
+                                                    transition={{ duration: 0.2 }}
+                                                >
+                                                    <div className="px-6 pb-6 text-[#565959] text-[14px] leading-relaxed">
+                                                        <div className="h-px bg-gray-100 mb-4" />
+                                                        {faq.a}
+                                                    </div>
+                                                </motion.div>
+                                                )}
+                                            </AnimatePresence>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    );
                 })}
-              </div>
-            </div>
-          );
-        })}
 
-        {/* BOTTOM CALL TO ACTION */}
-        <div className="mt-20 md:mt-32 p-10 md:p-16 bg-[#F5F5F5] rounded-[32px] border border-border relative overflow-hidden text-center">
-          <div className="relative z-10">
-            <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-sm border border-border">
-              <HelpCircle size={32} className="text-primary" />
+                {/* BOTTOM CALL TO ACTION */}
+                <div className="bg-white p-8 border border-gray-300 rounded-sm shadow-sm text-center">
+                    <div className="flex flex-col items-center">
+                        <div className="w-12 h-12 bg-[#f0f2f2] rounded-full flex items-center justify-center mb-4 text-[#232f3e]">
+                            <HelpCircle size={24} />
+                        </div>
+                        <h3 className="text-xl font-bold mb-2 text-[#0f1111]">Still need assistance?</h3>
+                        <p className="text-[#565959] text-sm mb-6 max-w-md">Our dedicated support team is ready to help you with any specialized printer questions.</p>
+                        <Link to="/contact" className="bg-[#ffd814] border border-[#fcd200] hover:bg-[#f7ca00] text-[#0f1111] px-10 py-2 text-[14px] font-normal rounded-md shadow-sm transition-colors inline-flex items-center gap-2">
+                            Contact Support Team <ArrowRight size={16} />
+                        </Link>
+                    </div>
+                </div>
             </div>
-            <h3 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">Still need assistance?</h3>
-            <p className="text-secondary mb-10 font-medium max-w-md mx-auto">Our dedicated support team is ready to help you with any specialized printer questions.</p>
-            <Link to="/contact" className="inline-flex items-center gap-3 px-10 py-4 bg-primary text-white rounded-full font-bold text-[14px] uppercase tracking-widest shadow-xl shadow-primary/20 hover:bg-primary-hover transition-all active:scale-95">
-              Contact Support Team <ArrowRight size={18} />
-            </Link>
-          </div>
-
-          {/* Decorative background element */}
-          <div className="absolute -top-20 -right-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-          <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
         </div>
       </div>
     </div>
   );
 }
-

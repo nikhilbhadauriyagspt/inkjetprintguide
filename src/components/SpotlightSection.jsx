@@ -201,7 +201,7 @@ export default function SpotlightSection({
   };
 
   return (
-    <section className="w-full font-['Rubik'] py-12 md:py-16 bg-white">
+    <section className="w-full font-['Rubik'] py-12 md:py-16 bg-[#F1F3F6]">
       <div className="max-w-[1800px] mx-auto px-4 md:px-10">
         {/* Section Heading */}
         <div className="flex flex-col md:flex-row items-end justify-between mb-10 px-2 gap-4">
@@ -212,7 +212,7 @@ export default function SpotlightSection({
             <p className="text-secondary text-sm md:text-base font-medium mt-2">Explore our most curated printer and series collections</p>
           </div>
           <div className="hidden md:flex items-center gap-2 text-primary font-bold uppercase text-[12px] tracking-widest pb-1">
-             <Sparkles size={16} /> Trending Series
+            <Sparkles size={16} /> Trending Series
           </div>
         </div>
 

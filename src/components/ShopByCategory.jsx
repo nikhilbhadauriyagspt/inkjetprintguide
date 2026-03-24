@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
-import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { ArrowRight, LayoutGrid } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/navigation";
 
 export default function ShopByCategory({ categories = [], loading = false }) {
   if (loading) {
@@ -44,33 +43,30 @@ export default function ShopByCategory({ categories = [], loading = false }) {
 
   return (
     <section className="w-full py-12 md:py-20 bg-white font-['Rubik'] overflow-hidden relative group/section">
-      <div className="max-w-[1800px] mx-auto px-4 md:px-10 relative">
-        
-        {/* HEADER SECTION */}
-        <div className="flex items-end justify-between mb-10 md:mb-14 px-2">
-          <div>
+      <div className="max-w-[1800px] mx-auto px-4 md:px-10 overflow-hidden">
+
+        {/* HEADER SECTION CENTERED WITH ICON */}
+        <div className="flex flex-col items-center justify-center text-center mb-12 md:mb-16">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+              <LayoutGrid size={24} />
+            </div>
             <h2 className="text-2xl md:text-4xl font-bold text-foreground tracking-tight">
               Browse Categories
             </h2>
-            <p className="text-secondary text-sm md:text-base font-medium mt-2">Find the perfect printer for your specific needs</p>
           </div>
-          <div className="flex gap-3">
-            <button className="shop-cat-prev w-10 h-10 rounded-full border border-border bg-white text-foreground hover:bg-primary hover:text-white hover:border-primary transition-all flex items-center justify-center shadow-sm">
-              <ChevronLeft size={20} />
-            </button>
-            <button className="shop-cat-next w-10 h-10 rounded-full border border-border bg-white text-foreground hover:bg-primary hover:text-white hover:border-primary transition-all flex items-center justify-center shadow-sm">
-              <ChevronRight size={20} />
-            </button>
-          </div>
+          <p className="text-secondary text-sm md:text-base font-medium max-w-2xl">
+            Explore our curated collections of high-performance printing hardware and genuine supplies
+          </p>
         </div>
 
-        {/* SLIDER */}
+        {/* SLIDER WITHOUT NAV ARROWS */}
         <div className="relative">
           <Swiper
-            modules={[Navigation]}
-            navigation={{
-              nextEl: ".shop-cat-next",
-              prevEl: ".shop-cat-prev",
+            modules={[Autoplay]}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
             }}
             spaceBetween={16}
             slidesPerView={2.4}
@@ -87,32 +83,32 @@ export default function ShopByCategory({ categories = [], loading = false }) {
               <SwiperSlide key={cat.id}>
                 <Link
                   to={`/shop?category=${cat.slug}`}
-                  className="group block bg-white border border-border rounded-[16px] p-1.5 hover:border-primary/30 hover:shadow-lg transition-all duration-500"
+                  className="group block bg-transparent p-0 transition-all duration-500"
                 >
-                  {/* IMAGE CONTAINER WITH SOFT VARIABLE BG */}
-                  <div className={`relative aspect-square ${softColors[index % softColors.length]} rounded-[12px] flex items-center justify-center overflow-hidden mb-3`}>
+                  {/* IMAGE CONTAINER WITH CIRCULAR TOP AND NO BORDERS */}
+                  <div className={`relative aspect-[4/5] ${softColors[index % softColors.length]} rounded-t-full rounded-b-none flex items-center justify-center overflow-hidden mb-4`}>
                     <img
                       src={getImagePath(cat.image)}
                       alt={cat.name}
-                      className="w-[70%] h-[75%] object-contain transition-transform duration-700 group-hover:scale-110 mix-blend-multiply"
+                      className="w-[75%] h-[60%] object-contain transition-transform duration-700 group-hover:scale-110 mix-blend-multiply"
                       onError={(e) => {
                         e.currentTarget.src = "/logo/fabicon.png";
                       }}
                     />
-                    
-                    {/* OVERLAY BUTTON */}
-                    <div className="absolute bottom-2 right-2 w-6 h-6 rounded-full bg-white text-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300 shadow-md">
-                      <ArrowRight size={12} className="text-primary" />
+
+                    {/* MINIMAL OVERLAY ICON */}
+                    <div className="absolute bottom-4 right-1/2 translate-x-1/2 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm text-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <ArrowRight size={14} className="text-primary" />
                     </div>
                   </div>
 
-                  {/* DETAILS */}
-                  <div className="px-2 pb-2">
-                    <h3 className="text-[13px] md:text-[14px] font-bold text-foreground group-hover:text-primary transition-colors duration-300 capitalize truncate">
+                  {/* DETAILS CENTERED */}
+                  <div className="px-2 pb-2 text-center">
+                    <h3 className="text-[14px] md:text-[16px] font-bold text-foreground group-hover:text-primary transition-colors duration-300 capitalize truncate">
                       {cat.name}
                     </h3>
-                    <p className="text-[9px] font-semibold text-secondary uppercase tracking-widest mt-0.5">
-                      Explore
+                    <p className="text-[10px] font-semibold text-secondary/60 uppercase tracking-[0.2em] mt-1">
+                      Shop Now
                     </p>
                   </div>
                 </Link>
@@ -124,4 +120,3 @@ export default function ShopByCategory({ categories = [], loading = false }) {
     </section>
   );
 }
-
