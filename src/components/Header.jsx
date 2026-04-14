@@ -176,17 +176,15 @@ export default function Header() {
             </Link>
 
             {/* DELIVER TO */}
-            {userLocation && (
-              <div className="hidden xl:flex items-center gap-2 px-3 py-2 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors group">
-                <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors">
-                  <MapPin size={16} className="text-[#1d4ed8]" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-[10px] text-slate-500 font-medium leading-none mb-0.5">Ship to</span>
-                  <span className="text-[13px] font-semibold text-slate-700 leading-none truncate max-w-[100px]">{userLocation}</span>
-                </div>
+            <div className="hidden xl:flex items-center gap-2 px-3 py-2 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors group">
+              <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors">
+                <MapPin size={16} className="text-[#1d4ed8]" />
               </div>
-            )}
+              <div className="flex flex-col">
+                <span className="text-[10px] text-slate-500 font-medium leading-none mb-0.5">Ship to</span>
+                <span className="text-[13px] font-semibold text-slate-700 leading-none truncate max-w-[100px]">{userLocation || '...'}</span>
+              </div>
+            </div>
 
             {/* SEARCH BAR */}
             <div ref={searchRef} className="flex-1 max-w-[650px] relative hidden sm:block">
