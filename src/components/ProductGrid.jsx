@@ -23,7 +23,7 @@ export default function ProductGrid({ products = [] }) {
         return `/${imgs[0]}`;
       }
     } catch (e) { }
-    return "https://via.placeholder.com/400x400?text=Intel Printing";
+    return "https://via.placeholder.com/400x400?text=Printingmania";
   };
 
   return (

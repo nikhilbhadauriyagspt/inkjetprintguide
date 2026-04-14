@@ -3,13 +3,13 @@
 export default function SEO({ title, description, keywords, schemaType = "Website" }) {
   useEffect(() => {
     // Update Title - Avoid doubling the brand name if it's already in the prop
-    const baseTitle = "Intel Printing";
+    const baseTitle = "Printingmania";
     const fullTitle = title && title.includes(baseTitle) ? title : (title ? `${title} | ${baseTitle}` : baseTitle);
     document.title = fullTitle;
 
     // Update Description
     const metaDescription = document.querySelector('meta[name="description"]');
-    const defaultDesc = "Intel Printing is located in Sacramento, California, offering high-performance printers, ink, toner, and nationwide shipping.";
+    const defaultDesc = "Printingmania is located in Ashburn, Virginia, offering high-performance printers, ink, toner, and nationwide shipping.";
     const finalDesc = description || defaultDesc;
     if (metaDescription) {
       metaDescription.setAttribute('content', finalDesc);
@@ -22,7 +22,7 @@ export default function SEO({ title, description, keywords, schemaType = "Websit
       metaKeywords.name = "keywords";
       document.head.appendChild(metaKeywords);
     }
-    metaKeywords.setAttribute('content', keywords || "Business Printers, Ink, Printer Service, Sacramento California");
+    metaKeywords.setAttribute('content', keywords || "Business Printers, Ink, Printer Service, Ashburn Virginia");
 
     // Update Canonical
     let canonical = document.querySelector('link[rel="canonical"]');
@@ -45,22 +45,22 @@ export default function SEO({ title, description, keywords, schemaType = "Websit
     const schemaData = {
       "@context": "https://schema.org",
       "@type": schemaType === "Product" ? "Product" : "Organization",
-      "name": "Intel Printing",
-      "url": "https://intelprinting.shop",
-      "logo": "https://intelprinting.shop/logo/logo.png",
+      "name": "Printingmania",
+      "url": "https://printingmania.shop",
+      "logo": "https://printingmania.shop/logo/logo.png",
       "description": finalDesc,
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "3100 Folsom Blvd",
-        "addressLocality": "Sacramento",
-        "addressRegion": "CA",
-        "postalCode": "95816",
+        "streetAddress": "44110 Ashburn Village Blvd",
+        "addressLocality": "Ashburn",
+        "addressRegion": "VA",
+        "postalCode": "20147",
         "addressCountry": "US"
       },
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "customer service",
-        "email": "info@intelprinting.shop"
+        "email": "info@printingmania.shop"
       }
     };
 

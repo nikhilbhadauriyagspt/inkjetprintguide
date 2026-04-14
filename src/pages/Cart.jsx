@@ -25,7 +25,7 @@ export default function Cart() {
 
   return (
     <div className="min-h-screen bg-white font-['Rubik'] text-foreground pb-20">
-      <SEO title="Shopping Cart | Intel Printing" />
+      <SEO title="Shopping Cart | Printingmania" />
 
       <div className="max-w-7xl mx-auto px-6 py-12">
         <h1 className="text-3xl font-bold mb-12">Shopping Cart</h1>

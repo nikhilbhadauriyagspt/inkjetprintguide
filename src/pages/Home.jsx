@@ -1,10 +1,13 @@
 ﻿import Hero from "@/components/Hero";
+import AboutSection from "@/components/AboutSection";
+import CategoryNavigation from "@/components/CategoryNavigation";
 import FlashSalesSlider from "@/components/FlashSalesSlider";
 import SEO from "@/components/SEO";
 import SpotlightSection from "@/components/SpotlightSection";
 import ShopByCategory from "@/components/ShopByCategory";
 import CategoryShowcase from "@/components/CategoryShowcase";
 import FeaturedTabs from "@/components/FeaturedTabs";
+import PrinterGuide from "@/components/PrinterGuide";
 import BrandMarquee from "@/components/BrandMarquee";
 import Showcase from "@/components/ShowcaseStrip";
 import Middlebaner from "@/components/middlebaner";
@@ -102,12 +105,14 @@ export default function Home() {
   return (
     <div className="bg-white font-sans overflow-x-hidden text-slate-900">
       <SEO
-        title="Intel Printing | High-Performance Printing Solutions"
+        title="Printingmania | High-Performance Printing Solutions"
         description="Shop printers, ink, and toner globally. Professional business printing solutions with international shipping."
         keywords="Buy Printers Online, Ink and Toner, LaserJet, OfficeJet, Printer Accessories, Business Printing Solutions"
       />
 
       <Hero products={data.all} />
+
+      <AboutSection />
       <Showcase />
       <ShopByCategory categories={data.categories} loading={data.loading} />
 
@@ -117,44 +122,8 @@ export default function Home() {
         loading={data.loading}
       />
 
-
-      {/* Inkjet Category Showcase with 15% Discount */}
-      <CategoryShowcase
-        title="Premium Inkjet Printers"
-        products={inkjetPrinters}
-        adImage={inkjetSide}
-        link="/shop?category=inkjet-printers"
-        discount={15}
-      />
-
-      {/* Trending Mix Showcase - NO BADGE, NO OFF TEXT OVERLAY */}
-      <CategoryShowcase
-        title="Trending Mix Collection"
-        products={trendingMix}
-        adImage={bannerSide}
-        link="/shop"
-        discount={0}
-        showBadge={false}
-      />
-      <BottomWideBanner />
-
-      {/* Laser Category Showcase with 10% Discount */}
-      <CategoryShowcase
-        title="High-Speed Laser Printers"
-        products={laserPrinters}
-        adImage={laserSide}
-        link="/shop?category=laser-printers"
-        discount={10}
-      />
-
-
-
-      <SpotlightSection
-        newArrivals={data.all}
-        topRated={data.all}
-        popular={data.all}
-        loading={data.loading}
-      />
+      <PrinterGuide />
+      <CategoryNavigation />
 
 
     </div>

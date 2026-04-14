@@ -1,2 +1,2 @@
-﻿# intelprinting.shop
+﻿# printingmania.shop
 

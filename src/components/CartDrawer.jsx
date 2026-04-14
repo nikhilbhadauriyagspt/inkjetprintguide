@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ShoppingBag, Plus, Minus, Trash2, ArrowRight, ShieldCheck, Truck } from 'lucide-react';
+import { X, ShoppingBag, Plus, Minus, Trash2, ArrowRight, ShieldCheck, Truck, ChevronRight } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { Link } from 'react-router-dom';
 
@@ -31,7 +31,7 @@ export default function CartDrawer() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeCartDrawer}
-            className="fixed inset-0 bg-black/60 backdrop-blur-[2px] z-[1000]"
+            className="fixed inset-0 bg-slate-900/40 backdrop-blur-[2px] z-[1500]"
           />
 
           {/* Drawer */}
@@ -40,79 +40,85 @@ export default function CartDrawer() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'tween', duration: 0.3, ease: "easeOut" }}
-            className="fixed top-0 right-0 h-full w-full max-w-[400px] bg-[#eaeded] z-[1001] shadow-2xl flex flex-col font-['Rubik']"
+            className="fixed top-0 right-0 h-full w-full max-w-[420px] bg-white z-[1501] shadow-2xl flex flex-col font-['Rubik']"
           >
-            {/* Header */}
-            <div className="bg-[#232f3e] text-white px-6 py-5 flex items-center justify-between">
+            {/* Header - Fresh Blue */}
+            <div className="bg-[#1d4ed8] text-white px-6 py-6 flex items-center justify-between shadow-lg shadow-blue-600/10">
               <div className="flex items-center gap-3">
-                <ShoppingBag size={20} className="text-[#ffd814]" />
-                <h2 className="text-lg font-bold">Shopping Cart ({cartCount})</h2>
+                <div className="w-10 h-10 rounded-2xl bg-white/20 flex items-center justify-center border border-white/20">
+                    <ShoppingBag size={20} className="text-white" />
+                </div>
+                <div className="flex flex-col">
+                    <h2 className="text-[17px] font-semibold leading-none">Your Cart</h2>
+                    <p className="text-[11px] font-medium text-blue-100 uppercase tracking-widest mt-1">{cartCount} items selected</p>
+                </div>
               </div>
               <button
                 onClick={closeCartDrawer}
-                className="p-1 hover:bg-white/10 rounded-full transition-colors cursor-pointer"
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors cursor-pointer"
               >
-                <X size={24} />
+                <X size={20} />
               </button>
             </div>
 
             {/* Sub-header Message */}
             {cart.length > 0 && (
-                <div className="bg-white px-6 py-3 border-b border-gray-300 flex items-center gap-3">
-                    <div className="w-5 h-5 bg-emerald-600 rounded-full flex items-center justify-center text-white">
+                <div className="bg-blue-50 px-6 py-3 border-b border-blue-100 flex items-center gap-3">
+                    <div className="w-5 h-5 bg-[#1d4ed8] rounded-full flex items-center justify-center text-white">
                         <ShieldCheck size={12} strokeWidth={3} />
                     </div>
-                    <p className="text-[12px] font-bold text-gray-700">Your order qualifies for FREE Shipping</p>
+                    <p className="text-[12px] font-medium text-blue-800">Your order qualifies for FREE Express Shipping</p>
                 </div>
             )}
 
             {/* Content */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-3 custom-scrollbar">
+            <div className="flex-1 overflow-y-auto p-6 space-y-4 custom-scrollbar bg-slate-50/50">
               {cart.length > 0 ? (
                 <>
                   {cart.map((item) => (
-                    <div key={item.id} className="bg-white border border-gray-300 rounded-md p-4 flex gap-4 shadow-sm">
-                      <div className="h-20 w-20 flex-shrink-0 border border-gray-100 rounded-sm p-1">
+                    <div key={item.id} className="bg-white border border-slate-100 rounded-3xl p-4 flex gap-4 shadow-sm group hover:shadow-md transition-all">
+                      <div className="h-24 w-24 flex-shrink-0 bg-white rounded-2xl border border-slate-50 p-2 flex items-center justify-center">
                         <img
                           src={getImagePath(item.images)}
                           alt={item.name}
-                          className="w-full h-full object-contain mix-blend-multiply"
+                          className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
                           onError={(e) => { e.target.src = "/logo/fabicon.png"; }}
                         />
                       </div>
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1 min-w-0 flex flex-col">
                         <Link 
                             to={`/product/${item.slug}`} 
                             onClick={closeCartDrawer}
-                            className="text-[13px] font-bold text-[#007185] hover:text-[#c45500] hover:underline line-clamp-2 leading-tight mb-2 block"
+                            className="text-[14px] font-semibold text-slate-800 hover:text-[#1d4ed8] transition-colors line-clamp-2 leading-tight mb-2"
                         >
                             {item.name}
                         </Link>
                         
-                        <div className="flex items-center justify-between mt-auto">
-                            <div className="flex items-center bg-[#f0f2f2] border border-gray-300 rounded-md h-7 overflow-hidden shadow-sm">
+                        <div className="mt-auto flex items-end justify-between">
+                            <div className="flex items-center bg-slate-50 rounded-full p-1 border border-slate-100 h-9">
                                 <button
                                     onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                    className="px-2 h-full hover:bg-gray-200 text-gray-600 cursor-pointer disabled:opacity-30"
+                                    className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-white hover:shadow-sm text-slate-500 transition-all disabled:opacity-30"
                                     disabled={item.quantity <= 1}
                                 >
                                     <Minus size={12} strokeWidth={3} />
                                 </button>
-                                <span className="px-3 text-[12px] font-bold text-gray-800">{item.quantity}</span>
+                                <span className="px-3 text-[13px] font-semibold text-slate-800">{item.quantity}</span>
                                 <button
                                     onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                    className="px-2 h-full hover:bg-gray-200 text-gray-600 cursor-pointer"
+                                    className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-white hover:shadow-sm text-slate-500 transition-all"
                                 >
                                     <Plus size={12} strokeWidth={3} />
                                 </button>
                             </div>
+                            
                             <div className="flex flex-col items-end">
-                                <span className="text-[15px] font-bold text-[#0f1111]">${(Number(item.price || 0) * item.quantity).toLocaleString()}</span>
+                                <span className="text-[16px] font-semibold text-[#1d4ed8]">${(Number(item.price || 0) * item.quantity).toLocaleString()}</span>
                                 <button
                                     onClick={() => removeFromCart(item.id)}
-                                    className="text-[11px] font-medium text-[#007185] hover:text-[#c45500] hover:underline cursor-pointer"
+                                    className="text-[11px] font-medium text-red-400 hover:text-red-500 transition-colors uppercase tracking-wider mt-1"
                                 >
-                                    Delete
+                                    Remove
                                 </button>
                             </div>
                         </div>
@@ -122,16 +128,16 @@ export default function CartDrawer() {
                 </>
               ) : (
                 <div className="h-full flex flex-col items-center justify-center text-center px-6">
-                  <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mb-6 shadow-sm border border-gray-200">
-                    <ShoppingBag size={40} className="text-gray-200" />
+                  <div className="w-24 h-24 bg-blue-50 rounded-[40px] flex items-center justify-center mb-6 border border-blue-100 animate-pulse">
+                    <ShoppingBag size={40} className="text-blue-200" />
                   </div>
-                  <h3 className="text-xl font-bold text-[#0f1111] mb-2">Your Bag is empty</h3>
-                  <p className="text-sm text-[#565959] mb-8">Items added to your cart will appear here.</p>
+                  <h3 className="text-[20px] font-semibold text-slate-800 mb-2">Empty Cart</h3>
+                  <p className="text-[14px] text-slate-400 mb-8 font-medium">Add some world-class printers to your cart to see them here.</p>
                   <button
                     onClick={closeCartDrawer}
-                    className="bg-[#ffd814] border border-[#fcd200] hover:bg-[#f7ca00] text-[#0f1111] px-10 py-2.5 text-[14px] font-medium rounded-md shadow-sm transition-colors cursor-pointer"
+                    className="bg-[#1d4ed8] hover:bg-blue-700 text-white px-10 py-4 text-[14px] font-semibold rounded-2xl shadow-xl shadow-blue-100 transition-all transform hover:-translate-y-1 active:scale-95 cursor-pointer"
                   >
-                    Continue Shopping
+                    CONTINUE SHOPPING
                   </button>
                 </div>
               )}
@@ -139,37 +145,43 @@ export default function CartDrawer() {
 
             {/* Footer Summary */}
             {cart.length > 0 && (
-              <div className="bg-white border-t border-gray-300 p-6 space-y-4 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
-                <div className="flex items-center justify-between text-[#0f1111]">
-                  <span className="text-lg font-normal">Subtotal</span>
-                  <span className="text-2xl font-bold">${total.toLocaleString()}</span>
+              <div className="bg-white border-t border-slate-100 p-8 space-y-6 shadow-[0_-20px_50px_rgba(0,0,0,0.05)] rounded-t-[40px]">
+                <div className="space-y-2">
+                    <div className="flex items-center justify-between text-slate-400 text-[13px] font-medium">
+                        <span>Subtotal</span>
+                        <span>${total.toLocaleString()}</span>
+                    </div>
+                    <div className="flex items-center justify-between text-[#1d4ed8] text-[24px] font-semibold">
+                        <span>Total</span>
+                        <span>${total.toLocaleString()}</span>
+                    </div>
                 </div>
                 
-                <div className="space-y-3 pt-2">
+                <div className="space-y-3">
                     <Link
                         to="/checkout"
                         onClick={closeCartDrawer}
-                        className="w-full h-12 bg-[#ffd814] border border-[#fcd200] hover:bg-[#f7ca00] text-[#0f1111] flex items-center justify-center font-normal text-[14px] rounded-md shadow-sm transition-colors cursor-pointer"
+                        className="w-full h-14 bg-[#1d4ed8] hover:bg-blue-700 text-white flex items-center justify-center gap-3 font-semibold text-[15px] rounded-2xl shadow-xl shadow-blue-100 transition-all hover:-translate-y-1 active:scale-95"
                     >
-                        Proceed to Checkout
+                        CHECKOUT NOW <ArrowRight size={18} />
                     </Link>
                     <Link
                         to="/cart"
                         onClick={closeCartDrawer}
-                        className="w-full h-12 bg-white border border-gray-300 hover:bg-gray-50 text-[#0f1111] flex items-center justify-center font-normal text-[14px] rounded-md shadow-sm transition-colors cursor-pointer"
+                        className="w-full h-14 bg-slate-50 hover:bg-slate-100 text-slate-700 flex items-center justify-center font-semibold text-[15px] rounded-2xl transition-all"
                     >
-                        Go to Cart
+                        View Full Cart
                     </Link>
                 </div>
 
-                <div className="flex flex-col gap-2 pt-2 border-t border-gray-100">
-                    <div className="flex items-center gap-2 text-[11px] text-[#565959]">
-                        <Truck size={14} className="text-emerald-600" />
-                        <span>Fast delivery on all printer systems</span>
+                <div className="grid grid-cols-2 gap-4 pt-2">
+                    <div className="flex items-center gap-2 text-[10px] text-slate-400 font-medium uppercase tracking-wider">
+                        <Truck size={14} className="text-blue-400" />
+                        <span>Fast Delivery</span>
                     </div>
-                    <div className="flex items-center gap-2 text-[11px] text-[#565959]">
-                        <ShieldCheck size={14} className="text-emerald-600" />
-                        <span>Secure SSL encrypted transaction</span>
+                    <div className="flex items-center gap-2 text-[10px] text-slate-400 font-medium uppercase tracking-wider">
+                        <ShieldCheck size={14} className="text-blue-400" />
+                        <span>Secure SSL</span>
                     </div>
                 </div>
               </div>
@@ -180,9 +192,9 @@ export default function CartDrawer() {
 
       <style>{`
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #eaeded; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #f1f5f9; border-radius: 20px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #e2e8f0; }
       `}</style>
     </AnimatePresence>
   );

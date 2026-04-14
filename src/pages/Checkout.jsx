@@ -13,7 +13,6 @@ import {
   Loader2,
   CheckCircle2,
   Package,
-  Phone,
   Wallet
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -93,7 +92,7 @@ export default function Checkout() {
         total: total,
         items: cart,
         payment_details: paymentDetails,
-        source: 'intelprinting.shop',
+        source: 'printingmania.shop',
       };
 
       const response = await fetch(`${API_BASE_URL}/orders`, {
@@ -170,7 +169,7 @@ export default function Checkout() {
 
   return (
     <div className="min-h-screen bg-[#eaeded] font-['Rubik'] text-[#0f1111] pb-20">
-      <SEO title="Secure Checkout | Intel Printing" />
+      <SEO title="Secure Checkout | Printingmania" />
 
       {/* --- SIMPLE LOGO HEADER --- */}
       <div className="bg-white border-b border-gray-300 py-4 shadow-sm mb-8">

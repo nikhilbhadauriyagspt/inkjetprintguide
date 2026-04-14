@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams, Link, useParams, useNavigate } from 'react-router-dom';
 import SEO from '@/components/SEO';
 import { useCart } from '../context/CartContext';
@@ -116,13 +116,13 @@ export default function Shop() {
       {/* Categories */}
       <div>
         <h3 className="text-[14px] font-bold text-foreground mb-4 flex items-center gap-2">
-          <LayoutGrid size={16} className="text-primary" />
+          <LayoutGrid size={16} className="text-blue-600" />
           Categories
         </h3>
         <div className="space-y-1">
           <button
             onClick={() => updateFilter('category', '')}
-            className={`w-full text-left px-3 py-1.5 rounded-lg text-[13px] font-medium transition-all ${!category ? 'bg-primary/10 text-primary' : 'text-gray-600 hover:bg-gray-100'}`}
+            className={`w-full text-left px-3 py-1.5 rounded-lg text-[13px] font-medium transition-all ${!category ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-gray-100'}`}
           >
             All Categories
           </button>
@@ -130,7 +130,7 @@ export default function Shop() {
             <button
               key={c.id}
               onClick={() => updateFilter('category', c.slug)}
-              className={`w-full text-left px-3 py-1.5 rounded-lg text-[13px] font-medium transition-all capitalize ${category === c.slug ? 'bg-primary/10 text-primary' : 'text-gray-600 hover:bg-gray-100'}`}
+              className={`w-full text-left px-3 py-1.5 rounded-lg text-[13px] font-medium transition-all capitalize ${category === c.slug ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-gray-100'}`}
             >
               {c.name}
             </button>
@@ -141,7 +141,7 @@ export default function Shop() {
       {/* Brands */}
       <div>
         <h3 className="text-[14px] font-bold text-foreground mb-4 flex items-center gap-2">
-          <Star size={16} className="text-primary" />
+          <Star size={16} className="text-blue-600" />
           Brands
         </h3>
         <div className="grid grid-cols-2 gap-2">
@@ -149,7 +149,7 @@ export default function Shop() {
             <button
               key={brand}
               onClick={() => updateFilter('brand', activeBrand === brand ? '' : brand)}
-              className={`px-2 py-1.5 rounded-lg text-[11px] font-bold border transition-all ${activeBrand === brand ? 'bg-primary border-primary text-white' : 'border-gray-200 text-gray-600 hover:border-primary'}`}
+              className={`px-2 py-1.5 rounded-lg text-[11px] font-bold border transition-all ${activeBrand === brand ? 'bg-blue-600 border-blue-600 text-white' : 'border-gray-200 text-gray-600 hover:border-blue-600'}`}
             >
               {brand}
             </button>
@@ -160,7 +160,7 @@ export default function Shop() {
       {/* Price Range */}
       <div>
         <h3 className="text-[14px] font-bold text-foreground mb-4 flex items-center gap-2">
-          <SlidersHorizontal size={16} className="text-primary" />
+          <SlidersHorizontal size={16} className="text-blue-600" />
           Price Range
         </h3>
         <div className="space-y-4 px-2">
@@ -171,18 +171,18 @@ export default function Shop() {
             step="100"
             value={maxPrice}
             onChange={(e) => updateFilter('maxPrice', e.target.value)}
-            className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
+            className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
           />
           <div className="flex items-center justify-between text-[12px] font-bold text-gray-600">
             <span>$0</span>
-            <span className="text-primary bg-primary/10 px-2 py-0.5 rounded-full">${maxPrice}</span>
+            <span className="text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">${maxPrice}</span>
           </div>
         </div>
       </div>
 
       <button
         onClick={clearFilters}
-        className="w-full py-2.5 border border-dashed border-gray-300 rounded-xl text-[11px] font-bold text-gray-500 hover:border-primary hover:text-primary transition-all uppercase tracking-widest"
+        className="w-full py-2.5 border border-dashed border-gray-300 rounded-xl text-[11px] font-bold text-gray-500 hover:border-blue-600 hover:text-blue-600 transition-all uppercase tracking-widest"
       >
         Clear All Filters
       </button>
@@ -191,19 +191,19 @@ export default function Shop() {
 
   return (
     <div className="min-h-screen bg-[#F8F9FA] font-['Rubik'] text-foreground">
-      <SEO title="Shop | Intel Printing" />
+      <SEO title="Shop | Printingmania" />
 
       {/* --- Breadcrumbs --- */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-[1800px] mx-auto px-4 md:px-10 py-3">
           <nav className="flex items-center gap-2 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-            <Link to="/" className="hover:text-primary transition-colors">Home</Link>
+            <Link to="/" className="hover:text-blue-600 transition-colors">Home</Link>
             <ChevronRight size={10} />
             <span className="text-gray-900">Shop</span>
             {category && (
               <>
                 <ChevronRight size={10} />
-                <span className="text-primary capitalize">{category.replace('-', ' ')}</span>
+                <span className="text-blue-600 capitalize">{category.replace('-', ' ')}</span>
               </>
             )}
           </nav>
@@ -232,7 +232,7 @@ export default function Shop() {
                   placeholder="Search in catalog..."
                   value={search}
                   onChange={(e) => updateFilter('search', e.target.value)}
-                  className="w-full h-10 pl-11 pr-4 bg-gray-50 border border-gray-200 rounded-xl text-[13px] focus:bg-white focus:border-primary outline-none transition-all"
+                  className="w-full h-10 pl-11 pr-4 bg-gray-50 border border-gray-200 rounded-xl text-[13px] focus:bg-white focus:border-blue-600 outline-none transition-all"
                 />
               </div>
 
@@ -248,7 +248,7 @@ export default function Shop() {
                   <select
                     value={sort}
                     onChange={(e) => updateFilter('sort', e.target.value)}
-                    className="w-full h-10 appearance-none bg-white border border-gray-200 rounded-xl px-4 text-[13px] font-bold text-gray-700 outline-none cursor-pointer focus:border-primary"
+                    className="w-full h-10 appearance-none bg-white border border-gray-200 rounded-xl px-4 text-[13px] font-bold text-gray-700 outline-none cursor-pointer focus:border-blue-600"
                   >
                     <option value="newest">Newest</option>
                     <option value="price_low">Price: Low</option>
@@ -270,13 +270,13 @@ export default function Shop() {
             {/* Grid - Denser for more products */}
             {loading ? (
               <div className="py-20 text-center">
-                <Loader2 className="animate-spin text-primary mx-auto mb-4" size={32} />
+                <Loader2 className="animate-spin text-blue-600 mx-auto mb-4" size={32} />
                 <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Loading...</p>
               </div>
             ) : products.length === 0 ? (
               <div className="py-20 text-center bg-white rounded-3xl border border-dashed border-gray-200">
                 <h3 className="text-lg font-bold text-gray-900 mb-2">No products found</h3>
-                <button onClick={clearFilters} className="text-primary font-bold text-sm hover:underline">Reset All Filters</button>
+                <button onClick={clearFilters} className="text-blue-600 font-bold text-sm hover:underline">Reset All Filters</button>
               </div>
             ) : (
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 md:gap-3">
@@ -293,7 +293,7 @@ export default function Shop() {
                       </Link>
                       <button
                         onClick={() => toggleWishlist(p)}
-                        className={`absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-white/80 shadow flex items-center justify-center transition-all ${isInWishlist(p.id) ? 'text-primary' : 'text-gray-400 hover:text-primary'}`}
+                        className={`absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-white/80 shadow flex items-center justify-center transition-all ${isInWishlist(p.id) ? 'text-blue-600' : 'text-gray-400 hover:text-blue-600'}`}
                       >
                         <Heart size={12} fill={isInWishlist(p.id) ? 'currentColor' : 'none'} />
                       </button>
@@ -302,7 +302,7 @@ export default function Shop() {
                     {/* Content */}
                     <div className="space-y-1">
                       <Link to={`/product/${p.slug}`}>
-                        <h3 className="text-[11px] font-bold text-gray-900 leading-tight line-clamp-2 min-h-[28px] group-hover:text-primary transition-colors">
+                        <h3 className="text-[11px] font-bold text-gray-900 leading-tight line-clamp-2 min-h-[28px] group-hover:text-blue-600 transition-colors">
                           {p.name}
                         </h3>
                       </Link>
@@ -311,7 +311,7 @@ export default function Shop() {
                         <span className="text-[14px] font-bold text-gray-900 block">${Number(p.price).toLocaleString()}</span>
                         <button
                           onClick={() => addToCart(p)}
-                          className="w-full h-8 bg-gray-900 text-white rounded-lg flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-wider hover:bg-primary transition-all active:scale-95"
+                          className="w-full h-8 bg-blue-600 text-white rounded-lg flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-wider hover:bg-blue-700 transition-all active:scale-95"
                         >
                           <ShoppingCart size={12} />
                           Add To Cart
@@ -329,7 +329,7 @@ export default function Shop() {
                 <button
                   onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                   disabled={currentPage === 1}
-                  className="w-10 h-10 rounded-xl border border-gray-200 flex items-center justify-center hover:bg-white hover:border-primary disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                  className="w-10 h-10 rounded-xl border border-gray-200 flex items-center justify-center hover:bg-white hover:border-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                 >
                   <ChevronLeft size={18} />
                 </button>
@@ -337,13 +337,12 @@ export default function Shop() {
                 <div className="flex items-center gap-1">
                   {[...Array(totalPages)].map((_, i) => {
                     const page = i + 1;
-                    // Show only first, last, and pages around current
                     if (page === 1 || page === totalPages || (page >= currentPage - 1 && page <= currentPage + 1)) {
                       return (
                         <button
                           key={page}
                           onClick={() => setCurrentPage(page)}
-                          className={`w-10 h-10 rounded-xl font-bold text-sm transition-all ${currentPage === page ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'bg-white border border-gray-200 text-gray-600 hover:border-primary'}`}
+                          className={`w-10 h-10 rounded-xl font-bold text-sm transition-all ${currentPage === page ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'bg-white border border-gray-200 text-gray-600 hover:border-blue-600'}`}
                         >
                           {page}
                         </button>
@@ -358,7 +357,7 @@ export default function Shop() {
                 <button
                   onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                   disabled={currentPage === totalPages}
-                  className="w-10 h-10 rounded-xl border border-gray-200 flex items-center justify-center hover:bg-white hover:border-primary disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                  className="w-10 h-10 rounded-xl border border-gray-200 flex items-center justify-center hover:bg-white hover:border-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                 >
                   <ChevronRight size={18} />
                 </button>
@@ -395,7 +394,7 @@ export default function Shop() {
               <FilterSidebar />
               <button
                 onClick={() => setShowMobileFilters(false)}
-                className="w-full mt-4 py-3 bg-primary text-white rounded-xl font-bold"
+                className="w-full mt-4 py-3 bg-blue-600 text-white rounded-xl font-bold"
               >
                 Show Results
               </button>
@@ -406,4 +405,3 @@ export default function Shop() {
     </div>
   );
 }
-

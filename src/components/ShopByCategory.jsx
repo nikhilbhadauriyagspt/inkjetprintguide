@@ -1,16 +1,14 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, LayoutGrid } from "lucide-react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
-import "swiper/css";
+import { ChevronRight, LayoutGrid } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function ShopByCategory({ categories = [], loading = false }) {
   if (loading) {
     return (
       <section className="w-full py-16 bg-white flex flex-col items-center">
-        <div className="flex gap-6 justify-center w-full max-w-[1800px] px-6">
-          {[...Array(6)].map((_, i) => (
-            <div key={i} className="w-full aspect-[4/5] bg-slate-50 rounded-[20px] animate-pulse" />
+        <div className="w-full max-w-[1800px] px-6 space-y-8">
+          {[...Array(3)].map((_, i) => (
+            <div key={i} className="w-full h-[400px] bg-slate-50 animate-pulse" />
           ))}
         </div>
       </section>
@@ -22,99 +20,113 @@ export default function ShopByCategory({ categories = [], loading = false }) {
   );
   const displayCategories = printerParent ? (printerParent.children || []) : categories;
 
-  const getImagePath = (image) => {
-    if (!image) return "/logo/fabicon.png";
-    let path = image.startsWith("/") ? image : `/${image}`;
-    return path.replace(/\.(jpg|jpeg)$/i, '.png');
+  // Updated to use local images from public/banner/category-imges/
+  const getLocalImagePath = (index) => {
+    return `/banner/category-imges/${index + 1}.png`;
   };
-
-  const softColors = [
-    "bg-blue-50",
-    "bg-rose-50",
-    "bg-emerald-50",
-    "bg-amber-50",
-    "bg-indigo-50",
-    "bg-cyan-50",
-    "bg-violet-50",
-    "bg-orange-50",
-  ];
 
   if (!displayCategories || displayCategories.length === 0) return null;
 
-  return (
-    <section className="w-full py-12 md:py-20 bg-white font-['Rubik'] overflow-hidden relative group/section">
-      <div className="max-w-[1800px] mx-auto px-4 md:px-10 overflow-hidden">
+  // Static relatable content mapping
+  const categoryHeadings = {
+    'inkjet-printers': "Inkjet Printers for Vibrant Creative Work",
+    'laser-printers': "Laser Systems for High-Speed Business",
+    'all-in-one-printers': "All-In-One Solutions for Multi-Tasking",
+    'supertank-printers': "Supertank Series for Limitless Printing",
+    'thermal-printers': "Thermal Technology for Reliable POS",
+    'large-format-printers': "Large Format Units for Industrial Scale",
+    'printer-accessories': "Genuine Supplies & Essential Accessories",
+    'led-printers': "LED Technology for Energy-Efficient Printing",
+    'photo-printers': "Professional Grade Photo Printing Systems",
+    'dot-matrix-printers': "Impact Printing for Industrial Reliability"
+  };
 
-        {/* HEADER SECTION CENTERED WITH ICON */}
-        <div className="flex flex-col items-center justify-center text-center mb-12 md:mb-16">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-              <LayoutGrid size={24} />
+  const categoryDescs = {
+    'inkjet-printers': "Perfect for home offices and creative studios needing photographic precision.",
+    'laser-printers': "Engineered for speed and endurance to handle heavy professional workloads.",
+    'all-in-one-printers': "Streamline your workflow with smart machines that scan, copy, and print.",
+    'supertank-printers': "High-capacity reservoirs that deliver ultra-low cost per page.",
+    'thermal-printers': "Compact and durable solutions for retail receipts and logistics labels.",
+    'large-format-printers': "Industrial precision for blueprints, banners, and massive marketing materials.",
+    'printer-accessories': "Keep your systems running smoothly with our range of ink, toner, and parts.",
+    'led-printers': "Reliable and high-quality printing with fewer moving parts for longevity.",
+    'photo-printers': "Capture every detail with systems designed for professional photographers.",
+    'dot-matrix-printers': "Robust and reliable impact technology for multi-part forms and logs."
+  };
+
+  return (
+    <section className="w-full py-16 bg-white font-['Rubik']">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-10">
+
+        {/* SECTION HEADER */}
+        <div className="flex flex-col  items-center justify-center text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="space-y-3"
+          >
+            <div className="inline-flex items-center gap-2 text-blue-600 text-[13px] font-bold uppercase tracking-[0.2em]">
+              <LayoutGrid size={16} /> Catalogue
             </div>
-            <h2 className="text-2xl md:text-4xl font-bold text-foreground tracking-tight">
-              Browse Categories
+            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 ">
+              Browse <span className="text-blue-600 text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-blue-500">Categories</span>
             </h2>
-          </div>
-          <p className="text-secondary text-sm md:text-base font-medium max-w-2xl">
-            Explore our curated collections of high-performance printing hardware and genuine supplies
-          </p>
+          </motion.div>
         </div>
 
-        {/* SLIDER WITHOUT NAV ARROWS */}
-        <div className="relative">
-          <Swiper
-            modules={[Autoplay]}
-            autoplay={{
-              delay: 3000,
-              disableOnInteraction: false,
-            }}
-            spaceBetween={16}
-            slidesPerView={2.4}
-            breakpoints={{
-              480: { slidesPerView: 3.2, spaceBetween: 16 },
-              768: { slidesPerView: 4.2, spaceBetween: 20 },
-              1024: { slidesPerView: 5.2, spaceBetween: 20 },
-              1280: { slidesPerView: 7.2, spaceBetween: 24 },
-              1536: { slidesPerView: 8.2, spaceBetween: 24 },
-            }}
-            className="!overflow-visible"
-          >
-            {displayCategories.map((cat, index) => (
-              <SwiperSlide key={cat.id}>
-                <Link
-                  to={`/shop?category=${cat.slug}`}
-                  className="group block bg-transparent p-0 transition-all duration-500"
-                >
-                  {/* IMAGE CONTAINER WITH CIRCULAR TOP AND NO BORDERS */}
-                  <div className={`relative aspect-[4/5] ${softColors[index % softColors.length]} rounded-t-full rounded-b-none flex items-center justify-center overflow-hidden mb-4`}>
+        {/* ALTERNATING ROWS - NO RADIUS, MINIMAL SHADOW */}
+        <div className="border-t flex flex-col gap-8 border-slate-100">
+          {displayCategories.map((cat, index) => {
+            const isEven = index % 2 === 0;
+            const fullHeading = categoryHeadings[cat.slug] || `${cat.name} for Professional Use`;
+            const desc = categoryDescs[cat.slug] || "Experience premium technology with our curated collection.";
+
+            return (
+              <motion.div
+                key={cat.id}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-stretch border-b border-slate-100 group`}
+              >
+                {/* IMAGE COLUMN (65%) */}
+                <div className="w-full md:w-[60%] h-[300px] md:h-[400px] relative overflow-hidden bg-slate-50">
+                  <Link to={`/shop?category=${cat.slug}`} className="block w-full h-full">
                     <img
-                      src={getImagePath(cat.image)}
+                      src={getLocalImagePath(index)}
                       alt={cat.name}
-                      className="w-[75%] h-[60%] object-contain transition-transform duration-700 group-hover:scale-110 mix-blend-multiply"
-                      onError={(e) => {
-                        e.currentTarget.src = "/logo/fabicon.png";
-                      }}
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                      onError={(e) => { e.currentTarget.src = "/logo/fabicon.png"; }}
                     />
+                  </Link>
+                </div>
 
-                    {/* MINIMAL OVERLAY ICON */}
-                    <div className="absolute bottom-4 right-1/2 translate-x-1/2 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm text-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-                      <ArrowRight size={14} className="text-primary" />
-                    </div>
-                  </div>
-
-                  {/* DETAILS CENTERED */}
-                  <div className="px-2 pb-2 text-center">
-                    <h3 className="text-[14px] md:text-[16px] font-bold text-foreground group-hover:text-primary transition-colors duration-300 capitalize truncate">
-                      {cat.name}
+                {/* CONTENT COLUMN (35%) */}
+                <div
+                  className="w-full md:w-[40%] p-8 md:p-14 flex flex-col justify-center text-white relative"
+                  style={{ background: 'linear-gradient(135deg, rgb(30, 58, 138) 0%, rgb(29, 78, 216) 50%, rgb(37, 99, 235) 100%)' }}
+                >
+                  <div className="space-y-6">
+                    <h3 className="text-2xl md:text-3xl font-bold leading-tight  capitalize">
+                      {fullHeading}
                     </h3>
-                    <p className="text-[10px] font-semibold text-secondary/60 uppercase tracking-[0.2em] mt-1">
-                      Shop Now
+                    <div className="w-10 h-0.5 bg-white/40" />
+                    <p className="text-blue-50/90 text-[16px] leading-relaxed font-normal">
+                      {desc}
                     </p>
+                    <Link
+                      to={`/shop?category=${cat.slug}`}
+                      className="inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-widest text-white hover:text-blue-200 transition-all group/btn"
+                    >
+                      Explore Collection <ChevronRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+                    </Link>
                   </div>
-                </Link>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
