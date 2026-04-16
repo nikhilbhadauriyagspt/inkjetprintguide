@@ -1,2 +1,2 @@
-﻿# republicprinting.shop
+﻿# myprintingbuddy.shop
 

@@ -7,10 +7,10 @@ export default function CookiePolicy() {
     <PolicyLayout
       title="Cookie Policy"
       subtitle="Learn about how we use cookies and similar technologies on our website."
-      lastUpdated="March 21, 2026"
+      lastUpdated="Apr 16, 2026"
     >
       <p className="lead">
-        This Cookie Policy explains how Republic Printing LLC ("Company," "we," "us," or "our") uses cookies and similar technologies when you visit our website: <a href="https://republicprinting.shop/">https://republicprinting.shop/</a>
+        This Cookie Policy explains how My Printing Buddy LLC ("Company," "we," "us," or "our") uses cookies and similar technologies when you visit our website: <a href="https://myprintingbuddy.shop/">https://myprintingbuddy.shop/</a>
       </p>
       <p>
         This Cookie Policy should be read together with our <Link to="/privacy-policy">Privacy Policy</Link> and <Link to="/terms-and-conditions">Terms and Conditions</Link>.
@@ -127,8 +127,8 @@ export default function CookiePolicy() {
       <h2>8. Sale Or Sharing Of Personal Information</h2>
       <p>We do not sell personal information. If cookies are considered â€œsharingâ€ under certain US state privacy laws (such as targeted advertising), you may exercise your rights by:</p>
       <ul>
-        <li>Emailing: <a href="mailto:info@republicprinting.shop">info@republicprinting.shop</a></li>
-        <li>Visiting: <Link to="/contact">https://republicprinting.shop/contact</Link></li>
+        <li>Emailing: <a href="mailto:info@myprintingbuddy.shop">info@myprintingbuddy.shop</a></li>
+        <li>Visiting: <Link to="/contact">https://myprintingbuddy.shop/contact</Link></li>
       </ul>
 
       <h2>9. Childrenâ€™s Privacy</h2>
@@ -141,13 +141,13 @@ export default function CookiePolicy() {
       <h2>11. Contact Information</h2>
       <p>If you have any questions regarding this Cookie Policy, please contact:</p>
       <div className="bg-gray-50 p-8 rounded-sm border border-[#e9e9e9] my-8 not-prose">
-        <address className="not-italic text-gray-700 font-bold leading-relaxed space-y-2">
-          <p className="text-black font-extrabold">Republic Printing LLC</p>
+        <address className="not- text-gray-700 font-bold leading-relaxed space-y-2">
+          <p className="text-black font-extrabold">My Printing Buddy LLC</p>
           <p>Direct Distribution</p>
-          <p>1710 2nd Ave N</p>
-          <p>Birmingham, AL 35203, USA</p>
+          <p>2241 W I 44 Service Rd</p>
+          <p>Oklahoma City, Oklahoma City, OK 73112, USA</p>
           <p>United States</p>
-          <p className="pt-4 flex items-center gap-3 text-[#1447E6] font-extrabold">info@republicprinting.shop</p>
+          <p className="pt-4 flex items-center gap-3 text-[#1447E6] font-extrabold">info@myprintingbuddy.shop</p>
         </address>
       </div>
     </PolicyLayout>

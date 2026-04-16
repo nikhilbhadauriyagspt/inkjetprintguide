@@ -106,19 +106,19 @@ export default function Home() {
   return (
     <div className="bg-white font-sans overflow-x-hidden text-slate-900">
       <SEO
-        title="Republic Printing | High-Performance Printing Solutions"
+        title="My Printing Buddy | High-Performance Printing Solutions"
         description="Shop printers, ink, and toner globally. Professional business printing solutions with international shipping."
         keywords="Buy Printers Online, Ink and Toner, LaserJet, OfficeJet, Printer Accessories, Business Printing Solutions"
       />
 
       <Hero products={data.all} />
-      <Showcase />
 
       <AboutSection />
+      <ShopByCategory categories={data.categories} loading={data.loading} />
+
 
 
       <ProductGrid products={data.all} />
-      <ShopByCategory categories={data.categories} loading={data.loading} />
       <FeaturedTabs
         printers={data.printers}
         accessories={data.accessories}
@@ -126,6 +126,9 @@ export default function Home() {
       />
 
       <PrinterGuide />
+      <Showcase />
+
+
 
 
     </div>

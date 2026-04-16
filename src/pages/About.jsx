@@ -6,14 +6,14 @@ import {
   Globe,
   Printer,
   Package,
-  ChevronRight,
-  CheckCircle2,
   Headphones,
   Leaf,
   Wrench,
   Target,
   Users,
-  ArrowRight
+  ArrowRight,
+  Cpu,
+  Settings
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -23,17 +23,35 @@ export default function About() {
     {
       icon: Printer,
       title: "Quality Products",
-      desc: "A curated selection of modern printing systems, including all-in-one and high-volume industrial units tailored for efficiency."
+      desc: "A curated selection of modern printing systems, including all-in-one units tailored for efficiency."
     },
     {
       icon: Package,
       title: "Logistics Excellence",
-      desc: "Reliable access to ink, toner, and essential replacement parts with efficient nationwide delivery across the country."
+      desc: "Reliable access to ink and essential replacement parts with efficient nationwide delivery."
     },
     {
       icon: Headphones,
       title: "Professional Support",
-      desc: "Experts providing seamless setup guidance, troubleshooting, and long-term maintenance for your printer."
+      desc: "Experts providing setup guidance, troubleshooting, and long-term maintenance for your printer."
+    }
+  ];
+
+  const selectionGuide = [
+    {
+      title: "Needs Assessment",
+      desc: "Analyze your monthly print volume to choose between Inkjet precision or Laser speed.",
+      icon: Target
+    },
+    {
+      title: "Technology Choice",
+      desc: "Determine if you need color precision or monochrome speed for your specific workflows.",
+      icon: Cpu
+    },
+    {
+      title: "Integration Setup",
+      desc: "Ensure seamless compatibility with wireless cloud protocols or secure wired connections.",
+      icon: Settings
     }
   ];
 
@@ -42,158 +60,162 @@ export default function About() {
     { title: "Reliable Parts", icon: Package },
     { title: "Rapid Service", icon: Zap },
     { title: "Secure Logistics", icon: Globe },
-    { title: "New Printer", icon: CheckCircle2 },
+    { title: "New Printer", icon: ShieldCheck },
     { title: "Expert Care", icon: Headphones },
     { title: "Eco-Tech", icon: Leaf },
     { title: "Service Hub", icon: Wrench }
   ];
 
   return (
-    <div className="min-h-screen bg-white font-['Rubik'] text-slate-900">
-      <SEO
-        title="About Us | Republic Printing"
-        description="Learn about our commitment to printing excellence, our journey, and the core values that drive our professional services."
-      />
+    <div className="min-h-screen bg-white font-sans text-slate-900 pb-20">
+      <SEO title="About Us | My Printing Buddy" />
 
       {/* --- MINIMAL BREADCRUMBS --- */}
-      <div className="bg-slate-50 border-b border-slate-200 py-4">
-        <div className="max-w-[1400px] mx-auto px-4 md:px-10">
-          <nav className="flex items-center gap-2 text-[13px] font-medium text-slate-500">
-            <Link to="/" className="hover:text-[#013E24] transition-colors">Home</Link>
-            <span className="text-slate-900">About Our Journey</span>
+      <div className="bg-white border-b border-slate-50 py-4">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <nav className="flex items-center gap-2 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+            <Link to="/" className="hover:text-[#991B1B]">Home</Link>
+            <span className="opacity-30">/</span>
+            <span className="text-slate-600">About Us</span>
           </nav>
         </div>
       </div>
 
-      {/* --- REFINED HERO SECTION --- */}
-      <section className="py-16 md:py-24 border-b border-slate-100" style={{ background: 'linear-gradient(135deg, rgb(2, 69, 41) 0%, rgb(0, 50, 29) 50%, rgb(5, 138, 44) 100%)' }}>
-        <div className="max-w-[1400px] mx-auto px-4 md:px-10">
-          <div className="max-w-3xl">
+      {/* --- HERO SECTION WITH BLACK OVERLAY --- */}
+      <section className="relative py-20 md:py-28 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/banner/banner-6.jpg"
+            alt="Background"
+            className="w-full h-full object-cover"
+          />
+          {/* Half-Black Overlay for better text visibility without coloring the whole image */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+        </div>
+
+        <div className="max-w-[1400px] mx-auto px-6 relative z-10">
+          <div className="max-w-2xl">
+            <motion.div
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="flex items-center gap-2 mb-4"
+            >
+              <div className="w-8 h-[2px] bg-[#991B1B]" />
+              <span className="text-white font-bold text-[10px] tracking-[0.3em] uppercase">Professional Services</span>
+            </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-3xl md:text-5xl font-bold text-white leading-tight mb-6"
+              className="text-3xl md:text-5xl font-bold text-white leading-tight mb-6 "
             >
-              Providing Excellence in <span className="text-blue-200">Printing Solutions.</span>
+              Excellence in <br />Printing Solutions.
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-base md:text-lg text-blue-50 font-normal leading-relaxed opacity-90"
+              className="text-sm md:text-base text-white/80 font-medium leading-relaxed max-w-xl border-l border-[#991B1B] pl-4"
             >
-              We bridge the gap between advanced technology and a seamless user experience, ensuring your workspace stays productive and efficient.
+              Bridging the gap between advanced hardware and seamless user experience for a more productive workspace.
             </motion.p>
           </div>
         </div>
       </section>
 
-      <div className="max-w-[1400px] mx-auto px-4 md:px-10 py-16 md:py-24 space-y-16">
+      <div className="max-w-[1400px] mx-auto px-6 py-16 md:py-24 space-y-24">
 
         {/* --- OUR FOUNDATION --- */}
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 text-[#013E24] text-[12px] font-bold uppercase tracking-widest">
+            <div className="inline-flex items-center gap-2 text-[#991B1B] text-[11px] font-bold uppercase tracking-widest">
               Our Foundation
             </div>
             <h2 className="text-2xl md:text-3xl font-bold text-slate-900 leading-tight">
               Built on Precision and Reliability
             </h2>
-            <p className="text-slate-600 leading-relaxed text-[15px] font-normal">
-              Established in 2026, Republic Printing was founded to simplify the acquisition of high-performance printing infrastructure. We believe that technology should be accessible, reliable, and straightforward. Our commitment extends beyond merely selling products; we focus on empowering professionals and businesses to achieve their operational goals without the friction of unreliable technology.
+            <p className="text-slate-500 leading-relaxed text-[15px] font-medium">
+              Established to simplify the acquisition of high-performance printing infrastructure. We believe technology should be accessible, reliable, and straightforward for every professional environment.
             </p>
             <div className="pt-2">
               <Link
                 to="/shop"
-                className="inline-flex items-center gap-2 bg-[#013E24] text-white px-6 py-3 text-[13px] font-bold uppercase tracking-widest rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
+                className="inline-flex items-center gap-2 bg-slate-900 text-white px-8 py-3.5 text-[11px] font-bold uppercase tracking-widest rounded-xl hover:bg-[#991B1B] transition-all shadow-lg shadow-slate-200/50"
               >
-                Explore Collection <ArrowRight size={16} />
+                View Catalog <ArrowRight size={16} />
               </Link>
             </div>
           </div>
 
-          <div className="bg-slate-50 p-8 rounded-xl border border-slate-100 relative">
-            <div className="text-4xl text-blue-200 font-serif mb-4">"</div>
-            <p className="text-lg text-slate-800 leading-relaxed italic mb-6 font-medium">
-              Our goal is to provide a destination where professionals can find top-tier printers without complexity.
+          <div className="bg-slate-50 p-8 md:p-12 rounded-3xl border border-slate-100">
+            <p className="text-lg text-slate-800 leading-relaxed  mb-6 font-semibold">
+              "Providing a destination where professionals can find top-tier printers without operational complexity."
             </p>
             <div className="flex items-center gap-3">
-              <div className="w-10 h-1 bg-[#013E24] rounded-full" />
-              <span className="text-[12px] font-bold text-slate-500 uppercase tracking-widest">Republic Printing Team</span>
+              <div className="w-10 h-[1px] bg-[#991B1B]" />
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">The Engineering Team</span>
             </div>
           </div>
         </section>
 
         {/* --- CORE CAPABILITIES --- */}
         <section className="space-y-10">
-          <div className="text-center md:text-left">
-            <h2 className="text-2xl font-bold text-slate-900">Core Capabilities</h2>
-            <p className="text-slate-500 text-sm mt-1">The pillars of our service excellence</p>
-          </div>
-
+          <h2 className="text-2xl font-bold text-slate-900 uppercase ">Core Capabilities</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {capabilities.map((item, i) => (
               <div
                 key={i}
-                className="flex flex-col gap-4 p-8 border border-slate-100 rounded-xl hover:border-blue-200 transition-all bg-white group"
+                className="flex flex-col gap-4 p-8 border border-slate-100 rounded-2xl hover:border-[#991B1B]/20 transition-all bg-white group"
               >
-                <div className="w-12 h-12 flex items-center justify-center bg-blue-50 text-[#013E24] rounded-lg group-hover:bg-[#013E24] group-hover:text-white transition-colors">
-                  <item.icon size={24} strokeWidth={1.5} />
+                <div className="w-10 h-10 flex items-center justify-center bg-slate-50 text-slate-400 rounded-xl group-hover:bg-[#991B1B] group-hover:text-white transition-all">
+                  <item.icon size={20} strokeWidth={2} />
                 </div>
                 <div>
-                  <h3 className="text-[16px] font-bold text-slate-900 mb-3">{item.title}</h3>
-                  <p className="text-[14px] text-slate-500 leading-relaxed font-normal">{item.desc}</p>
+                  <h3 className="text-[15px] font-bold text-slate-900 mb-2 uppercase ">{item.title}</h3>
+                  <p className="text-[13px] text-slate-400 leading-relaxed font-medium">{item.desc}</p>
                 </div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* --- MISSION + REACH --- */}
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div className="bg-white p-8 md:p-10 border border-slate-100 rounded-xl hover:shadow-md transition-shadow relative overflow-hidden group">
-            <div className="relative z-10">
-              <div className="flex items-center gap-3 mb-6 text-[#013E24]">
-                <Target size={24} strokeWidth={1.5} />
-                <span className="text-[13px] font-bold uppercase tracking-widest">Our Mission</span>
-              </div>
-              <h3 className="text-xl font-bold mb-4 text-slate-900">Empowering Modern Workspaces</h3>
-              <p className="text-slate-500 leading-relaxed text-[15px] font-normal">
-                To equip professionals with dependable and sustainable printer solutions. We provide expert advice and high-quality products to ensure your operations never slow down.
+        {/* --- SELECTION GUIDE --- */}
+        <section className="bg-slate-900 rounded-3xl p-8 md:p-16 text-white relative overflow-hidden">
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div className="lg:col-span-1">
+              <span className="text-[#991B1B] font-bold text-[10px] uppercase tracking-[0.3em] mb-3 block">Selection Guide</span>
+              <h2 className="text-3xl font-bold leading-tight  uppercase mb-4">
+                System Setup.
+              </h2>
+              <p className="text-white/40 font-medium text-xs uppercase leading-relaxed">
+                Guidance to help you deploy the most efficient hardware for your workspace.
               </p>
             </div>
-            <Target size={120} strokeWidth={0.5} className="absolute -right-8 -bottom-8 text-slate-50 opacity-10 group-hover:text-blue-100 transition-colors" />
-          </div>
 
-          <div className="bg-white p-8 md:p-10 border border-slate-100 rounded-xl hover:shadow-md transition-shadow relative overflow-hidden group">
-            <div className="relative z-10">
-              <div className="flex items-center gap-3 mb-6 text-[#013E24]">
-                <Users size={24} strokeWidth={1.5} />
-                <span className="text-[13px] font-bold uppercase tracking-widest">Our Reach</span>
-              </div>
-              <h3 className="text-xl font-bold mb-4 text-slate-900">Nationwide Support Network</h3>
-              <p className="text-slate-500 leading-relaxed text-[15px] font-normal">
-                Serving the entire United States with a commitment to fast logistics and long-term service value. Our team is always available to assist with your needs.
-              </p>
+            <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
+              {selectionGuide.map((item, idx) => (
+                <div key={idx} className="space-y-2">
+                  <h4 className="text-[14px] font-bold uppercase tracking-wide text-[#991B1B]">{item.title}</h4>
+                  <p className="text-white/50 text-[13px] leading-relaxed font-medium">{item.desc}</p>
+                </div>
+              ))}
             </div>
-            <Users size={120} strokeWidth={0.5} className="absolute -right-8 -bottom-8 text-slate-50 opacity-10 group-hover:text-blue-100 transition-colors" />
           </div>
         </section>
 
         {/* --- ADVANTAGE SECTION --- */}
-        <section className="bg-slate-50 p-8 md:p-12 rounded-xl border border-slate-100">
-          <div className="mb-10 text-center md:text-left">
-            <h2 className="text-2xl font-bold text-slate-900">The Republic Printing Advantage</h2>
-            <p className="text-slate-500 text-sm mt-1">Why professionals choose us</p>
+        <section className="bg-slate-50 p-8 md:p-12 rounded-3xl">
+          <div className="mb-10">
+            <h2 className="text-xl font-bold text-slate-900 uppercase ">The Advantage</h2>
+            <p className="text-slate-400 font-bold uppercase text-[10px] tracking-widest mt-1">Why industry professionals choose us</p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10">
             {advantages.map((item, i) => (
-              <div key={i} className="flex items-center gap-4">
-                <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center bg-white border border-slate-100 text-[#013E24] rounded-lg shadow-sm">
-                  <item.icon size={20} strokeWidth={1.5} />
+              <div key={i} className="flex items-center gap-4 group">
+                <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-white text-slate-300 group-hover:text-[#991B1B] rounded-lg transition-all">
+                  <item.icon size={18} strokeWidth={2} />
                 </div>
-                <h4 className="text-[14px] font-bold text-slate-800">{item.title}</h4>
+                <h4 className="text-[12px] font-bold text-slate-600 uppercase ">{item.title}</h4>
               </div>
             ))}
           </div>

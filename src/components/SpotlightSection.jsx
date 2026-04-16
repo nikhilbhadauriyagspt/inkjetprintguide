@@ -74,7 +74,7 @@ const SpotlightBlock = ({ title, data, colIndex, loading = false }) => {
     <div className={`p-6 md:p-8 ${colIndex < 2 ? "lg:border-r border-border" : ""}`}>
       {/* Block Header */}
       <div className="flex items-center justify-between mb-8">
-        <h3 className="text-[18px] font-bold text-foreground tracking-tight">
+        <h3 className="text-[18px] font-bold text-foreground ">
           {title}
         </h3>
 
@@ -206,7 +206,7 @@ export default function SpotlightSection({
         {/* Section Heading */}
         <div className="flex flex-col md:flex-row items-end justify-between mb-10 px-2 gap-4">
           <div>
-            <h2 className="text-2xl md:text-4xl font-bold text-foreground tracking-tight">
+            <h2 className="text-2xl md:text-4xl font-bold text-foreground ">
               Spotlight Collections
             </h2>
             <p className="text-secondary text-sm md:text-base font-medium mt-2">Explore our most curated printer and series collections</p>

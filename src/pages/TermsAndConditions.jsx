@@ -6,25 +6,25 @@ export default function TermsAndConditions() {
     <PolicyLayout
       title="Terms & Conditions"
       subtitle="Read our legal terms and conditions for using our services."
-      lastUpdated="March 21, 2026"
+      lastUpdated="Apr 16, 2026"
     >
       <section>
         <h2>Agreement To Our Legal Terms</h2>
         <p>
-          We are Republic Printing LLC ("Company," "we," "us," "our"), a company registered in California, United States at 1710 2nd Ave N Birmingham, AL 35203, USA.
+          We are My Printing Buddy LLC ("Company," "we," "us," "our"), a company registered in California, United States at 2241 W I 44 Service Rd, Oklahoma City, OK 73112, USA.
 
         </p>
         <p>
-          We operate the website <a href="http://republicprinting.shop/">http://republicprinting.shop/</a> (the "Site"), as well as any other related products and services that refer or link to these legal terms (the "Legal Terms") (collectively, the "Services").
+          We operate the website <a href="http://myprintingbuddy.shop/">http://myprintingbuddy.shop/</a> (the "Site"), as well as any other related products and services that refer or link to these legal terms (the "Legal Terms") (collectively, the "Services").
         </p>
         <p>
-          Republic Printing Solutions provides a wide range of high-performance printers and printing accessories from leading technology brands.
+          My Printing Buddy Solutions provides a wide range of high-performance printers and printing accessories from leading technology brands.
         </p>
         <p>
-          You can contact us by email at <a href="mailto:info@republicprinting.shop">info@republicprinting.shop</a>, or by mail to 1710 2nd Ave N Birmingham, AL 35203, USA.
+          You can contact us by email at <a href="mailto:info@myprintingbuddy.shop">info@myprintingbuddy.shop</a>, or by mail to 2241 W I 44 Service Rd, Oklahoma City, OK 73112, USA.
         </p>
         <p>
-          These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you"), and Republic Printing LLC, concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. <strong>IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.</strong>
+          These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you"), and My Printing Buddy LLC, concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. <strong>IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.</strong>
         </p>
         <p>
           Supplemental terms and conditions or documents that may be posted on the Services from time to time are hereby expressly incorporated herein by reference. We reserve the right, in our sole discretion, to make changes or modifications to these Legal Terms at any time and for any reason. We will alert you about any changes by updating the "Last updated" date of these Legal Terms, and you waive any right to receive specific notice of each such change. It is your responsibility to periodically review these Legal Terms to stay informed of updates. You will be subject to, and will be deemed to have been made aware of and to have accepted, the changes in any revised Legal Terms by your continued use of the Services after the date such revised Legal Terms are posted.
@@ -38,7 +38,7 @@ export default function TermsAndConditions() {
       </section>
 
       <div className="bg-gray-50 p-8 rounded-sm border border-border my-12 not-prose">
-        <h2 className="text-xl font-extrabold text-black uppercase tracking-tight mb-6 ">Table Of Contents</h2>
+        <h2 className="text-xl font-extrabold text-black uppercase  mb-6 ">Table Of Contents</h2>
         <ol className="text-[11px] font-bold text-gray-500 uppercase tracking-widest grid grid-cols-1 md:grid-cols-2 gap-4 list-decimal pl-5">
           <li>Our Services</li>
           <li>Intellectual Property Rights</li>
@@ -107,7 +107,7 @@ export default function TermsAndConditions() {
           Except as set out in this section or elsewhere in our Legal Terms, no part of the Services and no Content or Marks may be copied, reproduced, aggregated, republished, uploaded, posted, publicly displayed, encoded, translated, transmitted, distributed, sold, licensed, or otherwise exploited for any commercial purpose whatsoever, without our express prior written permission.
         </p>
         <p>
-          If you wish to make any use of the Services, Content, or Marks other than as set out in this section or elsewhere in our Legal Terms, please address your request to: <a href="mailto:info@republicprinting.shop">info@republicprinting.shop</a>. If we ever grant you the permission to post, reproduce, or publicly display any part of our Services or Content, you must identify us as the owners or licensors of the Services, Content, or Marks and ensure that any copyright or proprietary notice appears or is visible on posting, reproducing, or displaying our Content.
+          If you wish to make any use of the Services, Content, or Marks other than as set out in this section or elsewhere in our Legal Terms, please address your request to: <a href="mailto:info@myprintingbuddy.shop">info@myprintingbuddy.shop</a>. If we ever grant you the permission to post, reproduce, or publicly display any part of our Services or Content, you must identify us as the owners or licensors of the Services, Content, or Marks and ensure that any copyright or proprietary notice appears or is visible on posting, reproducing, or displaying our Content.
         </p>
         <p>
           We reserve all rights not expressly granted to you in and to the Services, Content, and Marks.
@@ -179,7 +179,7 @@ export default function TermsAndConditions() {
       <section>
         <h2>7. Return Policy</h2>
         <p>
-          Please review our Return Policy prior to making any purchases: <a href="http://republicprinting.shop/return-policy">http://republicprinting.shop/return-policy</a>.
+          Please review our Return Policy prior to making any purchases: <a href="http://myprintingbuddy.shop/return-policy">http://myprintingbuddy.shop/return-policy</a>.
         </p>
       </section>
 
@@ -267,7 +267,7 @@ export default function TermsAndConditions() {
       <section>
         <h2>12. Privacy Policy</h2>
         <p>
-          We care about data privacy and security. Please review our Privacy Policy: <a href="http://republicprinting.shop/privacy-policy">http://republicprinting.shop/privacy-policy</a>. By using the Services, you agree to be bound by our Privacy Policy, which is incorporated into these Legal Terms. Please be advised the Services are hosted in the United States. If you access the Services from any other region of the world with laws or other requirements governing personal data collection, use, or disclosure that differ from applicable laws in the United States, then through your continued use of the Services, you are transferring your data to the United States, and you expressly consent to have your data transferred to and processed in the United States.
+          We care about data privacy and security. Please review our Privacy Policy: <a href="http://myprintingbuddy.shop/privacy-policy">http://myprintingbuddy.shop/privacy-policy</a>. By using the Services, you agree to be bound by our Privacy Policy, which is incorporated into these Legal Terms. Please be advised the Services are hosted in the United States. If you access the Services from any other region of the world with laws or other requirements governing personal data collection, use, or disclosure that differ from applicable laws in the United States, then through your continued use of the Services, you are transferring your data to the United States, and you expressly consent to have your data transferred to and processed in the United States.
         </p>
       </section>
 
@@ -314,7 +314,7 @@ export default function TermsAndConditions() {
 
       <section>
         <h2>18. Disclaimer</h2>
-        <p className="font-bold text-gray-900 italic">
+        <p className="font-bold text-gray-900 ">
           THE SERVICES ARE PROVIDED ON AN AS-IS AND AS-AVAILABLE BASIS. YOU AGREE THAT YOUR USE OF THE SERVICES WILL BE AT YOUR SOLE RISK. TO THE FULLEST EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, IN CONNECTION WITH THE SERVICES AND YOUR USE THEREOF, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. WE MAKE NO WARRANTIES OR REPRESENTATIONS ABOUT THE ACCURACY OR COMPLETENESS OF THE SERVICES' CONTENT OR THE CONTENT OF ANY WEBSITES OR MOBILE APPLICATIONS LINKED TO THE SERVICES AND WE WILL ASSUME NO LIABILITY OR RESPONSIBILITY FOR ANY (1) ERRORS, MISTAKES, OR INACCURACIES OF CONTENT AND MATERIALS, (2) PERSONAL INJURY OR PROPERTY DAMAGE, OF ANY NATURE WHATSOEVER, RESULTING FROM YOUR ACCESS TO AND USE OF THE SERVICES, (3) ANY UNAUTHORIZED ACCESS TO OR USE OF OUR SECURE SERVERS AND/OR ANY AND ALL PERSONAL INFORMATION AND/OR FINANCIAL INFORMATION STORED THEREIN, (4) ANY INTERRUPTION OR CESSATION OF TRANSMISSION TO OR FROM THE SERVICES, (5) ANY BUGS, VIRUSES, TROJAN HORSES, OR THE LIKE WHICH MAY BE TRANSMITTED TO OR THROUGH THE SERVICES BY ANY THIRD PARTY, AND/OR (6) ANY ERRORS OR OMISSIONS IN ANY CONTENT AND MATERIALS OR FOR ANY LOSS OR DAMAGE OF ANY KIND INCURRED AS A RESULT OF THE USE OF ANY CONTENT POSTED, TRANSMITTED, OR OTHERWISE MADE AVAILABLE VIA THE SERVICES. WE DO NOT WARRANT, ENDORSE, GUARANTEE, OR ASSUME RESPONSIBILITY FOR ANY PRODUCT OR SERVICE ADVERTISED OR OFFERED BY A THIRD PARTY THROUGH THE SERVICES, ANY HYPERLINKED WEBSITE, OR ANY WEBSITE OR MOBILE APPLICATION FEATURED IN ANY BANNER OR OTHER ADVERTISING, AND WE WILL NOT BE A PARTY TO OR IN ANY WAY BE RESPONSIBLE FOR MONITORING ANY TRANSACTION BETWEEN YOU AND ANY THIRD-PARTY PROVIDERS OF PRODUCTS OR SERVICES. AS WITH THE PURCHASE OF A PRODUCT OR SERVICE THROUGH ANY MEDIUM OR IN ANY ENVIRONMENT, YOU SHOULD USE YOUR BEST JUDGMENT AND EXERCISE CAUTION WHERE APPROPRIATE.
         </p>
       </section>
@@ -368,12 +368,12 @@ export default function TermsAndConditions() {
           In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, please contact us at:
         </p>
         <div className="bg-gray-50 p-8 rounded-sm border border-border my-8 not-prose">
-          <address className="not-italic text-gray-700 font-bold leading-relaxed space-y-2 capitalize ">
-            <p className="text-black font-extrabold">Republic Printing LLC</p>
+          <address className="not- text-gray-700 font-bold leading-relaxed space-y-2 capitalize ">
+            <p className="text-black font-extrabold">My Printing Buddy LLC</p>
             <p>Direct Distribution</p>
-            <p>1710 2nd Ave N Birmingham, AL 35203, USA</p>
+            <p>2241 W I 44 Service Rd, Oklahoma City, OK 73112, USA</p>
             <p>United States</p>
-            <p className="pt-4 text-primary font-extrabold lowercase">Email: info@republicprinting.shop</p>
+            <p className="pt-4 text-primary font-extrabold lowercase">Email: info@myprintingbuddy.shop</p>
           </address>
         </div>
       </section>

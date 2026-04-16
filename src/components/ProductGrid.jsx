@@ -1,11 +1,8 @@
-﻿import { motion } from "framer-motion";
-import { Heart, ShoppingCart, Check } from "lucide-react";
+import { Heart, ShoppingCart, Check, ArrowRight, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useState } from "react";
-
-// public folder image path
-const sideImage = "/newproimges/1.png";
+import { motion as motionFramer } from "framer-motion";
 
 export default function ProductGrid({ products = [] }) {
   const { addToCart, toggleWishlist, isInWishlist } = useCart();
@@ -14,7 +11,6 @@ export default function ProductGrid({ products = [] }) {
   const handleAddToCart = (product) => {
     addToCart(product);
     setAddedItems((prev) => ({ ...prev, [product.id]: true }));
-
     setTimeout(() => {
       setAddedItems((prev) => ({ ...prev, [product.id]: false }));
     }, 1500);
@@ -23,184 +19,103 @@ export default function ProductGrid({ products = [] }) {
   const getImagePath = (images) => {
     try {
       const imgs = typeof images === "string" ? JSON.parse(images) : images;
-
       if (Array.isArray(imgs) && imgs.length > 0) {
         return `/${String(imgs[0]).replace(/\\/g, "/")}`;
       }
     } catch (e) {
       console.log("Image parse error:", e);
     }
-
     return "/logo/fabicon.png";
   };
 
   return (
-    <section className="w-full bg-white py-14 md:py-20 px-4 sm:px-6 lg:px-10 font-snpro">
-      <div className="max-w-[1600px] mx-auto px-8">
-        {/* heading */}
-        <div className="flex items-end justify-between gap-4 mb-10">
-          <div>
-            <p
-              className="text-[11px] font-semibold uppercase tracking-[0.28em] mb-3"
-              style={{ color: "#013E24" }}
+    <section className="w-full bg-white py-24 md:py-32 font-sans overflow-hidden border-t border-slate-50">
+      <div className="max-w-[1600px] mx-auto px-6">
+
+        {/* Modern Minimal Heading */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+          <div className="max-w-2xl">
+            <div className="flex items-center gap-2 mb-4">
+              <Zap size={14} className="text-[#991B1B]" fill="currentColor" />
+              <span className="text-[11px] font-bold text-[#991B1B] uppercase tracking-[0.4em]">New Arrivals</span>
+            </div>
+            <motionFramer
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-5xl font-light text-slate-900 leading-tight"
             >
-              New Collection
-            </p>
-            <h2 className="text-2xl md:text-4xl font-bold text-slate-900 leading-tight">
-              Fresh Picks For Your Workspace
-            </h2>
+              Fresh picks for your <span className="font-semibold text-[#991B1B]">workspace.</span>
+            </motionFramer>
           </div>
 
-          <Link
-            to="/shop"
-            className="hidden md:inline-flex text-sm font-medium border-b pb-1 transition hover:opacity-80"
-            style={{ color: "#013E24", borderColor: "#013E24" }}
-          >
-            View All Products
+          <Link to="/shop" className="text-[11px] font-black uppercase tracking-[0.3em] text-slate-300 hover:text-[#991B1B] transition-colors flex items-center gap-3 group">
+            Inventory <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
           </Link>
         </div>
 
-        {/* main layout */}
-        <div className="grid grid-cols-1 xl:grid-cols-[30%_70%] gap-6 lg:gap-8 items-stretch">
-          {/* left static image */}
-          <div className="relative overflow-hidden  min-h-[320px] md:h-[720px] bg-[#F4F7F5]">
-            <img
-              src={sideImage}
-              alt="Featured printer collection"
-              className="w-full h-full object-cover"
-              onError={(e) => {
-                e.currentTarget.src = "/logo/fabicon.png";
-              }}
-            />
-
-            <div className="absolute inset-0 bg-gradient-to-t from-[#013E24]/70 via-[#013E24]/15 to-transparent" />
-
-            <div className="absolute left-0 bottom-0 p-6 md:p-8 text-white z-10">
-              <p className="text-xs uppercase tracking-[0.25em] text-white/80 mb-3">
-                Smart Printing
-              </p>
-              <h3 className="text-2xl md:text-3xl font-semibold leading-snug max-w-[320px]">
-                Minimal design with powerful performance
-              </h3>
-              <Link
-                to="/shop"
-                className="inline-flex mt-5 px-5 py-2.5 rounded-full bg-white text-sm font-semibold transition hover:scale-[1.02]"
-                style={{ color: "#013E24" }}
+        {/* 5-Column Grid Layout */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-6 gap-y-12">
+          {products && products.length > 0 ? (
+            products.slice(0, 10).map((p, i) => (
+              <motionFramer
+                key={p.id || i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                className="group flex flex-col h-full bg-white border border-slate-100 rounded-[32px] p-4 hover:shadow-2xl hover:shadow-slate-200/50 hover:border-white transition-all duration-500"
               >
-                Explore Now
-              </Link>
-            </div>
-          </div>
-
-          {/* right product area */}
-          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5 content-start">
-            {products && products.length > 0 ? (
-              products.slice(0, 8).map((p, i) => (
-                <motion.div
-                  key={p.id || i}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.35, delay: i * 0.04 }}
-                  className="group bg-white border border-slate-200 rounded-[0px] p-2  transition-all duration-300"
-                >
-                  {/* top action */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span
-                      className="text-[10px] font-semibold uppercase tracking-[0.18em] px-2.5 py-1 rounded-full"
-                      style={{
-                        color: "#013E24",
-                        backgroundColor: "rgba(1,62,36,0.06)",
-                      }}
-                    >
-                      Printer
-                    </span>
-
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        toggleWishlist(p);
-                      }}
-                      className="h-9 w-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:text-red-500 transition"
-                    >
-                      <Heart
-                        size={16}
-                        fill={isInWishlist(p.id) ? "currentColor" : "none"}
-                      />
-                    </button>
-                  </div>
-
-                  {/* image */}
-                  <Link
-                    to={`/product/${p.slug}`}
-                    className="bg-[#F7F8F7] rounded-[10px] h-[170px]  flex items-center justify-center p-4 overflow-hidden"
-                  >
+                {/* Image Area */}
+                <div className="relative aspect-square mb-6 bg-[#FBFBFB] rounded-[24px] flex items-center justify-center p-6 overflow-hidden group-hover:bg-white transition-colors duration-500">
+                  <Link to={`/product/${p.slug}`} className="w-full h-full flex items-center justify-center">
                     <img
                       src={getImagePath(p.images)}
                       alt={p.name}
-                      className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105"
-                      onError={(e) => {
-                        e.currentTarget.src = "/logo/fabicon.png";
-                      }}
+                      className="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700"
+                      onError={(e) => { e.currentTarget.src = "/logo/fabicon.png"; }}
                     />
                   </Link>
 
-                  {/* info */}
-                  <div className="pt-4">
-                    <Link to={`/product/${p.slug}`}>
-                      <h3 className="text-[13px] md:text-[14px] font-semibold text-slate-900 line-clamp-2 leading-5 min-h-[40px] group-hover:text-[#013E24] transition-colors">
-                        {p.name}
-                      </h3>
-                    </Link>
+                  <button
+                    onClick={() => toggleWishlist(p)}
+                    className={`absolute top-4 right-4 w-9 h-9 rounded-full bg-white shadow-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 ${isInWishlist(p.id) ? "text-[#991B1B] opacity-100" : "text-slate-300 hover:text-[#991B1B]"}`}
+                  >
+                    <Heart size={16} fill={isInWishlist(p.id) ? "currentColor" : "none"} />
+                  </button>
+                </div>
 
-                    <div className="mt-3 flex items-center justify-between gap-3">
-                      <span
-                        className="text-base md:text-lg font-bold"
-                        style={{ color: "#013E24" }}
-                      >
-                        ${p.price}
-                      </span>
+                {/* Content */}
+                <div className="flex flex-col flex-1 px-1">
+                  <Link to={`/product/${p.slug}`}>
+                    <h3 className="text-[13px] font-bold text-slate-800 leading-snug line-clamp-2 mb-3 group-hover:text-[#991B1B] transition-colors">
+                      {p.name}
+                    </h3>
+                  </Link>
 
-                      <button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          handleAddToCart(p);
-                        }}
-                        disabled={addedItems[p.id]}
-                        className={`h-10 w-10 rounded-full flex items-center justify-center transition-all duration-300 ${addedItems[p.id]
-                          ? "bg-emerald-500 text-white"
-                          : "text-white hover:scale-105"
-                          }`}
-                        style={{
-                          backgroundColor: addedItems[p.id]
-                            ? undefined
-                            : "#013E24",
-                        }}
-                      >
-                        {addedItems[p.id] ? (
-                          <Check size={18} />
-                        ) : (
-                          <ShoppingCart size={17} />
-                        )}
-                      </button>
-                    </div>
+                  <div className="mt-auto flex items-center justify-between gap-2 pt-2">
+                    <span className="text-[16px] font-black text-slate-900">${p.price}</span>
+                    <button
+                      onClick={() => handleAddToCart(p)}
+                      disabled={addedItems[p.id]}
+                      className={`h-10 w-10 rounded-xl flex items-center justify-center transition-all duration-300 ${addedItems[p.id]
+                        ? "bg-emerald-500 text-white"
+                        : "bg-slate-900 text-white hover:bg-[#991B1B] active:scale-90"}`}
+                    >
+                      {addedItems[p.id] ? <Check size={18} /> : <ShoppingCart size={16} />}
+                    </button>
                   </div>
-                </motion.div>
-              ))
-            ) : (
-              <div className="col-span-2 md:col-span-3 xl:col-span-4 rounded-[24px] border border-dashed border-slate-300 bg-slate-50 py-16 px-6 text-center">
-                <p className="text-lg font-semibold text-slate-800">
-                  Products not available
-                </p>
-                <p className="text-sm text-slate-500 mt-2">
-                  Please ensure the component is receiving the 'products' prop correctly.
-                </p>
-              </div>
-            )}
-          </div>
+                </div>
+              </motionFramer>
+            ))
+          ) : (
+            <div className="col-span-full py-20 text-center text-slate-300 font-medium tracking-widest text-[10px] uppercase">
+              Updating System Manifest...
+            </div>
+          )}
         </div>
+
+
       </div>
     </section>
   );

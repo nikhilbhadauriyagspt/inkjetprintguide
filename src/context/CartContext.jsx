@@ -12,13 +12,23 @@ export const useCart = () => {
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(() => {
-    const savedCart = localStorage.getItem('cart');
-    return savedCart ? JSON.parse(savedCart) : [];
+    try {
+      const savedCart = localStorage.getItem('cart');
+      return savedCart ? JSON.parse(savedCart) : [];
+    } catch {
+      return [];
+    }
   });
+
   const [wishlist, setWishlist] = useState(() => {
-    const savedWishlist = localStorage.getItem('wishlist');
-    return savedWishlist ? JSON.parse(savedWishlist) : [];
+    try {
+      const savedWishlist = localStorage.getItem('wishlist');
+      return savedWishlist ? JSON.parse(savedWishlist) : [];
+    } catch {
+      return [];
+    }
   });
+
   const [toast, setToast] = useState(null);
   const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -34,7 +44,6 @@ export const CartProvider = ({ children }) => {
   const openSearch = () => setIsSearchOpen(true);
   const closeSearch = () => setIsSearchOpen(false);
 
-  // Save to localStorage whenever cart or wishlist changes
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
@@ -44,15 +53,29 @@ export const CartProvider = ({ children }) => {
   }, [wishlist]);
 
   const addToCart = (product, quantity = 1) => {
+    if (!product) return;
+
     setCart(prevCart => {
       const existingItem = prevCart.find(item => item.id === product.id);
+
       if (existingItem) {
         return prevCart.map(item =>
-          item.id === product.id ? { ...item, quantity: item.quantity + quantity } : item
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
         );
       }
-      return [...prevCart, { ...product, quantity }];
+
+      return [
+        ...prevCart,
+        {
+          ...product,
+          images: product.images ?? [],
+          quantity
+        }
+      ];
     });
+
     showToast(`${product.name} added to cart!`);
     setIsCartDrawerOpen(true);
   };
@@ -63,7 +86,11 @@ export const CartProvider = ({ children }) => {
   };
 
   const updateQuantity = (productId, quantity) => {
-    if (quantity < 1) return;
+    if (quantity < 1) {
+      removeFromCart(productId);
+      return;
+    }
+
     setCart(prevCart =>
       prevCart.map(item =>
         item.id === productId ? { ...item, quantity } : item
@@ -78,10 +105,12 @@ export const CartProvider = ({ children }) => {
   const toggleWishlist = (product) => {
     setWishlist(prevWishlist => {
       const exists = prevWishlist.find(item => item.id === product.id);
+
       if (exists) {
         showToast(`${product.name} removed from wishlist`, 'info');
         return prevWishlist.filter(item => item.id !== product.id);
       }
+
       showToast(`${product.name} added to wishlist!`);
       return [...prevWishlist, product];
     });
@@ -95,26 +124,28 @@ export const CartProvider = ({ children }) => {
   const wishlistCount = wishlist.length;
 
   return (
-    <CartContext.Provider value={{
-      cart,
-      wishlist,
-      addToCart,
-      removeFromCart,
-      updateQuantity,
-      clearCart,
-      toggleWishlist,
-      isInWishlist,
-      cartCount,
-      wishlistCount,
-      toast,
-      showToast,
-      isCartDrawerOpen,
-      openCartDrawer,
-      closeCartDrawer,
-      isSearchOpen,
-      openSearch,
-      closeSearch
-    }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        wishlist,
+        addToCart,
+        removeFromCart,
+        updateQuantity,
+        clearCart,
+        toggleWishlist,
+        isInWishlist,
+        cartCount,
+        wishlistCount,
+        toast,
+        showToast,
+        isCartDrawerOpen,
+        openCartDrawer,
+        closeCartDrawer,
+        isSearchOpen,
+        openSearch,
+        closeSearch
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

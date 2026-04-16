@@ -86,8 +86,8 @@ export default function CategorySpotlight({
               <div className="h-px w-8 bg-[#FF2D37]"></div>
               <span className="text-[11px] font-black text-[#FF2D37] uppercase tracking-[0.4em]">Expert Selection</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter">
-              {title} <span className="italic font-light text-[#FF2D37]">Spotlight</span>
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 er">
+              {title} <span className=" font-light text-[#FF2D37]">Spotlight</span>
             </h2>
           </div>
 
@@ -204,7 +204,7 @@ export default function CategorySpotlight({
                       </div>
 
                       <div className="mt-auto flex items-center justify-between pt-4 border-t border-slate-50">
-                        <span className="text-xl font-black text-slate-900 tracking-tight">
+                        <span className="text-xl font-black text-slate-900 ">
                           ${Number(p.price).toFixed(2)}
                         </span>
                         <button

@@ -6,17 +6,15 @@ import {
   Search,
   ChevronDown,
   LayoutGrid,
-  List,
   Heart,
   Loader2,
   ChevronLeft,
   ChevronRight,
   ShoppingCart,
-  Plus,
   Filter,
   X,
-  Star,
-  SlidersHorizontal
+  Zap,
+  ArrowRight
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import API_BASE_URL from '../config';
@@ -32,7 +30,7 @@ export default function Shop() {
   const [loading, setLoading] = useState(true);
   const [showMobileFilters, setShowMobileFilters] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 18;
+  const itemsPerPage = 16;
 
   const category = searchParams.get('category') || pathCategory || '';
   const sort = searchParams.get('sort') || 'newest';
@@ -42,6 +40,18 @@ export default function Shop() {
   const activeBrand = searchParams.get('brand') || '';
 
   const brands = ['HP', 'Canon', 'Epson', 'Brother', 'Lexmark', 'Xerox', 'Samsung', 'Ricoh'];
+
+  // Category to Image mapping for Hero
+  const categoryHeroImages = {
+    'laser-printers': '/banner/banner-6.jpg',
+    'inkjet-printers': '/banner/banner-7.jpg',
+    'all-in-one-printers': '/banner/banner-8.jpg',
+    'default': '/banner/banner-2.jpg'
+  };
+
+  const currentCategoryObj = categories.find(c => c.slug === category);
+  const heroTitle = currentCategoryObj ? currentCategoryObj.name : "Central Inventory";
+  const heroImage = categoryHeroImages[category] || categoryHeroImages['default'];
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/categories`)
@@ -69,15 +79,12 @@ export default function Shop() {
               !p.name.toLowerCase().includes('macbook') &&
               !p.name.toLowerCase().includes('notebook')
           );
-
           filtered = filtered.filter(p => Number(p.price) >= minPrice && Number(p.price) <= maxPrice);
-
           if (activeBrand) {
             filtered = filtered.filter(p => p.name.toLowerCase().includes(activeBrand.toLowerCase()));
           }
-
           setProducts(filtered);
-          setCurrentPage(1); // Reset to first page on filter change
+          setCurrentPage(1);
         }
         setLoading(false);
       })
@@ -107,30 +114,25 @@ export default function Shop() {
     }
   };
 
-  // Pagination Logic
   const totalPages = Math.ceil(products.length / itemsPerPage);
   const currentProducts = products.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   const FilterSidebar = () => (
-    <div className="space-y-8 pb-10">
-      {/* Categories */}
+    <div className="space-y-10">
       <div>
-        <h3 className="text-[14px] font-bold text-foreground mb-4 flex items-center gap-2">
-          <LayoutGrid size={16} className="text-[#013E24]" />
-          Categories
-        </h3>
+        <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#991B1B] mb-6">Categories</h4>
         <div className="space-y-1">
           <button
             onClick={() => updateFilter('category', '')}
-            className={`w-full text-left px-3 py-1.5 rounded-lg text-[13px] font-medium transition-all ${!category ? 'bg-blue-50 text-[#013E24]' : 'text-gray-600 hover:bg-gray-100'}`}
+            className={`w-full text-left px-4 py-2 rounded-xl text-[13px] font-bold transition-all uppercase  ${!category ? 'bg-red-50 text-[#991B1B]' : 'text-slate-400 hover:text-slate-900'}`}
           >
-            All Categories
+            All Systems
           </button>
           {categories.map((c) => (
             <button
               key={c.id}
               onClick={() => updateFilter('category', c.slug)}
-              className={`w-full text-left px-3 py-1.5 rounded-lg text-[13px] font-medium transition-all capitalize ${category === c.slug ? 'bg-blue-50 text-[#013E24]' : 'text-gray-600 hover:bg-gray-100'}`}
+              className={`w-full text-left px-4 py-2 rounded-xl text-[13px] font-bold transition-all capitalize  ${category === c.slug ? 'bg-red-50 text-[#991B1B]' : 'text-slate-400 hover:text-slate-900'}`}
             >
               {c.name}
             </button>
@@ -138,18 +140,14 @@ export default function Shop() {
         </div>
       </div>
 
-      {/* Brands */}
       <div>
-        <h3 className="text-[14px] font-bold text-foreground mb-4 flex items-center gap-2">
-          <Star size={16} className="text-[#013E24]" />
-          Brands
-        </h3>
+        <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#991B1B] mb-6">Manufacturers</h4>
         <div className="grid grid-cols-2 gap-2">
           {brands.map((brand) => (
             <button
               key={brand}
               onClick={() => updateFilter('brand', activeBrand === brand ? '' : brand)}
-              className={`px-2 py-1.5 rounded-lg text-[11px] font-bold border transition-all ${activeBrand === brand ? 'bg-[#013E24] border-blue-600 text-white' : 'border-gray-200 text-gray-600 hover:border-blue-600'}`}
+              className={`px-3 py-2 rounded-xl text-[11px] font-bold border transition-all uppercase er ${activeBrand === brand ? 'bg-slate-900 border-slate-900 text-white' : 'border-slate-100 text-slate-400 hover:border-[#991B1B] hover:text-[#991B1B]'}`}
             >
               {brand}
             </button>
@@ -157,12 +155,8 @@ export default function Shop() {
         </div>
       </div>
 
-      {/* Price Range */}
       <div>
-        <h3 className="text-[14px] font-bold text-foreground mb-4 flex items-center gap-2">
-          <SlidersHorizontal size={16} className="text-[#013E24]" />
-          Price Range
-        </h3>
+        <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#991B1B] mb-6">Budget Range</h4>
         <div className="space-y-4 px-2">
           <input
             type="range"
@@ -171,200 +165,221 @@ export default function Shop() {
             step="100"
             value={maxPrice}
             onChange={(e) => updateFilter('maxPrice', e.target.value)}
-            className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+            className="w-full h-1 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-[#991B1B]"
           />
-          <div className="flex items-center justify-between text-[12px] font-bold text-gray-600">
+          <div className="flex items-center justify-between text-[11px] font-bold text-slate-400 uppercase tracking-widest">
             <span>$0</span>
-            <span className="text-[#013E24] bg-blue-50 px-2 py-0.5 rounded-full">${maxPrice}</span>
+            <span className="text-[#991B1B] font-bold">${maxPrice}</span>
           </div>
         </div>
       </div>
 
       <button
         onClick={clearFilters}
-        className="w-full py-2.5 border border-dashed border-gray-300 rounded-xl text-[11px] font-bold text-gray-500 hover:border-blue-600 hover:text-[#013E24] transition-all uppercase tracking-widest"
+        className="w-full py-4 text-[11px] font-bold text-slate-300 hover:text-[#991B1B] transition-all uppercase tracking-widest border-t border-slate-50 pt-8"
       >
-        Clear All Filters
+        Clear Filters
       </button>
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-800">
-      <SEO title="Shop | Printing Mania" />
+    <div className="min-h-screen bg-white font-sans text-slate-900">
+      <SEO title="Inventory | My Printing Buddy" />
 
-      {/* --- BREADCRUMBS --- */}
-      <div className="bg-white border-b border-slate-200">
-        <div className="max-w-[1800px] mx-auto px-4 md:px-10 py-3">
-          <nav className="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-wider">
-            <Link to="/" className="hover:text-[#013E24] transition-colors">Home</Link>
-            <ChevronRight size={12} />
-            <span className="text-slate-900">Shop</span>
-            {category && (
-              <>
-                <ChevronRight size={12} />
-                <span className="capitalize" style={{ color: '#013E24' }}>{category.replace('-', ' ')}</span>
-              </>
-            )}
-          </nav>
+      {/* --- DYNAMIC HERO SECTION --- */}
+      <section className="relative py-20 md:py-32 overflow-hidden bg-slate-900">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={heroImage}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="absolute inset-0 z-0"
+          >
+            <img
+              src={heroImage}
+              alt={heroTitle}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+          </motion.div>
+        </AnimatePresence>
+
+        <div className="max-w-[1600px] mx-auto px-6 relative z-10">
+          <div className="max-w-2xl text-white">
+            <motion.div
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="flex items-center gap-2 mb-4"
+            >
+              <div className="w-8 h-[2px] bg-[#991B1B]" />
+              <span className="text-white font-bold text-[10px] tracking-[0.3em] uppercase">Hardware Manifest</span>
+            </motion.div>
+            <motion.h1
+              key={heroTitle}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-3xl md:text-5xl font-bold leading-tight  uppercase "
+            >
+              {heroTitle}.
+            </motion.h1>
+            <nav className="flex items-center gap-3 mt-8 text-[10px] font-bold text-white/40 uppercase tracking-[0.2em]">
+              <Link to="/" className="hover:text-white transition-colors">Home</Link>
+              <span className="opacity-20">/</span>
+              <Link to="/shop" className="hover:text-white transition-colors">Shop</Link>
+              {category && (
+                <>
+                  <span className="opacity-20">/</span>
+                  <span className="text-[#991B1B]">{category.replace('-', ' ')}</span>
+                </>
+              )}
+            </nav>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div className="max-w-[1800px] mx-auto px-4 md:px-10 py-8">
-        <div className="flex flex-col lg:flex-row gap-8">
+      <div className="max-w-[1600px] mx-auto px-6 py-12 md:py-16">
+        <div className="flex flex-col lg:flex-row gap-16">
 
-          {/* --- LEFT SIDEBAR (Desktop) --- */}
-          <aside className="hidden lg:block w-72 shrink-0">
-            <div className="bg-white rounded-2xl p-6 border border-slate-200 sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto scrollbar-hide">
+          <aside className="hidden lg:block w-64 shrink-0">
+            <div className="sticky top-24">
               <FilterSidebar />
             </div>
           </aside>
 
-          {/* --- MAIN CONTENT --- */}
           <main className="flex-1">
-
-            {/* Toolbar */}
-            <div className="bg-white rounded-2xl p-4 border border-slate-200 mb-6 flex flex-col md:flex-row items-center justify-between gap-4">
-              <div className="relative w-full md:w-80">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+            <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-12 pb-8 border-b border-slate-50">
+              <div className="relative w-full md:w-96 group">
+                <Search className="absolute left-0 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-[#991B1B] transition-colors" size={18} />
                 <input
                   type="text"
-                  placeholder="Search products..."
+                  placeholder="Search units..."
                   value={search}
                   onChange={(e) => updateFilter('search', e.target.value)}
-                  className="w-full h-11 pl-12 pr-4 bg-slate-100 border-transparent rounded-xl text-sm focus:bg-white focus:border-[#013E24] focus:ring-1 focus:ring-[#013E24] outline-none transition-all"
+                  className="w-full h-12 pl-8 pr-4 bg-transparent border-b border-slate-100 focus:border-[#991B1B] outline-none text-sm font-bold uppercase  transition-all"
                 />
               </div>
 
-              <div className="flex items-center gap-4 w-full md:w-auto">
+              <div className="flex items-center gap-6 w-full md:w-auto">
                 <button
                   onClick={() => setShowMobileFilters(true)}
-                  className="lg:hidden flex-1 h-11 bg-white border border-slate-300 rounded-xl flex items-center justify-center gap-2 text-sm font-bold text-slate-700"
+                  className="lg:hidden flex-1 h-12 border border-slate-100 rounded-2xl flex items-center justify-center gap-3 text-[11px] font-bold uppercase tracking-widest text-slate-900"
                 >
                   <Filter size={16} /> Filters
                 </button>
 
-                <div className="relative flex-1 md:w-48">
+                <div className="relative w-full md:w-56 group">
                   <select
                     value={sort}
                     onChange={(e) => updateFilter('sort', e.target.value)}
-                    className="w-full h-11 appearance-none bg-white border border-slate-300 rounded-xl px-4 text-sm font-bold text-slate-700 outline-none cursor-pointer focus:border-[#013E24] focus:ring-1 focus:ring-[#013E24]"
+                    className="w-full h-12 appearance-none bg-transparent border-b border-slate-100 px-0 text-[11px] font-bold uppercase tracking-widest text-slate-900 outline-none cursor-pointer focus:border-[#991B1B]"
                   >
-                    <option value="newest">Newest</option>
-                    <option value="price_low">Price: Low to High</option>
-                    <option value="price_high">Price: High to Low</option>
+                    <option value="newest">Sort: Newest</option>
+                    <option value="price_low">Sort: Price Low</option>
+                    <option value="price_high">Sort: Price High</option>
                   </select>
-                  <ChevronDown size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+                  <ChevronDown size={14} className="absolute right-0 top-1/2 -translate-y-1/2 text-slate-300 pointer-events-none group-hover:text-[#991B1B]" />
                 </div>
               </div>
             </div>
 
-            {/* Results Info */}
-            <div className="flex items-center justify-between mb-4 px-2">
-              <h2 className="text-xl font-bold text-slate-900">
-                {category ? category.replace('-', ' ') : 'All Products'}
-                <span className="text-slate-500 text-sm font-medium ml-3">({products.length} results)</span>
-              </h2>
-            </div>
-
-            {/* Grid */}
             {loading ? (
-              <div className="py-24 text-center">
-                <Loader2 className="animate-spin text-[#013E24] mx-auto mb-4" size={36} />
-                <p className="text-sm font-bold text-slate-500 uppercase tracking-wider">Loading Products...</p>
+              <div className="py-32 text-center">
+                <Loader2 className="animate-spin text-[#991B1B] mx-auto mb-6" size={32} />
+                <p className="text-[11px] font-bold text-slate-300 uppercase tracking-widest">Updating Inventory...</p>
               </div>
             ) : products.length === 0 ? (
-              <div className="py-24 text-center bg-white rounded-3xl border-2 border-dashed border-slate-200">
-                <h3 className="text-xl font-bold text-slate-800 mb-2">No Products Found</h3>
-                <p className="text-slate-500 mb-4">Try adjusting your filters or clearing them.</p>
-                <button onClick={clearFilters} className="font-bold text-sm" style={{ color: '#013E24' }}>
-                  Reset All Filters
+              <div className="py-32 text-center border border-slate-50 rounded-[40px]">
+                <h3 className="text-xl font-bold text-slate-900 mb-2 lowercase">no systems found.</h3>
+                <p className="text-slate-400 text-sm font-medium mb-8">Adjust your parameters and retry.</p>
+                <button onClick={clearFilters} className="text-[#991B1B] font-bold text-[11px] uppercase tracking-widest hover:underline transition-all">
+                  Reset System
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-                {currentProducts.map((p) => (
-                  <div key={p.id} className="group bg-white rounded-2xl p-4 border border-slate-200 hover:shadow-xl hover:border-[#013E24] transition-all duration-300 flex flex-col">
-                    {/* Image */}
-                    <div className="relative aspect-square bg-slate-100 rounded-xl overflow-hidden mb-4">
-                      <Link to={`/product/${p.slug}`} className="w-full h-full flex items-center justify-center p-2">
+              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12">
+                {currentProducts.map((p, i) => (
+                  <motion.div
+                    key={p.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: (i % 4) * 0.05 }}
+                    className="group flex flex-col h-full bg-white border border-slate-100 rounded-[32px] p-4 hover:shadow-2xl hover:shadow-slate-200/50 hover:border-white transition-all duration-500"
+                  >
+                    <div className="relative aspect-square mb-6 bg-[#FBFBFB] rounded-[24px] flex items-center justify-center p-6 overflow-hidden group-hover:bg-white transition-colors duration-500">
+                      <Link to={`/product/${p.slug}`} className="w-full h-full flex items-center justify-center">
                         <img
                           src={getImagePath(p.images)}
                           alt={p.name}
-                          className="w-full h-full object-contain mix-blend-multiply transition-transform duration-300 group-hover:scale-105"
+                          className="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700"
                         />
                       </Link>
                       <button
                         onClick={() => toggleWishlist(p)}
-                        className={`absolute top-2 right-2 w-7 h-7 rounded-full bg-white/70 backdrop-blur-sm shadow flex items-center justify-center transition-all ${isInWishlist(p.id) ? 'text-red-500' : 'text-slate-400 hover:text-red-500'}`}
+                        className={`absolute top-4 right-4 w-9 h-9 rounded-full bg-white shadow-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 ${isInWishlist(p.id) ? 'text-[#991B1B] opacity-100' : 'text-slate-300 hover:text-[#991B1B]'}`}
                       >
-                        <Heart size={14} fill={isInWishlist(p.id) ? 'currentColor' : 'none'} />
+                        <Heart size={16} fill={isInWishlist(p.id) ? 'currentColor' : 'none'} />
                       </button>
                     </div>
 
-                    {/* Content */}
-                    <div className="flex-1 flex flex-col">
-                      <Link to={`/product/${p.slug}`} className="flex-1">
-                        <h3 className="text-sm font-bold text-slate-800 leading-snug line-clamp-2 min-h-[40px] group-hover:text-[#013E24] transition-colors">
+                    <div className="flex flex-col flex-1 px-1">
+                      <Link to={`/product/${p.slug}`}>
+                        <h3 className="text-[13px] font-bold text-slate-800 leading-snug line-clamp-2 mb-3 group-hover:text-[#991B1B] transition-colors uppercase ">
                           {p.name}
                         </h3>
                       </Link>
 
-                      <div className="pt-2 mt-auto">
-                        <span className="text-lg font-extrabold text-slate-900 block">${Number(p.price).toLocaleString()}</span>
+                      <div className="mt-auto flex items-center justify-between gap-2 pt-2">
+                        <span className="text-[16px] font-bold text-slate-900 er">${Number(p.price).toLocaleString()}</span>
                         <button
                           onClick={() => addToCart(p)}
-                          className="w-full mt-2 h-10 rounded-lg flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-wider transition-all active:scale-95"
-                          style={{ backgroundColor: '#013E24', color: 'white' }}
+                          className="h-10 w-10 rounded-xl bg-slate-900 text-white flex items-center justify-center hover:bg-[#991B1B] active:scale-90 transition-all shadow-sm"
                         >
-                          <ShoppingCart size={14} />
-                          Add to Cart
+                          <ShoppingCart size={16} />
                         </button>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             )}
 
-            {/* Pagination Controls */}
             {!loading && totalPages > 1 && (
-              <div className="mt-12 flex items-center justify-center gap-2">
+              <div className="mt-24 flex items-center justify-center gap-4">
                 <button
                   onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                   disabled={currentPage === 1}
-                  className="w-10 h-10 rounded-xl border border-slate-300 bg-white flex items-center justify-center hover:border-[#013E24] hover:text-[#013E24] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                  className="w-12 h-12 rounded-full border border-slate-100 flex items-center justify-center text-slate-400 hover:text-[#991B1B] hover:border-[#991B1B] disabled:opacity-20 transition-all"
                 >
-                  <ChevronLeft size={18} />
+                  <ChevronLeft size={20} />
                 </button>
-
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3">
                   {[...Array(totalPages)].map((_, i) => {
                     const page = i + 1;
-                    if (page === 1 || page === totalPages || (page >= currentPage - 2 && page <= currentPage + 2)) {
-                      if (page === currentPage - 2 && currentPage > 3) return <span key={page} className="px-1 text-slate-500">...</span>;
-                      if (page === currentPage + 2 && currentPage < totalPages - 2) return <span key={page} className="px-1 text-slate-500">...</span>;
+                    if (page === 1 || page === totalPages || (page >= currentPage - 1 && page <= currentPage + 1)) {
                       return (
                         <button
                           key={page}
                           onClick={() => setCurrentPage(page)}
-                          className={`w-10 h-10 rounded-xl font-bold text-sm transition-all ${currentPage === page ? 'text-white shadow-lg' : 'bg-white border border-slate-300 text-slate-600 hover:border-[#013E24] hover:text-[#013E24]'}`}
-                          style={currentPage === page ? { backgroundColor: '#013E24', boxShadow: '0 4px 14px 0 rgba(1, 62, 36, 0.3)' } : {}}
+                          className={`text-xs font-bold uppercase tracking-widest transition-all ${currentPage === page ? 'text-[#991B1B] scale-125 underline decoration-2' : 'text-slate-300 hover:text-slate-900'}`}
                         >
-                          {page}
+                          {page < 10 ? `0${page}` : page}
                         </button>
                       );
                     }
+                    if (page === currentPage - 2 || page === currentPage + 2) return <span key={page} className="text-slate-100 text-[10px]">•••</span>;
                     return null;
                   })}
                 </div>
-
                 <button
                   onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                   disabled={currentPage === totalPages}
-                  className="w-10 h-10 rounded-xl border border-slate-300 bg-white flex items-center justify-center hover:border-[#013E24] hover:text-[#013E24] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                  className="w-12 h-12 rounded-full border border-slate-100 flex items-center justify-center text-slate-400 hover:text-[#991B1B] hover:border-[#991B1B] disabled:opacity-20 transition-all"
                 >
-                  <ChevronRight size={18} />
+                  <ChevronRight size={20} />
                 </button>
               </div>
             )}
@@ -372,7 +387,6 @@ export default function Shop() {
         </div>
       </div>
 
-      {/* --- MOBILE FILTERS OVERLAY --- */}
       <AnimatePresence>
         {showMobileFilters && (
           <>
@@ -381,28 +395,26 @@ export default function Shop() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setShowMobileFilters(false)}
-              className="fixed inset-0 bg-black/50 z-[60] backdrop-blur-sm"
+              className="fixed inset-0 bg-black/40 z-[1001] backdrop-blur-sm"
             />
             <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 30, stiffness: 250 }}
-              className="fixed top-0 right-0 bottom-0 w-[300px] bg-white z-[70] p-6 overflow-y-auto"
+              className="fixed top-0 right-0 bottom-0 w-full max-w-[320px] bg-white z-[1002] p-8 shadow-2xl overflow-y-auto"
             >
-              <div className="flex items-center justify-between mb-8">
-                <h2 className="text-xl font-bold text-slate-900">Filters</h2>
-                <button onClick={() => setShowMobileFilters(false)} className="p-2 -mr-2">
-                  <X size={22} />
+              <div className="flex items-center justify-between mb-12">
+                <h2 className="text-xl font-bold uppercase  ">Filters</h2>
+                <button onClick={() => setShowMobileFilters(false)} className="text-slate-300 hover:text-[#991B1B]">
+                  <X size={24} />
                 </button>
               </div>
               <FilterSidebar />
               <button
                 onClick={() => setShowMobileFilters(false)}
-                className="w-full mt-6 py-3 text-white rounded-xl font-bold"
-                style={{backgroundColor: '#013E24'}}
+                className="w-full mt-12 py-4 bg-slate-900 text-white text-[11px] font-bold uppercase tracking-widest rounded-2xl hover:bg-[#991B1B] transition-all"
               >
-                Apply Filters
+                Apply Parameters
               </button>
             </motion.div>
           </>

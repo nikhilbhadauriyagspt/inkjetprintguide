@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SEO from '@/components/SEO';
-import { ChevronDown, Search, HelpCircle, ChevronRight, ArrowRight } from 'lucide-react';
+import { ChevronDown, Search, HelpCircle, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const faqData = [
@@ -48,29 +48,38 @@ export default function FAQ() {
   };
 
   return (
-    <div className="bg-white min-h-screen font-['Rubik'] text-slate-900 pb-20">
-      <SEO title="FAQ | Republic Printing" />
+    <div className="bg-white min-h-screen font-sans text-slate-900 pb-20">
+      <SEO title="FAQ | My Printing Buddy" />
 
-      {/* --- MINIMAL BREADCRUMBS --- */}
-      <div className="bg-slate-50 border-b border-slate-200 py-4">
-        <div className="max-w-[1400px] mx-auto px-4 md:px-10">
-          <nav className="flex items-center gap-2 text-[13px] font-medium text-slate-500">
-            <Link to="/" className="hover:text-[#013E24] transition-colors">Home</Link>
-            <ChevronRight size={14} />
-            <span className="text-slate-900 font-medium">Help Center</span>
+      {/* --- BREADCRUMBS --- */}
+      <div className="bg-white border-b border-slate-50 py-4">
+        <div className="max-w-[1400px] mx-auto px-6">
+          <nav className="flex items-center gap-2 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+            <Link to="/" className="hover:text-[#991B1B]">Home</Link>
+            <span className="opacity-30">/</span>
+            <span className="text-slate-600">Help Center</span>
           </nav>
         </div>
       </div>
 
-      {/* --- REFINED PAGE HEADER --- */}
-      <div className="py-16 md:py-24 border-b border-slate-100" style={{ background: 'linear-gradient(135deg, rgb(2, 69, 41) 0%, rgb(0, 50, 29) 50%, rgb(5, 138, 44) 100%)' }}>
-        <div className="max-w-[1400px] mx-auto px-4 md:px-10 text-center">
+      {/* --- HERO SECTION WITH BLACK OVERLAY --- */}
+      <div className="relative py-20 md:py-28 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/banner/banner-7.jpg"
+            alt="FAQ Background"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+        </div>
+
+        <div className="max-w-[1400px] mx-auto px-6 text-center relative z-10">
           <motion.h1
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-8"
+            className="text-3xl md:text-5xl font-bold text-white  mb-8"
           >
-            How can we <span className="text-blue-200">help you?</span>
+            How can we help you?
           </motion.h1>
 
           <motion.div
@@ -79,30 +88,30 @@ export default function FAQ() {
             transition={{ delay: 0.1 }}
             className="max-w-2xl mx-auto relative group"
           >
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#013E24] transition-colors" size={20} />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#991B1B] transition-colors" size={20} />
             <input
               type="text"
-              placeholder="Search for answers about orders, shipping, or products..."
+              placeholder="Search for answers..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full h-14 pl-12 pr-6 bg-white border border-slate-200 rounded-xl outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 text-slate-900 text-sm md:text-base shadow-sm transition-all"
+              className="w-full h-14 pl-12 pr-6 bg-white border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-red-500/5 text-slate-900 text-sm shadow-sm transition-all"
             />
           </motion.div>
         </div>
       </div>
 
-      <div className="max-w-[1400px] mx-auto px-4 md:px-10 py-12 md:py-16">
+      <div className="max-w-[1400px] mx-auto px-6 py-12 md:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 
-          {/* --- SIDEBAR CATEGORIES --- */}
-          <div className="hidden lg:block lg:col-span-3 sticky top-8">
-            <div className="bg-white p-6 border border-slate-100 rounded-xl shadow-sm">
-              <h3 className="text-[14px] font-bold text-slate-900 mb-4 border-b border-slate-50 pb-3 uppercase tracking-wider">Categories</h3>
-              <ul className="space-y-4">
+          {/* --- SIDEBAR --- */}
+          <div className="hidden lg:block lg:col-span-3 sticky top-24">
+            <div className="space-y-6">
+              <h3 className="text-[11px] font-bold text-[#991B1B] uppercase tracking-[0.3em] mb-4">Categories</h3>
+              <ul className="space-y-3">
                 {faqData.map((cat, idx) => (
                   <li key={idx}>
-                    <a href={`#cat-${idx}`} className="text-[14px] text-slate-500 hover:text-[#013E24] transition-all flex items-center gap-2 group">
-                      <div className="w-1.5 h-1.5 rounded-full bg-slate-200 group-hover:bg-[#013E24] transition-colors" />
+                    <a href={`#cat-${idx}`} className="text-[13px] font-semibold text-slate-400 hover:text-[#991B1B] transition-all flex items-center gap-2 group">
+                      <div className="w-1 h-1 rounded-full bg-slate-200 group-hover:bg-[#991B1B] transition-colors" />
                       {cat.category}
                     </a>
                   </li>
@@ -122,9 +131,9 @@ export default function FAQ() {
               if (filteredQuestions.length === 0) return null;
 
               return (
-                <div key={catIdx} id={`cat-${catIdx}`} className="bg-white border border-slate-100 rounded-xl shadow-sm overflow-hidden scroll-mt-8">
-                  <div className="bg-slate-50 px-8 py-4 border-b border-slate-100">
-                    <h2 className="text-[13px] font-bold text-[#013E24] uppercase tracking-[0.2em]">{cat.category}</h2>
+                <div key={catIdx} id={`cat-${catIdx}`} className="bg-white border border-slate-50 rounded-2xl overflow-hidden scroll-mt-24">
+                  <div className="bg-slate-50 px-8 py-4">
+                    <h2 className="text-[11px] font-bold text-[#991B1B] uppercase tracking-[0.2em]">{cat.category}</h2>
                   </div>
 
                   <div className="divide-y divide-slate-50">
@@ -136,11 +145,11 @@ export default function FAQ() {
                         <div key={qIdx} className="group">
                           <button
                             onClick={() => toggleAccordion(catIdx, qIdx)}
-                            className="w-full px-8 py-5 flex items-center justify-between text-left hover:bg-slate-50/50 transition-all"
+                            className="w-full px-8 py-5 flex items-center justify-between text-left hover:bg-slate-50/30 transition-all"
                           >
-                            <span className={`text-[15px] font-bold ${isOpen ? 'text-[#013E24]' : 'text-slate-900 group-hover:text-[#013E24]'} transition-colors`}>{faq.q}</span>
-                            <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${isOpen ? 'bg-[#013E24] text-white rotate-180' : 'bg-slate-100 text-slate-400 group-hover:bg-blue-50 group-hover:text-[#013E24]'}`}>
-                              <ChevronDown size={18} strokeWidth={2.5} />
+                            <span className={`text-[15px] font-bold ${isOpen ? 'text-[#991B1B]' : 'text-slate-700 group-hover:text-[#991B1B]'} transition-colors`}>{faq.q}</span>
+                            <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${isOpen ? 'bg-[#991B1B] text-white rotate-180' : 'bg-slate-100 text-slate-400 group-hover:text-[#991B1B]'}`}>
+                              <ChevronDown size={16} />
                             </div>
                           </button>
                           <AnimatePresence>
@@ -149,10 +158,10 @@ export default function FAQ() {
                                 initial={{ height: 0, opacity: 0 }}
                                 animate={{ height: 'auto', opacity: 1 }}
                                 exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.25, ease: "easeOut" }}
+                                transition={{ duration: 0.2 }}
                               >
-                                <div className="px-8 pb-8 text-slate-500 text-[15px] leading-relaxed font-normal">
-                                  <div className="h-px bg-slate-100 mb-6" />
+                                <div className="px-8 pb-8 text-slate-500 text-[14px] leading-relaxed font-medium">
+                                  <div className="h-px bg-slate-50 mb-6" />
                                   {faq.a}
                                 </div>
                               </motion.div>
@@ -166,17 +175,17 @@ export default function FAQ() {
               );
             })}
 
-            {/* BOTTOM CALL TO ACTION */}
-            <div className="bg-slate-50 p-10 md:p-12 border border-slate-100 rounded-xl text-center space-y-6">
-              <div className="w-16 h-16 bg-white shadow-sm border border-slate-100 rounded-2xl flex items-center justify-center mx-auto text-[#013E24]">
-                <HelpCircle size={32} strokeWidth={1.5} />
+            {/* CTA */}
+            <div className="bg-slate-50 p-10 md:p-12 rounded-3xl text-center space-y-6">
+              <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center mx-auto text-[#991B1B] shadow-sm">
+                <HelpCircle size={24} />
               </div>
               <div className="space-y-2">
-                <h3 className="text-2xl font-bold text-slate-900">Still need assistance?</h3>
-                <p className="text-slate-500 text-[15px] font-normal max-w-md mx-auto">Our dedicated support team is ready to help you with any specialized printer questions.</p>
+                <h3 className="text-xl font-bold text-slate-900 uppercase ">Still need assistance?</h3>
+                <p className="text-slate-400 text-[14px] font-medium max-w-md mx-auto uppercase ">Our technical team is available for specialized unit inquiries.</p>
               </div>
-              <Link to="/contact" className="inline-flex items-center gap-3 bg-[#013E24] hover:bg-blue-700 text-white px-10 py-4 text-[13px] font-bold uppercase tracking-widest rounded-xl transition-all shadow-lg shadow-blue-600/20 active:scale-95">
-                Contact Support Team <ArrowRight size={18} />
+              <Link to="/contact" className="inline-flex items-center gap-2 bg-slate-900 hover:bg-[#991B1B] text-white px-8 py-3.5 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all shadow-lg shadow-slate-200/50">
+                Contact Support <ArrowRight size={16} />
               </Link>
             </div>
           </div>

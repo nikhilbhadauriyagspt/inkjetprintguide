@@ -3,13 +3,13 @@
 export default function SEO({ title, description, keywords, schemaType = "Website" }) {
   useEffect(() => {
     // Update Title - Avoid doubling the brand name if it's already in the prop
-    const baseTitle = "Republic Printing";
+    const baseTitle = "My Printing Buddy";
     const fullTitle = title && title.includes(baseTitle) ? title : (title ? `${title} | ${baseTitle}` : baseTitle);
     document.title = fullTitle;
 
     // Update Description
     const metaDescription = document.querySelector('meta[name="description"]');
-    const defaultDesc = "Republic Printing is located in Ashburn, Virginia, offering high-performance printers, ink, toner, and nationwide shipping.";
+    const defaultDesc = "My Printing Buddy is located in Ashburn, Virginia, offering high-performance printers, ink, toner, and nationwide shipping.";
     const finalDesc = description || defaultDesc;
     if (metaDescription) {
       metaDescription.setAttribute('content', finalDesc);
@@ -45,22 +45,22 @@ export default function SEO({ title, description, keywords, schemaType = "Websit
     const schemaData = {
       "@context": "https://schema.org",
       "@type": schemaType === "Product" ? "Product" : "Organization",
-      "name": "Republic Printing",
-      "url": "https://republicprinting.shop",
-      "logo": "https://republicprinting.shop/logo/logo.png",
+      "name": "My Printing Buddy",
+      "url": "https://myprintingbuddy.shop",
+      "logo": "https://myprintingbuddy.shop/logo/logo.png",
       "description": finalDesc,
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "1710 2nd Ave N",
-        "addressLocality": "Birmingham",
-        "addressRegion": "AL",
-        "postalCode": "35203",
+        "streetAddress": "2241 W I 44 Service Rd",
+        "addressLocality": "Oklahoma City",
+        "addressRegion": "OK",
+        "postalCode": "73112",
         "addressCountry": "US"
       },
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "customer service",
-        "email": "info@republicprinting.shop"
+        "email": "info@myprintingbuddy.shop"
       }
     };
 

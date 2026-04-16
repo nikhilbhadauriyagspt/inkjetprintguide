@@ -45,7 +45,7 @@ export default function TrendingProducts() {
               <TrendingUp size={20} />
               <span className="text-[11px] font-bold uppercase tracking-[0.2em]">High Demand</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground ">
               Trending <span className="text-primary">Now.</span>
             </h2>
           </div>
@@ -84,7 +84,7 @@ export default function TrendingProducts() {
                 </span>
 
                 {/* QUICK ADD BUTTON */}
-                <button className="absolute bottom-5 right-5 w-11 h-11 rounded-full bg-white text-foreground flex items-center justify-center shadow-lg opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 hover:bg-[#013E24] hover:text-white transition-all duration-300">
+                <button className="absolute bottom-5 right-5 w-11 h-11 rounded-full bg-white text-foreground flex items-center justify-center shadow-lg opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 hover:bg-[#991B1B] hover:text-white transition-all duration-300">
                   <ShoppingCart size={18} strokeWidth={2} />
                 </button>
               </div>
@@ -104,7 +104,7 @@ export default function TrendingProducts() {
 
                 <div className="flex items-center justify-between">
                   <span className="text-[18px] font-black text-foreground">{p.price}</span>
-                  <span className="text-[11px] font-bold text-primary uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="text-[11px] font-bold text-primary uppercase er opacity-0 group-hover:opacity-100 transition-opacity">
                     In Stock
                   </span>
                 </div>

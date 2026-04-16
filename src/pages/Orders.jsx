@@ -58,7 +58,7 @@ export default function Orders() {
   if (!user && !hasSearched) {
     return (
       <div className="min-h-screen bg-[#eaeded] font-['Rubik'] text-[#0f1111] pb-20">
-        <SEO title="Track Your Order | Republic Printing" />
+        <SEO title="Track Your Order | My Printing Buddy" />
 
         {/* --- BREADCRUMBS --- */}
         <div className="bg-white border-b border-gray-300 py-3 shadow-sm">
@@ -109,7 +109,7 @@ export default function Orders() {
 
   return (
     <div className="min-h-screen bg-[#eaeded] font-['Rubik'] text-[#0f1111] pb-20">
-      <SEO title="Your Orders | Republic Printing" />
+      <SEO title="Your Orders | My Printing Buddy" />
 
       {/* --- BREADCRUMBS --- */}
       <div className="bg-white border-b border-gray-300 py-3 shadow-sm">
@@ -151,15 +151,15 @@ export default function Orders() {
                 {/* Order Header Bar */}
                 <div className="bg-[#f0f2f2] border-b border-gray-300 px-6 py-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-[12px]">
                   <div>
-                    <p className="text-[#565959] uppercase font-bold tracking-tight mb-1">Order Placed</p>
+                    <p className="text-[#565959] uppercase font-bold  mb-1">Order Placed</p>
                     <p className="text-[#0f1111] font-medium">{new Date(order.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
                   </div>
                   <div>
-                    <p className="text-[#565959] uppercase font-bold tracking-tight mb-1">Total</p>
+                    <p className="text-[#565959] uppercase font-bold  mb-1">Total</p>
                     <p className="text-[#0f1111] font-medium">${Number(order.total_amount).toLocaleString()}</p>
                   </div>
                   <div>
-                    <p className="text-[#565959] uppercase font-bold tracking-tight mb-1">Ship To</p>
+                    <p className="text-[#565959] uppercase font-bold  mb-1">Ship To</p>
                     <div className="group relative cursor-pointer">
                       <p className="text-[#007185] font-bold hover:underline flex items-center gap-1">{order.firstName || 'Customer'} <ChevronDown size={14} /></p>
                       <div className="absolute top-full left-0 mt-2 w-48 p-3 bg-white border border-gray-200 shadow-xl rounded-sm hidden group-hover:block z-10 text-[#0f1111]">
@@ -170,7 +170,7 @@ export default function Orders() {
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-[#565959] uppercase font-bold tracking-tight mb-1">Order #DSP-{order.id}</p>
+                    <p className="text-[#565959] uppercase font-bold  mb-1">Order #DSP-{order.id}</p>
                     <div className="flex flex-col md:flex-row md:items-center justify-end gap-2">
                       <Link to={`/checkout?order_id=${order.id}`} className="text-[#007185] hover:text-[#c45500] hover:underline font-medium">Order Details</Link>
                       <span className="hidden md:inline text-gray-300">|</span>
@@ -290,7 +290,7 @@ export default function Orders() {
                 <div className="bg-[#f0f2f2] p-6 border-t border-gray-300 flex items-center justify-between">
                   <div className="flex items-center gap-3 text-sm font-bold text-[#0f1111]">
                     <Truck size={18} />
-                    <span>Republic Printing Logistics</span>
+                    <span>My Printing Buddy Logistics</span>
                   </div>
                   <p className="text-[12px] text-[#565959]">Estimated delivery: <span className="text-[#0f1111] font-bold">2-3 Business Days</span></p>
                 </div>

@@ -1,22 +1,33 @@
-﻿import React from 'react';
+import React from 'react';
 import { useCart } from '../context/CartContext';
 import { Link } from 'react-router-dom';
-import { Trash2, Plus, Minus, ArrowRight, ShoppingCart, ChevronLeft, ChevronRight, Package } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Trash2, Plus, Minus, ChevronLeft, ShoppingCart } from 'lucide-react';
 import SEO from '@/components/SEO';
 
 export default function Cart() {
-  const { cart, removeFromCart, updateQuantity, cartCount } = useCart();
+  const { cart, removeFromCart, updateQuantity } = useCart();
 
   const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+  const getImagePath = (images) => {
+    try {
+      const imgs = typeof images === 'string' ? JSON.parse(images) : images;
+      if (Array.isArray(imgs) && imgs.length > 0) {
+        return `/${String(imgs[0]).replace(/\\/g, '/')}`;
+      }
+      return '/logo/fabicon.png';
+    } catch {
+      return '/logo/fabicon.png';
+    }
+  };
 
   if (cart.length === 0) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center px-6 bg-white text-center">
         <ShoppingCart size={64} className="text-slate-200 mb-6" />
-        <h2 className="text-2xl font-bold text-foreground mb-2">Your cart is empty</h2>
-        <p className="text-secondary mb-8">Add some items to your cart to see them here.</p>
-        <Link to="/shop" className="px-8 py-3 bg-foreground text-white font-bold rounded-lg hover:bg-[#013E24] transition-all">
+        <h2 className="text-2xl font-bold text-slate-900 mb-2">Your cart is empty</h2>
+        <p className="text-slate-500 mb-8">Add some items to your cart to see them here.</p>
+        <Link to="/shop" className="px-8 py-3 bg-slate-900 text-white font-bold rounded-lg hover:bg-[#991B1B] transition-all">
           Browse Products
         </Link>
       </div>
@@ -24,20 +35,20 @@ export default function Cart() {
   }
 
   return (
-    <div className="min-h-screen bg-white font-['Rubik'] text-foreground pb-20">
-      <SEO title="Shopping Cart | Republic Printing" />
+    <div className="min-h-screen bg-white font-sans text-slate-900 pb-20">
+      <SEO title="Shopping Cart | My Printing Buddy" />
 
       <div className="max-w-7xl mx-auto px-6 py-12">
-        <h1 className="text-3xl font-bold mb-12">Shopping Cart</h1>
+        <h1 className="text-3xl font-bold mb-12 uppercase  ">Shopping Cart</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Items */}
           <div className="lg:col-span-2 space-y-6">
             {cart.map((item) => (
-              <div key={item.id} className="flex gap-6 p-6 border border-border rounded-2xl">
-                <div className="w-24 h-24 bg-background rounded-xl flex items-center justify-center shrink-0">
+              <div key={item.id} className="flex gap-6 p-6 border border-slate-100 rounded-2xl bg-white shadow-sm">
+                <div className="w-24 h-24 bg-slate-50 rounded-xl flex items-center justify-center shrink-0 p-2">
                   <img
-                    src={item.images ? `/${(typeof item.images === 'string' ? JSON.parse(item.images)[0] : item.images[0]).replace(/\\/g, '/')}` : ''}
+                    src={getImagePath(item.images)}
                     alt={item.name}
                     className="max-w-full max-h-full object-contain mix-blend-multiply"
                     onError={(e) => { e.target.src = "/logo/fabicon.png"; }}
@@ -45,45 +56,45 @@ export default function Cart() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between gap-4 mb-4">
-                    <Link to={`/product/${item.slug}`} className="font-bold text-foreground hover:text-primary line-clamp-1">{item.name}</Link>
-                    <button onClick={() => removeFromCart(item.id)} className="text-slate-300 hover:text-red-500"><Trash2 size={18} /></button>
+                    <Link to={`/product/${item.slug}`} className="font-bold text-slate-900 hover:text-[#991B1B] line-clamp-1 uppercase ">{item.name}</Link>
+                    <button onClick={() => removeFromCart(item.id)} className="text-slate-300 hover:text-red-500 transition-colors"><Trash2 size={18} /></button>
                   </div>
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4 bg-background border border-border rounded-lg px-3 py-1">
-                      <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="text-slate-400 hover:text-primary"><Minus size={14} /></button>
-                      <span className="font-bold text-sm">{item.quantity}</span>
-                      <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="text-slate-400 hover:text-primary"><Plus size={14} /></button>
+                    <div className="flex items-center gap-4 bg-slate-50 border border-slate-100 rounded-lg px-3 py-1">
+                      <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="text-slate-400 hover:text-[#991B1B]"><Minus size={14} strokeWidth={3} /></button>
+                      <span className="font-bold text-sm text-slate-900">{item.quantity}</span>
+                      <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="text-slate-400 hover:text-[#991B1B]"><Plus size={14} strokeWidth={3} /></button>
                     </div>
-                    <span className="font-bold text-foreground">${Number(item.price).toLocaleString()}</span>
+                    <span className="font-bold text-lg text-slate-900">${Number(item.price).toLocaleString()}</span>
                   </div>
                 </div>
               </div>
             ))}
 
-            <Link to="/shop" className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline pt-4">
+            <Link to="/shop" className="inline-flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-[#991B1B] pt-4 transition-all">
               <ChevronLeft size={16} /> Continue Shopping
             </Link>
           </div>
 
           {/* Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-background border border-border rounded-2xl p-8 sticky top-24">
-              <h3 className="text-lg font-bold mb-6">Order Summary</h3>
+            <div className="bg-slate-50 border border-slate-100 rounded-2xl p-8 sticky top-24">
+              <h3 className="text-lg font-bold mb-6 uppercase ">Order Summary</h3>
               <div className="space-y-4 mb-8">
-                <div className="flex justify-between text-secondary">
+                <div className="flex justify-between text-slate-500 font-medium">
                   <span>Subtotal</span>
-                  <span className="font-bold text-foreground">${total.toLocaleString()}</span>
+                  <span className="font-bold text-slate-900">${total.toLocaleString()}</span>
                 </div>
-                <div className="flex justify-between text-secondary">
+                <div className="flex justify-between text-slate-500 font-medium">
                   <span>Shipping</span>
-                  <span className="text-emerald-600 font-bold">Free</span>
+                  <span className="text-emerald-600 font-bold uppercase ">Free</span>
                 </div>
-                <div className="pt-4 border-t border-border flex justify-between">
-                  <span className="font-bold">Total</span>
-                  <span className="font-bold text-2xl text-foreground">${total.toLocaleString()}</span>
+                <div className="pt-4 border-t border-slate-200 flex justify-between">
+                  <span className="font-bold text-slate-900">Total</span>
+                  <span className="font-bold text-2xl text-slate-900">${total.toLocaleString()}</span>
                 </div>
               </div>
-              <Link to="/checkout" className="w-full h-14 bg-foreground text-white flex items-center justify-center rounded-xl font-bold uppercase tracking-widest hover:bg-[#013E24] transition-all">
+              <Link to="/checkout" className="w-full h-14 bg-slate-900 text-white flex items-center justify-center rounded-xl font-bold uppercase tracking-widest hover:bg-[#991B1B] transition-all shadow-lg shadow-slate-200/50 hover:shadow-red-900/20">
                 Checkout
               </Link>
             </div>
@@ -93,5 +104,3 @@ export default function Cart() {
     </div>
   );
 }
-
-

@@ -9,7 +9,7 @@ const exclusiveProducts = [
     desc: "Next-generation laser technology with integrated security and ultra-fast output for high-demand business environments.",
     price: "$1,299",
     image: "/products/image_110.png",
-    accent: "bg-[#013E24]",
+    accent: "bg-[#991B1B]",
     stats: [
       { label: "Speed", value: "45 PPM" },
       { label: "Security", value: "Level 4" }
@@ -38,12 +38,12 @@ export default function ExclusiveShowcase() {
         <div className="flex flex-col md:flex-row items-end justify-between mb-20 gap-8 border-b border-slate-100 pb-12">
           <div className="max-w-2xl">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-2 h-2 rounded-full bg-[#013E24]"></div>
+              <div className="w-2 h-2 rounded-full bg-[#991B1B]"></div>
               <span className="text-[#1447E6] text-[10px] font-black uppercase tracking-[0.3em]">The Elite Collection</span>
             </div>
-            <h2 className="text-5xl md:text-7xl font-black text-slate-900 leading-[0.9] tracking-tighter uppercase italic">
+            <h2 className="text-5xl md:text-7xl font-black text-slate-900 leading-[0.9] er uppercase ">
               Performance <br />
-              <span className="text-slate-300 not-italic">Refined.</span>
+              <span className="text-slate-300 not-">Refined.</span>
             </h2>
           </div>
           <div className="hidden lg:block">
@@ -91,11 +91,11 @@ export default function ExclusiveShowcase() {
                   <span className="text-slate-400 text-[10px] font-bold tracking-[0.2em] uppercase">{p.label}</span>
                 </div>
 
-                <h3 className="text-3xl font-black text-slate-900 mb-6 leading-tight uppercase tracking-tight">
+                <h3 className="text-3xl font-black text-slate-900 mb-6 leading-tight uppercase ">
                   {p.name}
                 </h3>
 
-                <p className="text-slate-500 text-sm mb-10 leading-relaxed font-medium max-w-md italic">
+                <p className="text-slate-500 text-sm mb-10 leading-relaxed font-medium max-w-md ">
                   "{p.desc}"
                 </p>
 
@@ -112,7 +112,7 @@ export default function ExclusiveShowcase() {
                 <div className="mt-auto flex items-center justify-between">
                   <div className="flex flex-col">
                     <span className="text-[9px] font-black text-[#1447E6] uppercase tracking-[0.2em] mb-1">Price Starts At</span>
-                    <span className="text-3xl font-black text-slate-900 tracking-tighter">{p.price}</span>
+                    <span className="text-3xl font-black text-slate-900 er">{p.price}</span>
                   </div>
 
                   <Link

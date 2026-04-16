@@ -18,7 +18,7 @@ export default function PolicyLayout({ title, subtitle, lastUpdated, children })
               <ChevronRight size={14} className="text-slate-300" />
               <span className="text-slate-900">{title}</span>
             </nav>
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 leading-none tracking-tight">
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 leading-none ">
               {title}
             </h1>
           </div>
@@ -52,7 +52,7 @@ export default function PolicyLayout({ title, subtitle, lastUpdated, children })
                   ].map((p) => (
                     <Link
                       key={p.path} to={p.path}
-                      className={`block px-4 py-3 text-[13px] font-bold transition-all border ${title === p.label ? 'bg-[#013E24] text-white border-[#1447E6]' : 'text-slate-600 border-transparent hover:bg-slate-50 hover:text-slate-900'}`}
+                      className={`block px-4 py-3 text-[13px] font-bold transition-all border ${title === p.label ? 'bg-[#991B1B] text-white border-[#1447E6]' : 'text-slate-600 border-transparent hover:bg-slate-50 hover:text-slate-900'}`}
                     >
                       {p.label}
                     </Link>
@@ -61,12 +61,12 @@ export default function PolicyLayout({ title, subtitle, lastUpdated, children })
               </div>
 
               <div className="p-8 bg-slate-900 text-white relative overflow-hidden border border-slate-800">
-                <h4 className="text-lg font-bold mb-3 relative z-10 tracking-tight">Need assistance?</h4>
+                <h4 className="text-lg font-bold mb-3 relative z-10 ">Need assistance?</h4>
                 <p className="text-slate-400 text-xs font-medium mb-6 leading-relaxed relative z-10">Our specialists are available to explain any of our legal terms or policies.</p>
                 <Link to="/contact" className="inline-flex items-center gap-2 text-[10px] font-black text-blue-400 hover:text-white relative z-10 uppercase tracking-widest transition-colors">
                   Contact center
                 </Link>
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#013E24]/10 blur-3xl rounded-full pointer-events-none" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#991B1B]/10 blur-3xl rounded-full pointer-events-none" />
               </div>
             </div>
           </div>
@@ -86,7 +86,7 @@ export default function PolicyLayout({ title, subtitle, lastUpdated, children })
               )}
 
               <article className="prose prose-slate max-w-none 
-                prose-headings:text-slate-900 prose-headings:font-bold prose-headings:tracking-tight prose-headings:mt-12 prose-headings:mb-6
+                prose-headings:text-slate-900 prose-headings:font-bold prose-headings: prose-headings:mt-12 prose-headings:mb-6
                 prose-p:text-slate-600 prose-p:text-sm md:prose-p:text-base prose-p:leading-relaxed prose-p:mb-6 prose-p:font-medium
                 prose-li:text-slate-600 prose-li:text-sm md:prose-li:text-base prose-li:mb-2 prose-li:font-medium
                 prose-strong:text-slate-900 prose-strong:font-bold

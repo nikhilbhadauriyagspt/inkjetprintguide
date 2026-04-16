@@ -1,15 +1,19 @@
 import { Link } from "react-router-dom";
-import { ChevronRight, LayoutGrid } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function ShopByCategory({ categories = [], loading = false }) {
   if (loading) {
     return (
-      <section className="w-full py-16 bg-white flex flex-col items-center">
-        <div className="w-full max-w-[1800px] px-6 space-y-8">
-          {[...Array(3)].map((_, i) => (
-            <div key={i} className="w-full h-[400px] bg-slate-50 animate-pulse" />
-          ))}
+      <section className="w-full bg-[#f2f2f2] py-16 md:py-20">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {[...Array(9)].map((_, i) => (
+              <div
+                key={i}
+                className="h-[320px] rounded-sm bg-white animate-pulse border border-slate-200"
+              />
+            ))}
+          </div>
         </div>
       </section>
     );
@@ -18,116 +22,142 @@ export default function ShopByCategory({ categories = [], loading = false }) {
   const printerParent = categories.find(
     (c) => c.slug === "printers" || c.id === 46
   );
-  const displayCategories = printerParent ? (printerParent.children || []) : categories;
 
-  // Updated to use local images from public/banner/category-imges/
-  const getLocalImagePath = (index) => {
-    return `/banner/category-imges/${index + 1}.png`;
-  };
+  const displayCategories = printerParent
+    ? printerParent.children || []
+    : categories;
 
   if (!displayCategories || displayCategories.length === 0) return null;
 
-  // Static relatable content mapping
-  const categoryHeadings = {
-    'inkjet-printers': "Inkjet Printers for Vibrant Creative Work",
-    'laser-printers': "Laser Systems for High-Speed Business",
-    'all-in-one-printers': "All-In-One Solutions for Multi-Tasking",
-    'supertank-printers': "Supertank Series for Limitless Printing",
-    'thermal-printers': "Thermal Technology for Reliable POS",
-    'large-format-printers': "Large Format Units for Industrial Scale",
-    'printer-accessories': "Genuine Supplies & Essential Accessories",
-    'led-printers': "LED Technology for Energy-Efficient Printing",
-    'photo-printers': "Professional Grade Photo Printing Systems",
-    'dot-matrix-printers': "Impact Printing for Industrial Reliability"
+  const getLocalImagePath = (index) =>
+    `/banner/category-imges/${(index % 9) + 1}.png`;
+
+  const contentMap = {
+    "laser-printers": {
+      title: "Laser printers",
+      desc: "Speed, performance, and reliability.",
+    },
+    "inkjet-printers": {
+      title: "Inkjet printers",
+      desc: "Professional quality at affordable prices.",
+    },
+    "all-in-one-printers": {
+      title: "All-in-One printers",
+      desc: "Print, scan, and copy in one smart solution.",
+    },
+    "supertank-printers": {
+      title: "Smart Tank printers",
+      desc: "Long-running printing with refill-friendly tanks.",
+    },
+    "thermal-printers": {
+      title: "Thermal printers",
+      desc: "Compact printing for labels and receipts.",
+    },
+    "large-format-printers": {
+      title: "Large Format printers",
+      desc: "Perfect for banners, posters, and plans.",
+    },
+    "printer-accessories": {
+      title: "Printer Accessories",
+      desc: "Essential supplies for smooth daily printing.",
+    },
+    "led-printers": {
+      title: "LED printers",
+      desc: "Efficient printing for modern workspaces.",
+    },
+    "photo-printers": {
+      title: "Photo printers",
+      desc: "Sharp and vibrant prints for creative output.",
+    },
+    "dot-matrix-printers": {
+      title: "Dot Matrix printers",
+      desc: "Reliable printing for forms and billing tasks.",
+    },
   };
 
-  const categoryDescs = {
-    'inkjet-printers': "Perfect for home offices and creative studios needing photographic precision.",
-    'laser-printers': "Engineered for speed and endurance to handle heavy professional workloads.",
-    'all-in-one-printers': "Streamline your workflow with smart machines that scan, copy, and print.",
-    'supertank-printers': "High-capacity reservoirs that deliver ultra-low cost per page.",
-    'thermal-printers': "Compact and durable solutions for retail receipts and logistics labels.",
-    'large-format-printers': "Industrial precision for blueprints, banners, and massive marketing materials.",
-    'printer-accessories': "Keep your systems running smoothly with our range of ink, toner, and parts.",
-    'led-printers': "Reliable and high-quality printing with fewer moving parts for longevity.",
-    'photo-printers': "Capture every detail with systems designed for professional photographers.",
-    'dot-matrix-printers': "Robust and reliable impact technology for multi-part forms and logs."
-  };
+  const items = displayCategories.slice(0, 9);
+
+  const cardThemes = [
+    "dark",
+    "light",
+    "light",
+    "light",
+    "light",
+  ];
 
   return (
-    <section className="w-full py-20 bg-white font-sans">
+    <section className="w-full bg-[#f1f1f1] py-16 md:py-20">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* SECTION HEADER */}
-        <div className="text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <p
-              className="text-sm font-semibold uppercase tracking-widest mb-3"
-              style={{ color: "#013E24" }}
-            >
-              Our Catalogue
-            </p>
-            <h2 className="text-4xl md:text-5xl font-[700] text-slate-900 tracking-tight">
-              Discover Your <span class="text-[#013E24]">Perfect Printer</span>
-            </h2>
-          </motion.div>
+        {/* Heading Style matched with About Section */}
+        <div className="max-w-5xl mb-24 md:mb-32">
+          <h2 className="text-3xl md:text-5xl font-light text-slate-900 leading-tight">
+            Explore our <span className="font-semibold text-[#991B1B]">printer collections</span>
+            <br className="hidden md:block" /> by category.
+          </h2>
+          <div className="h-1 w-12 bg-[#991B1B] mt-8 rounded-full" />
         </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          {items.map((cat, index) => {
+            const content = contentMap[cat.slug] || {
+              title: cat.name,
+              desc: "Explore our premium printer collection.",
+            };
 
-        {/* CATEGORY CARDS */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {displayCategories.map((cat, index) => {
-            const fullHeading = categoryHeadings[cat.slug] || cat.name;
-            const desc = categoryDescs[cat.slug] || "Explore our curated collection of high-quality products.";
+            const isDark = cardThemes[index] === "dark";
 
             return (
               <motion.div
                 key={cat.id}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 35 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
-                className="relative rounded-xl overflow-hidden shadow-md group"
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+                className={`group relative min-h-[420px] mb-16 w-[95%] ${isDark
+                  ? "bg-[#34363b] text-white"
+                  : "bg-[#e9e7e7] text-slate-900"
+                  }`}
               >
-                <div className="absolute inset-0 w-full h-full">
-                  <img
-                    className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
-                    src={getLocalImagePath(index)}
-                    alt={cat.name}
-                  />
-                  <div className="absolute inset-0 bg-black/20"></div>
-                </div>
-
-                <div className="relative p-8 text-gray-900 flex flex-col items-start">
-                  <div
-                    className="backdrop-blur-sm bg-white/10 p-6 rounded-xl border border-white/80" // Lighter background and border for glassmorphism
-                  >
-                    <h3 className="text-2xl md:text-3xl font-[600] text-white">
-                      {fullHeading}
-                    </h3>
-                    <p className="mt-2 text-base text-gray-200 max-w-lg">
-                      {desc}
-                    </p>
-                    <Link
-                      to={`/shop?category=${cat.slug}`}
-                      className="mt-4 inline-block px-6 py-2.5 rounded-lg font-semibold text-base transition-colors"
-                      style={{
-                        backgroundColor: "white",
-                        color: "#013E24", // Text color is now the main brand color
-                        boxShadow: "0 2px 8px 0 rgba(1, 62, 36, 0.15)" // Adjusted shadow for lighter background
-                      }}
-                    >
-                      Shop {cat.name}
-                    </Link>
+                <div className="px-6 pt-3 pb-6 -mt-[50px] -mr-[60px]">
+                  <div className="overflow-hidden">
+                    <img
+                      src={getLocalImagePath(index)}
+                      alt={cat.name}
+                      className="w-full h-[285px] object-cover transition duration-500 group-hover:scale-[1.03]"
+                    />
                   </div>
                 </div>
+                <div className="p-6 pb-0">
+                  <h3 className="text-[30px] leading-none font-semibold ">
+                    {content.title}
+                  </h3>
+
+                  <p
+                    className={`mt-2 text-sm ${isDark ? "text-white/85" : "text-slate-600"
+                      }`}
+                  >
+                    {content.desc}
+                  </p>
+
+                  <Link
+                    to={`/shop?category=${cat.slug}`}
+                    className={`mt-4 inline-block text-[11px] font-bold uppercase tracking-wider ${isDark ? "text-white" : "text-slate-900"
+                      }`}
+                  >
+                    Shop
+                  </Link>
+
+                  <div
+                    className={`mt-1 h-[2px] w-8 ${isDark ? "bg-white" : "bg-slate-900"
+                      }`}
+                  />
+                </div>
+
+
               </motion.div>
             );
           })}
+
+
         </div>
       </div>
     </section>
