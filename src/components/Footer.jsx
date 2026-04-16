@@ -125,7 +125,8 @@ export default function Footer() {
                 <MapPin size={16} className="text-slate-300 mt-0.5" />
                 <div>
                   <p className="text-[13px] font-bold">Headquarters</p>
-                  <p className="text-slate-400 text-xs font-medium mt-1">Oklahoma City, OK 73112, USA</p>
+                  <p className="text-slate-400 text-xs font-medium mt-1">2241 W I 44 Service Rd,
+                    Oklahoma City, OK 73112, USA</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">

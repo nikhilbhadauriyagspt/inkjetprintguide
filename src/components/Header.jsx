@@ -120,7 +120,7 @@ export default function Header() {
           {[...Array(10)].map((_, i) => (
             <span key={i} className="flex items-center mx-6">
               <Zap size={12} fill="white" className="mr-2" />
-              SYSTEM ONLINE • HIGH-PRECISION PRINTING ACTIVE • GLOBAL SHIPPING DEPLOYED •
+              LATEST PRINTERS AVAILABLE • FREE SHIPPING ON ORDERS ABOVE $500 • 24/7 CUSTOMER SUPPORT •
             </span>
           ))}
         </div>
@@ -158,7 +158,7 @@ export default function Header() {
             >
               <button className="flex items-center gap-2 py-3 px-6 text-white font-medium text-[13px] tracking-wider hover:text-[#991B1B] transition-all">
                 <Layers size={18} className="text-[#991B1B]" />
-                SOLUTIONS
+                CATEGORIES
                 <ChevronDown size={14} className={`text-white/20 transition-transform duration-300 ${isCategoryOpen ? 'rotate-180' : ''}`} />
               </button>
 
@@ -172,8 +172,8 @@ export default function Header() {
                   >
                     <div className="p-4 grid grid-cols-2 gap-4 bg-[#0A0A0A]">
                       <div className="col-span-2 px-2 py-2 border-b border-white/5 flex items-center justify-between">
-                        <span className="text-[11px] font-bold text-[#991B1B] uppercase tracking-[0.2em]">Hardware Solutions</span>
-                        <Link to="/shop" className="text-[10px] text-white/40 hover:text-white transition-colors">VIEW ALL SYSTEMS</Link>
+                        <span className="text-[11px] font-bold text-[#991B1B] uppercase tracking-[0.2em]">Printer Categories</span>
+                        <Link to="/shop" className="text-[10px] text-white/40 hover:text-white transition-colors">VIEW ALL</Link>
                       </div>
                       {categories.map(cat => (
                         <Link
@@ -191,7 +191,7 @@ export default function Header() {
                           </div>
                           <div className="flex-1">
                             <h4 className="text-[12px] font-bold text-white/80 group-hover:text-white transition-colors uppercase tracking-wide">{cat.name}</h4>
-                            <p className="text-[9px] text-white/30 font-medium  mt-0.5">Industrial Grade</p>
+                            <p className="text-[9px] text-white/30 font-medium  mt-0.5">Top Rated</p>
                           </div>
                           <ChevronRight size={12} className="text-white/10 group-hover:text-[#991B1B] transition-colors" />
                         </Link>
@@ -225,7 +225,7 @@ export default function Header() {
               </div>
               <input
                 type="text"
-                placeholder="Find industrial solutions..."
+                placeholder="Search for printers..."
                 className="flex-1 h-full bg-transparent px-4 text-[13px] text-white outline-none placeholder:text-white/20 font-medium tracking-wide"
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
@@ -236,7 +236,7 @@ export default function Header() {
                 onClick={() => handleSearchTrigger()}
                 className="h-full px-6 bg-[#991B1B] text-white text-[12px] font-bold tracking-widest hover:bg-[#B91C1C] transition-all"
               >
-                RUN
+                SEARCH
               </button>
             </div>
 
@@ -251,7 +251,7 @@ export default function Header() {
                   {isLoading ? (
                     <div className="p-10 text-center text-white/30">
                       <div className="w-6 h-6 border-2 border-[#991B1B] border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
-                      <span className="text-[11px] font-medium tracking-widest">QUERYING...</span>
+                      <span className="text-[11px] font-medium tracking-widest">SEARCHING...</span>
                     </div>
                   ) : searchResults.length > 0 ? (
                     <div className="max-h-[400px] overflow-y-auto custom-scrollbar">
@@ -279,7 +279,7 @@ export default function Header() {
                       })}
                     </div>
                   ) : (
-                    <div className="p-8 text-center text-white/30 font-medium tracking-widest">DATA NOT FOUND</div>
+                    <div className="p-8 text-center text-white/30 font-medium tracking-widest">NO PRODUCTS FOUND</div>
                   )}
                 </motion.div>
               )}
@@ -298,7 +298,7 @@ export default function Header() {
                   <User size={20} />
                 </div>
                 <div className="hidden xl:block text-left pr-2 leading-tight">
-                  <p className="text-[9px] text-[#991B1B] font-bold uppercase tracking-widest">Operator</p>
+                  <p className="text-[9px] text-[#991B1B] font-bold uppercase tracking-widest">Account</p>
                   <p className="text-[13px] font-medium text-white uppercase">{user ? user.name.split(' ')[0] : 'Guest'}</p>
                 </div>
               </button>
@@ -315,7 +315,7 @@ export default function Header() {
                     {!user ? (
                       <div className="p-2 space-y-2">
                         <Link to="/login" className="block w-full py-3 bg-[#991B1B] text-white rounded-xl text-[12px] text-center font-bold tracking-widest hover:bg-[#B91C1C] transition-all">SIGN IN</Link>
-                        <Link to="/signup" className="block w-full py-3 border border-white/10 text-white rounded-xl text-[12px] text-center font-bold tracking-widest hover:bg-white hover:text-black transition-all">REGISTRY</Link>
+                        <Link to="/signup" className="block w-full py-3 border border-white/10 text-white rounded-xl text-[12px] text-center font-bold tracking-widest hover:bg-white hover:text-black transition-all">SIGN UP</Link>
                       </div>
                     ) : (
                       <div className="px-4 py-3 border-b border-white/5 mb-1 text-white">
@@ -324,11 +324,11 @@ export default function Header() {
                       </div>
                     )}
                     <div className="p-1 space-y-px text-white/60 font-medium text-[12px]">
-                      <Link to="/profile" className="flex items-center gap-3 px-3 py-2 hover:bg-white/5 hover:text-white rounded-lg transition-all"><User size={16} /> DASHBOARD</Link>
-                      <Link to="/orders" className="flex items-center gap-3 px-3 py-2 hover:bg-white/5 hover:text-white rounded-lg transition-all"><Package size={16} /> BATCH STATUS</Link>
-                      <Link to="/wishlist" className="flex items-center gap-3 px-3 py-2 hover:bg-white/5 hover:text-white rounded-lg transition-all"><Heart size={16} /> SAVED DATA</Link>
+                      <Link to="/profile" className="flex items-center gap-3 px-3 py-2 hover:bg-white/5 hover:text-white rounded-lg transition-all"><User size={16} /> MY PROFILE</Link>
+                      <Link to="/orders" className="flex items-center gap-3 px-3 py-2 hover:bg-white/5 hover:text-white rounded-lg transition-all"><Package size={16} /> MY ORDERS</Link>
+                      <Link to="/wishlist" className="flex items-center gap-3 px-3 py-2 hover:bg-white/5 hover:text-white rounded-lg transition-all"><Heart size={16} /> WISHLIST</Link>
                       {user && (
-                        <button onClick={() => { localStorage.removeItem('user'); window.location.reload(); }} className="w-full flex items-center gap-3 px-3 py-2 text-red-500 hover:bg-red-500 hover:text-white rounded-lg mt-1 pt-3 border-t border-white/5"><LogOut size={16} /> TERMINATE</button>
+                        <button onClick={() => { localStorage.removeItem('user'); window.location.reload(); }} className="w-full flex items-center gap-3 px-3 py-2 text-red-500 hover:bg-red-500 hover:text-white rounded-lg mt-1 pt-3 border-t border-white/5"><LogOut size={16} /> LOGOUT</button>
                       )}
                     </div>
                   </motion.div>
@@ -344,7 +344,7 @@ export default function Header() {
                 <ShoppingCart size={20} strokeWidth={2} />
               </div>
               <div className="hidden xl:block text-left pr-2 leading-tight">
-                <p className="text-[9px] text-white/40 font-bold uppercase tracking-widest">MANIFEST</p>
+                <p className="text-[9px] text-white/40 font-bold uppercase tracking-widest">MY CART</p>
                 <p className="text-[13px] font-medium text-white">${(cartCount * 299).toLocaleString()}</p>
               </div>
               {cartCount > 0 && (
