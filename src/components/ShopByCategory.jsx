@@ -102,9 +102,6 @@ export default function ShopByCategory({ categories = [], loading = false }) {
                   Enter Collection
                 </Link>
               </div>
-
-              {/* Background Decorative Text - More Subtle */}
-
             </motion.div>
           ))}
         </div>
