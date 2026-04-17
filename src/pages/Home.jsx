@@ -1,4 +1,5 @@
 ﻿import Hero from "@/components/Hero";
+import CategoryCarousel from "@/components/CategoryCarousel";
 import AboutSection from "@/components/AboutSection";
 import CategoryNavigation from "@/components/CategoryNavigation";
 import FlashSalesSlider from "@/components/FlashSalesSlider";
@@ -15,7 +16,7 @@ import ProductGrid from "@/components/ProductGrid";
 import BottomWideBanner from "@/components/BottomWideBanner";
 import { useState, useEffect, useMemo } from "react";
 import API_BASE_URL from "../config";
-
+import Mainimg from "/banner/new-banner/12.png";
 // Import side banners
 import inkjetSide from "@/assets/bannerr/inkjet-side.png";
 import laserSide from "@/assets/bannerr/laser-side.png";
@@ -106,24 +107,22 @@ export default function Home() {
   return (
     <div className="bg-white font-sans overflow-x-hidden text-slate-900">
       <SEO
-        title="My Printing Buddy | High-Performance Printing Solutions"
+        title="My Printer Land | High-Performance Printing Solutions"
         description="Shop printers, ink, and toner globally. Professional business printing solutions with international shipping."
         keywords="Buy Printers Online, Ink and Toner, LaserJet, OfficeJet, Printer Accessories, Business Printing Solutions"
       />
 
       <Hero products={data.all} />
 
+      <CategoryCarousel />
+
       <AboutSection />
-      <ShopByCategory categories={data.categories} loading={data.loading} />
-
-
 
       <ProductGrid products={data.all} />
-      <FeaturedTabs
-        printers={data.printers}
-        accessories={data.accessories}
-        loading={data.loading}
-      />
+      <img src={Mainimg} alt="Main Banner" className="w-full h-full" />
+
+      <ShopByCategory categories={data.categories} loading={data.loading} />
+
 
       <PrinterGuide />
       <Showcase />

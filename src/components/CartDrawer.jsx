@@ -43,7 +43,7 @@ export default function CartDrawer() {
             className="fixed top-0 right-0 h-full w-full max-w-[420px] bg-white z-[1501] shadow-2xl flex flex-col font-sans"
           >
             {/* Header */}
-            <div className="bg-[#991B1B] text-white px-6 py-6 flex items-center justify-between shadow-lg">
+            <div className="bg-[#F54900] text-white px-6 py-6 flex items-center justify-between shadow-lg">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-2xl bg-white/20 flex items-center justify-center border border-white/20">
                   <ShoppingBag size={20} className="text-white" />
@@ -64,10 +64,10 @@ export default function CartDrawer() {
             {/* Sub-header Message */}
             {cart.length > 0 && (
               <div className="bg-red-50 px-6 py-3 border-b border-red-100 flex items-center gap-3">
-                <div className="w-4 h-4 bg-[#991B1B] rounded-full flex items-center justify-center text-white">
+                <div className="w-4 h-4 bg-[#F54900] rounded-full flex items-center justify-center text-white">
                   <ShieldCheck size={10} strokeWidth={3} />
                 </div>
-                <p className="text-[11px] font-bold text-[#991B1B] uppercase ">System qualifies for Priority Logistics</p>
+                <p className="text-[11px] font-bold text-[#F54900] uppercase ">System qualifies for Priority Logistics</p>
               </div>
             )}
 
@@ -88,7 +88,7 @@ export default function CartDrawer() {
                         <Link
                           to={`/product/${item.slug}`}
                           onClick={closeCartDrawer}
-                          className="text-[13px] font-bold text-slate-800 hover:text-[#991B1B] transition-colors line-clamp-2 leading-tight mb-2 uppercase "
+                          className="text-[13px] font-bold text-slate-800 hover:text-[#F54900] transition-colors line-clamp-2 leading-tight mb-2 uppercase "
                         >
                           {item.name}
                         </Link>
@@ -97,7 +97,7 @@ export default function CartDrawer() {
                           <div className="flex items-center bg-slate-50 rounded-xl p-1 h-9">
                             <button
                               onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                              className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-white hover:text-[#991B1B] transition-all disabled:opacity-30"
+                              className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-white hover:text-[#F54900] transition-all disabled:opacity-30"
                               disabled={item.quantity <= 1}
                             >
                               <Minus size={12} strokeWidth={3} />
@@ -105,7 +105,7 @@ export default function CartDrawer() {
                             <span className="px-3 text-[13px] font-black text-slate-900">{item.quantity}</span>
                             <button
                               onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                              className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-white hover:text-[#991B1B] transition-all"
+                              className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-white hover:text-[#F54900] transition-all"
                             >
                               <Plus size={12} strokeWidth={3} />
                             </button>
@@ -134,7 +134,7 @@ export default function CartDrawer() {
                   <p className="text-xs text-slate-400 mb-8 font-medium uppercase tracking-widest">No hardware units detected.</p>
                   <button
                     onClick={closeCartDrawer}
-                    className="bg-slate-900 text-white px-10 py-4 text-[11px] font-black uppercase tracking-[0.3em] rounded-2xl hover:bg-[#991B1B] transition-all active:scale-95"
+                    className="bg-slate-900 text-white px-10 py-4 text-[11px] font-black uppercase tracking-[0.3em] rounded-2xl hover:bg-[#F54900] transition-all active:scale-95"
                   >
                     Return to Shop
                   </button>
@@ -158,7 +158,7 @@ export default function CartDrawer() {
                   <Link
                     to="/checkout"
                     onClick={closeCartDrawer}
-                    className="w-full h-16 bg-slate-900 text-white flex items-center justify-center gap-3 font-black text-[11px] uppercase tracking-[0.3em] rounded-3xl hover:bg-[#991B1B] transition-all active:scale-95 shadow-xl shadow-slate-200/50 hover:shadow-red-900/20"
+                    className="w-full h-16 bg-slate-900 text-white flex items-center justify-center gap-3 font-black text-[11px] uppercase tracking-[0.3em] rounded-3xl hover:bg-[#F54900] transition-all active:scale-95 shadow-xl shadow-slate-200/50 hover:shadow-red-900/20"
                   >
                     Execute Checkout <ArrowRight size={18} />
                   </Link>

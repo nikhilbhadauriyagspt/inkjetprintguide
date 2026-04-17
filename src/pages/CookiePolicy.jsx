@@ -10,7 +10,7 @@ export default function CookiePolicy() {
       lastUpdated="Apr 16, 2026"
     >
       <p className="lead">
-        This Cookie Policy explains how My Printing Buddy LLC ("Company," "we," "us," or "our") uses cookies and similar technologies when you visit our website: <a href="https://myprintingbuddy.shop/">https://myprintingbuddy.shop/</a>
+        This Cookie Policy explains how My Printer Land LLC ("Company," "we," "us," or "our") uses cookies and similar technologies when you visit our website: <a href="https://myprinterland.shop/">https://myprinterland.shop/</a>
       </p>
       <p>
         This Cookie Policy should be read together with our <Link to="/privacy-policy">Privacy Policy</Link> and <Link to="/terms-and-conditions">Terms and Conditions</Link>.
@@ -127,8 +127,8 @@ export default function CookiePolicy() {
       <h2>8. Sale Or Sharing Of Personal Information</h2>
       <p>We do not sell personal information. If cookies are considered â€œsharingâ€ under certain US state privacy laws (such as targeted advertising), you may exercise your rights by:</p>
       <ul>
-        <li>Emailing: <a href="mailto:info@myprintingbuddy.shop">info@myprintingbuddy.shop</a></li>
-        <li>Visiting: <Link to="/contact">https://myprintingbuddy.shop/contact</Link></li>
+        <li>Emailing: <a href="mailto:info@myprinterland.shop">info@myprinterland.shop</a></li>
+        <li>Visiting: <Link to="/contact">https://myprinterland.shop/contact</Link></li>
       </ul>
 
       <h2>9. Childrenâ€™s Privacy</h2>
@@ -142,12 +142,12 @@ export default function CookiePolicy() {
       <p>If you have any questions regarding this Cookie Policy, please contact:</p>
       <div className="bg-gray-50 p-8 rounded-sm border border-[#e9e9e9] my-8 not-prose">
         <address className="not- text-gray-700 font-bold leading-relaxed space-y-2">
-          <p className="text-black font-extrabold">My Printing Buddy LLC</p>
+          <p className="text-black font-extrabold">My Printer Land LLC</p>
           <p>Direct Distribution</p>
-          <p>2241 W I 44 Service Rd</p>
-          <p>Oklahoma City, Oklahoma City, OK 73112, USA</p>
-          <p>United States</p>
-          <p className="pt-4 flex items-center gap-3 text-[#1447E6] font-extrabold">info@myprintingbuddy.shop</p>
+          <p>110 N Main St, Livingston</p>
+          <p>MT 59047, United States</p>
+
+          <p className="pt-4 flex items-center gap-3 text-[#1447E6] font-extrabold">info@myprinterland.shop</p>
         </address>
       </div>
     </PolicyLayout>

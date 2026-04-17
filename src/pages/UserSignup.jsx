@@ -56,11 +56,11 @@ export default function UserSignup() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#F8FAFC] font-['Rubik'] px-4 py-12 md:py-20">
-      <SEO title="Create Your Account | My Printing Buddy" />
+      <SEO title="Create Your Account | My Printer Land" />
 
       <div className="w-full max-w-[500px] bg-white rounded-[2rem] border border-gray-100 shadow-[0_20px_60px_rgba(0,0,0,0.06)] overflow-hidden">
         {/* Top Decorative Gradient */}
-        <div className="h-2 bg-gradient-to-r from-[#4f46e5] via-[#991B1B] to-[#f59e0b]"></div>
+        <div className="h-2 bg-gradient-to-r from-[#4f46e5] via-[#F54900] to-[#f59e0b]"></div>
 
         <div className="p-8 md:p-12">
           <div className="text-center mb-10">
@@ -69,9 +69,9 @@ export default function UserSignup() {
             </Link>
             <div className="flex items-center justify-center gap-2 text-[#f59e0b] mb-2">
               <Sparkles size={16} fill="currentColor" />
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Join My Printing Buddy</span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Join My Printer Land</span>
             </div>
-            <h1 className="text-3xl font-bold text-[#991B1B] ">Create Account</h1>
+            <h1 className="text-3xl font-bold text-[#F54900] ">Create Account</h1>
             <p className="text-gray-500 mt-2 text-sm">Experience premium printing benefits</p>
           </div>
 
@@ -83,7 +83,7 @@ export default function UserSignup() {
             )}
 
             <div className="space-y-1.5">
-              <label className="text-[13px] font-bold text-[#991B1B] ml-1">Full Name</label>
+              <label className="text-[13px] font-bold text-[#F54900] ml-1">Full Name</label>
               <div className="relative group">
                 <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#4f46e5] transition-colors" size={18} />
                 <input
@@ -98,7 +98,7 @@ export default function UserSignup() {
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[13px] font-bold text-[#991B1B] ml-1">Email Address</label>
+              <label className="text-[13px] font-bold text-[#F54900] ml-1">Email Address</label>
               <div className="relative group">
                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#4f46e5] transition-colors" size={18} />
                 <input
@@ -114,7 +114,7 @@ export default function UserSignup() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="text-[13px] font-bold text-[#991B1B] ml-1">Password</label>
+                <label className="text-[13px] font-bold text-[#F54900] ml-1">Password</label>
                 <div className="relative group">
                   <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#4f46e5] transition-colors" size={18} />
                   <input
@@ -129,7 +129,7 @@ export default function UserSignup() {
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-[13px] font-bold text-[#991B1B] ml-1">Confirm</label>
+                <label className="text-[13px] font-bold text-[#F54900] ml-1">Confirm</label>
                 <div className="relative group">
                   <ShieldCheck className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#4f46e5] transition-colors" size={18} />
                   <input
@@ -156,7 +156,7 @@ export default function UserSignup() {
 
             <button
               disabled={loading}
-              className="w-full h-14 bg-[#991B1B] text-white rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-[#4f46e5] transition-all disabled:opacity-70 shadow-xl shadow-[#991B1B]/10 cursor-pointer flex items-center justify-center gap-3 active:scale-[0.98] mt-2"
+              className="w-full h-14 bg-[#F54900] text-white rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-[#4f46e5] transition-all disabled:opacity-70 shadow-xl shadow-[#F54900]/10 cursor-pointer flex items-center justify-center gap-3 active:scale-[0.98] mt-2"
             >
               {loading ? <Loader2 className="animate-spin" size={20} /> : (
                 <>

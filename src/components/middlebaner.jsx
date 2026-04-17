@@ -42,7 +42,7 @@ export default function MiddleBanner() {
                                 </h2>
                                 <Link
                                     to={banner.link}
-                                    className="inline-flex items-center gap-2 px-7 py-3 bg-[#991B1B] text-white text-[13px] font-bold uppercase tracking-wider transition-all duration-300 hover:bg-[#991B1B]-hover active:scale-95"
+                                    className="inline-flex items-center gap-2 px-7 py-3 bg-[#F54900] text-white text-[13px] font-bold uppercase tracking-wider transition-all duration-300 hover:bg-[#F54900]-hover active:scale-95"
                                 >
                                     Explore More
                                     <ArrowRight size={16} />

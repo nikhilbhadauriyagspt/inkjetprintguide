@@ -124,8 +124,8 @@ export default function Profile() {
   if (!user) return null;
 
   return (
-    <div className="bg-[#F8FAFC] min-h-screen font-['Rubik'] text-[#991B1B] pb-20">
-      <SEO title="Your Account | My Printing Buddy" />
+    <div className="bg-[#F8FAFC] min-h-screen font-['Rubik'] text-[#F54900] pb-20">
+      <SEO title="Your Account | My Printer Land" />
 
       {/* --- PAGE HEADER --- */}
       <div className="bg-white border-b border-gray-200 py-8 md:py-12 mb-12 shadow-sm">
@@ -133,7 +133,7 @@ export default function Profile() {
           <nav className="flex items-center gap-2 text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-4">
             <Link to="/" className="hover:text-[#4f46e5] transition-colors">Home</Link>
             <ChevronRight size={14} />
-            <span className="text-[#991B1B]">Account Management</span>
+            <span className="text-[#F54900]">Account Management</span>
           </nav>
           <h1 className="text-3xl md:text-4xl font-bold ">Your Dashboard</h1>
         </div>
@@ -144,9 +144,9 @@ export default function Profile() {
 
           {/* --- SIDEBAR --- */}
           <aside className="lg:col-span-4 space-y-6">
-            <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-xl shadow-[#991B1B]/5">
+            <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-xl shadow-[#F54900]/5">
               <div className="flex flex-col items-center text-center mb-8">
-                <div className="h-20 w-20 bg-gradient-to-br from-[#991B1B] to-[#4f46e5] text-white flex items-center justify-center text-2xl font-bold rounded-2xl mb-4 shadow-lg shadow-[#991B1B]/20">
+                <div className="h-20 w-20 bg-gradient-to-br from-[#F54900] to-[#4f46e5] text-white flex items-center justify-center text-2xl font-bold rounded-2xl mb-4 shadow-lg shadow-[#F54900]/20">
                   {user.name.charAt(0).toUpperCase()}
                 </div>
                 <h2 className="text-xl font-bold ">{user.name}</h2>
@@ -166,8 +166,8 @@ export default function Profile() {
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
                     className={`w-full flex items-center gap-3 px-5 py-3.5 text-[14px] font-bold transition-all rounded-xl border cursor-pointer ${activeTab === tab.id
-                      ? 'bg-[#991B1B] text-white border-[#991B1B] shadow-lg shadow-[#991B1B]/10'
-                      : 'text-gray-600 border-transparent hover:bg-gray-50 hover:text-[#991B1B]'
+                      ? 'bg-[#F54900] text-white border-[#F54900] shadow-lg shadow-[#F54900]/10'
+                      : 'text-gray-600 border-transparent hover:bg-gray-50 hover:text-[#F54900]'
                       }`}
                   >
                     <tab.icon size={18} />
@@ -187,9 +187,9 @@ export default function Profile() {
               </div>
             </div>
 
-            <div className="bg-[#991B1B] text-white p-8 rounded-3xl relative overflow-hidden group">
+            <div className="bg-[#F54900] text-white p-8 rounded-3xl relative overflow-hidden group">
               <div className="relative z-10">
-                <div className="bg-[#f59e0b] text-[#991B1B] text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-widest mb-4 inline-block">Support</div>
+                <div className="bg-[#f59e0b] text-[#F54900] text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-widest mb-4 inline-block">Support</div>
                 <h4 className="text-lg font-bold mb-2 leading-snug">Need help with your printer?</h4>
                 <p className="text-white/60 text-[13px] leading-relaxed mb-6">Our tech experts are available 24/7 to assist with setup and troubleshooting.</p>
                 <Link to="/contact" className="inline-flex items-center gap-2 text-[13px] font-bold text-[#f59e0b] hover:text-white transition-colors">
@@ -206,10 +206,10 @@ export default function Profile() {
               {activeTab === 'profile' && (
                 <motion.div
                   key="profile" initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }}
-                  className="bg-white p-8 md:p-12 rounded-[2rem] border border-gray-100 shadow-xl shadow-[#991B1B]/5"
+                  className="bg-white p-8 md:p-12 rounded-[2rem] border border-gray-100 shadow-xl shadow-[#F54900]/5"
                 >
                   <div className="flex items-center gap-4 mb-10 pb-6 border-b border-gray-50">
-                    <div className="h-12 w-12 bg-[#991B1B]/5 text-[#991B1B] flex items-center justify-center rounded-xl">
+                    <div className="h-12 w-12 bg-[#F54900]/5 text-[#F54900] flex items-center justify-center rounded-xl">
                       <User size={24} />
                     </div>
                     <div>
@@ -270,7 +270,7 @@ export default function Profile() {
 
                     <button
                       disabled={isUpdating}
-                      className="h-12 px-10 bg-[#991B1B] text-white font-bold text-[13px] uppercase tracking-widest rounded-xl hover:bg-[#4f46e5] transition-all disabled:opacity-50 shadow-lg shadow-[#991B1B]/10 flex items-center gap-3 cursor-pointer active:scale-95"
+                      className="h-12 px-10 bg-[#F54900] text-white font-bold text-[13px] uppercase tracking-widest rounded-xl hover:bg-[#4f46e5] transition-all disabled:opacity-50 shadow-lg shadow-[#F54900]/10 flex items-center gap-3 cursor-pointer active:scale-95"
                     >
                       {isUpdating ? <Loader2 className="animate-spin" size={18} /> : "Save Changes"}
                     </button>
@@ -285,7 +285,7 @@ export default function Profile() {
                 >
                   <div className="bg-white p-6 md:p-8 rounded-[2rem] border border-gray-100 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div className="flex items-center gap-4">
-                      <div className="h-12 w-12 bg-[#991B1B]/5 text-[#991B1B] flex items-center justify-center rounded-xl">
+                      <div className="h-12 w-12 bg-[#F54900]/5 text-[#F54900] flex items-center justify-center rounded-xl">
                         <Package size={24} />
                       </div>
                       <div>
@@ -308,7 +308,7 @@ export default function Profile() {
                       {orders.slice(0, 5).map((order) => (
                         <div key={order.id} className="bg-white border border-gray-100 rounded-[1.5rem] p-6 flex flex-col md:flex-row items-center justify-between gap-6 hover:shadow-lg transition-all group">
                           <div className="flex items-center gap-5 w-full md:w-auto">
-                            <div className="h-14 w-14 bg-gray-50 border border-gray-100 rounded-2xl flex items-center justify-center text-[#991B1B] group-hover:bg-[#991B1B]group-hover:text-white transition-all duration-500">
+                            <div className="h-14 w-14 bg-gray-50 border border-gray-100 rounded-2xl flex items-center justify-center text-[#F54900] group-hover:bg-[#F54900]group-hover:text-white transition-all duration-500">
                               <Clock size={24} />
                             </div>
                             <div>
@@ -325,7 +325,7 @@ export default function Profile() {
                               <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1">{new Date(order.created_at).toLocaleDateString()}</p>
                               <p className="text-lg font-black ">${Number(order.total_amount).toLocaleString()}</p>
                             </div>
-                            <Link to="/orders" className="h-10 w-10 rounded-full border border-gray-100 flex items-center justify-center text-gray-400 hover:bg-[#991B1B]hover:text-white hover:border-[#991B1B] transition-all">
+                            <Link to="/orders" className="h-10 w-10 rounded-full border border-gray-100 flex items-center justify-center text-gray-400 hover:bg-[#F54900]hover:text-white hover:border-[#F54900] transition-all">
                               <ExternalLink size={18} />
                             </Link>
                           </div>
@@ -343,7 +343,7 @@ export default function Profile() {
               {activeTab === 'security' && (
                 <motion.div
                   key="security" initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }}
-                  className="bg-white p-8 md:p-12 rounded-[2rem] border border-gray-100 shadow-xl shadow-[#991B1B]/5"
+                  className="bg-white p-8 md:p-12 rounded-[2rem] border border-gray-100 shadow-xl shadow-[#F54900]/5"
                 >
                   <div className="flex items-center gap-4 mb-10 pb-6 border-b border-gray-50">
                     <div className="h-12 w-12 bg-red-50 text-red-500 flex items-center justify-center rounded-xl">
@@ -365,7 +365,7 @@ export default function Profile() {
                           value={securityForm.password} onChange={(e) => setSecurityForm({ ...securityForm, password: e.target.value })}
                           className="w-full h-12 pl-4 pr-12 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-[#4f46e5] outline-none text-sm font-medium transition-all"
                         />
-                        <button type="button" onClick={() => setShowPass(!showPass)} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#991B1B] cursor-pointer transition-colors">
+                        <button type="button" onClick={() => setShowPass(!showPass)} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#F54900] cursor-pointer transition-colors">
                           {showPass ? <EyeOff size={20} /> : <Eye size={20} />}
                         </button>
                       </div>
@@ -381,7 +381,7 @@ export default function Profile() {
                     </div>
                     <button
                       disabled={isUpdating}
-                      className="h-12 px-10 bg-[#991B1B] text-white font-bold text-[13px] uppercase tracking-widest rounded-xl hover:bg-red-600 transition-all disabled:opacity-50 shadow-lg shadow-[#991B1B]/10 flex items-center gap-3 cursor-pointer active:scale-95"
+                      className="h-12 px-10 bg-[#F54900] text-white font-bold text-[13px] uppercase tracking-widest rounded-xl hover:bg-red-600 transition-all disabled:opacity-50 shadow-lg shadow-[#F54900]/10 flex items-center gap-3 cursor-pointer active:scale-95"
                     >
                       {isUpdating ? <Loader2 className="animate-spin" size={18} /> : "Update Security"}
                     </button>

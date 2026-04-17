@@ -3,17 +3,19 @@ import SEO from '@/components/SEO';
 import {
   ShieldCheck,
   Zap,
-  Globe,
   Printer,
   Package,
   Headphones,
-  Leaf,
-  Wrench,
   Target,
-  Users,
   ArrowRight,
   Cpu,
-  Settings
+  Settings,
+  Shield,
+  Layers,
+  Activity,
+  Globe,
+  Leaf,
+  Wrench
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -22,35 +24,35 @@ export default function About() {
   const capabilities = [
     {
       icon: Printer,
-      title: "Quality Products",
-      desc: "A curated selection of modern printing systems, including all-in-one units tailored for efficiency."
+      title: "Engineered Precision",
+      desc: "Curated selection of high-performance printing systems tailored for maximum operational efficiency."
     },
     {
-      icon: Package,
-      title: "Logistics Excellence",
-      desc: "Reliable access to ink and essential replacement parts with efficient nationwide delivery."
+      icon: Layers,
+      title: "Supply Chain Mastery",
+      desc: "Strategic logistics providing instant access to ink, toner, and critical infrastructure components."
     },
     {
-      icon: Headphones,
-      title: "Professional Support",
-      desc: "Experts providing setup guidance, troubleshooting, and long-term maintenance for your printer."
+      icon: Activity,
+      title: "System Integrity",
+      desc: "Expert technical guidance focused on the long-term maintenance and peak performance of your fleet."
     }
   ];
 
-  const selectionGuide = [
+  const selectionSteps = [
     {
-      title: "Needs Assessment",
-      desc: "Analyze your monthly print volume to choose between Inkjet precision or Laser speed.",
+      title: "Workflow Audit",
+      desc: "Precision analysis of your monthly output volume to determine the optimal engine architecture.",
       icon: Target
     },
     {
-      title: "Technology Choice",
-      desc: "Determine if you need color precision or monochrome speed for your specific workflows.",
+      title: "Tech Deployment",
+      desc: "Strategic selection between high-fidelity inkjet or high-velocity laser configurations.",
       icon: Cpu
     },
     {
-      title: "Integration Setup",
-      desc: "Ensure seamless compatibility with wireless cloud protocols or secure wired connections.",
+      title: "Full Integration",
+      desc: "Seamless synchronization with wireless cloud protocols and enterprise security standards.",
       icon: Settings
     }
   ];
@@ -68,134 +70,117 @@ export default function About() {
 
   return (
     <div className="min-h-screen bg-white font-sans text-slate-900 pb-20">
-      <SEO title="About Us | My Printing Buddy" />
+      <SEO title="About | My Printer Land" />
 
-      {/* --- MINIMAL BREADCRUMBS --- */}
-      <div className="bg-white border-b border-slate-50 py-4">
-        <div className="max-w-[1400px] mx-auto px-6">
-          <nav className="flex items-center gap-2 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-            <Link to="/" className="hover:text-[#991B1B]">Home</Link>
-            <span className="opacity-30">/</span>
-            <span className="text-slate-600">About Us</span>
-          </nav>
-        </div>
-      </div>
+      {/* --- MINIMAL TECHNICAL HEADER --- */}
+      <section className="bg-slate-50 py-24 md:py-32 border-b border-slate-100 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '40px 40px' }}
+        />
 
-      {/* --- HERO SECTION WITH BLACK OVERLAY --- */}
-      <section className="relative py-20 md:py-28 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/banner/banner-6.jpg"
-            alt="Background"
-            className="w-full h-full object-cover"
-          />
-          {/* Half-Black Overlay for better text visibility without coloring the whole image */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
-        </div>
-
-        <div className="max-w-[1400px] mx-auto px-6 relative z-10">
-          <div className="max-w-2xl">
-            <motion.div
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="flex items-center gap-2 mb-4"
-            >
-              <div className="w-8 h-[2px] bg-[#991B1B]" />
-              <span className="text-white font-bold text-[10px] tracking-[0.3em] uppercase">Professional Services</span>
-            </motion.div>
-            <motion.h1
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-3xl md:text-5xl font-bold text-white leading-tight mb-6 "
-            >
-              Excellence in <br />Printing Solutions.
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-sm md:text-base text-white/80 font-medium leading-relaxed max-w-xl border-l border-[#991B1B] pl-4"
-            >
-              Bridging the gap between advanced hardware and seamless user experience for a more productive workspace.
-            </motion.p>
+        <div className="max-w-[1600px] mx-auto px-8 relative z-10">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-3 mb-6">
+              <Zap size={14} className="text-[#F54900]" fill="currentColor" />
+              <span className="text-[10px] font-black text-[#F54900] uppercase tracking-[0.5em]">About.Manifest</span>
+            </div>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-slate-900 leading-tight tracking-tighter">
+              Redefining <span className="text-slate-300">Printing Standards.</span>
+            </h1>
+            <p className="mt-8 text-slate-500 text-lg md:text-xl font-medium leading-relaxed max-w-xl border-l border-slate-200 pl-6">
+              Engineering the bridge between advanced hardware and seamless user experience for the modern professional workspace.
+            </p>
           </div>
         </div>
       </section>
 
-      <div className="max-w-[1400px] mx-auto px-6 py-16 md:py-24 space-y-24">
+      <div className="max-w-[1600px] mx-auto px-8 py-20 space-y-32">
 
-        {/* --- OUR FOUNDATION --- */}
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 text-[#991B1B] text-[11px] font-bold uppercase tracking-widest">
-              Our Foundation
-            </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 leading-tight">
-              Built on Precision and Reliability
-            </h2>
-            <p className="text-slate-500 leading-relaxed text-[15px] font-medium">
-              Established to simplify the acquisition of high-performance printing infrastructure. We believe technology should be accessible, reliable, and straightforward for every professional environment.
-            </p>
-            <div className="pt-2">
-              <Link
-                to="/shop"
-                className="inline-flex items-center gap-2 bg-slate-900 text-white px-8 py-3.5 text-[11px] font-bold uppercase tracking-widest rounded-xl hover:bg-[#991B1B] transition-all shadow-lg shadow-slate-200/50"
-              >
-                View Catalog <ArrowRight size={16} />
-              </Link>
-            </div>
+        {/* --- OUR MISSION --- */}
+        <section className="flex flex-col lg:flex-row items-center gap-20">
+          <div className="w-full lg:w-1/2">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100 shadow-sm"
+            >
+              <img
+                src="/banner/printer-promo-3.jpg"
+                alt="Our Vision"
+                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                onError={(e) => e.target.src = 'https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=2070&auto=format&fit=crop'}
+              />
+            </motion.div>
           </div>
 
-          <div className="bg-slate-50 p-8 md:p-12 rounded-3xl border border-slate-100">
-            <p className="text-lg text-slate-800 leading-relaxed  mb-6 font-semibold">
-              "Providing a destination where professionals can find top-tier printers without operational complexity."
-            </p>
+          <div className="w-full lg:w-1/2 space-y-8">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-[1px] bg-[#991B1B]" />
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">The Engineering Team</span>
+              <div className="w-1.5 h-1.5 rounded-full bg-[#F54900]" />
+              <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.5em]">Mission_Statement</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 leading-tight tracking-tight uppercase">
+              Simplicity through <br />
+              <span className="text-slate-300">Advanced Engineering.</span>
+            </h2>
+            <p className="text-slate-500 text-lg leading-relaxed font-medium">
+              Our mission is to eliminate the operational complexity of acquiring high-tier printing hardware. We provide a streamlined registry of systems designed for reliability and professional output.
+            </p>
+            <div className="pt-6">
+              <Link
+                to="/shop"
+                className="inline-flex items-center gap-4 text-xs font-black uppercase tracking-[0.3em] text-slate-900 group"
+              >
+                Explore Entire Registry
+                <div className="w-10 h-10 rounded-full border border-slate-100 flex items-center justify-center group-hover:bg-slate-900 group-hover:text-white transition-all">
+                  <ArrowRight size={18} />
+                </div>
+              </Link>
             </div>
           </div>
         </section>
 
         {/* --- CORE CAPABILITIES --- */}
-        <section className="space-y-10">
-          <h2 className="text-2xl font-bold text-slate-900 uppercase ">Core Capabilities</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <section className="space-y-16">
+          <div className="text-center max-w-xl mx-auto space-y-4">
+            <span className="text-[10px] font-black text-[#F54900] uppercase tracking-[0.5em]">System_Integrity</span>
+            <h2 className="text-3xl font-bold text-slate-900 uppercase tracking-tighter">Core Capabilities.</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-slate-100 border border-slate-100 rounded-xl overflow-hidden">
             {capabilities.map((item, i) => (
-              <div
-                key={i}
-                className="flex flex-col gap-4 p-8 border border-slate-100 rounded-2xl hover:border-[#991B1B]/20 transition-all bg-white group"
-              >
-                <div className="w-10 h-10 flex items-center justify-center bg-slate-50 text-slate-400 rounded-xl group-hover:bg-[#991B1B] group-hover:text-white transition-all">
-                  <item.icon size={20} strokeWidth={2} />
+              <div key={i} className="bg-white p-12 group hover:bg-slate-50 transition-colors duration-500">
+                <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center text-slate-300 mb-8 group-hover:text-[#F54900] transition-colors">
+                  <item.icon size={24} strokeWidth={1} />
                 </div>
-                <div>
-                  <h3 className="text-[15px] font-bold text-slate-900 mb-2 uppercase ">{item.title}</h3>
-                  <p className="text-[13px] text-slate-400 leading-relaxed font-medium">{item.desc}</p>
-                </div>
+                <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest mb-4">{item.title}</h3>
+                <p className="text-xs text-slate-400 leading-relaxed font-bold uppercase tracking-wider">{item.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* --- SELECTION GUIDE --- */}
-        <section className="bg-slate-900 rounded-3xl p-8 md:p-16 text-white relative overflow-hidden">
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-12">
-            <div className="lg:col-span-1">
-              <span className="text-[#991B1B] font-bold text-[10px] uppercase tracking-[0.3em] mb-3 block">Selection Guide</span>
-              <h2 className="text-3xl font-bold leading-tight  uppercase mb-4">
-                System Setup.
+        {/* --- GUIDED SELECTION --- */}
+        <section className="bg-slate-900 rounded-2xl p-12 md:p-20 text-white relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[#F54900]/10 rounded-full blur-[100px] -mr-32 -mt-32" />
+
+          <div className="relative z-10 space-y-20">
+            <div className="max-w-xl">
+              <span className="text-[#F54900] text-[10px] font-black uppercase tracking-[0.5em] mb-6 block">Strategic.Path</span>
+              <h2 className="text-4xl font-light leading-tight tracking-tighter">
+                System Setup <br /> <span className="text-white/40">Protocol.</span>
               </h2>
-              <p className="text-white/40 font-medium text-xs uppercase leading-relaxed">
-                Guidance to help you deploy the most efficient hardware for your workspace.
-              </p>
             </div>
 
-            <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
-              {selectionGuide.map((item, idx) => (
-                <div key={idx} className="space-y-2">
-                  <h4 className="text-[14px] font-bold uppercase tracking-wide text-[#991B1B]">{item.title}</h4>
-                  <p className="text-white/50 text-[13px] leading-relaxed font-medium">{item.desc}</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+              {selectionSteps.map((step, idx) => (
+                <div key={idx} className="space-y-6 group">
+                  <div className="flex items-center gap-4">
+                    <span className="text-2xl font-light text-white/20 group-hover:text-[#F54900] transition-colors">0{idx + 1}</span>
+                    <div className="h-px flex-1 bg-white/5 group-hover:bg-[#F54900]/20 transition-all" />
+                  </div>
+                  <h4 className="text-sm font-black uppercase tracking-widest text-white/90">{step.title}</h4>
+                  <p className="text-xs text-white/30 leading-relaxed font-bold uppercase tracking-wider">{step.desc}</p>
                 </div>
               ))}
             </div>
@@ -203,19 +188,19 @@ export default function About() {
         </section>
 
         {/* --- ADVANTAGE SECTION --- */}
-        <section className="bg-slate-50 p-8 md:p-12 rounded-3xl">
-          <div className="mb-10">
-            <h2 className="text-xl font-bold text-slate-900 uppercase ">The Advantage</h2>
-            <p className="text-slate-400 font-bold uppercase text-[10px] tracking-widest mt-1">Why industry professionals choose us</p>
+        <section className="space-y-12">
+          <div className="flex items-center gap-3">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#F54900]" />
+            <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.5em]">Advantage.Log</span>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {advantages.map((item, i) => (
-              <div key={i} className="flex items-center gap-4 group">
-                <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-white text-slate-300 group-hover:text-[#991B1B] rounded-lg transition-all">
-                  <item.icon size={18} strokeWidth={2} />
+              <div key={i} className="flex items-center gap-4 group p-4 border border-slate-50 rounded-xl hover:bg-slate-50 transition-all">
+                <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-white border border-slate-100 text-slate-300 group-hover:text-[#F54900] group-hover:border-[#F54900]/20 rounded-lg transition-all">
+                  <item.icon size={18} strokeWidth={1.5} />
                 </div>
-                <h4 className="text-[12px] font-bold text-slate-600 uppercase ">{item.title}</h4>
+                <h4 className="text-[11px] font-bold text-slate-500 uppercase tracking-widest">{item.title}</h4>
               </div>
             ))}
           </div>

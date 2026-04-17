@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SEO from '@/components/SEO';
-import { ChevronDown, Search, HelpCircle, ArrowRight } from 'lucide-react';
+import { ChevronDown, Search, HelpCircle, ArrowRight, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const faqData = [
@@ -49,69 +49,48 @@ export default function FAQ() {
 
   return (
     <div className="bg-white min-h-screen font-sans text-slate-900 pb-20">
-      <SEO title="FAQ | My Printing Buddy" />
+      <SEO title="FAQ | My Printer Land" />
 
-      {/* --- BREADCRUMBS --- */}
-      <div className="bg-white border-b border-slate-50 py-4">
-        <div className="max-w-[1400px] mx-auto px-6">
-          <nav className="flex items-center gap-2 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-            <Link to="/" className="hover:text-[#991B1B]">Home</Link>
-            <span className="opacity-30">/</span>
-            <span className="text-slate-600">Help Center</span>
-          </nav>
-        </div>
-      </div>
+      {/* --- MINIMAL TECHNICAL HEADER --- */}
+      <section className="bg-slate-50 py-24 md:py-32 border-b border-slate-100 relative overflow-hidden text-center">
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '40px 40px' }}
+        />
 
-      {/* --- HERO SECTION WITH BLACK OVERLAY --- */}
-      <div className="relative py-20 md:py-28 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/banner/banner-7.jpg"
-            alt="FAQ Background"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
-        </div>
+        <div className="max-w-[1600px] mx-auto px-8 relative z-10 flex flex-col items-center">
+          <div className="flex items-center gap-3 mb-6">
+            <Zap size={14} className="text-[#F54900]" fill="currentColor" />
+            <span className="text-[10px] font-black text-[#F54900] uppercase tracking-[0.5em]">Help.Center</span>
+          </div>
+          <h1 className="text-4xl md:text-6xl font-light text-slate-900 leading-tight tracking-tighter">
+            How can we <span className="text-slate-300">assist you?</span>
+          </h1>
 
-        <div className="max-w-[1400px] mx-auto px-6 text-center relative z-10">
-          <motion.h1
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-3xl md:text-5xl font-bold text-white  mb-8"
-          >
-            How can we help you?
-          </motion.h1>
-
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="max-w-2xl mx-auto relative group"
-          >
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#991B1B] transition-colors" size={20} />
+          <div className="mt-12 w-full max-w-xl relative group">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-[#F54900] transition-colors" size={18} />
             <input
               type="text"
-              placeholder="Search for answers..."
+              placeholder="Search for solutions..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full h-14 pl-12 pr-6 bg-white border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-red-500/5 text-slate-900 text-sm shadow-sm transition-all"
+              className="w-full h-12 pl-12 pr-6 bg-white border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-[#F54900]/5 text-slate-900 text-sm shadow-sm transition-all"
             />
-          </motion.div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div className="max-w-[1400px] mx-auto px-6 py-12 md:py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <div className="max-w-[1400px] mx-auto px-8 py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
 
           {/* --- SIDEBAR --- */}
-          <div className="hidden lg:block lg:col-span-3 sticky top-24">
-            <div className="space-y-6">
-              <h3 className="text-[11px] font-bold text-[#991B1B] uppercase tracking-[0.3em] mb-4">Categories</h3>
-              <ul className="space-y-3">
+          <div className="hidden lg:block lg:col-span-3 sticky top-32">
+            <div className="space-y-10">
+              <h3 className="text-[10px] font-black text-slate-300 uppercase tracking-[0.4em] mb-8">Categories</h3>
+              <ul className="space-y-4">
                 {faqData.map((cat, idx) => (
                   <li key={idx}>
-                    <a href={`#cat-${idx}`} className="text-[13px] font-semibold text-slate-400 hover:text-[#991B1B] transition-all flex items-center gap-2 group">
-                      <div className="w-1 h-1 rounded-full bg-slate-200 group-hover:bg-[#991B1B] transition-colors" />
+                    <a href={`#cat-${idx}`} className="text-[12px] font-bold text-slate-400 hover:text-[#F54900] transition-all flex items-center gap-3 group uppercase tracking-widest">
+                      <div className="w-1.5 h-1.5 rounded-full bg-slate-100 group-hover:bg-[#F54900] transition-colors" />
                       {cat.category}
                     </a>
                   </li>
@@ -121,7 +100,7 @@ export default function FAQ() {
           </div>
 
           {/* --- MAIN CONTENT --- */}
-          <div className="lg:col-span-9 space-y-10">
+          <div className="lg:col-span-9 space-y-16">
             {faqData.map((cat, catIdx) => {
               const filteredQuestions = cat.questions.filter(q =>
                 q.q.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -131,25 +110,26 @@ export default function FAQ() {
               if (filteredQuestions.length === 0) return null;
 
               return (
-                <div key={catIdx} id={`cat-${catIdx}`} className="bg-white border border-slate-50 rounded-2xl overflow-hidden scroll-mt-24">
-                  <div className="bg-slate-50 px-8 py-4">
-                    <h2 className="text-[11px] font-bold text-[#991B1B] uppercase tracking-[0.2em]">{cat.category}</h2>
+                <div key={catIdx} id={`cat-${catIdx}`} className="scroll-mt-32 space-y-8">
+                  <div className="flex items-center gap-4">
+                    <h2 className="text-[10px] font-black text-[#F54900] uppercase tracking-[0.5em]">{cat.category}</h2>
+                    <div className="h-px flex-1 bg-slate-50" />
                   </div>
 
-                  <div className="divide-y divide-slate-50">
+                  <div className="space-y-4">
                     {filteredQuestions.map((faq, qIdx) => {
                       const id = `${catIdx}-${qIdx}`;
                       const isOpen = openIndex === id;
 
                       return (
-                        <div key={qIdx} className="group">
+                        <div key={qIdx} className="bg-white border border-slate-50 rounded-2xl overflow-hidden group hover:border-slate-100 transition-all">
                           <button
                             onClick={() => toggleAccordion(catIdx, qIdx)}
-                            className="w-full px-8 py-5 flex items-center justify-between text-left hover:bg-slate-50/30 transition-all"
+                            className="w-full px-8 py-6 flex items-center justify-between text-left transition-all"
                           >
-                            <span className={`text-[15px] font-bold ${isOpen ? 'text-[#991B1B]' : 'text-slate-700 group-hover:text-[#991B1B]'} transition-colors`}>{faq.q}</span>
-                            <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${isOpen ? 'bg-[#991B1B] text-white rotate-180' : 'bg-slate-100 text-slate-400 group-hover:text-[#991B1B]'}`}>
-                              <ChevronDown size={16} />
+                            <span className={`text-[15px] font-bold ${isOpen ? 'text-[#F54900]' : 'text-slate-800 group-hover:text-[#F54900]'} transition-colors`}>{faq.q}</span>
+                            <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${isOpen ? 'bg-[#F54900] text-white rotate-180 shadow-lg shadow-[#F54900]/20' : 'bg-slate-50 text-slate-300 group-hover:text-[#F54900]'}`}>
+                              <ChevronDown size={14} strokeWidth={3} />
                             </div>
                           </button>
                           <AnimatePresence>
@@ -158,7 +138,7 @@ export default function FAQ() {
                                 initial={{ height: 0, opacity: 0 }}
                                 animate={{ height: 'auto', opacity: 1 }}
                                 exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.2 }}
+                                transition={{ duration: 0.25, ease: "easeOut" }}
                               >
                                 <div className="px-8 pb-8 text-slate-500 text-[14px] leading-relaxed font-medium">
                                   <div className="h-px bg-slate-50 mb-6" />
@@ -176,16 +156,16 @@ export default function FAQ() {
             })}
 
             {/* CTA */}
-            <div className="bg-slate-50 p-10 md:p-12 rounded-3xl text-center space-y-6">
-              <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center mx-auto text-[#991B1B] shadow-sm">
-                <HelpCircle size={24} />
+            <div className="pt-20 border-t border-slate-50 text-center space-y-8">
+              <div className="space-y-3">
+                <h3 className="text-xl font-bold text-slate-900 uppercase tracking-tighter">Still need assistance?</h3>
+                <p className="text-slate-400 text-xs font-bold max-w-md mx-auto uppercase tracking-widest">Our technical team is available for specialized unit inquiries.</p>
               </div>
-              <div className="space-y-2">
-                <h3 className="text-xl font-bold text-slate-900 uppercase ">Still need assistance?</h3>
-                <p className="text-slate-400 text-[14px] font-medium max-w-md mx-auto uppercase ">Our technical team is available for specialized unit inquiries.</p>
-              </div>
-              <Link to="/contact" className="inline-flex items-center gap-2 bg-slate-900 hover:bg-[#991B1B] text-white px-8 py-3.5 text-[11px] font-bold uppercase tracking-widest rounded-xl transition-all shadow-lg shadow-slate-200/50">
-                Contact Support <ArrowRight size={16} />
+              <Link to="/contact" className="inline-flex items-center gap-4 text-xs font-black uppercase tracking-[0.4em] text-slate-900 group">
+                Contact Support
+                <div className="w-10 h-10 rounded-full border border-slate-100 flex items-center justify-center group-hover:bg-slate-900 group-hover:text-white transition-all">
+                  <ArrowRight size={18} />
+                </div>
               </Link>
             </div>
           </div>

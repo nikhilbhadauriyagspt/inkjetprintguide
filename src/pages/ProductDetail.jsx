@@ -120,7 +120,7 @@ export default function ProductDetail() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-white">
-        <div className="w-10 h-10 border-4 border-gray-100 border-t-[#991B1B] rounded-full animate-spin"></div>
+        <div className="w-10 h-10 border-4 border-gray-100 border-t-[#F54900] rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -129,7 +129,7 @@ export default function ProductDetail() {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen text-center px-6">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Product Not Found</h2>
-        <Link to="/shop" className="text-[#991B1B] font-bold hover:underline">Return to Shop Catalog</Link>
+        <Link to="/shop" className="text-[#F54900] font-bold hover:underline">Return to Shop Catalog</Link>
       </div>
     );
   }
@@ -144,9 +144,9 @@ export default function ProductDetail() {
       <div className="bg-white border-b border-gray-100 py-3">
         <div className="max-w-[1500px] mx-auto px-4 md:px-8">
           <nav className="flex items-center gap-1 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-            <Link to="/" className="hover:text-[#991B1B]">Home</Link>
+            <Link to="/" className="hover:text-[#F54900]">Home</Link>
             <ChevronRight size={10} className="mx-1" />
-            <Link to="/shop" className="hover:text-[#991B1B]">Shop</Link>
+            <Link to="/shop" className="hover:text-[#F54900]">Shop</Link>
             <ChevronRight size={10} className="mx-1" />
             <span className="text-slate-900 truncate max-w-[200px] md:max-w-none">{product.name}</span>
           </nav>
@@ -167,7 +167,7 @@ export default function ProductDetail() {
                       key={idx}
                       onMouseEnter={() => { setActiveImage(idx); setMainImage(img); }}
                       onClick={() => { setActiveImage(idx); setMainImage(img); }}
-                      className={`w-16 h-16 md:w-20 md:h-20 rounded-md border-2 p-1 bg-white shrink-0 transition-all ${activeImage === idx ? 'border-[#991B1B]' : 'border-gray-100 hover:border-[#991B1B]/50'}`}
+                      className={`w-16 h-16 md:w-20 md:h-20 rounded-md border-2 p-1 bg-white shrink-0 transition-all ${activeImage === idx ? 'border-[#F54900]' : 'border-gray-100 hover:border-[#F54900]/50'}`}
                     >
                       <img src={img} alt="" className="w-full h-full object-contain mix-blend-multiply" />
                     </button>
@@ -205,7 +205,7 @@ export default function ProductDetail() {
                 {/* Overlay Badges */}
                 <div className="absolute top-4 left-4 flex flex-col gap-2 pointer-events-none">
                   {discount > 0 && (
-                    <div className="bg-[#991B1B] text-white text-[12px] font-bold px-3 py-1 rounded-sm shadow-sm">
+                    <div className="bg-[#F54900] text-white text-[12px] font-bold px-3 py-1 rounded-sm shadow-sm">
                       -{discount}% Off
                     </div>
                   )}
@@ -213,16 +213,16 @@ export default function ProductDetail() {
 
                 <button
                   onClick={() => toggleWishlist(product)}
-                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white border border-gray-100 shadow-sm flex items-center justify-center text-slate-300 hover:text-[#991B1B] transition-all z-10"
+                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white border border-gray-100 shadow-sm flex items-center justify-center text-slate-300 hover:text-[#F54900] transition-all z-10"
                 >
-                  <Heart size={20} fill={isInWishlist(product.id) ? '#991B1B' : 'none'} className={isInWishlist(product.id) ? 'text-[#991B1B]' : ''} />
+                  <Heart size={20} fill={isInWishlist(product.id) ? '#F54900' : 'none'} className={isInWishlist(product.id) ? 'text-[#F54900]' : ''} />
                 </button>
               </div>
             </div>
 
             <div className="hidden md:grid grid-cols-2 gap-4">
               <div className="flex items-center gap-3 p-4 bg-white border border-gray-100 rounded-xl">
-                <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-[#991B1B]">
+                <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-[#F54900]">
                   <Truck size={20} />
                 </div>
                 <div className="flex flex-col">
@@ -231,7 +231,7 @@ export default function ProductDetail() {
                 </div>
               </div>
               <div className="flex items-center gap-3 p-4 bg-white border border-gray-100 rounded-xl">
-                <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-[#991B1B]">
+                <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-[#F54900]">
                   <RotateCcw size={20} />
                 </div>
                 <div className="flex flex-col">
@@ -247,12 +247,12 @@ export default function ProductDetail() {
             <div className="bg-white p-6 md:p-8 border border-gray-100 rounded-xl shadow-sm">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-bold text-[#991B1B] uppercase tracking-[0.2em]">
+                  <span className="text-[11px] font-bold text-[#F54900] uppercase tracking-[0.2em]">
                     Premium Hardware
                   </span>
                   <button
                     onClick={handleShare}
-                    className="flex items-center gap-1 text-slate-300 hover:text-[#991B1B] transition-colors cursor-pointer"
+                    className="flex items-center gap-1 text-slate-300 hover:text-[#F54900] transition-colors cursor-pointer"
                   >
                     <Share2 size={18} />
                   </button>
@@ -264,7 +264,7 @@ export default function ProductDetail() {
 
                 <div className="pt-2">
                   <div className="flex items-baseline gap-3">
-                    <span className="text-[#991B1B] text-3xl font-light">-{discount}%</span>
+                    <span className="text-[#F54900] text-3xl font-light">-{discount}%</span>
                     <div className="flex items-start">
                       <span className="text-[14px] font-bold mt-1">$</span>
                       <span className="text-4xl font-bold">{Number(product.price).toLocaleString()}</span>
@@ -287,11 +287,11 @@ export default function ProductDetail() {
                 {/* Trust Badges */}
                 <div className="py-4 border-y border-gray-50 flex items-center gap-6">
                   <div className="flex items-center gap-2">
-                    <ShieldCheck size={18} className="text-[#991B1B]" />
+                    <ShieldCheck size={18} className="text-[#F54900]" />
                     <span className="text-[12px] font-bold text-slate-700 uppercase ">Safe System</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Truck size={18} className="text-[#991B1B]" />
+                    <Truck size={18} className="text-[#F54900]" />
                     <span className="text-[12px] font-bold text-slate-700 uppercase ">Secure Ops</span>
                   </div>
                 </div>
@@ -325,14 +325,14 @@ export default function ProductDetail() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <button
                       onClick={handleAddToCart}
-                      className={`h-12 rounded-xl font-bold text-[12px] uppercase tracking-widest shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${isAdded ? 'bg-emerald-600 text-white' : 'bg-slate-900 hover:bg-[#991B1B] text-white'}`}
+                      className={`h-12 rounded-xl font-bold text-[12px] uppercase tracking-widest shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${isAdded ? 'bg-emerald-600 text-white' : 'bg-slate-900 hover:bg-[#F54900] text-white'}`}
                     >
                       <ShoppingCart size={18} />
                       {isAdded ? 'Synced' : 'Add to Manifest'}
                     </button>
                     <button
                       onClick={handleBuyNow}
-                      className="h-12 bg-white border-2 border-slate-100 hover:border-[#991B1B] hover:text-[#991B1B] text-slate-900 rounded-xl font-bold text-[12px] uppercase tracking-widest shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+                      className="h-12 bg-white border-2 border-slate-100 hover:border-[#F54900] hover:text-[#F54900] text-slate-900 rounded-xl font-bold text-[12px] uppercase tracking-widest shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
                     >
                       <Zap size={18} />
                       Initialize OPS
@@ -393,7 +393,7 @@ export default function ProductDetail() {
           <div className="mt-16 md:mt-24">
             <div className="flex items-center justify-between mb-10 pb-4 border-b border-gray-100">
               <h3 className="text-2xl font-bold  uppercase">Related Hardware</h3>
-              <Link to="/shop" className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-300 hover:text-[#991B1B] transition-colors">See all modules</Link>
+              <Link to="/shop" className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-300 hover:text-[#F54900] transition-colors">See all modules</Link>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
               {relatedProducts.map((p) => (
@@ -401,7 +401,7 @@ export default function ProductDetail() {
                   <div className="aspect-square bg-slate-50 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-105 transition-transform p-4">
                     <img src={getImagePath(p.images)} alt="" className="w-full h-full object-contain mix-blend-multiply" />
                   </div>
-                  <h4 className="text-[13px] font-bold text-slate-900 line-clamp-2 mb-2 h-10 group-hover:text-[#991B1B] transition-colors uppercase ">{p.name}</h4>
+                  <h4 className="text-[13px] font-bold text-slate-900 line-clamp-2 mb-2 h-10 group-hover:text-[#F54900] transition-colors uppercase ">{p.name}</h4>
                   <p className="text-lg font-black text-slate-900 er mt-auto">${Number(p.price).toLocaleString()}</p>
                 </Link>
               ))}

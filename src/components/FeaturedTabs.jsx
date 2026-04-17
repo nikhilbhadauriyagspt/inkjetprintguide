@@ -53,7 +53,7 @@ export default function FeaturedTabs({ printers = [], accessories = [], loading 
         {/* Minimalist Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-xl">
-            <span className="text-[11px] font-bold text-[#991B1B] uppercase tracking-[0.4em] mb-4 block">Current Inventory</span>
+            <span className="text-[11px] font-bold text-[#F54900] uppercase tracking-[0.4em] mb-4 block">Current Inventory</span>
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 er">
               New & <span className="text-slate-300">Featured.</span>
             </h2>
@@ -63,13 +63,13 @@ export default function FeaturedTabs({ printers = [], accessories = [], loading 
             <div className="flex items-center gap-2">
               <button
                 onClick={() => swiperInstance?.slidePrev()}
-                className="w-12 h-12 rounded-full border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-slate-50 hover:text-[#991B1B] transition-all active:scale-90"
+                className="w-12 h-12 rounded-full border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-slate-50 hover:text-[#F54900] transition-all active:scale-90"
               >
                 <ChevronLeft size={22} />
               </button>
               <button
                 onClick={() => swiperInstance?.slideNext()}
-                className="w-12 h-12 rounded-full border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-slate-50 hover:text-[#991B1B] transition-all active:scale-90"
+                className="w-12 h-12 rounded-full border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-slate-50 hover:text-[#F54900] transition-all active:scale-90"
               >
                 <ChevronRight size={22} />
               </button>
@@ -113,7 +113,7 @@ export default function FeaturedTabs({ printers = [], accessories = [], loading 
                     {/* Quick Actions */}
                     <button
                       onClick={() => toggleWishlist(p)}
-                      className={`absolute top-5 right-5 w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center opacity-0 group-hover/card:opacity-100 transition-all duration-300 ${isInWishlist(p.id) ? "text-[#991B1B] opacity-100" : "text-slate-300 hover:text-[#991B1B]"}`}
+                      className={`absolute top-5 right-5 w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center opacity-0 group-hover/card:opacity-100 transition-all duration-300 ${isInWishlist(p.id) ? "text-[#F54900] opacity-100" : "text-slate-300 hover:text-[#F54900]"}`}
                     >
                       <Heart size={18} fill={isInWishlist(p.id) ? "currentColor" : "none"} />
                     </button>
@@ -128,7 +128,7 @@ export default function FeaturedTabs({ printers = [], accessories = [], loading 
                   {/* Content */}
                   <div className="flex flex-col flex-1 px-2">
                     <Link to={`/product/${p.slug}`}>
-                      <h3 className="text-[14px] font-bold text-slate-800 leading-tight line-clamp-2 mb-3 group-hover/card:text-[#991B1B] transition-colors">
+                      <h3 className="text-[14px] font-bold text-slate-800 leading-tight line-clamp-2 mb-3 group-hover/card:text-[#F54900] transition-colors">
                         {p.name}
                       </h3>
                     </Link>
@@ -137,7 +137,7 @@ export default function FeaturedTabs({ printers = [], accessories = [], loading 
                       <span className="text-lg font-black text-slate-900">${p.price}</span>
                       <button
                         onClick={() => addToCart(p)}
-                        className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-900 text-white hover:bg-[#991B1B] transition-all active:scale-90"
+                        className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-900 text-white hover:bg-[#F54900] transition-all active:scale-90"
                       >
                         <ShoppingCart size={18} />
                       </button>
@@ -151,7 +151,7 @@ export default function FeaturedTabs({ printers = [], accessories = [], loading 
 
         {/* View All */}
         <div className="mt-20 flex justify-center">
-          <Link to="/shop" className="group flex items-center gap-3 text-slate-400 font-bold uppercase text-[11px] tracking-[0.3em] hover:text-[#991B1B] transition-all">
+          <Link to="/shop" className="group flex items-center gap-3 text-slate-400 font-bold uppercase text-[11px] tracking-[0.3em] hover:text-[#F54900] transition-all">
             Browse Full Collection <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
           </Link>
         </div>

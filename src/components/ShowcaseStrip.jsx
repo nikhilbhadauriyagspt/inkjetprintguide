@@ -14,13 +14,13 @@ export default function ServiceHighlights() {
       id: 1,
       icon: Truck,
       title: "Global Shipping",
-      desc: "Worldwide delivery logistics."
+      desc: "Fast worldwide logistics."
     },
     {
       id: 2,
       icon: RefreshCcw,
       title: "Easy Returns",
-      desc: "7-day seamless replacement."
+      desc: "7-day seamless exchange."
     },
     {
       id: 3,
@@ -32,45 +32,41 @@ export default function ServiceHighlights() {
       id: 4,
       icon: Headphones,
       title: "Expert Help",
-      desc: "24/7 technical assistance."
+      desc: "24/7 technical support."
     },
     {
       id: 5,
       icon: Zap,
       title: "Fast Dispatch",
-      desc: "Same-day system deployment."
+      desc: "Same-day deployment."
     },
   ];
 
   return (
-    <div className="w-full bg-white border-b border-slate-50 py-12 md:py-16">
-      <div className="max-w-[1600px] mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-12 gap-x-8">
+    <div className="w-full bg-white border-t border-slate-50 py-16 md:py-20">
+      <div className="max-w-[1600px] mx-auto px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 divide-y lg:divide-y-0 lg:divide-x divide-slate-100 border border-slate-100 rounded-2xl overflow-hidden shadow-sm">
           {items.map((item, index) => (
             <motion.div
               key={item.id}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="flex flex-col items-center text-center group cursor-default"
+              className="p-8 md:p-10 flex flex-col items-center text-center group bg-white hover:bg-slate-50 transition-colors duration-500"
             >
-              <div className="mb-5 relative">
-                <div className="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-red-50 group-hover:text-[#991B1B] transition-colors duration-500">
-                  <item.icon size={22} strokeWidth={1.5} />
+              <div className="mb-6">
+                <div className="w-10 h-10 flex items-center justify-center text-slate-300 group-hover:text-[#F54900] transition-colors duration-500">
+                  <item.icon size={28} strokeWidth={1} />
                 </div>
-                {/* Minimalist dot indicator */}
-                <div className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-[#991B1B] scale-0 group-hover:scale-100 transition-transform duration-500 shadow-[0_0_8px_#991B1B]" />
               </div>
 
-              <h4 className="text-[14px] font-bold text-slate-900  mb-1 group-hover:text-[#991B1B] transition-colors">
+              <h4 className="text-sm font-bold text-slate-900 uppercase tracking-widest mb-2 group-hover:text-[#F54900] transition-colors">
                 {item.title}
               </h4>
-              <p className="text-[12px] text-slate-400 font-medium leading-relaxed">
+              <p className="text-[11px] text-slate-400 font-bold uppercase tracking-wider leading-relaxed">
                 {item.desc}
               </p>
-
-              <div className="mt-4 w-4 h-[2px] bg-slate-100 group-hover:w-8 group-hover:bg-[#991B1B] transition-all duration-500" />
             </motion.div>
           ))}
         </div>

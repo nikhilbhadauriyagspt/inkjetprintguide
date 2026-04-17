@@ -62,185 +62,153 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-white font-sans text-slate-900 pb-20">
-      <SEO title="Contact Us | My Printing Buddy" />
+      <SEO title="Contact | My Printer Land" />
 
-      {/* --- BREADCRUMBS --- */}
-      <div className="bg-white border-b border-slate-50 py-4">
-        <div className="max-w-[1400px] mx-auto px-6">
-          <nav className="flex items-center gap-2 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-            <Link to="/" className="hover:text-[#991B1B]">Home</Link>
-            <span className="opacity-30">/</span>
-            <span className="text-slate-600">Contact Node</span>
-          </nav>
-        </div>
-      </div>
+      {/* --- MINIMAL TECHNICAL HEADER --- */}
+      <section className="bg-slate-50 py-24 md:py-32 border-b border-slate-100 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '40px 40px' }}
+        />
 
-      {/* --- HERO SECTION WITH BLACK OVERLAY --- */}
-      <div className="relative py-20 md:py-28 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/banner/banner-8.jpg"
-            alt="Contact Background"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
-        </div>
-
-        <div className="max-w-[1400px] mx-auto px-6 relative z-10">
+        <div className="max-w-[1600px] mx-auto px-8 relative z-10">
           <div className="max-w-3xl">
-            <motion.div
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="flex items-center gap-2 mb-4"
-            >
-              <Zap size={14} className="text-[#991B1B]" fill="currentColor" />
-              <span className="text-white font-bold text-[10px] tracking-[0.3em] uppercase">Support Node</span>
-            </motion.div>
-            <motion.h1
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-3xl md:text-5xl font-bold text-white  mb-6 uppercase"
-            >
-              Get in touch with <br />our experts.
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-sm md:text-base text-white/80 font-medium leading-relaxed max-w-xl border-l border-[#991B1B] pl-4 uppercase "
-            >
+            <div className="flex items-center gap-3 mb-6">
+              <Zap size={14} className="text-[#F54900]" fill="currentColor" />
+              <span className="text-[10px] font-black text-[#F54900] uppercase tracking-[0.5em]">Support.Manifest</span>
+            </div>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-slate-900 leading-tight tracking-tighter">
+              Get in touch with <span className="text-slate-300">our experts.</span>
+            </h1>
+            <p className="mt-8 text-slate-500 text-lg md:text-xl font-medium leading-relaxed max-w-xl border-l border-slate-200 pl-6">
               Have specialized unit questions? Our team is ready to provide operational guidance and support for your environment.
-            </motion.p>
+            </p>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="max-w-[1400px] mx-auto px-6 py-12 md:py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <div className="max-w-[1600px] mx-auto px-8 py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
 
           {/* --- INFO COLUMN --- */}
-          <div className="lg:col-span-4 space-y-6">
-            <div className="bg-white p-8 border border-slate-50 rounded-2xl shadow-sm">
-              <h2 className="text-xl font-bold text-slate-900 mb-6 uppercase ">System Info</h2>
-
-              <div className="space-y-8">
-                <div className="flex gap-4 items-start group">
-                  <div className="w-10 h-10 bg-slate-50 text-slate-300 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-[#991B1B] group-hover:text-white transition-all">
-                    <Mail size={18} />
+          <div className="lg:col-span-4 space-y-10">
+            <div className="space-y-10">
+              <div>
+                <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 mb-8">Direct Registry</h4>
+                <div className="space-y-10">
+                  <div className="flex gap-6 items-start group">
+                    <div className="w-12 h-12 bg-slate-50 text-slate-300 rounded-xl flex items-center justify-center shrink-0 group-hover:text-[#F54900] transition-all">
+                      <Mail size={22} strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-[10px] text-slate-300 mb-2 uppercase tracking-widest leading-none">Email Support</h4>
+                      <p className="text-slate-900 text-base font-bold transition-colors">info@myprinterland.shop</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-bold text-[10px] text-slate-400 mb-1 uppercase tracking-widest">Email Support</h4>
-                    <p className="text-slate-900 text-[14px] font-bold hover:text-[#991B1B] transition-colors cursor-pointer">info@myprintingbuddy.shop</p>
+
+                  <div className="flex gap-6 items-start group">
+                    <div className="w-12 h-12 bg-slate-50 text-slate-300 rounded-xl flex items-center justify-center shrink-0 group-hover:text-[#F54900] transition-all">
+                      <MapPin size={22} strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-[10px] text-slate-300 mb-2 uppercase tracking-widest leading-none">Headquarters</h4>
+                      <p className="text-slate-900 text-[13px] font-medium leading-relaxed uppercase tracking-tight">
+                        110 N Main St, Livingston, MT 59047, United States
+
+                      </p>
+                    </div>
                   </div>
                 </div>
+              </div>
 
-                <div className="flex gap-4 items-start group">
-                  <div className="w-10 h-10 bg-slate-50 text-slate-300 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-[#991B1B] group-hover:text-white transition-all">
-                    <MapPin size={18} />
+              <div className="pt-10 border-t border-slate-50 space-y-8">
+                <div>
+                  <div className="flex items-center gap-3 text-[#F54900] mb-4">
+                    <Clock size={16} />
+                    <h4 className="font-bold text-[10px] uppercase tracking-widest">OPS Hours</h4>
                   </div>
-                  <div>
-                    <h4 className="font-bold text-[10px] text-slate-400 mb-1 uppercase tracking-widest">Headquarters</h4>
-                    <p className="text-slate-900 text-[14px] font-medium leading-relaxed uppercase ">
-                      2241 W I 44 Service Rd, <br />Oklahoma City, OK 73112, USA
-                    </p>
+                  <p className="text-slate-400 text-[11px] leading-relaxed font-bold uppercase tracking-wider">Mon - Fri: 9AM - 6PM (PST)</p>
+                </div>
+
+                <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100/50">
+                  <div className="flex items-center gap-3 mb-4 text-[#F54900]">
+                    <Headphones size={16} />
+                    <h4 className="font-bold text-[10px] uppercase tracking-widest">Priority Node</h4>
                   </div>
+                  <p className="text-slate-500 text-[11px] leading-relaxed font-medium uppercase tracking-tight">For urgent issues, include your unit manifest ID for prioritized assistance.</p>
                 </div>
               </div>
-            </div>
-
-            <div className="bg-slate-50 p-8 rounded-2xl">
-              <div className="flex items-center gap-3 text-[#991B1B] mb-4">
-                <Clock size={18} />
-                <h4 className="font-bold text-[11px] uppercase tracking-widest">OPS Hours</h4>
-              </div>
-              <p className="text-slate-500 text-[13px] leading-relaxed mb-6 font-medium uppercase ">Technical inquiry response time is typically under 2 hours during operations.</p>
-              <div className="text-slate-900 font-bold text-[12px] flex items-center gap-2 uppercase tracking-widest">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                Mon - Fri: 9AM - 6PM (PST)
-              </div>
-            </div>
-
-            <div className="bg-slate-900 p-8 rounded-2xl text-white shadow-xl shadow-slate-200/50">
-              <div className="flex items-center gap-3 mb-4 text-[#991B1B]">
-                <Headphones size={18} />
-                <h4 className="font-bold text-[11px] uppercase tracking-widest text-white">Technical Node</h4>
-              </div>
-              <p className="text-white/60 text-[13px] leading-relaxed font-medium uppercase ">For urgent system issues, please include your unit manifest ID for prioritized assistance.</p>
             </div>
           </div>
 
           {/* --- FORM COLUMN --- */}
           <div className="lg:col-span-8">
-            <div className="bg-white border border-slate-50 rounded-[32px] p-8 md:p-12 shadow-sm">
+            <div className="bg-white">
               <AnimatePresence mode="wait">
                 {status === 'success' ? (
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="text-center py-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-center py-20 bg-slate-50 rounded-[2.5rem] border border-slate-100"
                   >
-                    <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                      <CheckCircle2 size={32} />
+                    <div className="w-16 h-16 bg-white text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-8 shadow-sm">
+                      <CheckCircle2 size={32} strokeWidth={1.5} />
                     </div>
-                    <h2 className="text-2xl font-bold text-slate-900 mb-2 uppercase ">Transmission complete.</h2>
-                    <p className="text-slate-400 mb-10 font-medium uppercase  text-sm">Thank you. A system expert will initiate contact shortly.</p>
+                    <h2 className="text-3xl font-bold text-slate-900 mb-3 uppercase tracking-tighter">Transmission complete.</h2>
+                    <p className="text-slate-400 mb-10 font-medium uppercase tracking-widest text-xs">Thank you. A system expert will initiate contact shortly.</p>
                     <button
                       onClick={() => setStatus(null)}
-                      className="bg-slate-900 hover:bg-[#991B1B] text-white px-10 py-4 text-[11px] font-black uppercase tracking-[0.3em] rounded-2xl transition-all"
+                      className="text-[#F54900] font-black text-[10px] uppercase tracking-[0.4em] hover:underline"
                     >
                       New Transmission
                     </button>
                   </motion.div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-8">
-                    <div className="space-y-2">
-                      <h2 className="text-2xl font-bold text-slate-900 uppercase er ">Send Message.</h2>
-                      <p className="text-slate-400 text-[12px] font-bold uppercase tracking-widest">Expected response: 24 business hours.</p>
+                  <form onSubmit={handleSubmit} className="space-y-12">
+                    <div className="space-y-4">
+                      <h2 className="text-3xl font-bold text-slate-900 uppercase tracking-tighter">Send Message.</h2>
+                      <p className="text-slate-400 text-[10px] font-bold uppercase tracking-[0.3em]">Expected response: 24 business hours.</p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
                       <div className="space-y-2">
-                        <label className="text-[10px] font-black text-slate-300 uppercase tracking-widest ml-1">Identity</label>
+                        <label className="text-[10px] font-black text-slate-200 uppercase tracking-widest">Identity</label>
                         <input
                           required
                           type="text"
-                          placeholder="Name..."
+                          placeholder="Full Name"
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          className="w-full h-12 px-0 bg-transparent border-b border-slate-100 outline-none focus:border-[#991B1B] transition-all text-sm font-bold uppercase "
+                          className="w-full h-12 px-0 bg-transparent border-b border-slate-100 outline-none focus:border-[#F54900] transition-all text-[13px] font-bold uppercase placeholder:text-slate-200"
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-[10px] font-black text-slate-300 uppercase tracking-widest ml-1">Electronic Mail</label>
+                        <label className="text-[10px] font-black text-slate-200 uppercase tracking-widest">Electronic Mail</label>
                         <input
                           required
                           type="email"
-                          placeholder="Email Address..."
+                          placeholder="Email Address"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="w-full h-12 px-0 bg-transparent border-b border-slate-100 outline-none focus:border-[#991B1B] transition-all text-sm font-bold uppercase "
+                          className="w-full h-12 px-0 bg-transparent border-b border-slate-100 outline-none focus:border-[#F54900] transition-all text-[13px] font-bold uppercase placeholder:text-slate-200"
                         />
                       </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="space-y-2">
-                        <label className="text-[10px] font-black text-slate-300 uppercase tracking-widest ml-1">Contact Number</label>
+                        <label className="text-[10px] font-black text-slate-200 uppercase tracking-widest">Contact Number</label>
                         <input
                           type="tel"
                           placeholder="+1 (000) 000-0000"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className="w-full h-12 px-0 bg-transparent border-b border-slate-100 outline-none focus:border-[#991B1B] transition-all text-sm font-bold uppercase "
+                          className="w-full h-12 px-0 bg-transparent border-b border-slate-100 outline-none focus:border-[#F54900] transition-all text-[13px] font-bold uppercase placeholder:text-slate-200"
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-[10px] font-black text-slate-300 uppercase tracking-widest ml-1">Subject Protocol</label>
+                        <label className="text-[10px] font-black text-slate-200 uppercase tracking-widest">Subject Protocol</label>
                         <div className="relative">
                           <select
                             value={formData.subject}
                             onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                            className="w-full h-12 px-0 bg-transparent border-b border-slate-100 outline-none focus:border-[#991B1B] appearance-none cursor-pointer text-sm font-bold uppercase  transition-all"
+                            className="w-full h-12 px-0 bg-transparent border-b border-slate-100 outline-none focus:border-[#F54900] appearance-none cursor-pointer text-[13px] font-bold uppercase transition-all"
                           >
                             <option>General Inquiry</option>
                             <option>Technical Support</option>
@@ -253,21 +221,21 @@ export default function Contact() {
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-slate-300 uppercase tracking-widest ml-1">Communication Detail</label>
+                      <label className="text-[10px] font-black text-slate-200 uppercase tracking-widest">Communication Detail</label>
                       <textarea
                         required
                         rows="4"
                         placeholder="Inquiry Details..."
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className="w-full py-4 bg-transparent border-b border-slate-100 outline-none focus:border-[#991B1B] transition-all resize-none text-sm font-bold uppercase "
+                        className="w-full py-4 bg-transparent border-b border-slate-100 outline-none focus:border-[#F54900] transition-all resize-none text-[13px] font-bold uppercase placeholder:text-slate-200"
                       ></textarea>
                     </div>
 
-                    <div className="pt-4">
+                    <div className="pt-6">
                       <button
                         disabled={loading}
-                        className="w-full md:w-auto min-w-[240px] h-14 bg-slate-900 hover:bg-[#991B1B] text-white rounded-2xl font-black text-[11px] uppercase tracking-[0.3em] shadow-xl shadow-slate-200/50 disabled:opacity-50 transition-all active:scale-95 flex items-center justify-center gap-3"
+                        className="h-14 px-12 bg-slate-900 text-white rounded-2xl font-black text-[10px] uppercase tracking-[0.4em] transition-all active:scale-95 disabled:opacity-30 hover:bg-[#F54900] flex items-center gap-4"
                       >
                         {loading ? <Loader2 className="animate-spin" size={18} /> : (
                           <>
@@ -279,10 +247,7 @@ export default function Contact() {
                     </div>
 
                     {status === 'error' && (
-                      <div className="text-red-600 text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2">
-                        <div className="w-1 h-1 rounded-full bg-red-600" />
-                        Transmission Error. Please retry.
-                      </div>
+                      <p className="text-red-600 text-[10px] font-black uppercase tracking-[0.2em]">Transmission Error. Please retry.</p>
                     )}
                   </form>
                 )}

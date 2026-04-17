@@ -4,9 +4,10 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
 
-  "/banner/new-banner/9.png",
-  "/banner/new-banner/8.png",
   "/banner/new-banner/11.png",
+
+  "/banner/new-banner/8.png",
+  "/banner/new-banner/13.png",
 ];
 
 export default function Hero() {
@@ -22,7 +23,6 @@ export default function Hero() {
     setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
-  // Auto-play logic
   useEffect(() => {
     if (!isAutoPlaying) {
       const timer = setTimeout(() => setIsAutoPlaying(true), 10000);
@@ -35,34 +35,47 @@ export default function Hero() {
   const sliceVariants = {
     enter: (i) => ({
       y: i % 2 === 0 ? "-100%" : "100%",
+      opacity: 0
     }),
     center: {
       y: 0,
+      opacity: 1,
       transition: {
-        duration: 1.2,
+        duration: 0.8,
         ease: [0.22, 1, 0.36, 1]
       }
     },
     exit: (i) => ({
       y: i % 2 === 0 ? "100%" : "-100%",
+      opacity: 0,
       transition: {
-        duration: 1.2,
+        duration: 0.8,
         ease: [0.22, 1, 0.36, 1]
       }
     })
   };
 
   return (
-    <div className="relative w-full h-[450px] md:h-[650px] lg:h-[800px] bg-black overflow-hidden group">
+    <div className="relative w-full h-[400px] md:h-[600px] lg:h-[800px] bg-black overflow-hidden group">
 
-      {/* Unique Background Blur (Adds Depth) */}
+      {/* Background Blur for Depth */}
       <div className="absolute inset-0 z-0">
-        <img src={slides[current]} className="w-full h-full object-cover opacity-30 blur-2xl scale-110" alt="" />
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={current}
+            src={slides[current]}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.3 }}
+            exit={{ opacity: 0 }}
+            className="w-full h-full object-cover blur-2xl scale-110"
+            alt=""
+          />
+        </AnimatePresence>
       </div>
 
       <AnimatePresence initial={false}>
         <div key={current} className="absolute inset-0 z-10 flex">
-          {[...Array(3)].map((_, i) => (
+          {[...Array(6)].map((_, i) => (
             <motion.div
               key={`${current}-${i}`}
               custom={i}
@@ -72,80 +85,54 @@ export default function Hero() {
               exit="exit"
               className="relative h-full flex-1 overflow-hidden"
               style={{
-                // Seamless fix: remove borders and add tiny overlap
-                marginLeft: i > 0 ? '-1px' : 0,
-                boxShadow: "none"
+                marginLeft: i > 0 ? '-1px' : 0
               }}
             >
               <motion.div
                 className="absolute inset-0 h-full"
                 style={{
-                  width: '300.5%', // Slightly larger to cover gaps
+                  width: '600.5%',
                   left: `-${i * 100}%`,
                   backgroundImage: `url(${slides[current]})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center'
                 }}
-                animate={{ scale: [1.05, 1] }}
-                transition={{ duration: 2 }}
               />
             </motion.div>
           ))}
         </div>
       </AnimatePresence>
 
-      {/* Technical Frame Overlay */}
-      <div className="absolute inset-0 z-20 pointer-events-none">
-        <div className="absolute top-8 left-8 w-12 h-12 border-t border-l border-white/20"></div>
-        <div className="absolute top-8 right-8 w-12 h-12 border-t border-r border-white/20"></div>
-        <div className="absolute bottom-8 left-8 w-12 h-12 border-b border-l border-white/20"></div>
-        <div className="absolute bottom-8 right-8 w-12 h-12 border-b border-r border-white/20"></div>
-
-        {/* Subtle Scanning Lines */}
-        <div className="absolute inset-0 opacity-[0.03]"
-          style={{ backgroundImage: 'repeating-linear-gradient(0deg, #fff, #fff 1px, transparent 1px, transparent 2px)', backgroundSize: '100% 4px' }}>
-        </div>
-      </div>
-
-      {/* Navigation Controls */}
-      <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-6 z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+      {/* Modern Navigation Buttons */}
+      <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-8 z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         <button
           onClick={prevSlide}
-          className="w-14 h-14 bg-black/40 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-[#991B1B] transition-all rounded-full"
+          className="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-orange-600 hover:border-orange-600 transition-all shadow-xl"
         >
-          <ChevronLeft size={28} />
+          <ChevronLeft size={30} />
         </button>
         <button
           onClick={() => { setIsAutoPlaying(false); nextSlide(); }}
-          className="w-14 h-14 bg-black/40 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-[#991B1B] transition-all rounded-full"
+          className="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-orange-600 hover:border-orange-600 transition-all shadow-xl"
         >
-          <ChevronRight size={28} />
+          <ChevronRight size={30} />
         </button>
       </div>
 
-      {/* Modern Index Dots */}
+      {/* Minimalist Indicators */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-4 z-30">
-        <div className="flex gap-2">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => { setIsAutoPlaying(false); setCurrent(i); }}
-              className={`h-1 rounded-full transition-all duration-500 ${current === i ? 'w-12 bg-[#991B1B]' : 'w-3 bg-white/20'}`}
-            />
-          ))}
-        </div>
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => { setIsAutoPlaying(false); setCurrent(i); }}
+            className="group relative h-1 flex items-center"
+          >
+            <div className={`h-full rounded-full transition-all duration-500 ${current === i ? 'w-12 bg-orange-600' : 'w-4 bg-white/30 group-hover:bg-white/50'}`} />
+          </button>
+        ))}
       </div>
 
-      {/* Bottom Progress Bar */}
-      <div className="absolute bottom-0 left-0 w-full h-[3px] bg-white/5 z-30">
-        <motion.div
-          key={current}
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 5, ease: "linear" }}
-          className="h-full bg-[#991B1B] origin-left shadow-[0_0_10px_rgba(153,27,27,0.8)]"
-        />
-      </div>
+
 
     </div>
   );

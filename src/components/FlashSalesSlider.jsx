@@ -118,7 +118,7 @@ export default function FlashSalesSlider() {
                   {/* ADD TO CART */}
                   <button
                     onClick={() => addToCart(product, product.quantity)}
-                    className="flex-1 h-9 bg-[#991B1B] text-white rounded-full flex items-center justify-center gap-2 text-[11px] font-bold uppercase tracking-wider hover:bg-[#991B1B]-hover transition-all shadow-lg shadow-primary/10"
+                    className="flex-1 h-9 bg-[#F54900] text-white rounded-full flex items-center justify-center gap-2 text-[11px] font-bold uppercase tracking-wider hover:bg-[#F54900]-hover transition-all shadow-lg shadow-primary/10"
                   >
                     <ShoppingCart size={13} />
                     Add

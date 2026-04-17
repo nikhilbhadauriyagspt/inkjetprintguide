@@ -33,21 +33,21 @@ export default function CategoryShowcase({ title, products = [], link, discount 
         {/* Minimalist Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="max-w-xl">
-            <span className="text-[11px] font-bold text-[#991B1B] uppercase tracking-[0.3em] mb-3 block">Featured Series</span>
+            <span className="text-[11px] font-bold text-[#F54900] uppercase tracking-[0.3em] mb-3 block">Featured Series</span>
             <h2 className="text-3xl md:text-5xl font-bold text-slate-900  lowercase">
               {title}.
             </h2>
           </div>
 
           <div className="flex items-center gap-6">
-            <Link to={link} className="text-[12px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#991B1B] transition-colors flex items-center gap-2 group">
+            <Link to={link} className="text-[12px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#F54900] transition-colors flex items-center gap-2 group">
               View All <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <div className="flex items-center gap-2">
-              <button className={`${swiperId}-prev w-10 h-10 rounded-full border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-slate-50 hover:text-[#991B1B] transition-all`}>
+              <button className={`${swiperId}-prev w-10 h-10 rounded-full border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-slate-50 hover:text-[#F54900] transition-all`}>
                 <ChevronLeft size={20} />
               </button>
-              <button className={`${swiperId}-next w-10 h-10 rounded-full border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-slate-50 hover:text-[#991B1B] transition-all`}>
+              <button className={`${swiperId}-next w-10 h-10 rounded-full border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-slate-50 hover:text-[#F54900] transition-all`}>
                 <ChevronRight size={20} />
               </button>
             </div>
@@ -89,14 +89,14 @@ export default function CategoryShowcase({ title, products = [], link, discount 
                   {/* Heart Icon - Minimal */}
                   <button
                     onClick={() => toggleWishlist(p)}
-                    className={`absolute top-4 right-4 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md shadow-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 ${isInWishlist(p.id) ? "text-[#991B1B] opacity-100" : "text-slate-300 hover:text-[#991B1B]"}`}
+                    className={`absolute top-4 right-4 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md shadow-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 ${isInWishlist(p.id) ? "text-[#F54900] opacity-100" : "text-slate-300 hover:text-[#F54900]"}`}
                   >
                     <Heart size={18} fill={isInWishlist(p.id) ? "currentColor" : "none"} />
                   </button>
 
                   {/* Discount Badge */}
                   {discount > 0 && (
-                    <div className="absolute top-4 left-4 bg-[#991B1B] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase er">
+                    <div className="absolute top-4 left-4 bg-[#F54900] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase er">
                       -{discount}%
                     </div>
                   )}
@@ -105,7 +105,7 @@ export default function CategoryShowcase({ title, products = [], link, discount 
                 {/* Content Area */}
                 <div className="flex flex-col flex-1 px-2">
                   <Link to={`/product/${p.slug}`}>
-                    <h4 className="text-[15px] font-bold text-slate-800 leading-snug line-clamp-2 hover:text-[#991B1B] transition-colors mb-2">
+                    <h4 className="text-[15px] font-bold text-slate-800 leading-snug line-clamp-2 hover:text-[#F54900] transition-colors mb-2">
                       {p.name}
                     </h4>
                   </Link>
@@ -122,7 +122,7 @@ export default function CategoryShowcase({ title, products = [], link, discount 
 
                     <button
                       onClick={() => addToCart(p)}
-                      className="w-full py-3 bg-slate-900 text-white rounded-xl text-[12px] font-bold uppercase tracking-widest hover:bg-[#991B1B] transition-all flex items-center justify-center gap-2 group/btn active:scale-95"
+                      className="w-full py-3 bg-slate-900 text-white rounded-xl text-[12px] font-bold uppercase tracking-widest hover:bg-[#F54900] transition-all flex items-center justify-center gap-2 group/btn active:scale-95"
                     >
                       <ShoppingCart size={16} className="group-hover/btn:-translate-y-0.5 transition-transform" />
                       Add To Manifest

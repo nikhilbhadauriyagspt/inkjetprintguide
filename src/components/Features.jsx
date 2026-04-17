@@ -12,25 +12,25 @@ const features = [
     icon: Award,
     title: "Supply Partner",
     desc: "Reliable Printer Inventory",
-    accent: "bg-blue-50 text-[#991B1B]"
+    accent: "bg-blue-50 text-[#F54900]"
   },
   {
     icon: Truck,
     title: "Express Logistics",
     desc: "Fast Global Priority Delivery",
-    accent: "bg-blue-50 text-[#991B1B]"
+    accent: "bg-blue-50 text-[#F54900]"
   },
   {
     icon: ShieldCheck,
     title: "Elite Protection",
     desc: "Comprehensive Warranty",
-    accent: "bg-blue-50 text-[#991B1B]"
+    accent: "bg-blue-50 text-[#F54900]"
   },
   {
     icon: Headphones,
     title: "Expert Support",
     desc: "24/7 Dedicated Consultation",
-    accent: "bg-blue-50 text-[#991B1B]"
+    accent: "bg-blue-50 text-[#F54900]"
   }
 ];
 
@@ -46,7 +46,7 @@ export default function Features() {
             <span className="text-[10px] font-bold text-blue-900 uppercase tracking-[0.4em]">The Standard</span>
           </div>
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 ">
-            Strategic <span className="text-[#991B1B]  font-light">Performance.</span>
+            Strategic <span className="text-[#F54900]  font-light">Performance.</span>
           </h2>
         </div>
 
@@ -61,13 +61,13 @@ export default function Features() {
               className="flex items-start gap-5 group"
             >
               {/* Minimal Icon Hub */}
-              <div className={`h-12 w-12 shrink-0 rounded-2xl border border-blue-100/50 flex items-center justify-center transition-all duration-500 group-hover:bg-[#991B1B] group-hover:text-white group-hover:border-transparent group-hover:shadow-lg group-hover:shadow-blue-900/10 text-[#991B1B] bg-white`}>
+              <div className={`h-12 w-12 shrink-0 rounded-2xl border border-blue-100/50 flex items-center justify-center transition-all duration-500 group-hover:bg-[#F54900] group-hover:text-white group-hover:border-transparent group-hover:shadow-lg group-hover:shadow-blue-900/10 text-[#F54900] bg-white`}>
                 <item.icon size={20} strokeWidth={1.5} />
               </div>
 
               {/* Precise Typography */}
               <div className="space-y-1.5 py-1">
-                <h3 className="text-[13px] font-bold text-slate-900 uppercase tracking-wider group-hover:text-[#991B1B] transition-colors">
+                <h3 className="text-[13px] font-bold text-slate-900 uppercase tracking-wider group-hover:text-[#F54900] transition-colors">
                   {item.title}
                 </h3>
                 <p className="text-[11px] font-medium text-slate-500 leading-tight">
@@ -75,7 +75,7 @@ export default function Features() {
                 </p>
 
                 {/* Micro-interaction Line */}
-                <div className="h-0.5 w-4 bg-blue-200 rounded-full transition-all duration-500 group-hover:w-8 group-hover:bg-[#991B1B]" />
+                <div className="h-0.5 w-4 bg-blue-200 rounded-full transition-all duration-500 group-hover:w-8 group-hover:bg-[#F54900]" />
               </div>
             </motion.div>
           ))}

@@ -3,13 +3,13 @@
 export default function SEO({ title, description, keywords, schemaType = "Website" }) {
   useEffect(() => {
     // Update Title - Avoid doubling the brand name if it's already in the prop
-    const baseTitle = "My Printing Buddy";
+    const baseTitle = "My Printer Land";
     const fullTitle = title && title.includes(baseTitle) ? title : (title ? `${title} | ${baseTitle}` : baseTitle);
     document.title = fullTitle;
 
     // Update Description
     const metaDescription = document.querySelector('meta[name="description"]');
-    const defaultDesc = "My Printing Buddy is located in Ashburn, Virginia, offering high-performance printers, ink, toner, and nationwide shipping.";
+    const defaultDesc = "My Printer Land is located in Ashburn, Virginia, offering high-performance printers, ink, toner, and nationwide shipping.";
     const finalDesc = description || defaultDesc;
     if (metaDescription) {
       metaDescription.setAttribute('content', finalDesc);
@@ -45,22 +45,22 @@ export default function SEO({ title, description, keywords, schemaType = "Websit
     const schemaData = {
       "@context": "https://schema.org",
       "@type": schemaType === "Product" ? "Product" : "Organization",
-      "name": "My Printing Buddy",
-      "url": "https://myprintingbuddy.shop",
-      "logo": "https://myprintingbuddy.shop/logo/logo.png",
+      "name": "My Printer Land",
+      "url": "https://myprinterland.shop",
+      "logo": "https://myprinterland.shop/logo/logo.png",
       "description": finalDesc,
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "2241 W I 44 Service Rd",
-        "addressLocality": "Oklahoma City",
-        "addressRegion": "OK",
-        "postalCode": "73112",
+        "streetAddress": "110 N Main St, Livingston",
+        "addressLocality": "Livingston City",
+        "addressRegion": "MT",
+        "postalCode": "59047",
         "addressCountry": "US"
       },
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "customer service",
-        "email": "info@myprintingbuddy.shop"
+        "email": "info@myprinterland.shop"
       }
     };
 

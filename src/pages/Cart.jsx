@@ -27,7 +27,7 @@ export default function Cart() {
         <ShoppingCart size={64} className="text-slate-200 mb-6" />
         <h2 className="text-2xl font-bold text-slate-900 mb-2">Your cart is empty</h2>
         <p className="text-slate-500 mb-8">Add some items to your cart to see them here.</p>
-        <Link to="/shop" className="px-8 py-3 bg-slate-900 text-white font-bold rounded-lg hover:bg-[#991B1B] transition-all">
+        <Link to="/shop" className="px-8 py-3 bg-slate-900 text-white font-bold rounded-lg hover:bg-[#F54900] transition-all">
           Browse Products
         </Link>
       </div>
@@ -36,7 +36,7 @@ export default function Cart() {
 
   return (
     <div className="min-h-screen bg-white font-sans text-slate-900 pb-20">
-      <SEO title="Shopping Cart | My Printing Buddy" />
+      <SEO title="Shopping Cart | My Printer Land" />
 
       <div className="max-w-7xl mx-auto px-6 py-12">
         <h1 className="text-3xl font-bold mb-12 uppercase  ">Shopping Cart</h1>
@@ -56,14 +56,14 @@ export default function Cart() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between gap-4 mb-4">
-                    <Link to={`/product/${item.slug}`} className="font-bold text-slate-900 hover:text-[#991B1B] line-clamp-1 uppercase ">{item.name}</Link>
+                    <Link to={`/product/${item.slug}`} className="font-bold text-slate-900 hover:text-[#F54900] line-clamp-1 uppercase ">{item.name}</Link>
                     <button onClick={() => removeFromCart(item.id)} className="text-slate-300 hover:text-red-500 transition-colors"><Trash2 size={18} /></button>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4 bg-slate-50 border border-slate-100 rounded-lg px-3 py-1">
-                      <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="text-slate-400 hover:text-[#991B1B]"><Minus size={14} strokeWidth={3} /></button>
+                      <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="text-slate-400 hover:text-[#F54900]"><Minus size={14} strokeWidth={3} /></button>
                       <span className="font-bold text-sm text-slate-900">{item.quantity}</span>
-                      <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="text-slate-400 hover:text-[#991B1B]"><Plus size={14} strokeWidth={3} /></button>
+                      <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="text-slate-400 hover:text-[#F54900]"><Plus size={14} strokeWidth={3} /></button>
                     </div>
                     <span className="font-bold text-lg text-slate-900">${Number(item.price).toLocaleString()}</span>
                   </div>
@@ -71,7 +71,7 @@ export default function Cart() {
               </div>
             ))}
 
-            <Link to="/shop" className="inline-flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-[#991B1B] pt-4 transition-all">
+            <Link to="/shop" className="inline-flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-[#F54900] pt-4 transition-all">
               <ChevronLeft size={16} /> Continue Shopping
             </Link>
           </div>
@@ -94,7 +94,7 @@ export default function Cart() {
                   <span className="font-bold text-2xl text-slate-900">${total.toLocaleString()}</span>
                 </div>
               </div>
-              <Link to="/checkout" className="w-full h-14 bg-slate-900 text-white flex items-center justify-center rounded-xl font-bold uppercase tracking-widest hover:bg-[#991B1B] transition-all shadow-lg shadow-slate-200/50 hover:shadow-red-900/20">
+              <Link to="/checkout" className="w-full h-14 bg-slate-900 text-white flex items-center justify-center rounded-xl font-bold uppercase tracking-widest hover:bg-[#F54900] transition-all shadow-lg shadow-slate-200/50 hover:shadow-red-900/20">
                 Checkout
               </Link>
             </div>
