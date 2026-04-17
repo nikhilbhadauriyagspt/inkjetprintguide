@@ -97,141 +97,20 @@ export default function Header() {
 
   return (
     <>
-
-
-      {/* Brand Section with Logo in Middle */}
-      <div className={`w-full bg-white transition-all duration-300 border-b border-slate-100 ${isSticky ? 'hidden' : 'block'}`}>
-        <div className="max-w-[1800px] mx-auto px-8 py-8">
-          <div className="flex items-center justify-around gap-10">
-
-            {/* Left Categories */}
-            <div className="hidden lg:flex items-center gap-10 flex-1 justify-start">
-              {isCategoriesLoading ? (
-                [...Array(4)].map((_, i) => (
-                  <div key={i} className="flex flex-col items-center gap-3 animate-pulse">
-                    <div className="w-16 h-14 bg-slate-50 rounded-lg" />
-                    <div className="h-2 w-12 bg-slate-50 rounded" />
-                  </div>
-                ))
-              ) : (
-                categories.slice(0, 4).map((cat) => (
-                  <Link
-                    key={cat.id}
-                    to={`/shop?category=${cat.slug}`}
-                    className="flex flex-col items-center gap-3 group"
-                  >
-                    <div className="w-18 flex items-center justify-center">
-                      <img
-                        src={`/category/${cat.slug}.png`}
-                        alt={cat.name}
-                        className="w-full h-16 object-contain"
-                        onError={(e) => e.target.src = '/logo/fabicon.png'}
-                      />
-                    </div>
-                    <span className="text-xs text-slate-600 group-hover:text-orange-600 font-medium text-center leading-tight">
-                      {cat.name}
-                    </span>
-                  </Link>
-                ))
-              )}
-            </div>
-
-            {/* Center Logo */}
-            <Link to="/" className="shrink-0 px-12">
-              <img src="/logo/logo.png" alt="Logo" className="h-[90px] object-contain" />
-            </Link>
-
-            {/* Right Categories */}
-            <div className="hidden lg:flex items-center gap-10 flex-1 justify-end">
-              {isCategoriesLoading ? (
-                [...Array(4)].map((_, i) => (
-                  <div key={i} className="flex flex-col items-center gap-3 animate-pulse">
-                    <div className="w-16 h-14 bg-slate-50 rounded-lg" />
-                    <div className="h-2 w-12 bg-slate-50 rounded" />
-                  </div>
-                ))
-              ) : (
-                categories.slice(4, 8).map((cat) => (
-                  <Link
-                    key={cat.id}
-                    to={`/shop?category=${cat.slug}`}
-                    className="flex flex-col items-center gap-3 group"
-                  >
-                    <div className="w-18 flex items-center justify-center">
-                      <img
-                        src={`/category/${cat.slug}.png`}
-                        alt={cat.name}
-                        className="w-full h-16 object-contain"
-                        onError={(e) => e.target.src = '/logo/fabicon.png'}
-                      />
-                    </div>
-                    <span className="text-xs text-slate-600 group-hover:text-orange-600 font-medium text-center leading-tight">
-                      {cat.name}
-                    </span>
-                  </Link>
-                ))
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Header Bar - Simple & Flat */}
-      <header className={`sticky top-0 z-[1000] bg-white border-b border-slate-200 transition-all duration-300 ${isSticky ? 'shadow-sm' : ''}`}>
+      {/* Simplified Header */}
+      <header className={`sticky top-0 z-[1000] bg-white border-b border-slate-200 transition-all duration-300 ${isSticky ? 'shadow-sm py-2' : 'py-6'}`}>
         <div className="max-w-[1800px] mx-auto px-8">
-          <div className="h-16 flex items-center justify-between gap-8">
+          <div className="h-16 flex items-center justify-between gap-12">
 
-            {/* Categories Button */}
-            <div
-              className="relative hidden md:block"
-              onMouseEnter={() => setIsCategoryOpen(true)}
-              onMouseLeave={() => setIsCategoryOpen(false)}
-            >
-              <button className="flex items-center gap-2 text-sm font-medium text-slate-700 bg-slate-100 px-4 py-2 rounded-lg hover:bg-orange-600 hover:text-white transition-all duration-300">
-                <LayoutGrid size={18} />
-                All Categories
-                <ChevronDown size={16} className={`transition-transform ${isCategoryOpen ? 'rotate-180' : ''}`} />
-              </button>
-
-              <AnimatePresence>
-                {isCategoryOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    className="absolute top-full left-0 mt-2 bg-white border border-slate-200 shadow-lg rounded-xl p-6 w-[620px] z-[1100]"
-                  >
-                    <div className="grid grid-cols-4 gap-6">
-                      {categories.map(cat => (
-                        <Link
-                          key={cat.id}
-                          to={`/shop?category=${cat.slug}`}
-                          className="flex flex-col items-center gap-3 hover:bg-slate-50 p-3 rounded-lg transition-all"
-                        >
-                          <div className="w-14 h-14 flex items-center justify-center">
-                            <img
-                              src={`/category/${cat.slug}.png`}
-                              alt={cat.name}
-                              className="w-12 h-12 object-contain"
-                              onError={(e) => e.target.src = '/logo/fabicon.png'}
-                            />
-                          </div>
-                          <span className="text-xs text-slate-600 text-center font-medium">{cat.name}</span>
-                        </Link>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+            {/* Left Section: Large Logo */}
+            <div className="shrink-0">
+              <Link to="/">
+                <img src="/logo/logo.png" alt="Logo" className={`${isSticky ? 'h-12' : 'h-20'} object-contain transition-all duration-300`} />
+              </Link>
             </div>
 
-            {/* Sticky Logo (visible only when sticky) */}
-            <Link to="/" className={`transition-all ${isSticky ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-              <img src="/logo/logo.png" alt="Logo" className="h-14 object-contain" />
-            </Link>
-
-            {/* Main Navigation */}
-            <nav className="hidden xl:flex items-center gap-8 text-sm font-medium text-slate-600">
+            {/* Middle Section: Main Navigation */}
+            <nav className="hidden xl:flex items-center gap-10 text-sm font-medium text-slate-600">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
@@ -243,8 +122,8 @@ export default function Header() {
               ))}
             </nav>
 
-            {/* Search Bar */}
-            <div className="flex-1 max-w-md relative hidden lg:block" ref={searchRef}>
+            {/* Right Section: Search & Actions */}
+            <div className="flex-1 max-w-xl relative hidden lg:block" ref={searchRef}>
               <div className={`flex items-center bg-slate-50 border border-slate-200 rounded-full pl-5 pr-1 py-1 transition-all ${isSearchFocused ? 'bg-white border-orange-300' : ''}`}>
                 <Search size={18} className="text-slate-400 mr-3" />
                 <input
@@ -302,15 +181,13 @@ export default function Header() {
               </AnimatePresence>
             </div>
 
-            {/* Right Actions */}
+            {/* Far Right: Actions */}
             <div className="flex items-center gap-4">
-              {/* Wishlist */}
               <Link to="/wishlist" className="flex items-center gap-2 px-3 py-2 bg-slate-50 rounded-full text-slate-600 hover:text-orange-600 transition-colors">
                 <Heart size={20} />
                 <span className="text-sm font-medium hidden xl:block">Wishlist</span>
               </Link>
 
-              {/* Account */}
               <div className="relative" ref={accountRef}>
                 <button
                   onMouseEnter={() => setIsAccountOpen(true)}
@@ -348,7 +225,6 @@ export default function Header() {
                 </AnimatePresence>
               </div>
 
-              {/* Cart */}
               <button
                 onClick={openCartDrawer}
                 className="flex items-center gap-2 px-3 py-2 bg-orange-600 text-white rounded-full hover:bg-orange-700 transition-colors relative"

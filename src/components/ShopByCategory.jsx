@@ -104,9 +104,7 @@ export default function ShopByCategory({ categories = [], loading = false }) {
               </div>
 
               {/* Background Decorative Text - More Subtle */}
-              <div className="absolute top-1/2 -left-8 -translate-y-1/2 -rotate-90 pointer-events-none opacity-[0.02] whitespace-nowrap">
-                <span className="text-7xl font-bold text-slate-900 uppercase tracking-widest">{cat.name}</span>
-              </div>
+
             </motion.div>
           ))}
         </div>
