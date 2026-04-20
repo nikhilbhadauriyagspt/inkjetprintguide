@@ -107,16 +107,6 @@ export default function Contact() {
                     </p>
                   </div>
                 </div>
-
-                <div className="flex gap-6 items-start group">
-                  <div className="w-14 h-14 bg-white border border-slate-100 shadow-sm text-[#2f5cab] rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-[#2f5cab] group-hover:text-white transition-all">
-                    <Phone size={24} strokeWidth={2} />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-slate-400 text-[12px] uppercase tracking-widest mb-1">Call Us</h4>
-                    <p className="text-slate-900 text-lg font-bold transition-colors">+1 (XXX) XXX-XXXX</p>
-                  </div>
-                </div>
               </div>
             </div>
 
