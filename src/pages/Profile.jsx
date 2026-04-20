@@ -125,7 +125,7 @@ export default function Profile() {
 
   return (
     <div className="bg-[#F8FAFC] min-h-screen font-['Rubik'] text-[#F54900] pb-20">
-      <SEO title="Your Account | My Printer Land" />
+      <SEO title="Your Account | Print Mora" />
 
       {/* --- PAGE HEADER --- */}
       <div className="bg-white border-b border-gray-200 py-8 md:py-12 mb-12 shadow-sm">

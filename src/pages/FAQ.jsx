@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SEO from '@/components/SEO';
-import { ChevronDown, Search, HelpCircle, ArrowRight, Zap } from 'lucide-react';
+import { ChevronDown, Search, ArrowRight, HelpCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const faqData = [
@@ -49,53 +49,63 @@ export default function FAQ() {
 
   return (
     <div className="bg-white min-h-screen font-sans text-slate-900 pb-20">
-      <SEO title="FAQ | My Printer Land" />
+      <SEO title="FAQ | Print Mora" />
 
-      {/* --- MINIMAL TECHNICAL HEADER --- */}
-      <section className="bg-slate-50 py-24 md:py-32 border-b border-slate-100 relative overflow-hidden text-center">
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
-          style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '40px 40px' }}
-        />
-
-        <div className="max-w-[1600px] mx-auto px-8 relative z-10 flex flex-col items-center">
-          <div className="flex items-center gap-3 mb-6">
-            <Zap size={14} className="text-[#F54900]" fill="currentColor" />
-            <span className="text-[10px] font-black text-[#F54900] uppercase tracking-[0.5em]">Help.Center</span>
+      {/* --- HERO SECTION --- */}
+      <section className="bg-[#f8faff] py-20 md:py-28 relative overflow-hidden">
+        <div className="max-w-[1800px] mx-auto px-4 md:px-10 relative z-10 flex flex-col items-center text-center">
+          <div className="mb-6">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#2f5cab] leading-tight">
+              Frequently Asked Questions
+            </h1>
+            <p className="mt-4 text-slate-500 text-lg md:text-xl max-w-2xl mx-auto font-medium">
+              Find answers to common questions about our products, shipping, and services.
+            </p>
           </div>
-          <h1 className="text-4xl md:text-6xl font-light text-slate-900 leading-tight tracking-tighter">
-            How can we <span className="text-slate-300">assist you?</span>
-          </h1>
 
-          <div className="mt-12 w-full max-w-xl relative group">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-[#F54900] transition-colors" size={18} />
+          <div className="mt-10 w-full max-w-2xl relative group">
+            <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#2f5cab] transition-colors" size={20} />
             <input
               type="text"
               placeholder="Search for solutions..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full h-12 pl-12 pr-6 bg-white border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-[#F54900]/5 text-slate-900 text-sm shadow-sm transition-all"
+              className="w-full h-16 pl-14 pr-8 bg-white border border-slate-200 rounded-full outline-none focus:ring-4 focus:ring-[#2f5cab]/5 focus:border-[#2f5cab] text-slate-900 text-[16px] shadow-sm transition-all placeholder:text-slate-400 font-medium"
             />
           </div>
         </div>
       </section>
 
-      <div className="max-w-[1400px] mx-auto px-8 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
+      <div className="max-w-[1800px] mx-auto px-4 md:px-10 py-16 md:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-20 items-start">
 
           {/* --- SIDEBAR --- */}
           <div className="hidden lg:block lg:col-span-3 sticky top-32">
-            <div className="space-y-10">
-              <h3 className="text-[10px] font-black text-slate-300 uppercase tracking-[0.4em] mb-8">Categories</h3>
-              <ul className="space-y-4">
+            <div className="space-y-8">
+              <h3 className="text-[12px] font-bold text-slate-400 uppercase tracking-widest mb-6">Explore Categories</h3>
+              <nav className="flex flex-col gap-2">
                 {faqData.map((cat, idx) => (
-                  <li key={idx}>
-                    <a href={`#cat-${idx}`} className="text-[12px] font-bold text-slate-400 hover:text-[#F54900] transition-all flex items-center gap-3 group uppercase tracking-widest">
-                      <div className="w-1.5 h-1.5 rounded-full bg-slate-100 group-hover:bg-[#F54900] transition-colors" />
-                      {cat.category}
-                    </a>
-                  </li>
+                  <a 
+                    key={idx}
+                    href={`#cat-${idx}`} 
+                    className="p-4 rounded-xl border border-transparent hover:border-blue-100 hover:bg-blue-50/50 transition-all flex items-center gap-3 group"
+                  >
+                    <div className="w-2 h-2 rounded-full bg-slate-200 group-hover:bg-[#2f5cab] transition-colors" />
+                    <span className="text-[14px] font-semibold text-slate-700 group-hover:text-[#2f5cab] transition-colors">{cat.category}</span>
+                  </a>
                 ))}
-              </ul>
+              </nav>
+              
+              <div className="p-8 bg-blue-50 rounded-[20px] border border-blue-100 mt-10">
+                <HelpCircle className="text-[#2f5cab] mb-4" size={28} />
+                <h4 className="font-bold text-slate-800 mb-2">Need more help?</h4>
+                <p className="text-[13px] text-slate-600 mb-6 leading-relaxed font-medium">
+                  Our team of experts is ready to assist you with any questions.
+                </p>
+                <Link to="/contact" className="inline-flex items-center gap-2 text-[13px] font-bold text-[#2f5cab] hover:underline">
+                  Contact Us <ArrowRight size={14} />
+                </Link>
+              </div>
             </div>
           </div>
 
@@ -112,8 +122,8 @@ export default function FAQ() {
               return (
                 <div key={catIdx} id={`cat-${catIdx}`} className="scroll-mt-32 space-y-8">
                   <div className="flex items-center gap-4">
-                    <h2 className="text-[10px] font-black text-[#F54900] uppercase tracking-[0.5em]">{cat.category}</h2>
-                    <div className="h-px flex-1 bg-slate-50" />
+                    <h2 className="text-xl font-bold text-slate-900">{cat.category}</h2>
+                    <div className="h-px flex-1 bg-slate-100" />
                   </div>
 
                   <div className="space-y-4">
@@ -122,14 +132,16 @@ export default function FAQ() {
                       const isOpen = openIndex === id;
 
                       return (
-                        <div key={qIdx} className="bg-white border border-slate-50 rounded-2xl overflow-hidden group hover:border-slate-100 transition-all">
+                        <div key={qIdx} className="bg-white border border-slate-100 rounded-2xl overflow-hidden group hover:shadow-md transition-all">
                           <button
                             onClick={() => toggleAccordion(catIdx, qIdx)}
-                            className="w-full px-8 py-6 flex items-center justify-between text-left transition-all"
+                            className="w-full px-6 md:px-8 py-5 md:py-6 flex items-center justify-between text-left transition-all"
                           >
-                            <span className={`text-[15px] font-bold ${isOpen ? 'text-[#F54900]' : 'text-slate-800 group-hover:text-[#F54900]'} transition-colors`}>{faq.q}</span>
-                            <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${isOpen ? 'bg-[#F54900] text-white rotate-180 shadow-lg shadow-[#F54900]/20' : 'bg-slate-50 text-slate-300 group-hover:text-[#F54900]'}`}>
-                              <ChevronDown size={14} strokeWidth={3} />
+                            <span className={`text-[15px] md:text-[16px] font-semibold ${isOpen ? 'text-[#2f5cab]' : 'text-slate-800 group-hover:text-[#2f5cab]'} transition-colors`}>
+                              {faq.q}
+                            </span>
+                            <div className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center transition-all ${isOpen ? 'bg-[#2f5cab] text-white rotate-180 shadow-lg shadow-blue-600/20' : 'bg-slate-50 text-slate-400 group-hover:text-[#2f5cab]'}`}>
+                              <ChevronDown size={16} strokeWidth={2.5} />
                             </div>
                           </button>
                           <AnimatePresence>
@@ -140,7 +152,7 @@ export default function FAQ() {
                                 exit={{ height: 0, opacity: 0 }}
                                 transition={{ duration: 0.25, ease: "easeOut" }}
                               >
-                                <div className="px-8 pb-8 text-slate-500 text-[14px] leading-relaxed font-medium">
+                                <div className="px-6 md:px-8 pb-6 md:pb-8 text-slate-600 text-[14px] md:text-[15px] leading-relaxed font-medium">
                                   <div className="h-px bg-slate-50 mb-6" />
                                   {faq.a}
                                 </div>
@@ -156,17 +168,27 @@ export default function FAQ() {
             })}
 
             {/* CTA */}
-            <div className="pt-20 border-t border-slate-50 text-center space-y-8">
-              <div className="space-y-3">
-                <h3 className="text-xl font-bold text-slate-900 uppercase tracking-tighter">Still need assistance?</h3>
-                <p className="text-slate-400 text-xs font-bold max-w-md mx-auto uppercase tracking-widest">Our technical team is available for specialized unit inquiries.</p>
-              </div>
-              <Link to="/contact" className="inline-flex items-center gap-4 text-xs font-black uppercase tracking-[0.4em] text-slate-900 group">
-                Contact Support
-                <div className="w-10 h-10 rounded-full border border-slate-100 flex items-center justify-center group-hover:bg-slate-900 group-hover:text-white transition-all">
-                  <ArrowRight size={18} />
+            <div className="pt-20 border-t border-slate-100 text-center">
+              <div className="bg-[#fcfcfc] rounded-[30px] p-10 md:p-16 border border-slate-50">
+                <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">Still have questions?</h3>
+                <p className="text-slate-500 mb-10 max-w-xl mx-auto font-medium">
+                  Can't find what you're looking for? Please chat to our friendly team.
+                </p>
+                <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+                  <Link 
+                    to="/contact" 
+                    className="px-10 py-4 bg-[#2f5cab] text-white font-bold rounded-full hover:bg-[#234d98] transition-all shadow-lg shadow-blue-600/20 active:scale-95"
+                  >
+                    Get in Touch
+                  </Link>
+                  <Link 
+                    to="/shop" 
+                    className="px-10 py-4 bg-white text-slate-900 border border-slate-200 font-bold rounded-full hover:bg-slate-50 transition-all active:scale-95"
+                  >
+                    Return to Shop
+                  </Link>
                 </div>
-              </Link>
+              </div>
             </div>
           </div>
         </div>

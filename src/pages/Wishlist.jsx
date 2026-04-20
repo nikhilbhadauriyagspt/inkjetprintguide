@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCart } from '../context/CartContext';
 import { Link } from 'react-router-dom';
-import { Heart, Trash2, ShoppingBag, ChevronLeft, ChevronRight, Sparkles, ShoppingCart } from 'lucide-react';
+import { Heart, Trash2, ChevronLeft, ChevronRight, ShoppingCart } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Wishlist() {
@@ -20,43 +20,43 @@ export default function Wishlist() {
 
   if (wishlistCount === 0) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center px-6 bg-white font-['Rubik'] text-center">
-        <div className="w-24 h-24 bg-[#F5F5F5] rounded-3xl flex items-center justify-center mb-8 border border-border shadow-sm">
-          <Heart size={40} className="text-secondary opacity-30" />
+      <div className="min-h-screen flex flex-col items-center justify-center px-6 bg-[#f8faff] font-sans text-center">
+        <div className="w-24 h-24 bg-white rounded-[32px] flex items-center justify-center mb-8 border border-slate-100 shadow-sm">
+          <Heart size={40} className="text-slate-200" />
         </div>
-        <h2 className="text-3xl font-bold text-foreground mb-4 ">Your Wishlist is Empty</h2>
-        <p className="text-secondary font-medium text-base mb-12 max-w-md">Save your favorite printer and supplies to this collection for easy access later.</p>
-        <Link to="/shop" className="px-10 py-4 bg-[#F54900] text-white font-bold text-[13px] uppercase tracking-widest hover:bg-[#F54900]-hover transition-all rounded-full shadow-xl shadow-primary/20 active:scale-95">
-          Explore All Products
+        <h2 className="text-3xl font-bold text-slate-900 mb-4">Your Wishlist is Empty</h2>
+        <p className="text-slate-500 font-medium text-lg mb-12 max-w-md">Save your favorite printers and supplies here for quick access later.</p>
+        <Link to="/shop" className="px-10 py-4 bg-[#2f5cab] text-white font-bold rounded-full shadow-xl shadow-blue-600/20 active:scale-95 hover:bg-[#234d98] transition-all">
+          Explore Products
         </Link>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white font-['Rubik'] text-foreground pb-20">
+    <div className="min-h-screen bg-[#f8faff] font-sans text-slate-900 pb-20">
 
       {/* --- PAGE HEADER --- */}
-      <div className="bg-background py-10 md:py-14 border-b border-border mb-12">
+      <div className="bg-white py-12 md:py-16 border-b border-slate-100 mb-12">
         <div className="max-w-[1800px] mx-auto px-4 md:px-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-4">
-            <nav className="flex items-center gap-2 text-[11px] font-bold text-secondary uppercase tracking-[0.2em]">
-              <Link to="/" className="hover:text-primary transition-colors">Home</Link>
+            <nav className="flex items-center gap-2 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+              <Link to="/" className="hover:text-[#2f5cab] transition-colors">Home</Link>
               <ChevronRight size={12} className="opacity-50" />
-              <span className="text-primary">Saved Printer</span>
+              <span className="text-[#2f5cab]">Wishlist</span>
             </nav>
-            <h1 className="text-3xl md:text-5xl font-bold text-foreground ">
-              Your Favorites
+            <h1 className="text-3xl md:text-5xl font-bold text-slate-900">
+              Saved Items
             </h1>
           </div>
-          <div className="text-secondary text-sm font-bold uppercase tracking-widest bg-white px-6 py-2.5 border border-border rounded-full shadow-sm">
-            <span className="text-primary">{wishlistCount}</span> Items Saved
+          <div className="text-slate-500 text-[14px] font-bold bg-white px-8 py-3 border border-slate-200 rounded-full shadow-sm">
+            <span className="text-[#2f5cab] font-black">{wishlistCount}</span> {wishlistCount === 1 ? 'Product' : 'Products'} Saved
           </div>
         </div>
       </div>
 
       <div className="max-w-[1800px] mx-auto px-4 md:px-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8 md:gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8">
           <AnimatePresence>
             {wishlist.map((p) => (
               <motion.div
@@ -65,10 +65,10 @@ export default function Wishlist() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="group flex flex-col"
+                className="group flex flex-col bg-white rounded-[32px] p-4 border border-slate-100 hover:shadow-2xl hover:shadow-blue-600/5 transition-all duration-500"
               >
                 {/* Image Container */}
-                <div className="relative aspect-square bg-[#F5F5F5] rounded-[24px] flex items-center justify-center overflow-hidden mb-5 border border-transparent transition-all group-hover:border-border group-hover:shadow-xl group-hover:shadow-black/5">
+                <div className="relative aspect-square bg-slate-50 rounded-[24px] flex items-center justify-center overflow-hidden mb-6 group-hover:bg-white transition-colors">
                   <Link to={`/product/${p.slug}`} className="w-full h-full flex items-center justify-center p-8">
                     <img
                       src={getImagePath(p.images)}
@@ -80,32 +80,32 @@ export default function Wishlist() {
 
                   <button
                     onClick={() => toggleWishlist(p)}
-                    className="absolute top-4 right-4 w-10 h-10 bg-white shadow-lg text-primary rounded-full flex items-center justify-center z-10 hover:bg-[#F54900] hover:text-white transition-all active:scale-90"
+                    className="absolute top-4 right-4 w-11 h-11 bg-white shadow-lg text-slate-300 rounded-full flex items-center justify-center z-10 hover:bg-red-50 hover:text-red-500 transition-all active:scale-90"
                     aria-label="Remove from wishlist"
                   >
-                    <Trash2 size={18} />
+                    <Trash2 size={20} />
                   </button>
                 </div>
 
                 {/* Content */}
-                <div className="px-1 flex-1 flex flex-col">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] bg-[#F54900]/5 px-2.5 py-1 rounded-full">{p.brand_name || 'HP Series'}</span>
-                    <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
+                <div className="px-2 flex-1 flex flex-col">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-[10px] font-bold text-[#2f5cab] uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full">{p.brand_name || 'Printer'}</span>
+                    <div className="h-2 w-2 rounded-full bg-emerald-500" />
                   </div>
 
                   <Link to={`/product/${p.slug}`}>
-                    <h3 className="text-[16px] font-bold text-foreground group-hover:text-primary transition-colors leading-tight line-clamp-2 mb-4 min-h-[40px]">{p.name}</h3>
+                    <h3 className="text-[16px] font-bold text-slate-800 group-hover:text-[#2f5cab] transition-colors leading-tight line-clamp-2 mb-4 min-h-[40px]">{p.name}</h3>
                   </Link>
 
-                  <div className="mt-auto pt-2 flex items-center justify-between gap-4">
-                    <p className="text-[18px] font-bold text-foreground">${parseFloat(p.price).toLocaleString()}</p>
+                  <div className="mt-auto pt-4 flex flex-col gap-4">
+                    <p className="text-2xl font-black text-slate-900">₹{parseFloat(p.price).toLocaleString()}</p>
 
                     <button
                       onClick={() => addToCart(p)}
-                      className="flex-1 h-11 bg-foreground text-white rounded-full flex items-center justify-center gap-2 text-[12px] font-bold uppercase tracking-widest hover:bg-[#F54900] transition-all shadow-lg active:scale-95"
+                      className="w-full h-12 bg-[#2f5cab] text-white rounded-2xl flex items-center justify-center gap-3 text-[13px] font-bold uppercase tracking-widest hover:bg-[#234d98] transition-all shadow-lg shadow-blue-600/10 active:scale-95"
                     >
-                      <ShoppingCart size={16} /> Add to cart
+                      <ShoppingCart size={18} /> Add to cart
                     </button>
                   </div>
                 </div>
@@ -114,10 +114,10 @@ export default function Wishlist() {
           </AnimatePresence>
         </div>
 
-        <div className="mt-24 pt-10 border-t border-border">
-          <Link to="/shop" className="inline-flex items-center gap-3 text-[12px] font-bold text-secondary hover:text-primary transition-all group uppercase tracking-[0.2em]">
-            <ChevronLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-            Continue Browsing Catalog
+        <div className="mt-20 pt-10 border-t border-slate-100">
+          <Link to="/shop" className="inline-flex items-center gap-3 text-[14px] font-bold text-slate-400 hover:text-[#2f5cab] transition-all group uppercase tracking-widest">
+            <ChevronLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+            Continue Shopping
           </Link>
         </div>
       </div>

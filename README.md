@@ -1,2 +1,2 @@
-﻿# myprinterland.shop
+﻿# printmora.shop
 

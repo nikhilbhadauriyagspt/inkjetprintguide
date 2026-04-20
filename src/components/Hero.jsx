@@ -4,10 +4,10 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
 
-  "/banner/new-banner/11.png",
+  "/banner/new-banner/14.png",
 
-  "/banner/new-banner/8.png",
-  "/banner/new-banner/13.png",
+  "/banner/new-banner/15.png",
+  "/banner/new-banner/16.png",
 ];
 
 export default function Hero() {

@@ -1,6 +1,9 @@
 ﻿import Hero from "@/components/Hero";
 import CategoryCarousel from "@/components/CategoryCarousel";
+import MidBannersRow from "@/components/MidBannersRow";
 import AboutSection from "@/components/AboutSection";
+import WhyChooseUs from "@/components/WhyChooseUs";
+import HowToBuy from "@/components/HowToBuy";
 import CategoryNavigation from "@/components/CategoryNavigation";
 import FlashSalesSlider from "@/components/FlashSalesSlider";
 import SEO from "@/components/SEO";
@@ -107,7 +110,7 @@ export default function Home() {
   return (
     <div className="bg-white font-sans overflow-x-hidden text-slate-900">
       <SEO
-        title="My Printer Land | High-Performance Printing Solutions"
+        title="Print Mora | High-Performance Printing Solutions"
         description="Shop printers, ink, and toner globally. Professional business printing solutions with international shipping."
         keywords="Buy Printers Online, Ink and Toner, LaserJet, OfficeJet, Printer Accessories, Business Printing Solutions"
       />
@@ -115,17 +118,18 @@ export default function Home() {
       <Hero products={data.all} />
 
       <CategoryCarousel />
+      <MidBannersRow />
+
+      <ProductGrid products={data.all} />
+
+
+
+
+
+      <HowToBuy />
 
       <AboutSection />
 
-      <ProductGrid products={data.all} />
-      <img src={Mainimg} alt="Main Banner" className="w-full h-full" />
-
-      <ShopByCategory categories={data.categories} loading={data.loading} />
-
-
-      <PrinterGuide />
-      <Showcase />
 
 
 

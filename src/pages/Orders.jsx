@@ -58,7 +58,7 @@ export default function Orders() {
   if (!user && !hasSearched) {
     return (
       <div className="min-h-screen bg-[#eaeded] font-['Rubik'] text-[#0f1111] pb-20">
-        <SEO title="Track Your Order | My Printer Land" />
+        <SEO title="Track Your Order | Print Mora" />
 
         {/* --- BREADCRUMBS --- */}
         <div className="bg-white border-b border-gray-300 py-3 shadow-sm">
@@ -109,7 +109,7 @@ export default function Orders() {
 
   return (
     <div className="min-h-screen bg-[#eaeded] font-['Rubik'] text-[#0f1111] pb-20">
-      <SEO title="Your Orders | My Printer Land" />
+      <SEO title="Your Orders | Print Mora" />
 
       {/* --- BREADCRUMBS --- */}
       <div className="bg-white border-b border-gray-300 py-3 shadow-sm">
@@ -290,7 +290,7 @@ export default function Orders() {
                 <div className="bg-[#f0f2f2] p-6 border-t border-gray-300 flex items-center justify-between">
                   <div className="flex items-center gap-3 text-sm font-bold text-[#0f1111]">
                     <Truck size={18} />
-                    <span>My Printer Land Logistics</span>
+                    <span>Print Mora Logistics</span>
                   </div>
                   <p className="text-[12px] text-[#565959]">Estimated delivery: <span className="text-[#0f1111] font-bold">2-3 Business Days</span></p>
                 </div>

@@ -14,6 +14,7 @@ import {
   Info,
   Zap,
   RotateCcw,
+  ArrowRight,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import API_BASE_URL from '../config';
@@ -120,16 +121,16 @@ export default function ProductDetail() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-white">
-        <div className="w-10 h-10 border-4 border-gray-100 border-t-[#F54900] rounded-full animate-spin"></div>
+        <div className="w-10 h-10 border-4 border-slate-100 border-t-[#2f5cab] rounded-full animate-spin"></div>
       </div>
     );
   }
 
   if (!product) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen text-center px-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Product Not Found</h2>
-        <Link to="/shop" className="text-[#F54900] font-bold hover:underline">Return to Shop Catalog</Link>
+      <div className="flex flex-col items-center justify-center min-h-screen text-center px-6 bg-[#f8faff]">
+        <h2 className="text-2xl font-bold text-slate-900 mb-4">Product Not Found</h2>
+        <Link to="/shop" className="text-[#2f5cab] font-bold hover:underline">Return to Shop Catalog</Link>
       </div>
     );
   }
@@ -137,37 +138,40 @@ export default function ProductDetail() {
   const discount = product.old_price ? Math.round(((product.old_price - product.price) / product.old_price) * 100) : 0;
 
   return (
-    <div className="min-h-screen bg-[#FDFDFD] font-sans text-[#111] pb-20">
+    <div className="min-h-screen bg-[#f8faff] font-sans text-slate-900 pb-20">
       <SEO title={product.name} />
 
-      {/* --- BREADCRUMBS --- */}
-      <div className="bg-white border-b border-gray-100 py-3">
-        <div className="max-w-[1500px] mx-auto px-4 md:px-8">
-          <nav className="flex items-center gap-1 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-            <Link to="/" className="hover:text-[#F54900]">Home</Link>
-            <ChevronRight size={10} className="mx-1" />
-            <Link to="/shop" className="hover:text-[#F54900]">Shop</Link>
-            <ChevronRight size={10} className="mx-1" />
-            <span className="text-slate-900 truncate max-w-[200px] md:max-w-none">{product.name}</span>
+      {/* --- PAGE HEADER --- */}
+      <div className="bg-white py-10 md:py-14 border-b border-slate-100 mb-10">
+        <div className="max-w-[1800px] mx-auto px-4 md:px-10">
+          <nav className="flex items-center gap-2 text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-6">
+            <Link to="/" className="hover:text-[#2f5cab] transition-colors">Home</Link>
+            <ChevronRight size={12} className="opacity-50" />
+            <Link to="/shop" className="hover:text-[#2f5cab] transition-colors">Shop</Link>
+            <ChevronRight size={12} className="opacity-50" />
+            <span className="text-[#2f5cab]">Product Details</span>
           </nav>
+          <h1 className="text-2xl md:text-4xl font-bold text-slate-900 leading-tight max-w-4xl">
+            {product.name}
+          </h1>
         </div>
       </div>
 
-      <div className="max-w-[1500px] mx-auto px-4 md:px-8 py-8 md:py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      <div className="max-w-[1800px] mx-auto px-4 md:px-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 items-start">
 
           {/* --- LEFT: IMAGE GALLERY --- */}
-          <div className="lg:col-span-5 xl:col-span-6 space-y-6 lg:sticky lg:top-24">
-            <div className="flex flex-col-reverse md:flex-row gap-4">
+          <div className="lg:col-span-6 space-y-8 lg:sticky lg:top-32">
+            <div className="flex flex-col md:flex-row gap-6">
               {/* Thumbnails */}
               {images.length > 1 && (
-                <div className="flex md:flex-col gap-3 overflow-x-auto md:overflow-y-auto no-scrollbar max-h-[500px]">
+                <div className="flex md:flex-col gap-4 overflow-x-auto md:overflow-y-auto no-scrollbar max-h-[600px] order-2 md:order-1">
                   {images.map((img, idx) => (
                     <button
                       key={idx}
                       onMouseEnter={() => { setActiveImage(idx); setMainImage(img); }}
                       onClick={() => { setActiveImage(idx); setMainImage(img); }}
-                      className={`w-16 h-16 md:w-20 md:h-20 rounded-md border-2 p-1 bg-white shrink-0 transition-all ${activeImage === idx ? 'border-[#F54900]' : 'border-gray-100 hover:border-[#F54900]/50'}`}
+                      className={`w-20 h-20 rounded-2xl border-2 p-2 bg-white shrink-0 transition-all ${activeImage === idx ? 'border-[#2f5cab] shadow-lg shadow-blue-600/5' : 'border-slate-50 hover:border-slate-200'}`}
                     >
                       <img src={img} alt="" className="w-full h-full object-contain mix-blend-multiply" />
                     </button>
@@ -177,14 +181,14 @@ export default function ProductDetail() {
 
               {/* Main Image with Zoom */}
               <div
-                className="flex-1 aspect-square bg-white border border-gray-100 rounded-xl relative flex items-center justify-center p-8 group cursor-crosshair"
+                className="flex-1 aspect-square bg-white border border-slate-100 rounded-[40px] relative flex items-center justify-center p-12 group cursor-crosshair order-1 md:order-2 shadow-sm"
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
               >
                 <motion.img
                   key={activeImage}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
                   src={mainImage}
                   alt={product.name}
                   className="max-w-full max-h-full object-contain mix-blend-multiply"
@@ -192,7 +196,7 @@ export default function ProductDetail() {
 
                 {/* Zoom Window */}
                 <div
-                  className="hidden lg:block absolute left-full top-0 ml-4 w-[500px] h-[500px] bg-white border border-gray-200 shadow-2xl z-[100] pointer-events-none rounded-xl overflow-hidden"
+                  className="hidden lg:block absolute left-full top-0 ml-6 w-[600px] h-[600px] bg-white border border-slate-200 shadow-2xl z-[100] pointer-events-none rounded-[32px] overflow-hidden"
                   style={{
                     ...zoomStyle,
                     backgroundImage: `url(${mainImage})`,
@@ -203,9 +207,9 @@ export default function ProductDetail() {
                 />
 
                 {/* Overlay Badges */}
-                <div className="absolute top-4 left-4 flex flex-col gap-2 pointer-events-none">
+                <div className="absolute top-6 left-6 flex flex-col gap-3 pointer-events-none">
                   {discount > 0 && (
-                    <div className="bg-[#F54900] text-white text-[12px] font-bold px-3 py-1 rounded-sm shadow-sm">
+                    <div className="bg-[#2f5cab] text-white text-[12px] font-bold px-4 py-1.5 rounded-full shadow-lg shadow-blue-600/20">
                       -{discount}% Off
                     </div>
                   )}
@@ -213,149 +217,133 @@ export default function ProductDetail() {
 
                 <button
                   onClick={() => toggleWishlist(product)}
-                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white border border-gray-100 shadow-sm flex items-center justify-center text-slate-300 hover:text-[#F54900] transition-all z-10"
+                  className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white border border-slate-50 shadow-lg flex items-center justify-center text-slate-300 hover:text-red-500 transition-all z-10 active:scale-90"
                 >
-                  <Heart size={20} fill={isInWishlist(product.id) ? '#F54900' : 'none'} className={isInWishlist(product.id) ? 'text-[#F54900]' : ''} />
+                  <Heart size={24} fill={isInWishlist(product.id) ? '#ef4444' : 'none'} className={isInWishlist(product.id) ? 'text-red-500' : ''} />
                 </button>
               </div>
             </div>
 
-            <div className="hidden md:grid grid-cols-2 gap-4">
-              <div className="flex items-center gap-3 p-4 bg-white border border-gray-100 rounded-xl">
-                <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-[#F54900]">
-                  <Truck size={20} />
+            <div className="grid grid-cols-2 gap-6">
+              <div className="flex items-center gap-4 p-6 bg-white border border-slate-100 rounded-[28px] shadow-sm">
+                <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-[#2f5cab]">
+                  <Truck size={24} />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-[12px] font-bold text-gray-900 uppercase ">Free Delivery</span>
-                  <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Global Logistics</span>
+                  <span className="text-[14px] font-bold text-slate-900">Free Delivery</span>
+                  <span className="text-[12px] text-slate-400 font-medium">Worldwide Logistics</span>
                 </div>
               </div>
-              <div className="flex items-center gap-3 p-4 bg-white border border-gray-100 rounded-xl">
-                <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-[#F54900]">
-                  <RotateCcw size={20} />
+              <div className="flex items-center gap-4 p-6 bg-white border border-slate-100 rounded-[28px] shadow-sm">
+                <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-[#2f5cab]">
+                  <RotateCcw size={24} />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-[12px] font-bold text-gray-900 uppercase ">7 Days Return</span>
-                  <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Easy Rollback</span>
+                  <span className="text-[14px] font-bold text-slate-900">Easy Returns</span>
+                  <span className="text-[12px] text-slate-400 font-medium">7-Day Guarantee</span>
                 </div>
               </div>
             </div>
           </div>
 
           {/* --- RIGHT: PRODUCT INFO --- */}
-          <div className="lg:col-span-7 xl:col-span-6 space-y-8">
-            <div className="bg-white p-6 md:p-8 border border-gray-100 rounded-xl shadow-sm">
-              <div className="space-y-4">
+          <div className="lg:col-span-6 space-y-10">
+            <div className="bg-white p-8 md:p-12 border border-slate-100 rounded-[40px] shadow-sm">
+              <div className="space-y-8">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-bold text-[#F54900] uppercase tracking-[0.2em]">
-                    Premium Hardware
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                    <span className="text-[12px] font-bold text-slate-400 uppercase tracking-widest">
+                      Hardware Certified
+                    </span>
+                  </div>
                   <button
                     onClick={handleShare}
-                    className="flex items-center gap-1 text-slate-300 hover:text-[#F54900] transition-colors cursor-pointer"
+                    className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:text-[#2f5cab] transition-all"
                   >
-                    <Share2 size={18} />
+                    <Share2 size={20} />
                   </button>
                 </div>
 
-                <h1 className="text-2xl md:text-3xl font-bold leading-tight text-slate-900">
-                  {product.name}
-                </h1>
-
-                <div className="pt-2">
-                  <div className="flex items-baseline gap-3">
-                    <span className="text-[#F54900] text-3xl font-light">-{discount}%</span>
-                    <div className="flex items-start">
-                      <span className="text-[14px] font-bold mt-1">$</span>
-                      <span className="text-4xl font-bold">{Number(product.price).toLocaleString()}</span>
-                    </div>
-                  </div>
-                  <div className="text-[13px] text-slate-400 font-medium mt-1">
-                    M.R.P.: <span className="line-through">${product.old_price || (Number(product.price) + 50).toLocaleString()}</span>
-                  </div>
-                  <div className="text-[13px] text-slate-900 font-bold mt-1 flex items-center gap-2">
-                    Inclusive of all taxes
-                    <div className="group relative cursor-help">
-                      <Info size={14} className="text-slate-300" />
-                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-slate-900 text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                        All taxes and fees are included in the final price.
+                <div className="space-y-4">
+                  <div className="flex items-baseline gap-4">
+                    <span className="text-[#2f5cab] text-4xl font-light">-{discount}%</span>
+                    <div className="flex flex-col">
+                      <div className="flex items-start">
+                        <span className="text-xl font-bold mt-2 mr-1">₹</span>
+                        <span className="text-5xl font-black">{parseFloat(product.price).toLocaleString()}</span>
+                      </div>
+                      <div className="text-[15px] text-slate-400 font-medium mt-1">
+                        M.R.P.: <span className="line-through">₹{(parseFloat(product.price) / (1 - discount/100)).toLocaleString()}</span>
                       </div>
                     </div>
                   </div>
-                </div>
-
-                {/* Trust Badges */}
-                <div className="py-4 border-y border-gray-50 flex items-center gap-6">
-                  <div className="flex items-center gap-2">
-                    <ShieldCheck size={18} className="text-[#F54900]" />
-                    <span className="text-[12px] font-bold text-slate-700 uppercase ">Safe System</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Truck size={18} className="text-[#F54900]" />
-                    <span className="text-[12px] font-bold text-slate-700 uppercase ">Secure Ops</span>
+                  <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-50 text-emerald-600 text-[12px] font-bold rounded-full">
+                    <ShieldCheck size={14} />
+                    Secure Transaction Guaranteed
                   </div>
                 </div>
 
                 {/* Selection and Actions */}
-                <div className="pt-4 space-y-6">
-                  <div className="flex items-center gap-4">
-                    <span className="text-[14px] font-bold text-slate-900 min-w-[80px] uppercase ">Quantity:</span>
-                    <div className="flex items-center bg-slate-50 rounded-lg border border-gray-100 h-9">
+                <div className="pt-6 space-y-8">
+                  <div className="flex items-center gap-6">
+                    <span className="text-[15px] font-bold text-slate-800 uppercase tracking-widest">Quantity:</span>
+                    <div className="flex items-center bg-slate-50 rounded-2xl border border-slate-100 p-1">
                       <button
                         onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                        className="w-9 h-full flex items-center justify-center hover:bg-gray-100 rounded-l-lg transition-colors"
+                        className="w-10 h-10 flex items-center justify-center hover:bg-white rounded-xl transition-all shadow-sm"
                       >
-                        <Minus size={14} />
+                        <Minus size={16} strokeWidth={2.5} />
                       </button>
                       <input
                         type="number"
                         value={quantity}
                         readOnly
-                        className="w-10 bg-transparent text-center text-sm font-bold outline-none"
+                        className="w-12 bg-transparent text-center text-lg font-bold outline-none"
                       />
                       <button
                         onClick={() => setQuantity(quantity + 1)}
-                        className="w-9 h-full flex items-center justify-center hover:bg-gray-100 rounded-r-lg transition-colors"
+                        className="w-10 h-10 flex items-center justify-center hover:bg-white rounded-xl transition-all shadow-sm"
                       >
-                        <Plus size={14} />
+                        <Plus size={16} strokeWidth={2.5} />
                       </button>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <button
                       onClick={handleAddToCart}
-                      className={`h-12 rounded-xl font-bold text-[12px] uppercase tracking-widest shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${isAdded ? 'bg-emerald-600 text-white' : 'bg-slate-900 hover:bg-[#F54900] text-white'}`}
+                      className={`h-16 rounded-full font-bold text-[14px] uppercase tracking-widest shadow-xl transition-all flex items-center justify-center gap-3 cursor-pointer ${isAdded ? 'bg-emerald-600 text-white shadow-emerald-600/20' : 'bg-slate-900 hover:bg-[#2f5cab] text-white shadow-slate-900/10'}`}
                     >
-                      <ShoppingCart size={18} />
-                      {isAdded ? 'Synced' : 'Add to Manifest'}
+                      <ShoppingCart size={20} />
+                      {isAdded ? 'Synced to Cart' : 'Add to Manifest'}
                     </button>
                     <button
                       onClick={handleBuyNow}
-                      className="h-12 bg-white border-2 border-slate-100 hover:border-[#F54900] hover:text-[#F54900] text-slate-900 rounded-xl font-bold text-[12px] uppercase tracking-widest shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+                      className="h-16 bg-white border-2 border-slate-100 hover:border-[#2f5cab] hover:text-[#2f5cab] text-slate-900 rounded-full font-bold text-[14px] uppercase tracking-widest flex items-center justify-center gap-3 transition-all active:scale-95"
                     >
-                      <Zap size={18} />
-                      Initialize OPS
+                      <Zap size={20} />
+                      Instant Checkout
                     </button>
                   </div>
                 </div>
 
-                <div className="pt-6">
-                  <h4 className="text-[15px] font-bold mb-4 uppercase ">System Specifications</h4>
-                  <ul className="space-y-3">
+                <div className="pt-10 border-t border-slate-50">
+                  <h4 className="text-[16px] font-bold text-slate-900 mb-6 uppercase tracking-widest">Technical Overview</h4>
+                  <ul className="space-y-4">
                     {product.description ? (
                       product.description.split('.').map((sentence, idx) => (
                         sentence.trim() && (
-                          <li key={idx} className="flex gap-3 text-[13px] text-slate-500 leading-relaxed font-medium">
-                            <div className="w-1 h-1 rounded-full bg-slate-200 mt-2 shrink-0" />
+                          <li key={idx} className="flex gap-4 text-[15px] text-slate-500 leading-relaxed font-medium">
+                            <div className="w-1.5 h-1.5 rounded-full bg-blue-100 mt-2.5 shrink-0" />
                             <span>{sentence.trim()}.</span>
                           </li>
                         )
                       ))
                     ) : (
                       <>
-                        <li className="flex gap-3 text-[13px] text-slate-500 font-medium"><div className="w-1 h-1 rounded-full bg-slate-200 mt-2 shrink-0" /><span>Premium performance for demanding professional workflows.</span></li>
-                        <li className="flex gap-3 text-[13px] text-slate-500 font-medium"><div className="w-1 h-1 rounded-full bg-slate-200 mt-2 shrink-0" /><span>Seamless connectivity with modern wireless standards.</span></li>
+                        <li className="flex gap-4 text-[15px] text-slate-500 font-medium"><div className="w-1.5 h-1.5 rounded-full bg-blue-100 mt-2.5 shrink-0" /><span>Premium performance for demanding professional workflows.</span></li>
+                        <li className="flex gap-4 text-[15px] text-slate-500 font-medium"><div className="w-1.5 h-1.5 rounded-full bg-blue-100 mt-2.5 shrink-0" /><span>Seamless connectivity with modern wireless standards.</span></li>
                       </>
                     )}
                   </ul>
@@ -363,46 +351,47 @@ export default function ProductDetail() {
               </div>
             </div>
 
-            {/* Specifications Table */}
-            <div className="bg-white p-6 md:p-8 border border-gray-100 rounded-xl shadow-sm">
-              <h3 className="text-lg font-bold mb-6 pb-2 border-b border-gray-100 uppercase ">Technical Data</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
-                <div className="flex py-2 border-b border-gray-50 last:border-0">
-                  <span className="text-[12px] font-bold text-slate-400 w-1/2 uppercase ">Dimensions</span>
-                  <span className="text-[12px] text-slate-900 font-bold w-1/2 uppercase ">Standard Unit</span>
-                </div>
-                <div className="flex py-2 border-b border-gray-50 last:border-0">
-                  <span className="text-[12px] font-bold text-slate-400 w-1/2 uppercase ">Weight</span>
-                  <span className="text-[12px] text-slate-900 font-bold w-1/2 uppercase ">Pro Grade</span>
-                </div>
-                <div className="flex py-2 border-b border-gray-50 last:border-0">
-                  <span className="text-[12px] font-bold text-slate-400 w-1/2 uppercase ">Compatibility</span>
-                  <span className="text-[12px] text-slate-900 font-bold w-1/2 uppercase ">Universal</span>
-                </div>
-                <div className="flex py-2 border-b border-gray-50 last:border-0">
-                  <span className="text-[12px] font-bold text-slate-400 w-1/2 uppercase ">Connectivity</span>
-                  <span className="text-[12px] text-slate-900 font-bold w-1/2 uppercase ">Wireless/Eth</span>
-                </div>
+            {/* Specifications Box */}
+            <div className="bg-slate-900 p-8 md:p-12 rounded-[40px] text-white relative overflow-hidden group">
+              <h3 className="text-xl font-bold mb-8 flex items-center gap-3 relative z-10">
+                <Info size={24} className="text-[#ffd33d]" />
+                Technical Specs
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-12 relative z-10">
+                {[
+                  { label: 'System Type', value: 'Pro Series' },
+                  { label: 'Interface', value: 'High Speed' },
+                  { label: 'Quality', value: 'Certified' },
+                  { label: 'Support', value: 'Lifetime' }
+                ].map((spec, i) => (
+                  <div key={i} className="flex flex-col gap-1">
+                    <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">{spec.label}</span>
+                    <span className="text-[15px] font-bold text-[#ffd33d]">{spec.value}</span>
+                  </div>
+                ))}
               </div>
+              <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-[#ffd33d] rounded-full blur-[80px] opacity-10 group-hover:opacity-20 transition-opacity" />
             </div>
           </div>
         </div>
 
         {/* --- RELATED PRODUCTS --- */}
         {relatedProducts.length > 0 && (
-          <div className="mt-16 md:mt-24">
-            <div className="flex items-center justify-between mb-10 pb-4 border-b border-gray-100">
-              <h3 className="text-2xl font-bold  uppercase">Related Hardware</h3>
-              <Link to="/shop" className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-300 hover:text-[#F54900] transition-colors">See all modules</Link>
+          <div className="mt-24 md:mt-32">
+            <div className="flex items-center justify-between mb-12 pb-6 border-b border-slate-100">
+              <h3 className="text-2xl md:text-3xl font-bold text-slate-900">Recommended Modules</h3>
+              <Link to="/shop" className="text-[13px] font-bold text-[#2f5cab] hover:underline flex items-center gap-2">
+                Explore All <ArrowRight size={16} />
+              </Link>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8">
               {relatedProducts.map((p) => (
-                <Link to={`/product/${p.slug}`} key={p.id} className="bg-white border border-gray-100 p-4 rounded-3xl hover:shadow-xl hover:shadow-slate-200/50 transition-all group flex flex-col">
-                  <div className="aspect-square bg-slate-50 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-105 transition-transform p-4">
-                    <img src={getImagePath(p.images)} alt="" className="w-full h-full object-contain mix-blend-multiply" />
+                <Link to={`/product/${p.slug}`} key={p.id} className="bg-white border border-slate-50 p-6 rounded-[32px] hover:shadow-2xl hover:shadow-blue-600/5 transition-all group flex flex-col">
+                  <div className="aspect-square bg-slate-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-white transition-colors p-6">
+                    <img src={getImagePath(p.images)} alt="" className="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700" />
                   </div>
-                  <h4 className="text-[13px] font-bold text-slate-900 line-clamp-2 mb-2 h-10 group-hover:text-[#F54900] transition-colors uppercase ">{p.name}</h4>
-                  <p className="text-lg font-black text-slate-900 er mt-auto">${Number(p.price).toLocaleString()}</p>
+                  <h4 className="text-[14px] font-bold text-slate-800 line-clamp-2 mb-3 h-10 group-hover:text-[#2f5cab] transition-colors">{p.name}</h4>
+                  <p className="text-xl font-black text-slate-900 mt-auto">₹{parseFloat(p.price).toLocaleString()}</p>
                 </Link>
               ))}
             </div>
@@ -411,20 +400,20 @@ export default function ProductDetail() {
       </div>
 
       {/* Mobile Sticky Footer */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-gray-200 p-4 lg:hidden z-50 flex gap-4 shadow-2xl">
+      <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-slate-100 p-5 lg:hidden z-50 flex gap-4 shadow-[0_-10px_40px_rgba(0,0,0,0.08)]">
         <button
           onClick={handleAddToCart}
-          className={`flex-1 h-12 rounded-xl font-bold text-[11px] uppercase tracking-widest transition-all flex items-center justify-center gap-2 ${isAdded ? 'bg-emerald-600 text-white' : 'bg-slate-900 text-white'}`}
+          className={`flex-1 h-14 rounded-2xl font-bold text-[13px] uppercase tracking-widest transition-all flex items-center justify-center gap-3 ${isAdded ? 'bg-emerald-600 text-white' : 'bg-slate-900 text-white'}`}
         >
-          <ShoppingCart size={18} />
-          {isAdded ? 'SYNCED' : 'CART'}
+          <ShoppingCart size={20} />
+          {isAdded ? 'SYNCED' : 'MANIFEST'}
         </button>
         <button
           onClick={handleBuyNow}
-          className="flex-1 h-12 bg-white border-2 border-slate-100 text-slate-900 rounded-xl font-bold text-[11px] uppercase tracking-widest flex items-center justify-center gap-2"
+          className="flex-1 h-14 bg-white border-2 border-slate-100 text-slate-900 rounded-2xl font-bold text-[13px] uppercase tracking-widest flex items-center justify-center gap-3 active:scale-95 shadow-sm"
         >
-          <Zap size={18} />
-          ORDER
+          <Zap size={20} className="text-[#2f5cab]" />
+          BUY NOW
         </button>
       </div>
     </div>

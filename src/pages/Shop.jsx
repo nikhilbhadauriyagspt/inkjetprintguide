@@ -11,15 +11,23 @@ import {
   ChevronRight,
   Filter,
   X,
-  Zap,
   Check,
-  ShoppingCart
+  ShoppingCart,
+  Package,
+  SlidersHorizontal,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import API_BASE_URL from '../config';
 
 export default function Shop() {
-  const { addToCart, toggleWishlist, isInWishlist } = useCart();
+  const {
+    addToCart,
+    toggleWishlist,
+    isInWishlist,
+    toggleCompare,
+    isInCompare,
+  } = useCart();
+
   const { category: pathCategory } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -29,6 +37,7 @@ export default function Shop() {
   const [showMobileFilters, setShowMobileFilters] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [addedItems, setAddedItems] = useState({});
+
   const itemsPerPage = 16;
 
   const category = searchParams.get('category') || pathCategory || '';
@@ -40,8 +49,8 @@ export default function Shop() {
 
   const brands = ['HP', 'Canon', 'Epson', 'Brother', 'Lexmark', 'Xerox', 'Samsung', 'Ricoh'];
 
-  const currentCategoryObj = categories.find(c => c.slug === category);
-  const heroTitle = currentCategoryObj ? currentCategoryObj.name : "All Hardware";
+  const currentCategoryObj = categories.find((c) => c.slug === category);
+  const heroTitle = currentCategoryObj ? currentCategoryObj.name : 'All Hardware';
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/categories`)
@@ -69,17 +78,30 @@ export default function Shop() {
               !p.name.toLowerCase().includes('macbook') &&
               !p.name.toLowerCase().includes('notebook')
           );
-          filtered = filtered.filter(p => Number(p.price) >= minPrice && Number(p.price) <= maxPrice);
+
+          filtered = filtered.filter(
+            (p) => Number(p.price) >= minPrice && Number(p.price) <= maxPrice
+          );
+
           if (activeBrand) {
-            filtered = filtered.filter(p => p.name.toLowerCase().includes(activeBrand.toLowerCase()));
+            filtered = filtered.filter((p) =>
+              p.name.toLowerCase().includes(activeBrand.toLowerCase())
+            );
           }
+
+          if (sort === 'price_low') {
+            filtered.sort((a, b) => Number(a.price) - Number(b.price));
+          } else if (sort === 'price_high') {
+            filtered.sort((a, b) => Number(b.price) - Number(a.price));
+          }
+
           setProducts(filtered);
           setCurrentPage(1);
         }
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, [searchParams, minPrice, maxPrice, activeBrand]);
+  }, [searchParams, minPrice, maxPrice, activeBrand, sort]);
 
   const updateFilter = (key, value) => {
     const newParams = new URLSearchParams(searchParams);
@@ -101,29 +123,46 @@ export default function Shop() {
   const getImagePath = (images) => {
     try {
       const imgs = typeof images === 'string' ? JSON.parse(images) : images;
-      return Array.isArray(imgs) && imgs.length > 0 ? `/${imgs[0].replace(/\\/g, '/')}` : '/logo/fabicon.png';
-    } catch { return '/logo/fabicon.png'; }
+      return Array.isArray(imgs) && imgs.length > 0
+        ? `/${imgs[0].replace(/\\/g, '/')}`
+        : '/logo/fabicon.png';
+    } catch {
+      return '/logo/fabicon.png';
+    }
   };
 
   const totalPages = Math.ceil(products.length / itemsPerPage);
-  const currentProducts = products.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const currentProducts = products.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const FilterSidebar = () => (
-    <div className="space-y-10">
-      <div>
-        <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-6">Categories</h4>
-        <div className="flex flex-col gap-3">
+    <div className="space-y-8">
+      <div className="rounded-2xl border border-slate-200 bg-white p-5">
+        <h4 className="text-[12px] font-semibold uppercase tracking-[0.22em] text-[#2f5cab] mb-5">
+          Categories
+        </h4>
+
+        <div className="flex flex-col gap-2">
           <button
             onClick={() => updateFilter('category', '')}
-            className={`text-left text-[13px] transition-all ${!category ? 'text-[#F54900] font-bold' : 'text-slate-500 hover:text-slate-900'}`}
+            className={`text-left px-3 py-2.5 rounded-xl text-[13px] transition-all ${!category
+              ? 'bg-[#2f5cab]/10 text-[#2f5cab] font-semibold'
+              : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+              }`}
           >
             All Systems
           </button>
+
           {categories.map((c) => (
             <button
               key={c.id}
               onClick={() => updateFilter('category', c.slug)}
-              className={`text-left text-[13px] transition-all capitalize ${category === c.slug ? 'text-[#F54900] font-bold' : 'text-slate-500 hover:text-slate-900'}`}
+              className={`text-left px-3 py-2.5 rounded-xl text-[13px] transition-all ${category === c.slug
+                ? 'bg-[#2f5cab]/10 text-[#2f5cab] font-semibold'
+                : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                }`}
             >
               {c.name}
             </button>
@@ -131,14 +170,20 @@ export default function Shop() {
         </div>
       </div>
 
-      <div>
-        <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-6">Brands</h4>
-        <div className="flex flex-col gap-3">
+      <div className="rounded-2xl border border-slate-200 bg-white p-5">
+        <h4 className="text-[12px] font-semibold uppercase tracking-[0.22em] text-[#2f5cab] mb-5">
+          Brands
+        </h4>
+
+        <div className="flex flex-col gap-2">
           {brands.map((brand) => (
             <button
               key={brand}
               onClick={() => updateFilter('brand', activeBrand === brand ? '' : brand)}
-              className={`text-left text-[13px] transition-all ${activeBrand === brand ? 'text-[#F54900] font-bold' : 'text-slate-500 hover:text-slate-900'}`}
+              className={`text-left px-3 py-2.5 rounded-xl text-[13px] transition-all ${activeBrand === brand
+                ? 'bg-[#2f5cab]/10 text-[#2f5cab] font-semibold'
+                : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                }`}
             >
               {brand}
             </button>
@@ -146,8 +191,11 @@ export default function Shop() {
         </div>
       </div>
 
-      <div>
-        <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-6">Price Range</h4>
+      <div className="rounded-2xl border border-slate-200 bg-white p-5">
+        <h4 className="text-[12px] font-semibold uppercase tracking-[0.22em] text-[#2f5cab] mb-5">
+          Price Range
+        </h4>
+
         <div className="space-y-4">
           <input
             type="range"
@@ -156,18 +204,18 @@ export default function Shop() {
             step="100"
             value={maxPrice}
             onChange={(e) => updateFilter('maxPrice', e.target.value)}
-            className="w-full h-px bg-slate-200 appearance-none cursor-pointer accent-[#F54900]"
+            className="w-full accent-[#2f5cab]"
           />
-          <div className="flex items-center justify-between text-[11px] text-slate-400 font-medium">
-            <span>$0</span>
-            <span className="text-slate-900 font-bold">${maxPrice}</span>
+          <div className="flex items-center justify-between text-[12px]">
+            <span className="text-slate-400">$0</span>
+            <span className="font-semibold text-slate-900">${maxPrice}</span>
           </div>
         </div>
       </div>
 
       <button
         onClick={clearFilters}
-        className="text-[10px] font-bold text-slate-400 hover:text-[#F54900] transition-all uppercase tracking-widest"
+        className="w-full rounded-2xl border border-slate-200 bg-white py-3 text-[12px] font-semibold uppercase tracking-[0.18em] text-slate-500 hover:text-[#2f5cab] hover:border-[#2f5cab]/30 transition-all"
       >
         Clear All
       </button>
@@ -175,124 +223,173 @@ export default function Shop() {
   );
 
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-900">
-      <SEO title="Inventory | My Printer Land" />
+    <div className="min-h-screen bg-[#f6f8fb] text-slate-900">
+      <SEO title="Inventory | Print Mora" />
 
-      {/* --- MINIMAL HEADER --- */}
-      <div className="max-w-[1600px] mx-auto px-6 pt-16 md:pt-24 pb-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div className="max-w-2xl">
-            <div className="flex items-center gap-2 mb-4">
-              <Zap size={14} className="text-[#F54900]" fill="currentColor" />
-              <span className="text-[11px] font-bold text-[#F54900] uppercase tracking-[0.4em]">Inventory</span>
+      <div className="max-w-[1800px] mx-auto px-4 md:px-6 pt-12 md:pt-16 pb-8">
+        <div className="rounded-[28px] border border-slate-200 bg-white px-6 md:px-8 py-8 md:py-10 shadow-[0_10px_40px_rgba(15,23,42,0.04)]">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+            <div>
+              <span className="inline-flex items-center rounded-full bg-[#2f5cab]/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#2f5cab]">
+                Shop Collection
+              </span>
+              <h1 className="mt-4 text-3xl md:text-5xl font-semibold leading-tight text-slate-900">
+                {heroTitle}
+              </h1>
+              <p className="mt-3 text-sm md:text-base text-slate-500">
+                Browse premium printers and accessories with a cleaner shopping experience.
+              </p>
             </div>
-            <h1 className="text-4xl md:text-5xl font-light text-slate-900 leading-tight">
-              {heroTitle} <span className="text-slate-300">selection.</span>
-            </h1>
+
+            <div className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 self-start lg:self-auto">
+              <span className="text-sm text-slate-500">Available Products</span>
+              <span className="text-lg font-semibold text-slate-900">{products.length}</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-[1600px] mx-auto px-6 py-12 border-t border-slate-50">
-        <div className="flex flex-col lg:flex-row gap-16">
-
-          <aside className="hidden lg:block w-52 shrink-0">
+      <div className="max-w-[1800px] mx-auto px-4 md:px-6 pb-16">
+        <div className="flex flex-col lg:flex-row gap-8 xl:gap-10">
+          <aside className="hidden lg:block w-[280px] shrink-0">
             <div className="sticky top-24">
               <FilterSidebar />
             </div>
           </aside>
 
           <main className="flex-1">
-            {/* Minimal Toolbar */}
-            <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-16">
-              <div className="relative w-full md:w-80 group">
-                <Search className="absolute left-0 top-1/2 -translate-y-1/2 text-slate-300" size={16} />
-                <input
-                  type="text"
-                  placeholder="Search products..."
-                  value={search}
-                  onChange={(e) => updateFilter('search', e.target.value)}
-                  className="w-full h-10 pl-8 bg-transparent border-b border-slate-100 focus:border-[#F54900] outline-none text-sm transition-all"
-                />
-              </div>
+            <div className="mb-8 rounded-[24px] border border-slate-200 bg-white px-4 md:px-6 py-4 shadow-[0_8px_30px_rgba(15,23,42,0.03)]">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div className="relative w-full md:w-[340px]">
+                  <Search
+                    className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                    size={17}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Search products..."
+                    value={search}
+                    onChange={(e) => updateFilter('search', e.target.value)}
+                    className="w-full h-12 rounded-2xl border border-slate-200 bg-slate-50 pl-11 pr-4 text-sm outline-none focus:border-[#2f5cab] focus:bg-white transition-all"
+                  />
+                </div>
 
-              <div className="flex items-center gap-8 w-full md:w-auto">
-                <button
-                  onClick={() => setShowMobileFilters(true)}
-                  className="lg:hidden flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-slate-900"
-                >
-                  <Filter size={14} /> Filters
-                </button>
-
-                <div className="relative group">
-                  <select
-                    value={sort}
-                    onChange={(e) => updateFilter('sort', e.target.value)}
-                    className="appearance-none bg-transparent pr-6 text-[11px] font-bold uppercase tracking-widest text-slate-500 outline-none cursor-pointer hover:text-slate-900 transition-colors"
+                <div className="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end">
+                  <button
+                    onClick={() => setShowMobileFilters(true)}
+                    className="lg:hidden inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 h-11 text-[12px] font-semibold uppercase tracking-[0.14em] text-slate-700"
                   >
-                    <option value="newest">Newest</option>
-                    <option value="price_low">Price Low</option>
-                    <option value="price_high">Price High</option>
-                  </select>
-                  <ChevronDown size={12} className="absolute right-0 top-1/2 -translate-y-1/2 text-slate-300 pointer-events-none" />
+                    <SlidersHorizontal size={15} />
+                    Filters
+                  </button>
+
+                  <div className="relative">
+                    <select
+                      value={sort}
+                      onChange={(e) => updateFilter('sort', e.target.value)}
+                      className="appearance-none h-11 rounded-2xl border border-slate-200 bg-white pl-4 pr-10 text-[12px] font-semibold uppercase tracking-[0.14em] text-slate-700 outline-none focus:border-[#2f5cab]"
+                    >
+                      <option value="newest">Newest</option>
+                      <option value="price_low">Price Low</option>
+                      <option value="price_high">Price High</option>
+                    </select>
+                    <ChevronDown
+                      size={14}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
 
             {loading ? (
-              <div className="py-32 text-center">
-                <Loader2 className="animate-spin text-slate-200 mx-auto" size={24} />
+              <div className="rounded-[28px] border border-slate-200 bg-white py-24 text-center">
+                <Loader2 className="animate-spin text-slate-300 mx-auto" size={28} />
               </div>
             ) : products.length === 0 ? (
-              <div className="py-32 text-center border border-dashed border-slate-100 rounded-xl">
-                <p className="text-slate-400 text-sm font-medium">No results found for your filters.</p>
+              <div className="rounded-[28px] border border-dashed border-slate-200 bg-white py-24 text-center">
+                <p className="text-slate-400 text-sm font-medium">
+                  No results found for your filters.
+                </p>
               </div>
             ) : (
-              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-10">
+              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6">
                 {currentProducts.map((p, i) => (
                   <motion.div
                     key={p.id}
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: (i % 4) * 0.05 }}
-                    className="group flex flex-col"
+                    className="group rounded-[24px] border border-slate-200 bg-white p-3 md:p-4 shadow-[0_10px_25px_rgba(15,23,42,0.03)] hover:shadow-[0_18px_40px_rgba(15,23,42,0.08)] transition-all duration-300 flex flex-col"
                   >
-                    <div className="relative aspect-[4/5] mb-4 bg-[#f8f8f8] rounded-xl overflow-hidden flex items-center justify-center p-8 transition-all duration-500 group-hover:bg-white group-hover:shadow-xl group-hover:shadow-slate-100">
-                      <Link to={`/product/${p.slug}`} className="w-full h-full flex items-center justify-center">
+                    <div className="relative aspect-[4/4.4] mb-4 rounded-[20px] bg-[#f8fafc] overflow-hidden flex items-center justify-center p-5">
+                      <Link
+                        to={`/product/${p.slug}`}
+                        className="w-full h-full flex items-center justify-center"
+                      >
                         <img
                           src={getImagePath(p.images)}
                           alt={p.name}
-                          className="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-700"
+                          className="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500"
                         />
                       </Link>
-                      <button
-                        onClick={() => toggleWishlist(p)}
-                        className={`absolute top-4 right-4 w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100 ${isInWishlist(p.id) ? 'text-[#F54900] opacity-100' : 'text-slate-300'}`}
-                      >
-                        <Heart size={14} fill={isInWishlist(p.id) ? 'currentColor' : 'none'} />
-                      </button>
 
-                      <div className="absolute bottom-4 left-4 right-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                      <div className="absolute top-3 right-3 flex flex-col gap-2">
+                        <button
+                          onClick={() => toggleWishlist(p)}
+                          className={`w-9 h-9 rounded-full bg-white shadow-sm border border-slate-100 flex items-center justify-center transition-all ${isInWishlist(p.id)
+                            ? 'text-[#2f5cab]'
+                            : 'text-slate-400 hover:text-[#2f5cab]'
+                            }`}
+                        >
+                          <Heart
+                            size={15}
+                            fill={isInWishlist(p.id) ? 'currentColor' : 'none'}
+                          />
+                        </button>
+
+                        <button
+                          onClick={() => toggleCompare(p)}
+                          className={`w-9 h-9 rounded-full bg-white shadow-sm border border-slate-100 flex items-center justify-center transition-all ${isInCompare(p.id)
+                            ? 'text-[#2f5cab]'
+                            : 'text-slate-400 hover:text-[#2f5cab]'
+                            }`}
+                          title="Add to Compare"
+                        >
+                          <Package size={15} />
+                        </button>
+                      </div>
+
+                      <div className="absolute bottom-3 left-3 right-3 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
                         <button
                           onClick={() => handleAddToCart(p)}
                           disabled={addedItems[p.id]}
-                          className={`w-full h-10 rounded-lg text-[10px] font-bold uppercase tracking-widest shadow-sm flex items-center justify-center gap-2 transition-all ${addedItems[p.id] ? "bg-emerald-500 text-white" : "bg-white text-slate-900 hover:bg-slate-900 hover:text-white"}`}
+                          className={`w-full h-11 rounded-2xl text-[11px] font-semibold uppercase tracking-[0.14em] flex items-center justify-center gap-2 transition-all ${addedItems[p.id]
+                            ? 'bg-emerald-500 text-white'
+                            : 'bg-[#2f5cab] text-white hover:bg-[#264d93]'
+                            }`}
                         >
-                          {addedItems[p.id] ? <Check size={14} /> : "Add to Cart"}
+                          {addedItems[p.id] ? <Check size={15} /> : <ShoppingCart size={15} />}
+                          {addedItems[p.id] ? 'Added' : 'Add to Cart'}
                         </button>
                       </div>
                     </div>
 
-                    <div className="flex flex-col px-1">
+                    <div className="px-1 flex flex-col flex-1">
                       <Link to={`/product/${p.slug}`}>
-                        <h3 className="text-[13px] font-medium text-slate-700 leading-snug line-clamp-2 mb-1.5 hover:text-[#F54900] transition-colors">
+                        <h3 className="text-[13px] md:text-[14px] font-medium text-slate-700 leading-6 line-clamp-2 mb-2 hover:text-[#2f5cab] transition-colors min-h-[48px]">
                           {p.name}
                         </h3>
                       </Link>
-                      <div className="flex items-center justify-between">
-                        <span className="text-[14px] font-bold text-slate-900">${Number(p.price).toLocaleString()}</span>
-                        <span className="text-[9px] font-medium text-slate-300 uppercase tracking-tighter">REF_{p.id}</span>
+
+                      <div className="mt-auto flex items-center justify-between gap-3">
+                        <span className="text-[15px] md:text-[16px] font-semibold text-slate-900">
+                          ₹{Number(p.price).toLocaleString()}
+                        </span>
+                        <span className="text-[10px] font-medium text-slate-300 uppercase tracking-[0.1em]">
+                          REF_{p.id}
+                        </span>
                       </div>
                     </div>
                   </motion.div>
@@ -301,37 +398,44 @@ export default function Shop() {
             )}
 
             {!loading && totalPages > 1 && (
-              <div className="mt-20 flex items-center justify-center gap-6">
+              <div className="mt-12 flex items-center justify-center gap-3 md:gap-4 flex-wrap">
                 <button
-                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                   disabled={currentPage === 1}
-                  className="w-8 h-8 border border-slate-100 flex items-center justify-center text-slate-300 hover:text-[#F54900] disabled:opacity-20 transition-all"
+                  className="w-11 h-11 rounded-2xl border border-slate-200 bg-white flex items-center justify-center text-slate-400 hover:text-[#2f5cab] disabled:opacity-30 transition-all"
                 >
-                  <ChevronLeft size={16} />
+                  <ChevronLeft size={18} />
                 </button>
-                <div className="flex items-center gap-4">
-                  {[...Array(totalPages)].map((_, i) => {
-                    const page = i + 1;
-                    if (page === 1 || page === totalPages || (page >= currentPage - 1 && page <= currentPage + 1)) {
-                      return (
-                        <button
-                          key={page}
-                          onClick={() => setCurrentPage(page)}
-                          className={`text-[11px] font-bold transition-all ${currentPage === page ? 'text-[#F54900] underline' : 'text-slate-300 hover:text-slate-900'}`}
-                        >
-                          {page}
-                        </button>
-                      );
-                    }
-                    return null;
-                  })}
-                </div>
+
+                {[...Array(totalPages)].map((_, i) => {
+                  const page = i + 1;
+                  if (
+                    page === 1 ||
+                    page === totalPages ||
+                    (page >= currentPage - 1 && page <= currentPage + 1)
+                  ) {
+                    return (
+                      <button
+                        key={page}
+                        onClick={() => setCurrentPage(page)}
+                        className={`min-w-[44px] h-11 px-3 rounded-2xl text-[12px] font-semibold transition-all ${currentPage === page
+                          ? 'bg-[#2f5cab] text-white'
+                          : 'bg-white border border-slate-200 text-slate-500 hover:text-slate-900'
+                          }`}
+                      >
+                        {page}
+                      </button>
+                    );
+                  }
+                  return null;
+                })}
+
                 <button
-                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                  onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                   disabled={currentPage === totalPages}
-                  className="w-8 h-8 border border-slate-100 flex items-center justify-center text-slate-300 hover:text-[#F54900] disabled:opacity-20 transition-all"
+                  className="w-11 h-11 rounded-2xl border border-slate-200 bg-white flex items-center justify-center text-slate-400 hover:text-[#2f5cab] disabled:opacity-30 transition-all"
                 >
-                  <ChevronRight size={16} />
+                  <ChevronRight size={18} />
                 </button>
               </div>
             )}
@@ -339,18 +443,43 @@ export default function Shop() {
         </div>
       </div>
 
-      {/* Mobile Filters */}
       <AnimatePresence>
         {showMobileFilters && (
           <>
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setShowMobileFilters(false)} className="fixed inset-0 bg-black/30 z-[1001] backdrop-blur-sm" />
-            <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} className="fixed top-0 right-0 bottom-0 w-full max-w-[280px] bg-white z-[1002] p-8 shadow-2xl overflow-y-auto">
-              <div className="flex items-center justify-between mb-10">
-                <h2 className="text-xs font-bold uppercase tracking-widest">Filters</h2>
-                <button onClick={() => setShowMobileFilters(false)} className="text-slate-300 hover:text-slate-900"><X size={20} /></button>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowMobileFilters(false)}
+              className="fixed inset-0 bg-black/40 z-[1001] backdrop-blur-sm"
+            />
+
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              className="fixed top-0 right-0 bottom-0 w-full max-w-[320px] bg-[#f6f8fb] z-[1002] p-5 shadow-2xl overflow-y-auto"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-[13px] font-semibold uppercase tracking-[0.18em] text-slate-900">
+                  Filters
+                </h2>
+                <button
+                  onClick={() => setShowMobileFilters(false)}
+                  className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-500"
+                >
+                  <X size={18} />
+                </button>
               </div>
+
               <FilterSidebar />
-              <button onClick={() => setShowMobileFilters(false)} className="w-full mt-12 py-3 bg-slate-900 text-white text-[10px] font-bold uppercase tracking-widest rounded-lg">Apply</button>
+
+              <button
+                onClick={() => setShowMobileFilters(false)}
+                className="w-full mt-6 h-12 rounded-2xl bg-[#2f5cab] text-white text-[12px] font-semibold uppercase tracking-[0.16em]"
+              >
+                Apply
+              </button>
             </motion.div>
           </>
         )}

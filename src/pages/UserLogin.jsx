@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, Loader2, ArrowRight, ShieldCheck } from 'lucide-react';
 import API_BASE_URL from '../config';
@@ -40,92 +40,92 @@ export default function UserLogin() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-[#F8FAFC] font-['Rubik'] px-4 py-12">
-            <SEO title="Sign In | My Printer Land" />
+        <div className="min-h-screen flex items-center justify-center bg-[#f8faff] font-sans px-4 py-12">
+            <SEO title="Sign In | Print Mora" />
 
-            <div className="w-full max-w-[450px] bg-white rounded-3xl border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] overflow-hidden">
+            <div className="w-full max-w-[460px] bg-white rounded-[32px] border border-blue-50 shadow-[0_20px_50px_rgba(47,92,171,0.08)] overflow-hidden">
                 {/* Top Accent Bar */}
-                <div className="h-2 bg-gradient-to-r from-[#F54900] to-[#4f46e5]"></div>
+                <div className="h-2 bg-[#ffd33d]"></div>
 
                 <div className="p-8 md:p-12">
                     <div className="text-center mb-10">
-                        <Link to="/" className="inline-block mb-6">
-                            <img src="/logo/logo.png" alt="Logo" className="h-10 object-contain" />
+                        <Link to="/" className="inline-block mb-8">
+                            <img src="/logo/logo.png" alt="Logo" className="h-12 object-contain" />
                         </Link>
-                        <h1 className="text-3xl font-bold text-[#F54900] ">Welcome Back</h1>
-                        <p className="text-gray-500 mt-2 text-sm">Enter your credentials to access your account</p>
+                        <h1 className="text-3xl font-bold text-[#2f5cab]">Welcome Back</h1>
+                        <p className="text-slate-500 mt-3 font-medium">Please enter your details to sign in.</p>
                     </div>
 
-                    <form onSubmit={handleLogin} className="space-y-5">
+                    <form onSubmit={handleLogin} className="space-y-6">
                         {error && (
-                            <div className="p-4 bg-red-50 text-red-600 text-xs font-bold rounded-xl border border-red-100 flex items-center gap-3">
-                                <div className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse" />
+                            <div className="p-4 bg-red-50 text-red-600 text-[13px] font-semibold rounded-2xl border border-red-100 flex items-center gap-3">
+                                <div className="w-2 h-2 rounded-full bg-red-500 shrink-0" />
                                 {error}
                             </div>
                         )}
 
-                        <div className="space-y-1.5">
-                            <label className="text-[13px] font-bold text-[#F54900] ml-1">Email Address</label>
+                        <div className="space-y-2">
+                            <label className="text-[14px] font-bold text-slate-700 ml-1">Email Address</label>
                             <div className="relative group">
-                                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#4f46e5] transition-colors" size={18} />
+                                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-[#2f5cab] transition-colors" size={20} />
                                 <input
                                     required
                                     type="email"
-                                    placeholder="name@company.com"
+                                    placeholder="your@email.com"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className="w-full h-12 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:border-[#4f46e5] focus:bg-white focus:ring-4 focus:ring-[#4f46e5]/5 transition-all text-sm font-medium"
+                                    className="w-full h-14 pl-12 pr-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:border-[#2f5cab] focus:bg-white focus:ring-4 focus:ring-[#2f5cab]/5 transition-all text-[15px] font-medium placeholder:text-slate-300"
                                 />
                             </div>
                         </div>
 
-                        <div className="space-y-1.5">
+                        <div className="space-y-2">
                             <div className="flex justify-between items-center px-1">
-                                <label className="text-[13px] font-bold text-[#F54900]">Password</label>
-                                <Link to="#" className="text-[11px] font-bold text-[#4f46e5] hover:underline uppercase tracking-wider">Forgot?</Link>
+                                <label className="text-[14px] font-bold text-slate-700">Password</label>
+                                <Link to="#" className="text-[12px] font-bold text-[#2f5cab] hover:underline">Forgot password?</Link>
                             </div>
                             <div className="relative group">
-                                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#4f46e5] transition-colors" size={18} />
+                                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-[#2f5cab] transition-colors" size={20} />
                                 <input
                                     required
                                     type={showPassword ? "text" : "password"}
-                                    placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
+                                    placeholder="••••••••"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className="w-full h-12 pl-12 pr-12 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:border-[#4f46e5] focus:bg-white focus:ring-4 focus:ring-[#4f46e5]/5 transition-all text-sm font-medium"
+                                    className="w-full h-14 pl-12 pr-12 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:border-[#2f5cab] focus:bg-white focus:ring-4 focus:ring-[#2f5cab]/5 transition-all text-[15px] font-medium placeholder:text-slate-300"
                                 />
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#F54900] transition-colors cursor-pointer"
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#2f5cab] transition-colors cursor-pointer"
                                 >
-                                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                                 </button>
                             </div>
                         </div>
 
                         <button
                             disabled={loading}
-                            className="w-full h-14 bg-[#F54900] text-white rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-[#4f46e5] transition-all disabled:opacity-70 shadow-xl shadow-[#F54900]/10 cursor-pointer flex items-center justify-center gap-3 active:scale-[0.98]"
+                            className="w-full h-16 bg-[#2f5cab] text-white rounded-2xl font-bold text-[16px] hover:bg-[#234d98] transition-all disabled:opacity-70 shadow-xl shadow-blue-600/10 cursor-pointer flex items-center justify-center gap-3 active:scale-[0.98] mt-4"
                         >
                             {loading ? <Loader2 className="animate-spin" size={20} /> : (
                                 <>
                                     Sign In
-                                    <ArrowRight size={18} />
+                                    <ArrowRight size={20} />
                                 </>
                             )}
                         </button>
                     </form>
 
-                    <div className="mt-10 pt-8 border-t border-gray-100 flex flex-col items-center gap-6">
-                        <p className="text-sm text-gray-500 font-medium">
-                            Don't have an account?{' '}
-                            <Link to="/signup" className="text-[#4f46e5] font-bold hover:underline">Create Account</Link>
+                    <div className="mt-10 pt-8 border-t border-slate-100 flex flex-col items-center gap-6">
+                        <p className="text-[15px] text-slate-500 font-medium">
+                            New here?{' '}
+                            <Link to="/signup" className="text-[#2f5cab] font-bold hover:underline">Create an account</Link>
                         </p>
 
-                        <div className="flex items-center gap-2 text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">
-                            <ShieldCheck size={14} className="text-emerald-500" />
-                            Secure & Encrypted Connection
+                        <div className="flex items-center gap-2 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+                            <ShieldCheck size={16} className="text-emerald-500" />
+                            Secure & Encrypted Session
                         </div>
                     </div>
                 </div>
@@ -133,4 +133,3 @@ export default function UserLogin() {
         </div>
     );
 }
-

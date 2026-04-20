@@ -10,7 +10,6 @@ import {
   ArrowRight,
   Cpu,
   Settings,
-  Shield,
   Layers,
   Activity,
   Globe,
@@ -69,70 +68,89 @@ export default function About() {
   ];
 
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-900 pb-20">
-      <SEO title="About | My Printer Land" />
+    <div className="min-h-screen bg-[#f8fafc] font-sans text-slate-900 pb-20">
+      <SEO title="About | Print Mora" />
 
-      {/* --- MINIMAL TECHNICAL HEADER --- */}
-      <section className="bg-slate-50 py-24 md:py-32 border-b border-slate-100 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
-          style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '40px 40px' }}
+      {/* Hero */}
+      <section className="relative overflow-hidden border-b border-slate-200 bg-[#f8fafc] py-24 md:py-32 lg:py-36">
+        <div
+          className="absolute inset-0 opacity-[0.04] pointer-events-none"
+          style={{
+            backgroundImage:
+              'radial-gradient(circle at 1px 1px, rgba(15,23,42,0.18) 1px, transparent 0)',
+            backgroundSize: '36px 36px'
+          }}
         />
 
-        <div className="max-w-[1600px] mx-auto px-8 relative z-10">
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-3 mb-6">
-              <Zap size={14} className="text-[#F54900]" fill="currentColor" />
-              <span className="text-[10px] font-black text-[#F54900] uppercase tracking-[0.5em]">About.Manifest</span>
+        <div className="absolute inset-x-0 top-0 h-[420px] bg-gradient-to-b from-[#2f5cab]/[0.06] to-transparent pointer-events-none" />
+
+        <div className="max-w-[1800px] mx-auto px-4 md:px-6 lg:px-8 relative z-10">
+          <div className="max-w-4xl">
+            <div className="inline-flex items-center gap-3 rounded-full border border-[#2f5cab]/15 bg-white/80 backdrop-blur-sm px-4 py-2 mb-7 shadow-sm">
+              <Zap size={14} className="text-[#2f5cab]" fill="currentColor" />
+              <span className="text-[11px] font-semibold text-[#2f5cab] uppercase tracking-[0.32em]">
+                About Manifest
+              </span>
             </div>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-slate-900 leading-tight tracking-tighter">
+
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold text-slate-900 leading-[0.95] tracking-tight">
               Redefining <span className="text-slate-300">Printing Standards.</span>
             </h1>
-            <p className="mt-8 text-slate-500 text-lg md:text-xl font-medium leading-relaxed max-w-xl border-l border-slate-200 pl-6">
+
+            <p className="mt-8 max-w-2xl text-slate-600 text-base md:text-xl leading-8 border-l-2 border-[#2f5cab]/20 pl-6">
               Engineering the bridge between advanced hardware and seamless user experience for the modern professional workspace.
             </p>
           </div>
         </div>
       </section>
 
-      <div className="max-w-[1600px] mx-auto px-8 py-20 space-y-32">
-
-        {/* --- OUR MISSION --- */}
-        <section className="flex flex-col lg:flex-row items-center gap-20">
-          <div className="w-full lg:w-1/2">
+      <div className="max-w-[1800px] mx-auto px-4 md:px-6 lg:px-8 py-16 md:py-20 space-y-24 md:space-y-28">
+        {/* Mission */}
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 lg:gap-20 items-center">
+          <div className="w-full">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, scale: 0.97, y: 18 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.55 }}
               viewport={{ once: true }}
-              className="aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100 shadow-sm"
+              className="aspect-[4/3] rounded-[28px] overflow-hidden bg-white border border-slate-200 shadow-[0_15px_50px_rgba(15,23,42,0.06)]"
             >
               <img
                 src="/banner/printer-promo-3.jpg"
                 alt="Our Vision"
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                onError={(e) => e.target.src = 'https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=2070&auto=format&fit=crop'}
+                className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.03]"
+                onError={(e) => {
+                  e.target.src =
+                    'https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=2070&auto=format&fit=crop';
+                }}
               />
             </motion.div>
           </div>
 
-          <div className="w-full lg:w-1/2 space-y-8">
+          <div className="w-full space-y-7">
             <div className="flex items-center gap-3">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#F54900]" />
-              <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.5em]">Mission_Statement</span>
+              <div className="w-2 h-2 rounded-full bg-[#2f5cab]" />
+              <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-[0.32em]">
+                Mission Statement
+              </span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 leading-tight tracking-tight uppercase">
+
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-slate-900 leading-tight tracking-tight">
               Simplicity through <br />
               <span className="text-slate-300">Advanced Engineering.</span>
             </h2>
-            <p className="text-slate-500 text-lg leading-relaxed font-medium">
+
+            <p className="text-slate-600 text-base md:text-lg leading-8 max-w-xl">
               Our mission is to eliminate the operational complexity of acquiring high-tier printing hardware. We provide a streamlined registry of systems designed for reliability and professional output.
             </p>
-            <div className="pt-6">
+
+            <div className="pt-2">
               <Link
                 to="/shop"
-                className="inline-flex items-center gap-4 text-xs font-black uppercase tracking-[0.3em] text-slate-900 group"
+                className="inline-flex items-center gap-4 text-[12px] font-semibold uppercase tracking-[0.22em] text-slate-900 group"
               >
                 Explore Entire Registry
-                <div className="w-10 h-10 rounded-full border border-slate-100 flex items-center justify-center group-hover:bg-slate-900 group-hover:text-white transition-all">
+                <div className="w-11 h-11 rounded-full border border-slate-200 bg-white flex items-center justify-center group-hover:bg-[#2f5cab] group-hover:border-[#2f5cab] group-hover:text-white transition-all shadow-sm">
                   <ArrowRight size={18} />
                 </div>
               </Link>
@@ -140,72 +158,123 @@ export default function About() {
           </div>
         </section>
 
-        {/* --- CORE CAPABILITIES --- */}
-        <section className="space-y-16">
-          <div className="text-center max-w-xl mx-auto space-y-4">
-            <span className="text-[10px] font-black text-[#F54900] uppercase tracking-[0.5em]">System_Integrity</span>
-            <h2 className="text-3xl font-bold text-slate-900 uppercase tracking-tighter">Core Capabilities.</h2>
+        {/* Core Capabilities */}
+        <section className="space-y-12 md:space-y-14">
+          <div className="text-center max-w-2xl mx-auto space-y-4">
+            <span className="text-[11px] font-semibold text-[#2f5cab] uppercase tracking-[0.32em]">
+              System Integrity
+            </span>
+            <h2 className="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight">
+              Core Capabilities.
+            </h2>
+            <p className="text-slate-500 text-sm md:text-base leading-7">
+              Built around operational reliability, supply consistency, and long-term performance support.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-slate-100 border border-slate-100 rounded-xl overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-7">
             {capabilities.map((item, i) => (
-              <div key={i} className="bg-white p-12 group hover:bg-slate-50 transition-colors duration-500">
-                <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center text-slate-300 mb-8 group-hover:text-[#F54900] transition-colors">
-                  <item.icon size={24} strokeWidth={1} />
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.08, duration: 0.45 }}
+                viewport={{ once: true }}
+                className="rounded-[24px] border border-slate-200 bg-white p-8 md:p-10 shadow-sm hover:shadow-md transition-all duration-300"
+              >
+                <div className="w-14 h-14 rounded-2xl bg-[#2f5cab]/10 flex items-center justify-center text-[#2f5cab] mb-7">
+                  <item.icon size={24} strokeWidth={1.8} />
                 </div>
-                <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest mb-4">{item.title}</h3>
-                <p className="text-xs text-slate-400 leading-relaxed font-bold uppercase tracking-wider">{item.desc}</p>
-              </div>
+
+                <h3 className="text-lg font-semibold text-slate-900 mb-4">
+                  {item.title}
+                </h3>
+
+                <p className="text-sm text-slate-600 leading-7">
+                  {item.desc}
+                </p>
+              </motion.div>
             ))}
           </div>
         </section>
 
-        {/* --- GUIDED SELECTION --- */}
-        <section className="bg-slate-900 rounded-2xl p-12 md:p-20 text-white relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#F54900]/10 rounded-full blur-[100px] -mr-32 -mt-32" />
+        {/* Guided Selection */}
+        <section className="relative overflow-hidden rounded-[32px] border border-slate-200 bg-slate-900 p-8 md:p-12 lg:p-16 text-white shadow-[0_18px_55px_rgba(15,23,42,0.14)]">
+          <div className="absolute top-0 right-0 w-72 h-72 bg-[#2f5cab]/20 rounded-full blur-[110px] -mr-32 -mt-24 pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-white/[0.04] rounded-full blur-[120px] -ml-24 -mb-24 pointer-events-none" />
 
-          <div className="relative z-10 space-y-20">
-            <div className="max-w-xl">
-              <span className="text-[#F54900] text-[10px] font-black uppercase tracking-[0.5em] mb-6 block">Strategic.Path</span>
-              <h2 className="text-4xl font-light leading-tight tracking-tighter">
-                System Setup <br /> <span className="text-white/40">Protocol.</span>
+          <div className="relative z-10 space-y-12 md:space-y-16">
+            <div className="max-w-2xl">
+              <span className="text-[#7ea4ea] text-[11px] font-semibold uppercase tracking-[0.32em] block mb-5">
+                Strategic Path
+              </span>
+              <h2 className="text-3xl md:text-5xl font-semibold leading-tight tracking-tight">
+                System Setup <br />
+                <span className="text-white/35">Protocol.</span>
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
               {selectionSteps.map((step, idx) => (
-                <div key={idx} className="space-y-6 group">
-                  <div className="flex items-center gap-4">
-                    <span className="text-2xl font-light text-white/20 group-hover:text-[#F54900] transition-colors">0{idx + 1}</span>
-                    <div className="h-px flex-1 bg-white/5 group-hover:bg-[#F54900]/20 transition-all" />
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.08, duration: 0.45 }}
+                  viewport={{ once: true }}
+                  className="rounded-[24px] border border-white/10 bg-white/[0.04] backdrop-blur-sm p-6 md:p-7"
+                >
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="text-3xl font-semibold text-white/20">
+                      0{idx + 1}
+                    </span>
+                    <div className="w-11 h-11 rounded-2xl bg-white/10 flex items-center justify-center text-[#7ea4ea]">
+                      <step.icon size={20} strokeWidth={1.8} />
+                    </div>
                   </div>
-                  <h4 className="text-sm font-black uppercase tracking-widest text-white/90">{step.title}</h4>
-                  <p className="text-xs text-white/30 leading-relaxed font-bold uppercase tracking-wider">{step.desc}</p>
-                </div>
+
+                  <h4 className="text-lg font-semibold text-white mb-3">
+                    {step.title}
+                  </h4>
+
+                  <p className="text-sm text-white/65 leading-7">
+                    {step.desc}
+                  </p>
+                </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* --- ADVANTAGE SECTION --- */}
-        <section className="space-y-12">
+        {/* Advantages */}
+        <section className="space-y-10 md:space-y-12">
           <div className="flex items-center gap-3">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#F54900]" />
-            <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.5em]">Advantage.Log</span>
+            <div className="w-2 h-2 rounded-full bg-[#2f5cab]" />
+            <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-[0.32em]">
+              Advantage Log
+            </span>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
             {advantages.map((item, i) => (
-              <div key={i} className="flex items-center gap-4 group p-4 border border-slate-50 rounded-xl hover:bg-slate-50 transition-all">
-                <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center bg-white border border-slate-100 text-slate-300 group-hover:text-[#F54900] group-hover:border-[#F54900]/20 rounded-lg transition-all">
-                  <item.icon size={18} strokeWidth={1.5} />
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.04, duration: 0.35 }}
+                viewport={{ once: true }}
+                className="flex items-center gap-4 rounded-[20px] border border-slate-200 bg-white px-4 py-4 md:px-5 md:py-5 hover:shadow-sm transition-all"
+              >
+                <div className="w-10 h-10 flex-shrink-0 rounded-xl bg-[#2f5cab]/10 text-[#2f5cab] flex items-center justify-center">
+                  <item.icon size={18} strokeWidth={1.8} />
                 </div>
-                <h4 className="text-[11px] font-bold text-slate-500 uppercase tracking-widest">{item.title}</h4>
-              </div>
+                <h4 className="text-[13px] font-semibold text-slate-700 leading-5">
+                  {item.title}
+                </h4>
+              </motion.div>
             ))}
           </div>
         </section>
-
       </div>
     </div>
   );

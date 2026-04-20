@@ -3,13 +3,13 @@
 export default function SEO({ title, description, keywords, schemaType = "Website" }) {
   useEffect(() => {
     // Update Title - Avoid doubling the brand name if it's already in the prop
-    const baseTitle = "My Printer Land";
+    const baseTitle = "Print Mora";
     const fullTitle = title && title.includes(baseTitle) ? title : (title ? `${title} | ${baseTitle}` : baseTitle);
     document.title = fullTitle;
 
     // Update Description
     const metaDescription = document.querySelector('meta[name="description"]');
-    const defaultDesc = "My Printer Land is located in Ashburn, Virginia, offering high-performance printers, ink, toner, and nationwide shipping.";
+    const defaultDesc = "Print Mora is located in Ashburn, Virginia, offering high-performance printers, ink, toner, and nationwide shipping.";
     const finalDesc = description || defaultDesc;
     if (metaDescription) {
       metaDescription.setAttribute('content', finalDesc);
@@ -45,22 +45,22 @@ export default function SEO({ title, description, keywords, schemaType = "Websit
     const schemaData = {
       "@context": "https://schema.org",
       "@type": schemaType === "Product" ? "Product" : "Organization",
-      "name": "My Printer Land",
-      "url": "https://myprinterland.shop",
-      "logo": "https://myprinterland.shop/logo/logo.png",
+      "name": "Print Mora",
+      "url": "https://printmora.shop",
+      "logo": "https://printmora.shop/logo/logo.png",
       "description": finalDesc,
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "110 N Main St, Livingston",
-        "addressLocality": "Livingston City",
-        "addressRegion": "MT",
-        "postalCode": "59047",
+        "streetAddress": "302 E Washington St, Bloomington",
+        "addressLocality": "Bloomington",
+        "addressRegion": "IL",
+        "postalCode": "61701",
         "addressCountry": "US"
       },
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "customer service",
-        "email": "info@myprinterland.shop"
+        "email": "info@printmora.shop"
       }
     };
 

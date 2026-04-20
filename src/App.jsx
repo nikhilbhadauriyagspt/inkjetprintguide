@@ -20,6 +20,7 @@ import ReturnPolicy from './pages/ReturnPolicy';
 import ShippingPolicy from './pages/ShippingPolicy';
 import Cart from './pages/Cart';
 import Wishlist from './pages/Wishlist';
+import Compare from './pages/Compare';
 import Checkout from './pages/Checkout';
 import Orders from './pages/Orders';
 import FAQ from './pages/FAQ';
@@ -74,6 +75,7 @@ function App() {
             <Route path="/contact" element={<ShopLayout><Contact /></ShopLayout>} />
             <Route path="/cart" element={<ShopLayout><Cart /></ShopLayout>} />
             <Route path="/wishlist" element={<ShopLayout><Wishlist /></ShopLayout>} />
+            <Route path="/compare" element={<ShopLayout><Compare /></ShopLayout>} />
             <Route path="/checkout" element={<ShopLayout><Checkout /></ShopLayout>} />
             <Route path="/orders" element={<ShopLayout><Orders /></ShopLayout>} />
             <Route path="/track-order" element={<ShopLayout><Orders /></ShopLayout>} />

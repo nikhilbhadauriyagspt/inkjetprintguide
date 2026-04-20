@@ -29,6 +29,15 @@ export const CartProvider = ({ children }) => {
     }
   });
 
+  const [compare, setCompare] = useState(() => {
+    try {
+      const savedCompare = localStorage.getItem('compare');
+      return savedCompare ? JSON.parse(savedCompare) : [];
+    } catch {
+      return [];
+    }
+  });
+
   const [toast, setToast] = useState(null);
   const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -51,6 +60,10 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem('wishlist', JSON.stringify(wishlist));
   }, [wishlist]);
+
+  useEffect(() => {
+    localStorage.setItem('compare', JSON.stringify(compare));
+  }, [compare]);
 
   const addToCart = (product, quantity = 1) => {
     if (!product) return;
@@ -120,22 +133,57 @@ export const CartProvider = ({ children }) => {
     return wishlist.some(item => item.id === productId);
   };
 
+  const toggleCompare = (product) => {
+    setCompare(prevCompare => {
+      const exists = prevCompare.find(item => item.id === product.id);
+
+      if (exists) {
+        showToast(`${product.name} removed from comparison`, 'info');
+        return prevCompare.filter(item => item.id !== product.id);
+      }
+
+      if (prevCompare.length >= 4) {
+        showToast('You can only compare up to 4 products', 'error');
+        return prevCompare;
+      }
+
+      showToast(`${product.name} added to comparison!`);
+      return [...prevCompare, product];
+    });
+  };
+
+  const isInCompare = (productId) => {
+    return compare.some(item => item.id === productId);
+  };
+
+  const removeFromCompare = (productId) => {
+    setCompare(prevCompare => prevCompare.filter(item => item.id !== productId));
+  };
+
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+  const cartTotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
   const wishlistCount = wishlist.length;
+  const compareCount = compare.length;
 
   return (
     <CartContext.Provider
       value={{
         cart,
         wishlist,
+        compare,
         addToCart,
         removeFromCart,
         updateQuantity,
         clearCart,
         toggleWishlist,
         isInWishlist,
+        toggleCompare,
+        isInCompare,
+        removeFromCompare,
         cartCount,
+        cartTotal,
         wishlistCount,
+        compareCount,
         toast,
         showToast,
         isCartDrawerOpen,

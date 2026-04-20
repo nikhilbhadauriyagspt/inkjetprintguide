@@ -97,7 +97,7 @@ export default function SearchOverlay() {
                 </div>
                 <div>
                   <h2 className="text-2xl font-semibold text-slate-900  leading-none">Global Search</h2>
-                  <p className="text-[11px] font-medium uppercase tracking-widest text-[#F54900] mt-1.5">My Printer Land Catalog</p>
+                  <p className="text-[11px] font-medium uppercase tracking-widest text-[#F54900] mt-1.5">Print Mora Catalog</p>
                 </div>
               </div>
               <button

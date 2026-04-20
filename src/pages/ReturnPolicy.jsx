@@ -15,15 +15,15 @@ export default function ReturnPolicy() {
 
       <h2>Return Process</h2>
       <p>
-        To return an item, please email customer service at <a href="mailto:info@myprinterland.shop">info@myprinterland.shop</a> to obtain an Return Merchandise Authorization (RMA) number.
+        To return an item, please email customer service at <a href="mailto:info@printmora.shop">info@printmora.shop</a> to obtain an Return Merchandise Authorization (RMA) number.
       </p>
       <div className="bg-gray-50 p-8 rounded-sm border border-border mt-6 not-prose">
         <p className="font-medium text-gray-500 mb-4 ">After receiving an RMA number, place the item securely in its original packaging and include your proof of purchase, then mail your return to the following address:</p>
         <address className="not- text-black font-bold leading-relaxed capitalize ">
-          My Printer Land LLC<br />
+          Print Mora LLC<br />
 
-          110 N Main St, Livingston<br />
-          MT 59047, United States<br />
+          302 E Washington St, Bloomington<br />
+          IL 61701, United States<br />
         </address>
         <p className="mt-6 text-primary font-extrabold capitalize text-xs tracking-widest">
           Return shipping charges will be paid or reimbursed by us.
@@ -45,7 +45,7 @@ export default function ReturnPolicy() {
       <p>If you have any questions concerning our return policy, please contact us at:</p>
       <div className="bg-gray-50 p-8 rounded-sm border border-border my-8 not-prose">
         <address className="not- text-gray-700 font-bold leading-relaxed space-y-3">
-          <p className="flex items-center gap-3 text-primary font-extrabold ">info@myprinterland.shop</p>
+          <p className="flex items-center gap-3 text-primary font-extrabold ">info@printmora.shop</p>
           <p className="text-[10px] text-gray-400 font-bold capitalize tracking-[0.2em]">Contact support for immediate assistance</p>
         </address>
       </div>

@@ -24,9 +24,10 @@ export default function MiddleBanner() {
             <div className="max-w-[1800px] mx-auto px-0 md:px-10">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                     {banners.map((banner, index) => (
-                        <div
+                        <Link
                             key={index}
-                            className={`relative group overflow-hidden flex items-center ${banner.className}`}
+                            to={banner.link}
+                            className={`relative group overflow-hidden flex items-center block ${banner.className}`}
                         >
                             <div
                                 className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
@@ -40,15 +41,14 @@ export default function MiddleBanner() {
                                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-white mb-6">
                                     {banner.title}
                                 </h2>
-                                <Link
-                                    to={banner.link}
+                                <div
                                     className="inline-flex items-center gap-2 px-7 py-3 bg-[#F54900] text-white text-[13px] font-bold uppercase tracking-wider transition-all duration-300 hover:bg-[#F54900]-hover active:scale-95"
                                 >
                                     Explore More
                                     <ArrowRight size={16} />
-                                </Link>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>
