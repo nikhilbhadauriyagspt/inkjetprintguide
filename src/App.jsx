@@ -14,6 +14,7 @@ const Footer = lazy(() => import('./components/Footer'));
 const CartDrawer = lazy(() => import('./components/CartDrawer'));
 const SearchOverlay = lazy(() => import('./components/SearchOverlay'));
 const BottomNav = lazy(() => import('./components/BottomNav'));
+const CookieConsent = lazy(() => import('./components/CookieConsent'));
 
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
@@ -82,6 +83,7 @@ function App() {
               <CartDrawer />
               <SearchOverlay />
               <BottomNav />
+              <CookieConsent />
             </Suspense>
             <Suspense fallback={<PageLoader />}>
               <Routes>
