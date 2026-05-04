@@ -58,7 +58,7 @@ export default function Orders() {
   if (!user && !hasSearched) {
     return (
       <div className="min-h-screen bg-white font-sans text-slate-900 pb-20">
-        <SEO title="Track Your Shipment | Registry | Inklivo" />
+        <SEO title="Track Your Shipment | Registry | Print Sphere" />
 
         <div className="bg-white border-b border-slate-100 py-12 md:py-20 mb-12">
           <div className="max-w-[1700px] mx-auto px-6">
@@ -114,7 +114,7 @@ export default function Orders() {
 
   return (
     <div className="min-h-screen bg-white font-sans text-slate-900 pb-20">
-      <SEO title="Your Order Registry | Inklivo" />
+      <SEO title="Your Order Registry | Print Sphere" />
 
       {/* --- PAGE HEADER --- */}
       <div className="bg-white border-b border-slate-100 py-12 md:py-16 mb-12">
@@ -304,7 +304,7 @@ export default function Orders() {
                     <div className="w-10 h-10 bg-white border border-slate-200 flex items-center justify-center text-[#0096d6]">
                       <Truck size={20} />
                     </div>
-                    <span>Inklivo Logistic Protocol</span>
+                    <span>Print Sphere Logistic Protocol</span>
                   </div>
                   <div className="text-right">
                     <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">ETA Deployment</p>

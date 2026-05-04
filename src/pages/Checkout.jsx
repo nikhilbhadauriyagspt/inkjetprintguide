@@ -78,7 +78,7 @@ function CheckoutContent() {
         total: total,
         items: cart,
         payment_details: paymentDetails,
-        source: 'inklivo.shop',
+        source: 'printsphere.co',
       };
 
       const response = await fetch(`${API_BASE_URL}/orders`, {
@@ -158,7 +158,7 @@ function CheckoutContent() {
 
   return (
     <div className="min-h-screen bg-[#f5f5f5] font-sans text-slate-900 pb-20">
-      <SEO title="Secure Checkout | Fast Shipping on Printers | Inklivo" />
+      <SEO title="Secure Checkout | Fast Shipping on Printers | Print Sphere" />
 
       {/* --- HEADER --- */}
       <div className="bg-white border-b border-slate-100 py-8 sticky top-0 z-[100] shadow-sm">

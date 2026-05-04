@@ -62,14 +62,14 @@ export default function About() {
 
   return (
     <div className="min-h-screen bg-white font-sans text-slate-900">
-      <SEO title="About Inklivo | A New Vision for Printing" />
+      <SEO title="About Print Sphere | A New Vision for Printing" />
 
       {/* Hero Section with BG Image */}
       <section className="relative h-[50vh] md:h-[50vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src="/banner/banner-5.avif"
-            alt="About Inklivo"
+            alt="About Print Sphere"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-[2px]" />
@@ -154,7 +154,7 @@ export default function About() {
               </h2>
               <div className="space-y-6 text-slate-600 text-base md:text-lg leading-relaxed ">
                 <p>
-                  Inklivo started with a simple observation: finding the right printing hardware should be straightforward, not complicated. We are a new team with a fresh perspective on how professional tools should be delivered.
+                  Print Sphere started with a simple observation: finding the right printing hardware should be straightforward, not complicated. We are a new team with a fresh perspective on how professional tools should be delivered.
                 </p>
                 <p>
                   Every order matters to us. We are building this company one customer at a time, focusing on making sure you have exactly what you need to be productive.

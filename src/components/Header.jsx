@@ -165,7 +165,7 @@ export default function Header() {
           <Link to="/" className="shrink-0 flex items-center">
             <img
               src="/logo/logo.avif"
-              alt="Inklivo"
+              alt="Print Sphere"
               className={`w-auto object-contain transition-all duration-300 ${isScrolled ? 'h-7 md:h-9' : 'h-8 md:h-11'}`}
             />
           </Link>
@@ -262,7 +262,7 @@ export default function Header() {
                 <div className="leading-tight">
                   <div className="flex items-center gap-2">
                     <span className="text-[16px] font-bold text-[#05718A]">
-                      info@inklivo.shop
+                      info@printsphere.co
                     </span>
                     <ChevronDown
                       size={15}
@@ -288,12 +288,12 @@ export default function Header() {
                     <div className="space-y-6">
                       <div>
                         <a
-                          href="mailto:info@inklivo.shop"
+                          href="mailto:info@printsphere.co"
                           className="mt-3 flex items-center gap-3 text-[#05718A]"
                         >
                           <Mail size={23} />
                           <span className="text-[18px] font-semibold">
-                            info@inklivo.shop
+                            info@printsphere.co
                           </span>
                         </a>
                         <p className="mt-2 text-[13px] text-slate-500">
@@ -301,8 +301,8 @@ export default function Header() {
                         </p>
                       </div>
 
-                    <div className="border-t border-slate-200 pt-6 space-y-4">
-                    </div>
+                      <div className="border-t border-slate-200 pt-6 space-y-4">
+                      </div>
                     </div>
                   </m.div>
                 )}
@@ -584,7 +584,7 @@ export default function Header() {
                       {link.name}
                     </Link>
                   ))}
-                  
+
                   <div className="pt-4 mt-4 border-t border-slate-100 space-y-1">
                     <Link
                       to="/wishlist"

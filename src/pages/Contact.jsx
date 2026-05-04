@@ -62,7 +62,7 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-white font-sans text-slate-900 pb-20">
-      <SEO title="Contact Us | Support Registry | Inklivo" />
+      <SEO title="Contact Us | Support Registry | Print Sphere" />
 
       {/* Section 1: Hero Banner (Same as About/FAQ) */}
       <section className="relative h-[40vh] md:h-[50vh] flex items-center overflow-hidden">
@@ -109,7 +109,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-400 text-[11px] uppercase tracking-widest mb-1">Email Us</h4>
-                    <p className="text-slate-900 text-lg font-bold">info@inklivo.shop</p>
+                    <p className="text-slate-900 text-lg font-bold">info@printsphere.co</p>
                   </div>
                 </div>
               </div>

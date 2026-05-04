@@ -26,14 +26,14 @@ export default function Footer() {
   return (
     <footer className="bg-white border-t border-slate-100 pt-20">
       <div className="max-w-[1600px] mx-auto px-4 md:px-8">
-        
+
         {/* Main Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-20">
-          
+
           {/* Brand Info */}
           <div className="space-y-8">
             <Link to="/">
-              <img src="/logo/logo.png" alt="Inklivo" className="h-10 w-auto" />
+              <img src="/logo/logo.png" alt="Print Sphere" className="h-10 w-auto" />
             </Link>
             <p className="text-slate-500 text-[14px] leading-relaxed">
               Providing professional-grade printing solutions worldwide. High-performance hardware for home, office, and enterprise environments.
@@ -85,7 +85,7 @@ export default function Footer() {
             <div className="space-y-4">
               <div className="flex gap-3 text-slate-500">
                 <Mail size={18} className="shrink-0 text-[#05718A]" />
-                <a href="mailto:info@inklivo.shop" className="text-[14px] hover:text-[#05718A]">info@inklivo.shop</a>
+                <a href="mailto:info@printsphere.co" className="text-[14px] hover:text-[#05718A]">info@printsphere.co</a>
               </div>
             </div>
           </div>
@@ -96,12 +96,12 @@ export default function Footer() {
         <div className="border-t border-slate-100 py-10 flex flex-col lg:flex-row justify-between items-center gap-8">
           <div className="text-center lg:text-left space-y-2">
             <p className="text-slate-600 text-sm font-medium">
-              © {new Date().getFullYear()} Inklivo LLC. All Rights Reserved.
+              © {new Date().getFullYear()} Print Sphere LLC. All Rights Reserved.
             </p>
           </div>
-          
+
           <div className="bg-white px-4 py-2 border border-slate-200 shrink-0">
-             <img src="https://www.paypalobjects.com/digitalassets/c/website/logo/full-text/pp_fc_hl.svg" alt="PayPal" className="h-4 opacity-40 grayscale" />
+            <img src="https://www.paypalobjects.com/digitalassets/c/website/logo/full-text/pp_fc_hl.svg" alt="PayPal" className="h-4 opacity-40 grayscale" />
           </div>
         </div>
 

@@ -4,4 +4,4 @@ Disallow: /admin
 Disallow: /users
 Disallow: /settings
 
-Sitemap: https://inklivo.shop/sitemap.xml
+Sitemap: https://printsphere.co/sitemap.xml

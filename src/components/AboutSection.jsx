@@ -103,7 +103,7 @@ export default function AboutSection() {
                 <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
                   <div className="w-8 h-[2px] bg-[#05718A]"></div>
                   <h2 className="text-xl md:text-2xl font-bold tracking-widest text-[#05718A] uppercase leading-none">
-                    About Inklivo
+                    About Print Sphere
                   </h2>
                 </div>
                 <h3 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight mb-6">
