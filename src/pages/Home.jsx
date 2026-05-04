@@ -37,10 +37,9 @@ export default function Home() {
     <div className="bg-[#f5f5f5] font-sans overflow-x-hidden text-slate-900">
       <SEO
         title="Inklivo | High-Performance Printing Solutions"
-        description="Shop printers, ink, and toner globally. Professional business printing solutions with international shipping."
+        description="Discover a wide range of high-performance printers, premium ink, and toner cartridges at Inklivo. We provide professional business printing solutions with fast nationwide shipping."
         keywords="Buy Printers Online, Ink and Toner, LaserJet, OfficeJet, Printer Accessories, Business Printing Solutions"
       />
-
       <Hero products={processedData.all} />
       <CategoryCarousel categories={processedData.categoriesToDisplay} loading={loading} />
 

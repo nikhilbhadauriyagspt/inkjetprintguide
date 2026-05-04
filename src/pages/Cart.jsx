@@ -39,7 +39,7 @@ export default function Cart() {
 
   return (
     <div className="min-h-screen bg-[#f5f5f5] font-sans text-slate-900 pb-20">
-      <SEO title="Shopping Cart | Inklivo" />
+      <SEO title="Your Shopping Cart | Premium Printers & Ink | Inklivo" />
 
       <div className="max-w-[1700px] mx-auto px-6 py-16">
         <div className="flex items-center gap-4 mb-12">

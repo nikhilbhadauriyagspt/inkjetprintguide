@@ -9,7 +9,7 @@ export default function SEO({ title, description, keywords, schemaType = "Websit
 
     // Update Description
     const metaDescription = document.querySelector('meta[name="description"]');
-    const defaultDesc = "Inklivo is located in Ashburn, Virginia, offering high-performance printers, ink, toner, and nationwide shipping.";
+    const defaultDesc = "Inklivo offers high-performance printers, ink cartridges, and toner from top brands. Shop our wide selection of office printing solutions with fast shipping.";
     const finalDesc = description || defaultDesc;
     if (metaDescription) {
       metaDescription.setAttribute('content', finalDesc);
@@ -22,7 +22,7 @@ export default function SEO({ title, description, keywords, schemaType = "Websit
       metaKeywords.name = "keywords";
       document.head.appendChild(metaKeywords);
     }
-    metaKeywords.setAttribute('content', keywords || "Business Printers, Ink, Printer Service, Ashburn Virginia");
+    metaKeywords.setAttribute('content', keywords || "Printers, Ink Cartridges, Toner, Printer Service, All-in-One Printers, Laser Printers, Office Supplies");
 
     // Update Canonical
     let canonical = document.querySelector('link[rel="canonical"]');

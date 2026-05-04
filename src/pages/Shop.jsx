@@ -235,7 +235,7 @@ export default function Shop() {
 
   return (
     <div className="min-h-screen bg-[#f5f5f5] text-slate-900 pb-20">
-      <SEO title="Shop Collections | Inklivo" />
+      <SEO title="Shop All Printers, Ink & Accessories | Inklivo Collections" />
 
       {/* Hero Header */}
       <div className="bg-white border-b border-slate-200 pt-16 pb-12">

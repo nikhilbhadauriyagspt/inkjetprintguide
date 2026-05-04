@@ -43,7 +43,7 @@ export default function FAQ() {
 
   return (
     <div className="bg-white min-h-screen font-sans text-slate-900">
-      <SEO title="FAQ | Help Center | Inklivo" />
+      <SEO title="FAQ & Help Center | Printer Support & Information | Inklivo" />
 
       {/* Section 1: Full BG Hero (Same as About) */}
       <section className="relative h-[50vh] md:h-[60vh] flex items-center overflow-hidden">
