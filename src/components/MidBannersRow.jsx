@@ -20,7 +20,7 @@ export default function MidBannersRow() {
               <img
                 src={banner.src}
                 alt={banner.alt}
-                className="w-full h-full md:h-[210px] lg:h-[210px] 2xl:h-[340px] object-cover "
+                className="w-full h-full md:h-[210px] lg:h-[210px] 2xl:h-[320px] object-cover "
               />
             </Link>
           ))}
