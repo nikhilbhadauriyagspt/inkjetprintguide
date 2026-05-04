@@ -34,7 +34,6 @@ export default function Header() {
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isAccountOpen, setIsAccountOpen] = useState(false);
-  const [isEmailOpen, setIsEmailOpen] = useState(false);
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -43,7 +42,6 @@ export default function Header() {
 
   const searchRef = useRef(null);
   const accountRef = useRef(null);
-  const emailRef = useRef(null);
   const categoryRef = useRef(null);
 
   useEffect(() => {
@@ -107,10 +105,6 @@ export default function Header() {
 
       if (accountRef.current && !accountRef.current.contains(e.target)) {
         setIsAccountOpen(false);
-      }
-
-      if (emailRef.current && !emailRef.current.contains(e.target)) {
-        setIsEmailOpen(false);
       }
 
       if (categoryRef.current && !categoryRef.current.contains(e.target)) {
@@ -248,66 +242,26 @@ export default function Header() {
 
           {/* Right side */}
           <div className="hidden lg:flex items-center gap-5 shrink-0">
-            {/* Email dropdown block */}
-            <div className="relative" ref={emailRef}>
-              <button
-                type="button"
-                onClick={() => setIsEmailOpen((prev) => !prev)}
-                className="flex items-start gap-3 text-left group"
-              >
-                <div className="pt-1 text-[#05718A]">
-                  <Mail size={22} />
+            {/* Email block */}
+            <a
+              href="mailto:info@printsphere.co"
+              className="flex items-start gap-3 text-left group"
+            >
+              <div className="pt-1 text-[#05718A]">
+                <Mail size={22} />
+              </div>
+
+              <div className="leading-tight">
+                <div className="flex items-center gap-2">
+                  <span className="text-[16px] font-bold text-[#05718A]">
+                    info@printsphere.co
+                  </span>
                 </div>
-
-                <div className="leading-tight">
-                  <div className="flex items-center gap-2">
-                    <span className="text-[16px] font-bold text-[#05718A]">
-                      info@printsphere.co
-                    </span>
-                    <ChevronDown
-                      size={15}
-                      className={`text-slate-500 transition duration-200 ${isEmailOpen ? "rotate-180 text-[#05718A]" : "group-hover:text-[#05718A]"
-                        }`}
-                    />
-                  </div>
-                  <p className="text-[12px] text-slate-500 mt-1">
-                    Quality Printing Solutions
-                  </p>
-                </div>
-              </button>
-
-              <AnimatePresence>
-                {isEmailOpen && (
-                  <m.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 8 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute right-0 top-full mt-4 w-[360px] bg-white border border-slate-200 rounded-lg shadow-[0_20px_60px_rgba(15,23,42,0.14)] p-6 z-[5300]"
-                  >
-                    <div className="space-y-6">
-                      <div>
-                        <a
-                          href="mailto:info@printsphere.co"
-                          className="mt-3 flex items-center gap-3 text-[#05718A]"
-                        >
-                          <Mail size={23} />
-                          <span className="text-[18px] font-semibold">
-                            info@printsphere.co
-                          </span>
-                        </a>
-                        <p className="mt-2 text-[13px] text-slate-500">
-                          Response time: within 24 hours
-                        </p>
-                      </div>
-
-                      <div className="border-t border-slate-200 pt-6 space-y-4">
-                      </div>
-                    </div>
-                  </m.div>
-                )}
-              </AnimatePresence>
-            </div>
+                <p className="text-[12px] text-slate-500 mt-1">
+                  Quality Printing Solutions
+                </p>
+              </div>
+            </a>
 
             <div className="w-px h-10 bg-slate-200" />
 

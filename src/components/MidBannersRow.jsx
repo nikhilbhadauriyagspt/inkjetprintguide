@@ -9,7 +9,7 @@ export default function MidBannersRow() {
 
   return (
     <section className="w-full bg-[#f5f5f5] py-8 md:py-12">
-      <div className="max-w-[1700px] mx-auto px-4 md:px-0">
+      <div className="max-w-[1700px] mx-auto px-4 md:px-3 lg:px-6 2xl:px-0">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {banners.map((banner) => (
             <Link
@@ -20,7 +20,7 @@ export default function MidBannersRow() {
               <img
                 src={banner.src}
                 alt={banner.alt}
-                className="w-full h-full md:h-[320px] object-cover "
+                className="w-full h-full md:h-[230px] lg:h-[230px] 2xl:h-[340px] object-cover "
               />
             </Link>
           ))}

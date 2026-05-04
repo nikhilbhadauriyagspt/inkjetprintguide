@@ -81,11 +81,11 @@ export default function About() {
             animate={{ opacity: 1, y: 0 }}
             className="space-y-6"
           >
-            <span className="inline-block text-[#05718A] bg-white px-4 py-1.5 text-[10px] font-blac capitalizek tracking-[0.4em] mb-4">
+            <span className="inline-block text-[#05718A] bg-white px-4 py-1.5 text-[14px] font-blac  mb-4">
               Our Identity
             </span>
             <h1 className="text-4xl md:text-7xl font-bold text-white  leading-none">
-              About <span className="text-[#05718A]">Us.</span>
+              About <span >Us.</span>
             </h1>
             <p className="text-slate-200 text-lg md:text-xl max-w-2xl mx-auto  font-medium">
               A fresh perspective on professional printing hardware distribution.
@@ -103,14 +103,13 @@ export default function About() {
               <div className="w-12 h-1 bg-[#05718A]"></div>
             </div>
             <p className="text-slate-500 max-w-md  font-medium">
-              We don't just sell boxes; we provide the tools that drive your productivity and creativity every single day.
-            </p>
+              We don’t just sell printers — we deliver reliable printing solutions that power your everyday work, creativity, and business needs. </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {categories.map((item, i) => (
               <div key={i} className="group p-8 border border-slate-100 hover:border-[#05718A] transition-all duration-500">
-                <div className="mb-6 w-12 h-12 bg-slate-50 flex items-center justify-center group-hover:bg-[#05718A] group-hover:text-white transition-colors duration-500">
+                <div className="mb-6 w-12 h-12 bg-slate-50 flex items-center justify-center group-hover:text-white transition-colors duration-500">
                   {item.icon}
                 </div>
                 <h3 className="text-xl font-bold mb-4 ">{item.title}</h3>

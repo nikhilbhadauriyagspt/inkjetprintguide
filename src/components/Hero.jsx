@@ -79,7 +79,7 @@ export default function Hero() {
 
   return (
     <section className="relative w-full font-sans bg-white overflow-hidden">
-      <div className="relative h-[520px] sm:h-[580px] md:h-[650px] lg:h-[700px] xl:h-[720px]">
+      <div className="relative h-[400px] sm:h-[480px] md:h-[520px] lg:h-[580px] xl:h-[620px] 2xl:h-[700px]">
         {/* Background Slides */}
         <AnimatePresence mode="wait">
           <m.div

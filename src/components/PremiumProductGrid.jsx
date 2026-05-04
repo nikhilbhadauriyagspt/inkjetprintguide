@@ -41,11 +41,11 @@ export default function PremiumProductGrid({
     const handleResize = () => {
       const width = window.innerWidth;
       let count = 3;
-      if (width < 480) count = 1;
-      else if (width < 768) count = 2;
-      else if (width < 1280) count = 2;
-      else if (width < 1536) count = 3;
-      else count = 3;
+      if (width < 640) count = 1;
+      else if (width < 1024) count = 2;
+      else if (width < 1280) count = 3; // Single column, show 3
+      else if (width < 1600) count = 2; // Two columns, show 2 to give buttons space
+      else count = 3; // Very large screens, show 3
       setVisibleCount(count);
     };
 

@@ -237,16 +237,16 @@ const BottomPromo = ({
 
     <div className="relative z-10 h-full px-7 py-7 flex items-center justify-between gap-4">
       <div className=" max-w-[100%] md:max-w-[52%]">
-        <h3 className="text-white text-[24px] md:text-[28px] font-extrabold leading-[1.15]">
+        <h3 className="text-white text-[24px] md:text-[18px] 2xl:text-[28px] font-extrabold leading-[1.15]">
           {title}
         </h3>
-        <p className="mt-4 text-white/95 text-[15px] md:text-[16px] leading-[1.5]">
+        <p className="mt-4 text-white/95 text-[15px] md:text-[12px] 2xl:text-[16px] leading-[1.5]">
           {desc}
         </p>
 
         <Link
           to={link}
-          className="mt-7 inline-flex items-center justify-center h-[42px] px-6 rounded-full bg-white text-[#335] text-[15px] font-semibold hover:opacity-95 transition"
+          className="mt-7 inline-flex items-center justify-center h-[42px] px-2 2xl:px-6 rounded-full bg-white text-[#335] text-[13px] 2xl:text-[15px] font-semibold hover:opacity-95 transition"
         >
           {btnText}
         </Link>
@@ -272,7 +272,7 @@ const ServiceItem = ({ icon: Icon, title, desc }) => (
       <Icon size={30} className="text-[#2e76a5]" strokeWidth={1.8} />
     </div>
     <div>
-      <h4 className="text-[16px] font-bold text-[#161616]">{title}</h4>
+      <h4 className="text-[14px] 2xl:text-[16px] font-bold text-[#161616]">{title}</h4>
       <p className="text-[14px] text-[#666] mt-1">{desc}</p>
     </div>
   </div>
@@ -496,13 +496,13 @@ export default function ProductShowcaseSection({
           />
           <ServiceItem
             icon={Headphones}
-            title="Expert Support"
-            desc="Dedicated team to assist you at every step"
+            title="Flexible Payment Options"
+            desc="Multiple secure ways to pay for your orders"
           />
           <ServiceItem
             icon={Shield}
-            title="Genuine Quality"
-            desc="High-performance products from trusted brands"
+            title="Easy Order Tracking"
+            desc="Stay updated on your delivery in real-time"
           />
         </div>
       </div>

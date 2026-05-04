@@ -78,11 +78,11 @@ export default function Contact() {
         <div className="max-w-[1700px] mx-auto px-6 relative z-10 w-full">
           <div className="max-w-3xl space-y-6">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-[2px] bg-[#05718A]"></div>
-              <span className="text-[#05718A] font-bold text-sm tracking-widest uppercase">Support Center</span>
+              <div className="w-10 h-[2px] bg-[#fff]"></div>
+              <span className="text-[#fff] font-bold text-sm tracking-widest uppercase">Support Center</span>
             </div>
             <h1 className="text-4xl md:text-7xl font-bold text-white tracking-tight leading-tight">
-              Get in <span className="text-[#05718A]">Touch.</span>
+              Get in <span >Touch.</span>
             </h1>
             <p className="text-slate-200 text-lg md:text-xl leading-relaxed max-w-2xl font-medium">
               Have questions about our printers or need technical assistance? Our dedicated team is here to help you.
@@ -109,7 +109,10 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-400 text-[11px] uppercase tracking-widest mb-1">Email Us</h4>
-                    <p className="text-slate-900 text-lg font-bold">info@printsphere.co</p>
+                    <p className="text-slate-900 text-lg font-bold"> <a
+                      href="mailto:info@printsphere.co" className="text-[#05718A] hover:underline">
+                      info@printsphere.co
+                    </a></p>
                   </div>
                 </div>
               </div>
