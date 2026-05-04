@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { X, ShoppingCart, ArrowLeft, Info } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 
 export default function Compare() {
   const { compare, removeFromCompare, addToCart } = useCart();
@@ -10,9 +10,9 @@ export default function Compare() {
   const parseImages = (imageStr) => {
     try {
       const images = JSON.parse(imageStr || '[]');
-      return images.length > 0 ? `/${images[0].replace(/\\/g, '/')}` : '/logo/fabicon.png';
+      return images.length > 0 ? `/${images[0].replace(/\\/g, '/')}` : '/logo/fabicon.avif';
     } catch {
-      return '/logo/fabicon.png';
+      return '/logo/fabicon.avif';
     }
   };
 
@@ -49,7 +49,7 @@ export default function Compare() {
           <table className="w-full border-collapse bg-white rounded-xl shadow-sm border border-slate-200">
             <thead>
               <tr className="bg-slate-50 border-b border-slate-200">
-                <th className="w-1/4 p-6 text-left text-sm font-bold text-slate-500 uppercase tracking-wider">Features</th>
+                <th className="w-1/4 p-6 text-left text-sm font-bold text-slate-500  tracking-wider">Features</th>
                 {compare.map((product) => (
                   <th key={product.id} className="p-6 relative group border-l border-slate-200 min-w-[200px]">
                     <button
@@ -71,7 +71,7 @@ export default function Compare() {
                         {product.name}
                       </h3>
                       <div className="text-lg font-black text-[#2f5cab] mb-4">
-                        ₹{parseFloat(product.price).toLocaleString()}
+                        ${parseFloat(product.price).toLocaleString()}
                       </div>
                       <button
                         onClick={() => addToCart(product)}

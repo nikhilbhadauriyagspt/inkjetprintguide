@@ -1,169 +1,142 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import API_BASE_URL from "../config";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay } from "swiper/modules";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+
+import ChevronLeft from 'lucide-react/dist/esm/icons/chevron-left';
+import ChevronRight from 'lucide-react/dist/esm/icons/chevron-right';
+import ArrowRight from 'lucide-react/dist/esm/icons/arrow-right';
+
+import { useGlobalData } from "../context/DataContext";
 
 export default function CategoryCarousel() {
+  const { categories: globalCategories, loading } = useGlobalData();
   const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [isPaused, setIsPaused] = useState(false);
-  const scrollRef = useRef(null);
 
   useEffect(() => {
-    const autoScroll = setInterval(() => {
-      if (!isPaused && scrollRef.current) {
-        const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-        if (scrollLeft + clientWidth >= scrollWidth - 10) {
-          scrollRef.current.scrollTo({ left: 0, behavior: "smooth" });
-        } else {
-          scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
-        }
-      }
-    }, 3000);
+    if (globalCategories.length > 0) {
+      const printerParent = globalCategories.find(
+        (cat) => cat.slug === "printers" || cat.id === 46
+      );
+      const items = printerParent && printerParent.children
+        ? printerParent.children
+        : globalCategories.filter(c => !c.name.toLowerCase().includes("laptop"));
+      setCategories(items);
+    }
+  }, [globalCategories]);
 
-    return () => clearInterval(autoScroll);
-  }, [isPaused, categories]);
+  if (loading && categories.length === 0) {
+    return (
+      <section className="w-full py-10 bg-[#F5F5F5] mt-10">
+        <div className="max-w-[1700px] mx-auto px-4 md:px-8 flex gap-6 overflow-hidden">
+          {[1, 2, 3, 4, 5, 6, 7].map((i) => (
+            <div key={i} className="min-w-[100px] md:min-w-[140px] aspect-square rounded-full bg-slate-50 animate-pulse"></div>
+          ))}
+        </div>
+      </section>
+    );
+  }
 
-  useEffect(() => {
-    fetch(`${API_BASE_URL}/categories`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status === "success") {
-          const printerParent = data.data.find(
-            (cat) => cat.slug === "printers" || cat.id === 46
-          );
-
-          const items =
-            printerParent && printerParent.children
-              ? printerParent.children
-              : data.data.filter(
-                (c) => !c.name.toLowerCase().includes("laptop")
-              );
-
-          setCategories(items);
-        }
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setLoading(false);
-      });
-  }, []);
-
-  const scrollByAmount = (amount) => {
-    if (!scrollRef.current) return;
-    scrollRef.current.scrollBy({
-      left: amount,
-      behavior: "smooth",
-    });
-  };
-
-  if (loading || categories.length === 0) return null;
+  if (categories.length === 0) return null;
 
   return (
-    <section className="w-full bg-white py-10 md:py-14 overflow-hidden">
-      <div className="max-w-[1800px] mx-auto px-4 md:px-6">
-        <div className="relative">
-          {/* TOP HALF OFF-WHITE PANEL ONLY */}
-          <div className="bg-[#f5f5f5] h-[165px] md:h-[185px] w-full px-5 md:px-8 pt-7 md:pt-8 rounded-t-[20px]">
-            <div className="flex items-start justify-between gap-4">
-              <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
-                <h2 className="text-[22px]  font-semibold text-black tracking-[0.2px]">
-                  Shop By Department
-                </h2>
-                <p className="text-[14px] md:text-[18px] text-[#b5b5b5] font-medium">
-                  Choose What You Looking For
-                </p>
-              </div>
+    <section className="w-full py-14 bg-[#F5F5F5] overflow-hidden">
+      <div className="max-w-[1700px] mx-auto px-4 md:px-0 relative overflow-hidden">
 
-              <div className="hidden md:flex items-center gap-3 shrink-0">
-                <button
-                  onClick={() => scrollByAmount(-320)}
-                  className="w-9 h-9 flex items-center justify-center text-[#6f8197] hover:text-black transition-colors"
-                  aria-label="Scroll left"
-                >
-                  <ChevronLeft size={22} strokeWidth={1.8} />
-                </button>
-                <button
-                  onClick={() => scrollByAmount(320)}
-                  className="w-9 h-9 flex items-center justify-center text-[#6f8197] hover:text-black transition-colors"
-                  aria-label="Scroll right"
-                >
-                  <ChevronRight size={22} strokeWidth={1.8} />
-                </button>
-              </div>
-            </div>
+        {/* Section Header - Very Clean */}
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h2 className="text-xl md:text-3xl font-bold text-slate-900  flex items-center gap-3">
+              <span className="w-1.5 h-6 bg-[#05718A] rounded-full"></span>
+              Shop by Category
+            </h2>
           </div>
 
-          {/* OVERLAP CATEGORY ROW */}
-          <div className="-mt-14 md:-mt-16 px-2 md:px-4">
-            <div
-              ref={scrollRef}
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
-              className="flex items-start gap-6 md:gap-8 overflow-x-auto no-scrollbar scroll-smooth pb-4"
+          <div className="flex items-center gap-2">
+            <button 
+              aria-label="Previous categories"
+              className="category-prev w-9 h-9 rounded-full border border-slate-100 flex items-center justify-center text-slate-400 hover:text-white hover:bg-[#05718A] hover:border-[#05718A] transition-all bg-white shadow-sm active:scale-90"
             >
-              {categories.map((cat, index) => (
-                <Link
-                  key={`${cat.id}-${index}`}
-                  to={`/shop?category=${cat.slug}`}
-                  className="group shrink-0 relative min-w-[200px] md:min-w-[250px] h-[240px] md:h-[250px] rounded-[10px] overflow-hidden "
-                >
-                  {/* Background Image Container */}
-                  <div className="absolute inset-0 w-full h-full flex items-center justify-center">
-                    <img
-                      src={`/category/${cat.slug}.png`}
-                      alt={cat.name}
-                      className="w-full h-full object-contain rounded-[10px]"
-                      onError={(e) => {
-                        e.target.src = "/logo/fabicon.png";
-                      }}
-                    />
-                  </div>
-
-                  {/* Text Content Overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 p-1 flex flex-col items-center text-center">
-                    <h3 className="text-[14px] md:text-[16px] font-semibold text-slate-800 leading-tight">
-                      {cat.name}
-                    </h3>
-                    <p className="text-[11px] md:text-[12px] text-slate-500 mt-1 font-medium">
-                      View All
-                    </p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* MOBILE ARROWS */}
-          <div className="flex md:hidden items-center justify-center gap-4 mt-8">
-            <button
-              onClick={() => scrollByAmount(-240)}
-              className="w-10 h-10 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-700"
-              aria-label="Scroll left"
-            >
-              <ChevronLeft size={20} />
+              <ChevronLeft size={18} />
             </button>
-            <button
-              onClick={() => scrollByAmount(240)}
-              className="w-10 h-10 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-700"
-              aria-label="Scroll right"
+            <button 
+              aria-label="Next categories"
+              className="category-next w-9 h-9 rounded-full border border-slate-100 flex items-center justify-center text-slate-400 hover:text-white hover:bg-[#05718A] hover:border-[#05718A] transition-all bg-white shadow-sm active:scale-90"
             >
-              <ChevronRight size={20} />
+              <ChevronRight size={18} />
             </button>
           </div>
         </div>
-      </div>
 
-      <style>{`
-        .no-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .no-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
+        {/* Categories Slider */}
+        <Swiper
+          modules={[Navigation, Autoplay]}
+          navigation={{
+            prevEl: ".category-prev",
+            nextEl: ".category-next",
+          }}
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
+          spaceBetween={25}
+          slidesPerView={"auto"}
+          className="!overflow-visible "
+        >
+          {categories.map((cat) => (
+            <SwiperSlide key={cat.id} style={{ width: 'auto' }}>
+              <Link
+                to={`/shop?category=${cat.slug}`}
+                className="group block relative w-[110px] md:w-[150px] text-center "
+              >
+                {/* Smaller Circle Container */}
+                <div className="relative aspect-square w-full mb-3 p-1">
+                  <div className="absolute inset-0 rounded-full border-2 border-dashed border-[#05718A]/20 group-hover:border-[#05718A] group-hover:rotate-90 transition-all duration-1000"></div>
+
+                  <div className="w-full h-full rounded-full bg-slate-50 flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:scale-90 group-hover:bg-white group-hover:shadow-xl group-hover:shadow-[#05718A]/5">
+                    <img
+                      src={`/category/${cat.slug}_thumb.avif`}
+                      srcSet={`/category/${cat.slug}_thumb.avif 300w, /category/${cat.slug}_med.avif 600w`}
+                      sizes="(max-width: 768px) 110px, 150px"
+                      alt={`${cat.name} Category`}
+                      className="w-[100%] h-[100%] object-contain transition-transform duration-500 group-hover:scale-110"
+                      loading="lazy"
+                      onError={(e) => { e.target.src = "/logo/fabicon.avif"; }}
+                    />
+                  </div>
+
+                  {/* Tiny Hover Badge */}
+                  <div className="absolute -bottom-0.5 -right-0.5 w-7 h-7 rounded-full bg-[#05718A] text-white flex items-center justify-center scale-0 group-hover:scale-100 transition-transform duration-300 shadow-lg z-10">
+                    <ArrowRight size={14} />
+                  </div>
+                </div>
+
+                <h3 className="text-[13px] md:text-[14px] font-bold text-slate-600 group-hover:text-[#05718A] transition-colors line-clamp-1 px-1">
+                  {cat.name}
+                </h3>
+              </Link>
+            </SwiperSlide>
+          ))}
+
+          {/* Circle View All */}
+          <SwiperSlide style={{ width: 'auto' }}>
+            <Link
+              to="/shop"
+              className="group block relative w-[110px] md:w-[150px] text-center"
+            >
+              <div className="relative aspect-square w-full mb-3 p-1">
+                <div className="absolute inset-0 rounded-full border-2 border-dashed border-slate-200 group-hover:border-[#05718A] transition-colors duration-500"></div>
+                <div className="w-full h-full rounded-full bg-slate-50 flex flex-col items-center justify-center text-slate-400 group-hover:text-[#05718A] group-hover:bg-white transition-all">
+                  <ArrowRight size={20} className="mb-0.5" />
+                  <span className="text-[9px] font-black uppercase tracking-tighter">View All</span>
+                </div>
+              </div>
+              <h3 className="text-[13px] font-bold text-slate-400 group-hover:text-[#05718A]">Explore</h3>
+            </Link>
+          </SwiperSlide>
+        </Swiper>
+      </div>
     </section>
   );
 }

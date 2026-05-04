@@ -53,7 +53,7 @@ export default function ProductManager() {
           <h1 className="text-2xl font-bold text-slate-900 ">Products</h1>
           <p className="text-sm font-medium text-slate-500">Manage your store inventory ({products.length} items)</p>
         </div>
-        <Link to="/admin/products/add" className="bg-[#F54900] hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all shadow-lg shadow-blue-600/20">
+        <Link to="/admin/products/add" className="bg-[#0096d6] hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 transition-all shadow-lg shadow-[#0096d6]/20">
           <Plus size={18} /> Add New Product
         </Link>
       </div>
@@ -74,7 +74,7 @@ export default function ProductManager() {
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
-            <thead className="bg-gray-50 text-slate-500 font-bold capitalize tracking-wider text-xs">
+            <thead className="bg-gray-50 text-slate-500 font-bold  tracking-wider text-xs">
               <tr>
                 <th className="px-6 py-4">Product Name</th>
                 <th className="px-6 py-4">Price</th>
@@ -95,24 +95,24 @@ export default function ProductManager() {
                 <tr key={p.id} className="hover:bg-gray-50/50 transition-colors group">
                   <td className="px-6 py-4">
                     <div className="flex flex-col">
-                      <span className="font-bold text-slate-900 group-hover:text-[#F54900] transition-colors">{p.name}</span>
-                      <span className="text-[10px] font-bold text-slate-400 capitalize tracking-widest">{p.brand_name || 'Generic'}</span>
+                      <span className="font-bold text-slate-900 group-hover:text-[#0096d6] transition-colors">{p.name}</span>
+                      <span className="text-[10px] font-bold text-slate-400  tracking-widest">{p.brand_name || 'Generic'}</span>
                     </div>
                   </td>
                   <td className="px-6 py-4 font-bold text-slate-600">${p.price}</td>
                   <td className="px-6 py-4">
-                    <span className={`px-3 py-1 rounded-full text-[10px] font-bold capitalize tracking-widest ${p.quantity > 5 ? 'bg-emerald-50 text-emerald-600' : 'bg-red-50 text-red-600'}`}>
+                    <span className={`px-3 py-1 rounded-full text-[10px] font-bold  tracking-widest ${p.quantity > 5 ? 'bg-emerald-50 text-emerald-600' : 'bg-red-50 text-red-600'}`}>
                       {p.quantity} Units
                     </span>
                   </td>
                   <td className="px-6 py-4">
-                    <span className={`px-3 py-1 rounded-full text-[10px] font-bold capitalize tracking-widest ${p.status === 'published' ? 'bg-blue-50 text-[#F54900]' : 'bg-gray-100 text-gray-400'}`}>
+                    <span className={`px-3 py-1 rounded-full text-[10px] font-bold  tracking-widest ${p.status === 'published' ? 'bg-blue-50 text-[#0096d6]' : 'bg-gray-100 text-gray-400'}`}>
                       {p.status}
                     </span>
                   </td>
                   <td className="px-6 py-4 text-right">
                     <div className="flex items-center justify-end gap-2">
-                      <Link to={`/admin/products/edit/${p.id}`} className="p-2 hover:bg-blue-50 text-[#F54900] rounded-lg transition-colors">
+                      <Link to={`/admin/products/edit/${p.id}`} className="p-2 hover:bg-blue-50 text-[#0096d6] rounded-lg transition-colors">
                         <Edit size={16} />
                       </Link>
                       <button

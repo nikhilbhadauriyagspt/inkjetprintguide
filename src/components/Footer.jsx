@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, MapPin, ArrowRight } from 'lucide-react';
+import Mail from 'lucide-react/dist/esm/icons/mail';
+import MapPin from 'lucide-react/dist/esm/icons/map-pin';
+import Phone from 'lucide-react/dist/esm/icons/phone';
 import API_BASE_URL from '../config';
 
 export default function Footer() {
   const [categories, setCategories] = useState([]);
-  const [email, setEmail] = useState('');
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/categories`)
@@ -22,131 +23,89 @@ export default function Footer() {
       });
   }, []);
 
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    alert("Subscribed");
-    setEmail('');
-  };
-
   return (
-    <footer className="w-full bg-[#0B1220] text-white">
+    <footer className="bg-white border-t border-slate-100 pt-20">
+      <div className="max-w-[1600px] mx-auto px-4 md:px-8">
+        
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-20">
+          
+          {/* Brand Info */}
+          <div className="space-y-8">
+            <Link to="/">
+              <img src="/logo/logo.png" alt="Inklivo" className="h-10 w-auto" />
+            </Link>
+            <p className="text-slate-500 text-[14px] leading-relaxed">
+              Providing professional-grade printing solutions worldwide. High-performance hardware for home, office, and enterprise environments.
+            </p>
+          </div>
 
-      {/* TOP BAR */}
-      <div className="border-b border-white/10 py-8">
-        <div className="max-w-[1800px] mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
+          {/* Company Links */}
+          <div className="space-y-6">
+            <h4 className="text-[15px] font-bold uppercase tracking-wider text-slate-900">Company</h4>
+            <ul className="space-y-3">
+              <li><Link to="/" className="text-slate-500 text-[14px] hover:text-[#05718A] transition-colors">Home</Link></li>
+              <li><Link to="/about" className="text-slate-500 text-[14px] hover:text-[#05718A] transition-colors">About Us</Link></li>
+              <li><Link to="/contact" className="text-slate-500 text-[14px] hover:text-[#05718A] transition-colors">Contact</Link></li>
+              <li><Link to="/shop" className="text-slate-500 text-[14px] hover:text-[#05718A] transition-colors">Shop</Link></li>
+            </ul>
+          </div>
 
-          <h3 className="text-lg md:text-2xl font-semibold">
-            Stay Updated with Latest Printing Solutions
-          </h3>
+          {/* Product Links */}
+          <div className="space-y-6">
+            <h4 className="text-[15px] font-bold uppercase tracking-wider text-slate-900">Products</h4>
+            <ul className="space-y-3">
+              {categories.map(cat => (
+                <li key={cat.id}>
+                  <Link to={`/shop?category=${cat.slug}`} className="text-slate-500 text-[14px] hover:text-[#05718A] transition-colors">
+                    {cat.name}
+                  </Link>
+                </li>
+              ))}
+              {categories.length === 0 && (
+                <li><Link to="/shop" className="text-slate-500 text-[14px] hover:text-[#05718A]">All Printers</Link></li>
+              )}
+            </ul>
+          </div>
 
-          <form onSubmit={handleSubscribe} className="flex w-full md:w-[420px] bg-white/5 rounded-md overflow-hidden">
-            <input
-              type="email"
-              placeholder="Enter Email"
-              className="flex-1 bg-transparent px-4 py-3 text-sm outline-none placeholder:text-white/30"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <button className="px-4 bg-[#2f5cab] hover:bg-[#244a8a] transition">
-              <ArrowRight size={18} />
-            </button>
-          </form>
+          {/* Policy Links */}
+          <div className="space-y-6">
+            <h4 className="text-[15px] font-bold uppercase tracking-wider text-slate-900">Policies</h4>
+            <ul className="space-y-3">
+              <li><Link to="/shipping-policy" className="text-slate-500 text-[14px] hover:text-[#05718A] transition-colors">Shipping Policy</Link></li>
+              <li><Link to="/return-policy" className="text-slate-500 text-[14px] hover:text-[#05718A] transition-colors">Return Policy</Link></li>
+              <li><Link to="/privacy-policy" className="text-slate-500 text-[14px] hover:text-[#05718A] transition-colors">Privacy Policy</Link></li>
+              <li><Link to="/terms-and-conditions" className="text-slate-500 text-[14px] hover:text-[#05718A] transition-colors">Terms & Conditions</Link></li>
+            </ul>
+          </div>
 
-        </div>
-      </div>
-
-      {/* MAIN GRID (CARDS STYLE - DIFFERENT LOOK) */}
-      <div className="max-w-[1800px] mx-auto px-4 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-
-        {/* Brand */}
-        <div className="bg-white/5 border border-white/10 p-6 rounded-lg">
-          <img src="/logo/logo.png" className="h-12 mb-4 brightness-0 invert opacity-80" />
-          <p className="text-white/50 text-sm leading-6">
-            High-quality printing solutions for professional home and business infrastructure.
-          </p>
-        </div>
-
-        {/* Company */}
-        <div className="bg-white/5 border border-white/10 p-6 rounded-lg">
-          <h4 className="text-[#2f5cab] font-semibold mb-4">Company</h4>
-          <ul className="space-y-2 text-sm text-white/60">
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About Us</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
-            <li><Link to="/shop">Full Shop</Link></li>
-          </ul>
-        </div>
-
-        {/* Categories */}
-        <div className="bg-white/5 border border-white/10 p-6 rounded-lg">
-          <h4 className="text-[#2f5cab] font-semibold mb-4">Categories</h4>
-          <ul className="space-y-2 text-sm text-white/60">
-            {categories.map(cat => (
-              <li key={cat.id}>
-                <Link to={`/shop?category=${cat.slug}`}>{cat.name}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Support */}
-        <div className="bg-white/5 border border-white/10 p-6 rounded-lg">
-          <h4 className="text-[#2f5cab] font-semibold mb-4">Support</h4>
-          <ul className="space-y-2 text-sm text-white/60">
-            <li><Link to="/terms-and-conditions">Terms & Conditions</Link></li>
-            <li><Link to="/privacy-policy">Privacy Policy</Link></li>
-            <li><Link to="/shipping-policy">Shipping Policy</Link></li>
-            <li><Link to="/return-policy">Return Policy</Link></li>
-            <li><Link to="/cookie-policy">Cookie Policy</Link></li>
-          </ul>
-        </div>
-
-        {/* Contact */}
-        <div className="bg-white/5 border border-white/10 p-6 rounded-lg">
-          <h4 className="text-[#2f5cab] font-semibold mb-4">Registry</h4>
-
-          <div className="space-y-4 text-sm text-white/60">
-            <div className="flex gap-2">
-              <MapPin size={16} className="text-[#2f5cab]" />
-              <p>302 E Washington St, Bloomington, IL 61701, United States</p>
+          {/* Contact Info */}
+          <div className="space-y-6">
+            <h4 className="text-[15px] font-bold uppercase tracking-wider text-slate-900">Contact</h4>
+            <div className="space-y-4">
+              <div className="flex gap-3 text-slate-500">
+                <Mail size={18} className="shrink-0 text-[#05718A]" />
+                <a href="mailto:info@inklivo.shop" className="text-[14px] hover:text-[#05718A]">info@inklivo.shop</a>
+              </div>
             </div>
+          </div>
 
-            <div className="flex gap-2">
-              <Mail size={16} className="text-[#2f5cab]" />
-              <p>info@printmora.shop</p>
-            </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="border-t border-slate-100 py-10 flex flex-col lg:flex-row justify-between items-center gap-8">
+          <div className="text-center lg:text-left space-y-2">
+            <p className="text-slate-600 text-sm font-medium">
+              © {new Date().getFullYear()} Inklivo LLC. All Rights Reserved.
+            </p>
+          </div>
+          
+          <div className="bg-white px-4 py-2 border border-slate-200 shrink-0">
+             <img src="https://www.paypalobjects.com/digitalassets/c/website/logo/full-text/pp_fc_hl.svg" alt="PayPal" className="h-4 opacity-40 grayscale" />
           </div>
         </div>
 
       </div>
-
-      {/* BOTTOM STRIP */}
-      <div className="border-t border-white/10 py-6">
-        <div className="max-w-[1800px] mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/50">
-
-          <p>
-            © {new Date().getFullYear()} Republic Printing Core. All Rights Reserved.
-          </p>
-
-          {/* PayPal */}
-          <div className="flex items-center gap-3">
-            <span className="text-white/40">Secure Payments via</span>
-            <img
-              src="https://www.paypalobjects.com/webstatic/icon/pp258.png"
-              alt="PayPal"
-              className="h-5 object-contain"
-            />
-          </div>
-
-        </div>
-
-        {/* SAME DISCLAIMER */}
-        <p className="text-center text-[11px] text-white/30 mt-0">
-          Disclaimer - For Informational only. No software installation or distribution.
-        </p>
-      </div>
-
     </footer>
   );
 }

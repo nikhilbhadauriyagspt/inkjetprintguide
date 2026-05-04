@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { CheckCircle, Info, XCircle, X } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 
@@ -9,7 +9,7 @@ export default function Toast() {
   return (
     <AnimatePresence>
       {toast && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 50, x: '-50%' }}
           animate={{ opacity: 1, y: 0, x: '-50%' }}
           exit={{ opacity: 0, scale: 0.95, x: '-50%' }}
@@ -17,7 +17,7 @@ export default function Toast() {
         >
           <div className="bg-slate-900 text-white p-4 rounded-2xl shadow-2xl border border-white/10 flex items-center gap-4 relative overflow-hidden">
             {/* Progress Bar */}
-            <motion.div
+            <m.div
               initial={{ width: '100%' }}
               animate={{ width: '0%' }}
               transition={{ duration: 3, ease: 'linear' }}
@@ -32,19 +32,20 @@ export default function Toast() {
             </div>
 
             <div className="flex-1 pr-4">
-              <p className="text-[11px] font-bold capitalize tracking-widest leading-tight">
+              <p className="text-[11px] font-bold  tracking-widest leading-tight">
                 {toast.message}
               </p>
             </div>
 
             <button
               onClick={() => { }} // Context handles closing via state
+              aria-label="Close notification"
               className="text-slate-500 hover:text-white transition-colors"
             >
               <X size={16} />
             </button>
           </div>
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

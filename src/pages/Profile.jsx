@@ -1,7 +1,7 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
 import { useNavigate, Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import API_BASE_URL from '../config';
 import {
   User,
@@ -124,50 +124,53 @@ export default function Profile() {
   if (!user) return null;
 
   return (
-    <div className="bg-[#F8FAFC] min-h-screen font-['Rubik'] text-[#F54900] pb-20">
-      <SEO title="Your Account | Print Mora" />
+    <div className="bg-white min-h-screen font-sans text-slate-900 pb-20">
+      <SEO title="Your Account | Profile | Inklivo" />
 
       {/* --- PAGE HEADER --- */}
-      <div className="bg-white border-b border-gray-200 py-8 md:py-12 mb-12 shadow-sm">
-        <div className="max-w-[1200px] mx-auto px-4 md:px-8">
-          <nav className="flex items-center gap-2 text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-4">
-            <Link to="/" className="hover:text-[#4f46e5] transition-colors">Home</Link>
-            <ChevronRight size={14} />
-            <span className="text-[#F54900]">Account Management</span>
+      <div className="bg-white border-b border-slate-100 py-12 md:py-16 mb-12">
+        <div className="max-w-[1700px] mx-auto px-6">
+          <nav className="flex items-center gap-2 text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-6">
+            <Link to="/" className="hover:text-[#0096d6] transition-colors">Home</Link>
+            <ChevronRight size={12} />
+            <span className="text-[#0096d6]">Account Management</span>
           </nav>
-          <h1 className="text-3xl md:text-4xl font-bold ">Your Dashboard</h1>
+          <div className="flex items-start gap-4">
+            <div className="w-1.5 h-10 bg-[#0096d6] shrink-0 mt-1"></div>
+            <h1 className="text-3xl md:text-5xl font-bold tracking-tight uppercase">User Dashboard</h1>
+          </div>
         </div>
       </div>
 
-      <div className="max-w-[1200px] mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="max-w-[1700px] mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 
           {/* --- SIDEBAR --- */}
-          <aside className="lg:col-span-4 space-y-6">
-            <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-xl shadow-[#F54900]/5">
-              <div className="flex flex-col items-center text-center mb-8">
-                <div className="h-20 w-20 bg-gradient-to-br from-[#F54900] to-[#4f46e5] text-white flex items-center justify-center text-2xl font-bold rounded-2xl mb-4 shadow-lg shadow-[#F54900]/20">
+          <aside className="lg:col-span-4 space-y-8">
+            <div className="bg-white border border-slate-200 p-8">
+              <div className="flex flex-col items-center text-center mb-10">
+                <div className="h-20 w-20 bg-slate-900 text-white flex items-center justify-center text-2xl font-bold rounded-none mb-4">
                   {user.name.charAt(0).toUpperCase()}
                 </div>
-                <h2 className="text-xl font-bold ">{user.name}</h2>
-                <div className="flex items-center gap-1.5 text-gray-500 text-[13px] mt-1">
+                <h2 className="text-xl font-bold uppercase tracking-tight">{user.name}</h2>
+                <div className="flex items-center gap-2 text-slate-400 text-[12px] mt-1 font-bold uppercase tracking-widest">
                   <Mail size={14} />
                   <span>{user.email}</span>
                 </div>
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-1">
                 {[
                   { id: 'profile', label: 'Personal Information', icon: User },
-                  { id: 'orders', label: 'Order History', icon: Package },
-                  { id: 'security', label: 'Security & Password', icon: Shield }
+                  { id: 'orders', label: 'Order Registry', icon: Package },
+                  { id: 'security', label: 'System Security', icon: Shield }
                 ].map((tab) => (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`w-full flex items-center gap-3 px-5 py-3.5 text-[14px] font-bold transition-all rounded-xl border cursor-pointer ${activeTab === tab.id
-                      ? 'bg-[#F54900] text-white border-[#F54900] shadow-lg shadow-[#F54900]/10'
-                      : 'text-gray-600 border-transparent hover:bg-gray-50 hover:text-[#F54900]'
+                    className={`w-full flex items-center gap-4 px-6 py-4 text-[13px] font-bold uppercase tracking-widest transition-all border cursor-pointer ${activeTab === tab.id
+                      ? 'bg-[#0096d6] text-white border-[#0096d6]'
+                      : 'text-slate-500 border-transparent hover:bg-slate-50 hover:text-[#0096d6]'
                       }`}
                   >
                     <tab.icon size={18} />
@@ -175,28 +178,27 @@ export default function Profile() {
                   </button>
                 ))}
 
-                <div className="pt-6 mt-6 border-t border-gray-100">
+                <div className="pt-6 mt-6 border-t border-slate-100">
                   <button
                     onClick={handleLogout}
-                    className="w-full flex items-center gap-3 px-5 py-3.5 text-[14px] font-bold text-red-500 hover:bg-red-50 transition-all rounded-xl cursor-pointer group"
+                    className="w-full flex items-center gap-4 px-6 py-4 text-[13px] font-bold text-red-500 hover:bg-red-50 transition-all uppercase tracking-widest"
                   >
-                    <LogOut size={18} className="group-hover:-translate-x-1 transition-transform" />
-                    Sign Out
+                    <LogOut size={18} />
+                    Disconnect Session
                   </button>
                 </div>
               </div>
             </div>
 
-            <div className="bg-[#F54900] text-white p-8 rounded-3xl relative overflow-hidden group">
-              <div className="relative z-10">
-                <div className="bg-[#f59e0b] text-[#F54900] text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-widest mb-4 inline-block">Support</div>
-                <h4 className="text-lg font-bold mb-2 leading-snug">Need help with your printer?</h4>
-                <p className="text-white/60 text-[13px] leading-relaxed mb-6">Our tech experts are available 24/7 to assist with setup and troubleshooting.</p>
-                <Link to="/contact" className="inline-flex items-center gap-2 text-[13px] font-bold text-[#f59e0b] hover:text-white transition-colors">
-                  Get Support <ArrowRight size={16} />
-                </Link>
-              </div>
-              <ShieldCheck size={140} className="absolute -right-8 -bottom-8 text-white opacity-[0.03] rotate-12 group-hover:scale-110 transition-transform duration-700" />
+            <div className="bg-slate-950 text-white p-10 border-l-4 border-[#0096d6] space-y-6">
+              <ShieldCheck className="text-blue-500" size={32} />
+              <h4 className="text-xl font-bold tracking-tight uppercase">Technical Support</h4>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Need assistance with your equipment deployment? Our technical experts are ready to assist.
+              </p>
+              <Link to="/contact" className="inline-flex items-center gap-3 bg-[#0096d6] text-white px-8 py-4 font-bold text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all">
+                Request Help <ArrowRight size={16} />
+              </Link>
             </div>
           </aside>
 
@@ -204,189 +206,185 @@ export default function Profile() {
           <main className="lg:col-span-8">
             <AnimatePresence mode="wait">
               {activeTab === 'profile' && (
-                <motion.div
-                  key="profile" initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }}
-                  className="bg-white p-8 md:p-12 rounded-[2rem] border border-gray-100 shadow-xl shadow-[#F54900]/5"
+                <m.div
+                  key="profile" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                  className="bg-white p-8 md:p-12 border border-slate-200"
                 >
-                  <div className="flex items-center gap-4 mb-10 pb-6 border-b border-gray-50">
-                    <div className="h-12 w-12 bg-[#F54900]/5 text-[#F54900] flex items-center justify-center rounded-xl">
-                      <User size={24} />
-                    </div>
+                  <div className="flex items-center gap-4 mb-12 pb-6 border-b border-slate-100">
+                    <div className="h-10 w-1.5 bg-[#0096d6]"></div>
                     <div>
-                      <h3 className="text-xl font-bold">Personal Information</h3>
-                      <p className="text-[12px] font-medium text-gray-400 mt-0.5 uppercase tracking-widest">Update your contact and shipping details</p>
+                      <h3 className="text-2xl font-bold uppercase tracking-tight">Personal Data Registry</h3>
+                      <p className="text-[12px] font-bold text-slate-400 mt-1 uppercase tracking-widest">Maintain your contact and deployment coordinates</p>
                     </div>
                   </div>
 
-                  <form onSubmit={handleProfileUpdate} className="space-y-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-1.5">
-                        <label className="text-[13px] font-bold text-gray-500 ml-1">Full Name</label>
+                  <form onSubmit={handleProfileUpdate} className="space-y-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                      <div className="space-y-2">
+                        <label className="text-[12px] font-bold text-slate-400 uppercase tracking-widest">Full Legal Name</label>
                         <input
                           required value={profileForm.name}
                           onChange={(e) => setProfileForm({ ...profileForm, name: e.target.value })}
-                          className="w-full h-12 px-4 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-[#4f46e5] outline-none text-sm font-medium transition-all"
+                          className="w-full h-14 px-6 bg-[#F9FAFB] border border-slate-200 outline-none focus:border-[#0096d6] text-[15px] font-medium transition-all"
                         />
                       </div>
-                      <div className="space-y-1.5">
-                        <label className="text-[13px] font-bold text-gray-500 ml-1">Phone Number</label>
+                      <div className="space-y-2">
+                        <label className="text-[12px] font-bold text-slate-400 uppercase tracking-widest">Contact Number</label>
                         <input
                           value={profileForm.phone}
                           onChange={(e) => setProfileForm({ ...profileForm, phone: e.target.value })}
                           placeholder="+1 (000) 000-0000"
-                          className="w-full h-12 px-4 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-[#4f46e5] outline-none text-sm font-medium transition-all"
+                          className="w-full h-14 px-6 bg-[#F9FAFB] border border-slate-200 outline-none focus:border-[#0096d6] text-[15px] font-medium transition-all"
                         />
                       </div>
                     </div>
 
-                    <div className="space-y-1.5">
-                      <label className="text-[13px] font-bold text-gray-500 ml-1">Delivery Address</label>
+                    <div className="space-y-2">
+                      <label className="text-[12px] font-bold text-slate-400 uppercase tracking-widest">Default Deployment Station</label>
                       <textarea
                         rows="3" value={profileForm.address}
                         onChange={(e) => setProfileForm({ ...profileForm, address: e.target.value })}
                         placeholder="Street address, building, suite..."
-                        className="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-[#4f46e5] outline-none text-sm font-medium transition-all resize-none"
+                        className="w-full p-6 bg-[#F9FAFB] border border-slate-200 outline-none focus:border-[#0096d6] text-[15px] font-medium transition-all resize-none"
                       ></textarea>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-1.5">
-                        <label className="text-[13px] font-bold text-gray-500 ml-1">City</label>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                      <div className="space-y-2">
+                        <label className="text-[12px] font-bold text-slate-400 uppercase tracking-widest">City Registry</label>
                         <input
                           value={profileForm.city}
                           onChange={(e) => setProfileForm({ ...profileForm, city: e.target.value })}
-                          className="w-full h-12 px-4 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-[#4f46e5] outline-none text-sm font-medium transition-all"
+                          className="w-full h-14 px-6 bg-[#F9FAFB] border border-slate-200 outline-none focus:border-[#0096d6] text-[15px] font-medium transition-all"
                         />
                       </div>
-                      <div className="space-y-1.5">
-                        <label className="text-[13px] font-bold text-gray-500 ml-1">Zip Code</label>
+                      <div className="space-y-2">
+                        <label className="text-[12px] font-bold text-slate-400 uppercase tracking-widest">Postal Code</label>
                         <input
                           value={profileForm.zipCode}
                           onChange={(e) => setProfileForm({ ...profileForm, zipCode: e.target.value })}
-                          className="w-full h-12 px-4 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-[#4f46e5] outline-none text-sm font-medium transition-all"
+                          className="w-full h-14 px-6 bg-[#F9FAFB] border border-slate-200 outline-none focus:border-[#0096d6] text-[15px] font-medium transition-all"
                         />
                       </div>
                     </div>
 
                     <button
                       disabled={isUpdating}
-                      className="h-12 px-10 bg-[#F54900] text-white font-bold text-[13px] uppercase tracking-widest rounded-xl hover:bg-[#4f46e5] transition-all disabled:opacity-50 shadow-lg shadow-[#F54900]/10 flex items-center gap-3 cursor-pointer active:scale-95"
+                      className="h-16 px-12 bg-slate-900 text-white font-bold text-sm uppercase tracking-[0.2em] hover:bg-[#0096d6] transition-all flex items-center gap-4"
                     >
-                      {isUpdating ? <Loader2 className="animate-spin" size={18} /> : "Save Changes"}
+                      {isUpdating ? <Loader2 className="animate-spin" size={20} /> : "Update Registry"}
+                      <ArrowRight size={18} />
                     </button>
                   </form>
-                </motion.div>
+                </m.div>
               )}
 
               {activeTab === 'orders' && (
-                <motion.div
-                  key="orders" initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }}
-                  className="space-y-6"
+                <m.div
+                  key="orders" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                  className="space-y-8"
                 >
-                  <div className="bg-white p-6 md:p-8 rounded-[2rem] border border-gray-100 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div className="flex items-center gap-4">
-                      <div className="h-12 w-12 bg-[#F54900]/5 text-[#F54900] flex items-center justify-center rounded-xl">
-                        <Package size={24} />
-                      </div>
+                  <div className="bg-white p-8 border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div className="flex items-center gap-5">
+                      <div className="w-1.5 h-10 bg-[#0096d6]"></div>
                       <div>
-                        <h3 className="text-xl font-bold">Recent Orders</h3>
-                        <p className="text-[12px] font-medium text-gray-400 mt-0.5 uppercase tracking-widest">{orders.length} orders found</p>
+                        <h3 className="text-2xl font-bold uppercase tracking-tight">Recent Order Manifests</h3>
+                        <p className="text-[12px] font-bold text-slate-400 mt-1 uppercase tracking-widest">{orders.length} units detected in registry</p>
                       </div>
                     </div>
-                    <Link to="/shop" className="text-[13px] font-bold text-[#4f46e5] hover:underline flex items-center gap-1.5 group">
-                      Browse Catalog <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                    <Link to="/shop" className="bg-black text-white px-6 py-3 text-[11px] font-bold uppercase tracking-widest hover:bg-[#0096d6] transition-all">
+                      Browse Inventory
                     </Link>
                   </div>
 
                   {orders.length === 0 ? (
-                    <div className="bg-white py-20 text-center rounded-[2rem] border border-gray-100 border-dashed">
-                      <Package size={40} className="text-gray-200 mx-auto mb-4" />
-                      <p className="text-gray-400 font-bold uppercase text-[11px] tracking-widest">No order history available.</p>
+                    <div className="bg-[#F9FAFB] py-24 text-center border border-slate-200">
+                      <Package size={48} className="text-slate-200 mx-auto mb-6" />
+                      <p className="text-slate-400 font-bold text-[13px] uppercase tracking-[0.2em]">No order history detected in registry.</p>
                     </div>
                   ) : (
-                    <div className="grid grid-cols-1 gap-4">
+                    <div className="grid grid-cols-1 gap-6">
                       {orders.slice(0, 5).map((order) => (
-                        <div key={order.id} className="bg-white border border-gray-100 rounded-[1.5rem] p-6 flex flex-col md:flex-row items-center justify-between gap-6 hover:shadow-lg transition-all group">
-                          <div className="flex items-center gap-5 w-full md:w-auto">
-                            <div className="h-14 w-14 bg-gray-50 border border-gray-100 rounded-2xl flex items-center justify-center text-[#F54900] group-hover:bg-[#F54900]group-hover:text-white transition-all duration-500">
-                              <Clock size={24} />
+                        <div key={order.id} className="bg-white border border-slate-200 p-8 flex flex-col md:flex-row items-center justify-between gap-8 group hover:border-blue-400 transition-all">
+                          <div className="flex items-center gap-6 w-full md:w-auto">
+                            <div className="h-16 w-16 bg-[#F9FAFB] border border-slate-100 flex items-center justify-center text-slate-900 group-hover:bg-[#0096d6] group-hover:text-white transition-all">
+                              <Clock size={28} />
                             </div>
                             <div>
-                              <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1">#DSP-{order.id}</p>
-                              <div className="flex items-center gap-2">
-                                <span className={`w-2 h-2 rounded-full ${order.status === 'delivered' ? 'bg-emerald-500' : 'bg-[#f59e0b]'}`} />
-                                <span className="text-sm font-bold capitalize">{order.status.replace(/_/g, ' ')}</span>
+                              <p className="text-[12px] font-bold text-slate-400 uppercase tracking-widest mb-1">#RP-{order.id}</p>
+                              <div className="flex items-center gap-3">
+                                <span className={`w-2 h-2 ${order.status === 'delivered' ? 'bg-emerald-500' : 'bg-[#0096d6]'}`} />
+                                <span className="text-[15px] font-bold uppercase tracking-tight">{order.status.replace(/_/g, ' ')}</span>
                               </div>
                             </div>
                           </div>
 
-                          <div className="flex items-center justify-between w-full md:w-auto md:gap-12">
+                          <div className="flex items-center justify-between w-full md:w-auto md:gap-16">
                             <div className="text-right">
-                              <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1">{new Date(order.created_at).toLocaleDateString()}</p>
-                              <p className="text-lg font-black ">${Number(order.total_amount).toLocaleString()}</p>
+                              <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1">{new Date(order.created_at).toLocaleDateString()}</p>
+                              <p className="text-xl font-bold text-slate-950">${parseFloat(order.total_amount).toLocaleString()}</p>
                             </div>
-                            <Link to="/orders" className="h-10 w-10 rounded-full border border-gray-100 flex items-center justify-center text-gray-400 hover:bg-[#F54900]hover:text-white hover:border-[#F54900] transition-all">
-                              <ExternalLink size={18} />
+                            <Link to="/orders" className="h-12 w-12 border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-[#0096d6] hover:text-white hover:border-[#0096d6] transition-all">
+                              <ExternalLink size={20} />
                             </Link>
                           </div>
                         </div>
                       ))}
 
-                      <Link to="/orders" className="block text-center py-4 text-[13px] font-bold text-[#4f46e5] hover:underline uppercase tracking-widest">
-                        View All Orders History
+                      <Link to="/orders" className="block text-center py-6 text-[13px] font-bold text-[#0096d6] uppercase tracking-[0.2em] hover:underline">
+                        Access Full Order Registry
                       </Link>
                     </div>
                   )}
-                </motion.div>
+                </m.div>
               )}
 
               {activeTab === 'security' && (
-                <motion.div
-                  key="security" initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }}
-                  className="bg-white p-8 md:p-12 rounded-[2rem] border border-gray-100 shadow-xl shadow-[#F54900]/5"
+                <m.div
+                  key="security" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                  className="bg-white p-8 md:p-12 border border-slate-200"
                 >
-                  <div className="flex items-center gap-4 mb-10 pb-6 border-b border-gray-50">
-                    <div className="h-12 w-12 bg-red-50 text-red-500 flex items-center justify-center rounded-xl">
-                      <Shield size={24} />
-                    </div>
+                  <div className="flex items-center gap-4 mb-12 pb-6 border-b border-slate-100">
+                    <div className="h-10 w-1.5 bg-[#0096d6]"></div>
                     <div>
-                      <h3 className="text-xl font-bold">Account Security</h3>
-                      <p className="text-[12px] font-medium text-gray-400 mt-0.5 uppercase tracking-widest">Manage your login credentials</p>
+                      <h3 className="text-2xl font-bold uppercase tracking-tight">Security Protocols</h3>
+                      <p className="text-[12px] font-bold text-slate-400 mt-1 uppercase tracking-widest">Update your secure access credentials</p>
                     </div>
                   </div>
 
-                  <form onSubmit={handleSecurityUpdate} className="space-y-8">
-                    <div className="space-y-1.5">
-                      <label className="text-[13px] font-bold text-gray-500 ml-1">New Password</label>
+                  <form onSubmit={handleSecurityUpdate} className="space-y-10">
+                    <div className="space-y-2">
+                      <label className="text-[12px] font-bold text-slate-400 uppercase tracking-widest">New Security Password</label>
                       <div className="relative group">
                         <input
                           type={showPass ? "text" : "password"} required
-                          placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
+                          placeholder="••••••••"
                           value={securityForm.password} onChange={(e) => setSecurityForm({ ...securityForm, password: e.target.value })}
-                          className="w-full h-12 pl-4 pr-12 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-[#4f46e5] outline-none text-sm font-medium transition-all"
+                          className="w-full h-14 pl-6 pr-14 bg-[#F9FAFB] border border-slate-200 outline-none focus:border-[#0096d6] text-[15px] font-medium transition-all"
                         />
-                        <button type="button" onClick={() => setShowPass(!showPass)} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#F54900] cursor-pointer transition-colors">
+                        <button type="button" onClick={() => setShowPass(!showPass)} className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#0096d6] cursor-pointer transition-colors">
                           {showPass ? <EyeOff size={20} /> : <Eye size={20} />}
                         </button>
                       </div>
                     </div>
-                    <div className="space-y-1.5">
-                      <label className="text-[13px] font-bold text-gray-500 ml-1">Confirm New Password</label>
+                    <div className="space-y-2">
+                      <label className="text-[12px] font-bold text-slate-400 uppercase tracking-widest">Verify New Password</label>
                       <input
                         type={showPass ? "text" : "password"} required
-                        placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
+                        placeholder="••••••••"
                         value={securityForm.confirmPassword} onChange={(e) => setSecurityForm({ ...securityForm, confirmPassword: e.target.value })}
-                        className="w-full h-12 px-4 bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-[#4f46e5] outline-none text-sm font-medium transition-all"
+                        className="w-full h-14 px-6 bg-[#F9FAFB] border border-slate-200 outline-none focus:border-[#0096d6] text-[15px] font-medium transition-all"
                       />
                     </div>
                     <button
                       disabled={isUpdating}
-                      className="h-12 px-10 bg-[#F54900] text-white font-bold text-[13px] uppercase tracking-widest rounded-xl hover:bg-red-600 transition-all disabled:opacity-50 shadow-lg shadow-[#F54900]/10 flex items-center gap-3 cursor-pointer active:scale-95"
+                      className="h-16 px-12 bg-slate-900 text-white font-bold text-sm uppercase tracking-[0.2em] hover:bg-[#0096d6] transition-all flex items-center gap-4"
                     >
-                      {isUpdating ? <Loader2 className="animate-spin" size={18} /> : "Update Security"}
+                      {isUpdating ? <Loader2 className="animate-spin" size={20} /> : "Finalize Password Protocol"}
+                      <Shield size={18} />
                     </button>
                   </form>
-                </motion.div>
+                </m.div>
               )}
             </AnimatePresence>
           </main>
@@ -396,4 +394,3 @@ export default function Profile() {
     </div>
   );
 }
-

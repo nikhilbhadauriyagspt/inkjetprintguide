@@ -14,4 +14,20 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('lucide-react')) return 'vendor-icons';
+            if (id.includes('framer-motion')) return 'vendor-motion';
+            if (id.includes('swiper')) return 'vendor-swiper';
+            if (id.includes('react-router-dom') || id.includes('@remix-run') || id.includes('react-router')) return 'vendor-router';
+            return 'vendor-core'; // react, react-dom, etc.
+          }
+        }
+      }
+    },
+    chunkSizeWarningLimit: 1000,
+  }
 })

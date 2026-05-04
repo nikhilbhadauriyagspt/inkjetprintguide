@@ -73,7 +73,7 @@ export default function UserManager() {
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
-            <thead className="bg-gray-50 text-slate-500 font-bold capitalize tracking-wider text-xs">
+            <thead className="bg-gray-50 text-slate-500 font-bold  tracking-wider text-xs">
               <tr>
                 <th className="px-6 py-4">User Details</th>
                 <th className="px-6 py-4">Contact Info</th>
@@ -93,12 +93,12 @@ export default function UserManager() {
                 <tr key={u.id} className="hover:bg-gray-50/50 transition-colors group">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="h-10 w-10 bg-blue-100 text-[#F54900] rounded-full flex items-center justify-center font-bold">
-                        {u.name.charAt(0).toUpperCase()}
+                      <div className="h-10 w-10 bg-blue-100 text-[#0096d6] rounded-full flex items-center justify-center font-bold">
+                        {u.name.charAt(0).to()}
                       </div>
                       <div className="flex flex-col">
                         <span className="font-bold text-slate-900">{u.name}</span>
-                        <span className="text-[10px] font-bold text-slate-400 capitalize tracking-widest">ID: #{u.id}</span>
+                        <span className="text-[10px] font-bold text-slate-400  tracking-widest">ID: #{u.id}</span>
                       </div>
                     </div>
                   </td>

@@ -1,71 +1,63 @@
 import React from 'react';
-import { Search, ShoppingCart, CreditCard, PackageCheck, ArrowRight } from 'lucide-react';
-import { motion } from 'framer-motion';
+import Search from 'lucide-react/dist/esm/icons/search';
+import ShoppingCart from 'lucide-react/dist/esm/icons/shopping-cart';
+import CreditCard from 'lucide-react/dist/esm/icons/credit-card';
+import PackageCheck from 'lucide-react/dist/esm/icons/package-check';
 
 export default function HowToBuy() {
   const steps = [
     {
       icon: Search,
-      title: "Select Hardware",
-      desc: "Browse our specialized catalog and select the hardware that fits your workflow."
+      title: "Find Your Printer",
+      desc: "Browse our collection of high-performance printers and select the model that fits your needs."
     },
     {
       icon: ShoppingCart,
-      title: "Add to Cart",
-      desc: "Configure quantities and add your selected items to your professional procurement list."
+      title: "Add to Selection",
+      desc: "Configure your quantity and add items to your cart with a single click."
     },
     {
       icon: CreditCard,
       title: "Secure Checkout",
-      desc: "Proceed through our encrypted payment gateway for a safe and swift transaction."
+      desc: "Pay safely using our encrypted payment gateway. We support all major payment methods."
     },
     {
       icon: PackageCheck,
-      title: "Global Delivery",
-      desc: "Track your shipment in real-time as it moves from our warehouse to your doorstep."
+      title: "Doorstep Delivery",
+      desc: "Sit back while we ship your order globally with real-time tracking until arrival."
     }
   ];
 
   return (
-    <section className="bg-[#fcfcfc] py-20 md:py-28 border-y border-slate-50">
-      <div className="max-w-[1600px] mx-auto px-6">
-        <div className="text-center mb-20">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="w-8 h-[2px] bg-[#2f5cab]"></div>
-            <span className="text-[11px] font-bold text-[#2f5cab] uppercase tracking-[0.4em]">Seamless Process</span>
-            <div className="w-8 h-[2px] bg-[#2f5cab]"></div>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-semibold text-slate-900 leading-tight">
-            How to procure your <span className="text-[#2f5cab]">equipment.</span>
+    <section className="bg-[#f5f5f5] py-20 border-t border-slate-100">
+      <div className="max-w-[1700px] mx-auto px-4 md:px-0">
+
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+            How to Purchase
           </h2>
+          <p className="text-slate-600 text-lg">
+            A simple 4-step process to get your professional hardware delivered.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative">
-          {/* Connector Line (Desktop) */}
-          <div className="hidden lg:block absolute top-12 left-0 w-full h-[1px] bg-slate-200 z-0" />
-
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border border-slate-100">
           {steps.map((step, i) => (
-            <motion.div 
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="relative z-10 flex flex-col items-center text-center group"
-            >
-              <div className="w-24 h-24 rounded-full bg-white border border-slate-100 shadow-sm flex items-center justify-center mb-8 group-hover:border-[#2f5cab] group-hover:shadow-lg group-hover:shadow-[#2f5cab]/5 transition-all duration-500">
-                <div className="w-16 h-16 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-[#2f5cab] group-hover:text-white transition-all duration-500">
-                  <step.icon size={28} strokeWidth={1.5} />
-                </div>
-                <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-[#ffd33d] text-black text-xs font-black flex items-center justify-center shadow-sm">
-                  0{i + 1}
-                </div>
+            <div key={i} className="p-10 border-r border-b bg-white border-slate-100 last:border-r-0 lg:[&:nth-child(n+1)]:border-b-0 group">
+              <div className="w-14 h-14 bg-slate-50 flex items-center justify-center mb-8 border border-slate-100 group-hover:bg-[#05718A] transition-colors duration-300">
+                <step.icon size={24} className="text-[#05718A] group-hover:text-white" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">{step.title}</h3>
-              <p className="text-slate-500 text-[14px] leading-relaxed max-w-[240px]">
-                {step.desc}
-              </p>
-            </motion.div>
+
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <span className="text-[13px] font-bold text-[#05718A]">0{i + 1}</span>
+                  <h3 className="text-xl font-bold text-slate-800">{step.title}</h3>
+                </div>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  {step.desc}
+                </p>
+              </div>
+            </div>
           ))}
         </div>
       </div>

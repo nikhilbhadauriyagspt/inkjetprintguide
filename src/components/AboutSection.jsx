@@ -1,123 +1,147 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { m } from "framer-motion";
 import {
-  Droplets,
-  Zap,
-  Layers,
-  Waves,
-  Tag,
   ArrowRight,
+  Truck,
   ShieldCheck,
-  Globe,
+  Headphones,
+  BadgeCheck,
+  Zap,
+  CheckCircle2,
   Clock
 } from "lucide-react";
-import { motion } from "framer-motion";
+
+// Using .avif versions which are already available
+import leftPrinterImg from "/about/printer-left.avif";
+import rightPrinterImg from "/about/printer-right.avif";
 
 export default function AboutSection() {
-  const values = [
-    { icon: ShieldCheck, title: "Genuine Quality", desc: "100% authentic hardware from global leading brands." },
-    { icon: Globe, title: "Global Reach", desc: "Reliable international shipping for professional teams." },
-    { icon: Clock, title: "Expert Support", desc: "Decade of expertise in complex printing architectures." }
-  ];
-
-  const categories = [
-    { title: "Inkjet Systems", desc: "High-definition precision for creative documentation.", icon: Droplets, path: "/shop?category=inkjet-printers" },
-    { title: "Laser Tech", desc: "High-velocity engines for heavy-duty office productivity.", icon: Zap, path: "/shop?category=laser-printers" },
-    { title: "Multi-Function", desc: "All-in-one solutions for scanning and cloud faxing.", icon: Layers, path: "/shop?category=all-in-one-printers" },
-    { title: "SuperTank", desc: "High-capacity reservoirs for ultra-low cost per page.", icon: Waves, path: "/shop?category=supertank-printers" },
-    { title: "Industrial", desc: "Precision hardware for high-speed thermal labeling.", icon: Tag, path: "/shop?category=thermal-printers" }
+  const features = [
+    {
+      icon: <CheckCircle2 size={22} className="text-[#05718A]" />,
+      title: "Quality Performance",
+      desc: "Every printer is tested for clean, sharp results."
+    },
+    {
+      icon: <Clock size={22} className="text-[#05718A]" />,
+      title: "Fast Setup",
+      desc: "Easy installation so you can start printing right away."
+    },
+    {
+      icon: <ShieldCheck size={22} className="text-[#05718A]" />,
+      title: "Official Warranty",
+      desc: "Full brand warranty and dedicated support for every unit."
+    },
+    {
+      icon: <Headphones size={22} className="text-[#05718A]" />,
+      title: "Expert Support",
+      desc: "Our technical team is always here to help with your queries."
+    }
   ];
 
   return (
-    <section className="bg-white py-20 md:py-28 relative overflow-hidden">
-      <div className="max-w-[1800px] mx-auto px-6 relative z-10">
+    <section className="w-full bg-[#fff] py-16 md:py-24 overflow-hidden">
+      <div className="max-w-[1700px] mx-auto px-4 md:px-8 relative">
+        <div className="absolute top-0 left-5 w-24 h-20 md:w-20 md:h-20 bg-blue-100 rounded-full blur-[40px] opacity-40" />
 
-        {/* About Us Intro Part */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24 pb-20 border-b border-slate-50">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-12 lg:gap-x-12 items-start">
+          {/* LEFT SIDE */}
+          <m.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="lg:col-span-5 flex flex-col items-center lg:items-start"
           >
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-[2px] bg-[#2f5cab]"></div>
-              <span className="text-[11px] font-bold text-[#2f5cab] uppercase tracking-[0.3em]">Who We Are</span>
-            </div>
-            <h2 className="text-4xl font-semibold text-slate-900 leading-[1.1] mb-8">
-              Empowering your <span className="text-[#2f5cab]">productivity</span> through precision hardware.
-            </h2>
-            <p className="text-slate-500 text-lg leading-relaxed max-w-xl mb-10">
-              At Print Mora, we don't just sell equipment; we architect the ideal printing environment for your business. With over a decade of experience, we specialize in high-performance hardware that integrates seamlessly into professional workflows.
-            </p>
-            <Link to="/about" className="inline-flex items-center gap-2 bg-[#2f5cab] text-white px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-[#234d98] transition-all shadow-lg shadow-[#2f5cab]/10">
-              Learn Our Story <ArrowRight size={16} />
-            </Link>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-            {values.map((v, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="p-6 bg-slate-50/50 rounded-2xl border border-slate-100"
-              >
-                <v.icon size={28} className="text-[#2f5cab] mb-4" strokeWidth={1.5} />
-                <h4 className="text-[16px] font-bold text-slate-800 mb-2">{v.title}</h4>
-                <p className="text-slate-500 text-sm leading-relaxed">{v.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Ecosystem Title */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
-          <div className="max-w-2xl">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-[2px] bg-[#2f5cab]"></div>
-              <span className="text-[11px] font-bold text-[#2f5cab] uppercase tracking-[0.3em]">Our Specialization</span>
-            </div>
-            <h3 className="text-2xl md:text-4xl font-semibold text-slate-900">
-              The hardware ecosystem.
-            </h3>
-          </div>
-          <Link to="/shop" className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 hover:text-[#2f5cab] transition-colors flex items-center gap-2 group">
-            Browse All <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </div>
-
-        {/* Light Minimal Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-          {categories.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              className="group p-6 rounded-xl border border-slate-100 hover:border-[#2f5cab]/20 hover:bg-slate-50/50 transition-all duration-300"
-            >
-              <div className="w-12 h-12 rounded-lg bg-slate-50 flex items-center justify-center mb-6 group-hover:bg-[#2f5cab] group-hover:text-white transition-all duration-300">
-                <item.icon size={22} strokeWidth={1.5} className="text-[#2f5cab] group-hover:text-white" />
+            <div className="overflow-hidden rounded-[32px] shadow-2xl shadow-slate-200/50">
+              <div className="overflow-hidden max-w-full">
+                <img
+                  src={leftPrinterImg}
+                  alt="Premium printer setup"
+                  className="w-full h-[320px] md:h-[450px] object-cover hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
               </div>
+            </div>
 
-              <h3 className="text-[15px] font-bold text-slate-800 mb-2">
-                {item.title}
-              </h3>
-              <p className="text-slate-500 text-[12px] leading-relaxed mb-6">
-                {item.desc}
+            <div className="pt-8 px-1 text-center lg:text-left">
+              <p className="text-[15px] md:text-[17px] leading-relaxed text-slate-600 max-w-[700px] font-medium">
+                We offer dependable printer solutions for home, office, and
+                business use. From compact everyday printers to performance-ready
+                machines, our collection is built for smooth output and easier workflow.
               </p>
 
               <Link
-                to={item.path}
-                className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-[#2f5cab] opacity-0 group-hover:opacity-100 group-hover:gap-2 transition-all"
+                to="/shop"
+                className="inline-flex items-center justify-center mt-8 bg-slate-900 hover:bg-[#05718A] text-white text-xs md:text-[14px] font-bold uppercase tracking-widest px-10 py-4 rounded-xl transition-all shadow-xl shadow-slate-200"
               >
-                View <ArrowRight size={12} />
+                Explore Collection
               </Link>
-            </motion.div>
-          ))}
+            </div>
+          </m.div>
+
+          {/* CENTER STAR - Hidden on mobile/tablet */}
+          <div className="hidden xl:flex lg:col-span-1 justify-center pt-[200px]">
+            <div className="relative w-16 h-16">
+              <div className="absolute inset-0 flex items-center justify-center text-[#05718A] text-[120px] leading-none opacity-20">
+                ✦
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT SIDE */}
+          <m.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.75 }}
+            className="lg:col-span-7 xl:col-span-6"
+          >
+            <div className="max-w-[800px] lg:ml-auto">
+              <div className="mb-10 text-center lg:text-left">
+                <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
+                  <div className="w-8 h-[2px] bg-[#05718A]"></div>
+                  <h2 className="text-xl md:text-2xl font-bold tracking-widest text-[#05718A] uppercase leading-none">
+                    About Inklivo
+                  </h2>
+                </div>
+                <h3 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight mb-6">
+                  Quality Printing for Every Need
+                </h3>
+                <p className="text-[15px] md:text-[17px] leading-relaxed text-slate-600 max-w-[700px] mx-auto lg:mx-0 font-medium">
+                  Discover premium printers and accessories designed for reliable
+                  performance, clean print quality, and smooth daily productivity.
+                  Whether for work or personal use, we make printer shopping simple.
+                </p>
+              </div>
+
+              <div className="flex flex-col md:flex-row items-center gap-12">
+                <div className="flex-1 space-y-8 w-full">
+                  {features.map((item, idx) => (
+                    <div key={idx} className="flex gap-5 group">
+                      <div className="w-14 h-14 shrink-0 bg-blue-50 group-hover:bg-[#05718A] group-hover:text-white transition-colors rounded-2xl flex items-center justify-center">
+                        {React.cloneElement(item.icon, { className: "group-hover:text-white transition-colors" })}
+                      </div>
+                      <div>
+                        <h3 className="text-[16px] font-bold text-slate-900 tracking-tight">{item.title}</h3>
+                        <p className="text-[13px] text-slate-500 mt-1 leading-relaxed font-medium">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="rounded-[32px] overflow-hidden shrink-0 w-full md:w-[320px] lg:w-[350px] shadow-2xl shadow-slate-200/50">
+                  <img
+                    src={rightPrinterImg}
+                    alt="Printer product display"
+                    className="w-full h-[330px] md:h-[450px] object-cover hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+          </m.div>
         </div>
       </div>
     </section>

@@ -34,8 +34,8 @@ export default function NewsletterManager() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900  capitalize">Newsletter Subscribers</h1>
-          <p className="text-sm font-bold text-slate-500 capitalize tracking-widest mt-1">Manage your marketing mailing list</p>
+          <h1 className="text-3xl font-bold text-slate-900  ">Newsletter Subscribers</h1>
+          <p className="text-sm font-bold text-slate-500  tracking-widest mt-1">Manage your marketing mailing list</p>
         </div>
 
         <div className="flex items-center gap-4">
@@ -46,10 +46,10 @@ export default function NewsletterManager() {
               placeholder="SEARCH EMAILS..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="pl-12 pr-6 h-14 w-full md:w-80 bg-white border border-gray-200 rounded-2xl focus:border-blue-600 outline-none text-xs font-bold capitalize transition-all"
+              className="pl-12 pr-6 h-14 w-full md:w-80 bg-white border border-gray-200 rounded-2xl focus:border-[#0096d6] outline-none text-xs font-bold  transition-all"
             />
           </div>
-          <button className="h-14 px-6 bg-slate-900 text-white rounded-2xl flex items-center gap-3 text-[10px] font-bold capitalize tracking-widest hover:bg-[#F54900] transition-all shadow-xl">
+          <button className="h-14 px-6 bg-slate-900 text-white rounded-2xl flex items-center gap-3 text-[10px] font-bold  tracking-widest hover:bg-[#0096d6] transition-all shadow-xl">
             <Download size={16} /> Export CSV
           </button>
         </div>
@@ -58,17 +58,17 @@ export default function NewsletterManager() {
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
-          <div className="h-12 w-12 rounded-2xl bg-blue-50 text-[#F54900] flex items-center justify-center mb-6">
+          <div className="h-12 w-12 rounded-2xl bg-blue-50 text-[#0096d6] flex items-center justify-center mb-6">
             <Mail size={24} />
           </div>
-          <p className="text-[10px] font-bold text-slate-400 capitalize tracking-widest mb-1">Total Subscribers</p>
+          <p className="text-[10px] font-bold text-slate-400  tracking-widest mb-1">Total Subscribers</p>
           <h3 className="text-3xl font-bold text-slate-900">{emails.length}</h3>
         </div>
         <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
           <div className="h-12 w-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-6">
             <UserCheck size={24} />
           </div>
-          <p className="text-[10px] font-bold text-slate-400 capitalize tracking-widest mb-1">Active Status</p>
+          <p className="text-[10px] font-bold text-slate-400  tracking-widest mb-1">Active Status</p>
           <h3 className="text-3xl font-bold text-slate-900">{emails.filter(e => e.status === 'active').length}</h3>
         </div>
       </div>
@@ -79,22 +79,22 @@ export default function NewsletterManager() {
           <table className="w-full text-left">
             <thead>
               <tr className="bg-gray-50/50 border-b border-gray-100">
-                <th className="px-8 py-5 text-[10px] font-bold text-slate-400 capitalize tracking-widest">Email Address</th>
-                <th className="px-8 py-5 text-[10px] font-bold text-slate-400 capitalize tracking-widest">Date Subscribed</th>
-                <th className="px-8 py-5 text-[10px] font-bold text-slate-400 capitalize tracking-widest text-right">Action</th>
+                <th className="px-8 py-5 text-[10px] font-bold text-slate-400  tracking-widest">Email Address</th>
+                <th className="px-8 py-5 text-[10px] font-bold text-slate-400  tracking-widest">Date Subscribed</th>
+                <th className="px-8 py-5 text-[10px] font-bold text-slate-400  tracking-widest text-right">Action</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
               {loading ? (
                 <tr>
                   <td colSpan="3" className="py-20 text-center">
-                    <Loader2 className="animate-spin h-8 w-8 text-[#F54900] mx-auto mb-4" />
-                    <p className="text-[10px] font-bold text-slate-400 capitalize tracking-widest">Loading List...</p>
+                    <Loader2 className="animate-spin h-8 w-8 text-[#0096d6] mx-auto mb-4" />
+                    <p className="text-[10px] font-bold text-slate-400  tracking-widest">Loading List...</p>
                   </td>
                 </tr>
               ) : filteredEmails.length === 0 ? (
                 <tr>
-                  <td colSpan="3" className="py-20 text-center text-slate-400 font-bold capitalize text-xs tracking-widest">
+                  <td colSpan="3" className="py-20 text-center text-slate-400 font-bold  text-xs tracking-widest">
                     No subscribers found
                   </td>
                 </tr>
@@ -102,7 +102,7 @@ export default function NewsletterManager() {
                 <tr key={item.id} className="hover:bg-gray-50/50 transition-colors group">
                   <td className="px-8 py-6">
                     <div className="flex items-center gap-4">
-                      <div className="h-10 w-10 rounded-xl bg-gray-50 flex items-center justify-center text-slate-400 group-hover:text-[#F54900] transition-colors">
+                      <div className="h-10 w-10 rounded-xl bg-gray-50 flex items-center justify-center text-slate-400 group-hover:text-[#0096d6] transition-colors">
                         <Mail size={18} />
                       </div>
                       <span className="text-sm font-bold text-slate-900 lowercase">{item.email}</span>
@@ -111,7 +111,7 @@ export default function NewsletterManager() {
                   <td className="px-8 py-6">
                     <div className="flex items-center gap-2 text-slate-500">
                       <Calendar size={14} />
-                      <span className="text-[10px] font-bold capitalize tracking-widest">
+                      <span className="text-[10px] font-bold  tracking-widest">
                         {new Date(item.created_at).toLocaleDateString()}
                       </span>
                     </div>

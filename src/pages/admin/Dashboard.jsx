@@ -28,7 +28,7 @@ export default function Dashboard() {
         {cards.map((card, i) => (
           <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between">
             <div>
-              <p className="text-slate-500 text-xs font-bold capitalize tracking-wider mb-1">{card.title}</p>
+              <p className="text-slate-500 text-xs font-bold  tracking-wider mb-1">{card.title}</p>
               <h3 className="text-3xl font-bold text-slate-900">{card.value}</h3>
             </div>
             <div className={`h-12 w-12 rounded-xl ${card.color} text-white flex items-center justify-center shadow-lg shadow-blue-500/10`}>

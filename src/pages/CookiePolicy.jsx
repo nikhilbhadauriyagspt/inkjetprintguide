@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import PolicyLayout from '../layouts/PolicyLayout';
 import { Link } from 'react-router-dom';
 
@@ -7,10 +7,10 @@ export default function CookiePolicy() {
     <PolicyLayout
       title="Cookie Policy"
       subtitle="Learn about how we use cookies and similar technologies on our website."
-      lastUpdated="Apr 16, 2026"
+      lastUpdated="Apr 22, 2026"
     >
       <p className="lead">
-        This Cookie Policy explains how Print Mora LLC ("Company," "we," "us," or "our") uses cookies and similar technologies when you visit our website: <a href="https://printmora.shop/">https://printmora.shop/</a>
+        This Cookie Policy explains how Inklivo LLC ("Company," "we," "us," or "our") uses cookies and similar technologies when you visit our website: <a href="https://inklivo.shop/">https://inklivo.shop/</a>
       </p>
       <p>
         This Cookie Policy should be read together with our <Link to="/privacy-policy">Privacy Policy</Link> and <Link to="/terms-and-conditions">Terms and Conditions</Link>.
@@ -22,10 +22,10 @@ export default function CookiePolicy() {
       </p>
       <p>Cookies may be:</p>
       <ul>
-        <li><strong>Session Cookies</strong> â€“ Deleted when you close your browser</li>
-        <li><strong>Persistent Cookies</strong> â€“ Remain stored until they expire or are deleted</li>
-        <li><strong>First-Party Cookies</strong> â€“ Set by our website</li>
-        <li><strong>Third-Party Cookies</strong> â€“ Set by external service providers</li>
+        <li><strong>Session Cookies</strong> – Deleted when you close your browser</li>
+        <li><strong>Persistent Cookies</strong> – Remain stored until they expire or are deleted</li>
+        <li><strong>First-Party Cookies</strong> – Set by our website</li>
+        <li><strong>Third-Party Cookies</strong> – Set by external service providers</li>
       </ul>
 
       <h2>2. How We Use Cookies</h2>
@@ -125,13 +125,13 @@ export default function CookiePolicy() {
       <p>Some browsers include a "Do Not Track" feature. Currently, there is no universal standard for responding to DNT signals. Therefore, we do not respond to DNT browser signals at this time.</p>
 
       <h2>8. Sale Or Sharing Of Personal Information</h2>
-      <p>We do not sell personal information. If cookies are considered â€œsharingâ€ under certain US state privacy laws (such as targeted advertising), you may exercise your rights by:</p>
+      <p>We do not sell personal information. If cookies are considered “sharing” under certain US state privacy laws (such as targeted advertising), you may exercise your rights by:</p>
       <ul>
-        <li>Emailing: <a href="mailto:info@printmora.shop">info@printmora.shop</a></li>
-        <li>Visiting: <Link to="/contact">https://printmora.shop/contact</Link></li>
+        <li>Emailing: <a href="mailto:info@inklivo.shop">info@inklivo.shop</a></li>
+        <li>Visiting: <Link to="/contact">https://inklivo.shop/contact</Link></li>
       </ul>
 
-      <h2>9. Childrenâ€™s Privacy</h2>
+      <h2>9. Children’s Privacy</h2>
       <p>Our website is not intended for individuals under the age of 18. We do not knowingly collect personal information from minors.</p>
 
       <h2>10. Updates To This Cookie Policy</h2>
@@ -142,15 +142,14 @@ export default function CookiePolicy() {
       <p>If you have any questions regarding this Cookie Policy, please contact:</p>
       <div className="bg-gray-50 p-8 rounded-sm border border-[#e9e9e9] my-8 not-prose">
         <address className="not- text-gray-700 font-bold leading-relaxed space-y-2">
-          <p className="text-black font-extrabold">Print Mora LLC</p>
-          <p>Direct Distribution</p>
-          <p>302 E Washington St, Bloomington</p>
-          <p>IL 61701, United States</p>
-
-          <p className="pt-4 flex items-center gap-3 text-[#1447E6] font-extrabold">info@printmora.shop</p>
+          <p className="text-black font-extrabold">Inklivo LLC</p>
+          <p className="pt-4 flex items-center gap-3 text-[#1447E6] font-extrabold">info@inklivo.shop</p>
         </address>
       </div>
     </PolicyLayout>
   );
 }
+
+
+
 

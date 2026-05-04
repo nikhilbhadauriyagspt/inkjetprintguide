@@ -1,15 +1,15 @@
-﻿import { useEffect } from 'react';
+import { useEffect } from 'react';
 
 export default function SEO({ title, description, keywords, schemaType = "Website" }) {
   useEffect(() => {
     // Update Title - Avoid doubling the brand name if it's already in the prop
-    const baseTitle = "Print Mora";
+    const baseTitle = "Inklivo";
     const fullTitle = title && title.includes(baseTitle) ? title : (title ? `${title} | ${baseTitle}` : baseTitle);
     document.title = fullTitle;
 
     // Update Description
     const metaDescription = document.querySelector('meta[name="description"]');
-    const defaultDesc = "Print Mora is located in Ashburn, Virginia, offering high-performance printers, ink, toner, and nationwide shipping.";
+    const defaultDesc = "Inklivo is located in Ashburn, Virginia, offering high-performance printers, ink, toner, and nationwide shipping.";
     const finalDesc = description || defaultDesc;
     if (metaDescription) {
       metaDescription.setAttribute('content', finalDesc);
@@ -45,22 +45,14 @@ export default function SEO({ title, description, keywords, schemaType = "Websit
     const schemaData = {
       "@context": "https://schema.org",
       "@type": schemaType === "Product" ? "Product" : "Organization",
-      "name": "Print Mora",
-      "url": "https://printmora.shop",
-      "logo": "https://printmora.shop/logo/logo.png",
+      "name": "Inklivo",
+      "url": "https://inklivo.shop",
+      "logo": "https://inklivo.shop/logo/logo.avif",
       "description": finalDesc,
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "302 E Washington St, Bloomington",
-        "addressLocality": "Bloomington",
-        "addressRegion": "IL",
-        "postalCode": "61701",
-        "addressCountry": "US"
-      },
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "customer service",
-        "email": "info@printmora.shop"
+        "email": "info@inklivo.shop"
       }
     };
 
@@ -70,4 +62,7 @@ export default function SEO({ title, description, keywords, schemaType = "Websit
 
   return null;
 }
+
+
+
 

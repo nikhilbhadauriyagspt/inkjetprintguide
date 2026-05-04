@@ -70,7 +70,7 @@ export default function OrderManager() {
 
   const statusColors = {
     pending: 'bg-amber-50 text-amber-600 border-amber-100',
-    processing: 'bg-blue-50 text-[#F54900] border-blue-100',
+    processing: 'bg-blue-50 text-[#0096d6] border-blue-100',
     shipped: 'bg-indigo-50 text-indigo-600 border-indigo-100',
     out_for_delivery: 'bg-purple-50 text-purple-600 border-purple-100',
     delivered: 'bg-emerald-50 text-emerald-600 border-emerald-100',
@@ -82,8 +82,8 @@ export default function OrderManager() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900  capitalize">Order Management</h1>
-          <p className="text-sm font-bold text-slate-500 capitalize tracking-widest mt-1">Manage and track customer purchases</p>
+          <h1 className="text-3xl font-bold text-slate-900  ">Order Management</h1>
+          <p className="text-sm font-bold text-slate-500  tracking-widest mt-1">Manage and track customer purchases</p>
         </div>
 
         <div className="relative">
@@ -93,7 +93,7 @@ export default function OrderManager() {
             placeholder="SEARCH BY ORDER ID, NAME, EMAIL..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="pl-12 pr-6 h-14 w-full md:w-96 bg-white border border-gray-200 rounded-2xl focus:border-blue-600 outline-none text-xs font-bold capitalize transition-all"
+            className="pl-12 pr-6 h-14 w-full md:w-96 bg-white border border-gray-200 rounded-2xl focus:border-[#0096d6] outline-none text-xs font-bold  transition-all"
           />
         </div>
       </div>
@@ -104,19 +104,19 @@ export default function OrderManager() {
           <table className="w-full text-left">
             <thead>
               <tr className="bg-gray-50/50 border-b border-gray-100">
-                <th className="px-8 py-5 text-[10px] font-bold text-slate-400 capitalize tracking-widest">Order Info</th>
-                <th className="px-8 py-5 text-[10px] font-bold text-slate-400 capitalize tracking-widest">Customer</th>
-                <th className="px-8 py-5 text-[10px] font-bold text-slate-400 capitalize tracking-widest">Amount</th>
-                <th className="px-8 py-5 text-[10px] font-bold text-slate-400 capitalize tracking-widest">Status</th>
-                <th className="px-8 py-5 text-[10px] font-bold text-slate-400 capitalize tracking-widest">Action</th>
+                <th className="px-8 py-5 text-[10px] font-bold text-slate-400  tracking-widest">Order Info</th>
+                <th className="px-8 py-5 text-[10px] font-bold text-slate-400  tracking-widest">Customer</th>
+                <th className="px-8 py-5 text-[10px] font-bold text-slate-400  tracking-widest">Amount</th>
+                <th className="px-8 py-5 text-[10px] font-bold text-slate-400  tracking-widest">Status</th>
+                <th className="px-8 py-5 text-[10px] font-bold text-slate-400  tracking-widest">Action</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
               {loading ? (
                 <tr>
                   <td colSpan="5" className="py-20 text-center">
-                    <Loader2 className="animate-spin h-8 w-8 text-[#F54900] mx-auto mb-4" />
-                    <p className="text-[10px] font-bold text-slate-400 capitalize tracking-widest">Loading Orders...</p>
+                    <Loader2 className="animate-spin h-8 w-8 text-[#0096d6] mx-auto mb-4" />
+                    <p className="text-[10px] font-bold text-slate-400  tracking-widest">Loading Orders...</p>
                   </td>
                 </tr>
               ) : filteredOrders.map((order) => (
@@ -124,23 +124,23 @@ export default function OrderManager() {
                   <td className="px-8 py-6">
                     <div className="flex flex-col">
                       <span className="text-sm font-bold text-slate-900">#PFX-{order.id}</span>
-                      <span className="text-[10px] font-bold text-slate-400 capitalize mt-1">{new Date(order.created_at).toLocaleDateString()}</span>
+                      <span className="text-[10px] font-bold text-slate-400  mt-1">{new Date(order.created_at).toLocaleDateString()}</span>
                     </div>
                   </td>
                   <td className="px-8 py-6">
                     <div className="flex flex-col">
-                      <span className="text-sm font-bold text-slate-900 capitalize">{order.first_name} {order.last_name}</span>
-                      <span className="text-[10px] font-bold text-slate-400 capitalize mt-1">{order.guest_email}</span>
+                      <span className="text-sm font-bold text-slate-900 ">{order.first_name} {order.last_name}</span>
+                      <span className="text-[10px] font-bold text-slate-400  mt-1">{order.guest_email}</span>
                     </div>
                   </td>
                   <td className="px-8 py-6">
                     <div className="flex flex-col">
-                      <span className="text-sm font-bold text-[#F54900]">${order.total_amount}</span>
-                      <span className="text-[10px] font-bold text-slate-400 capitalize mt-1">{order.payment_method}</span>
+                      <span className="text-sm font-bold text-[#0096d6]">${order.total_amount}</span>
+                      <span className="text-[10px] font-bold text-slate-400  mt-1">{order.payment_method}</span>
                     </div>
                   </td>
                   <td className="px-8 py-6">
-                    <span className={`px-3 py-1 rounded-full text-[9px] font-bold capitalize tracking-widest border ${statusColors[order.status]}`}>
+                    <span className={`px-3 py-1 rounded-full text-[9px] font-bold  tracking-widest border ${statusColors[order.status]}`}>
                       {order.status.replace(/_/g, ' ')}
                     </span>
                   </td>
@@ -176,8 +176,8 @@ export default function OrderManager() {
             >
               <div className="p-8 border-b border-gray-100 flex items-center justify-between">
                 <div>
-                  <h2 className="text-2xl font-bold text-slate-900  capitalize">Order Details.</h2>
-                  <p className="text-[10px] font-bold text-[#F54900] capitalize tracking-widest mt-1">#PFX-{selectedOrder.id}</p>
+                  <h2 className="text-2xl font-bold text-slate-900  ">Order Details.</h2>
+                  <p className="text-[10px] font-bold text-[#0096d6]  tracking-widest mt-1">#PFX-{selectedOrder.id}</p>
                 </div>
                 <button onClick={() => setSelectedOrder(null)} className="h-12 w-12 rounded-full bg-gray-50 flex items-center justify-center hover:bg-black hover:text-white transition-all">
                   <X size={20} />
@@ -187,14 +187,14 @@ export default function OrderManager() {
               <div className="flex-1 overflow-y-auto p-8 space-y-10 custom-scrollbar">
                 {/* Status Update */}
                 <div className="bg-slate-900 rounded-[2rem] p-8 text-white">
-                  <h3 className="text-[10px] font-bold capitalize tracking-[0.4em] text-blue-400 mb-6">Update Status</h3>
+                  <h3 className="text-[10px] font-bold  tracking-[0.4em] text-blue-400 mb-6">Update Status</h3>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                     {Object.keys(statusColors).map((s) => (
                       <button
                         key={s}
                         onClick={() => updateStatus(selectedOrder.id, s)}
-                        className={`px-4 py-3 rounded-xl text-[9px] font-bold capitalize tracking-widest border transition-all ${selectedOrder.status === s
-                          ? 'bg-[#F54900] border-blue-600 text-white'
+                        className={`px-4 py-3 rounded-xl text-[9px] font-bold  tracking-widest border transition-all ${selectedOrder.status === s
+                          ? 'bg-[#0096d6] border-[#0096d6] text-white'
                           : 'bg-white/5 border-white/10 text-white/60 hover:bg-white/10 hover:text-white'
                           }`}
                       >
@@ -207,21 +207,21 @@ export default function OrderManager() {
                 {/* Customer & Shipping */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-4">
-                    <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400 capitalize tracking-[0.2em]">
+                    <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400  tracking-[0.2em]">
                       <User size={12} /> Customer Information
                     </div>
                     <div className="bg-gray-50 rounded-2xl p-6">
-                      <p className="text-sm font-bold text-slate-900 capitalize">{selectedOrder.first_name} {selectedOrder.last_name}</p>
+                      <p className="text-sm font-bold text-slate-900 ">{selectedOrder.first_name} {selectedOrder.last_name}</p>
                       <div className="flex items-center gap-2 text-xs font-bold text-slate-500 mt-2 lowercase"><Mail size={12} /> {selectedOrder.guest_email}</div>
-                      <div className="flex items-center gap-2 text-xs font-bold text-slate-500 mt-1 capitalize"><Phone size={12} /> {selectedOrder.phone}</div>
+                      <div className="flex items-center gap-2 text-xs font-bold text-slate-500 mt-1 "><Phone size={12} /> {selectedOrder.phone}</div>
                     </div>
                   </div>
                   <div className="space-y-4">
-                    <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400 capitalize tracking-[0.2em]">
+                    <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400  tracking-[0.2em]">
                       <MapPin size={12} /> Shipping Address
                     </div>
                     <div className="bg-gray-50 rounded-2xl p-6">
-                      <p className="text-xs font-bold text-slate-700 leading-relaxed capitalize">
+                      <p className="text-xs font-bold text-slate-700 leading-relaxed ">
                         {selectedOrder.address}<br />
                         {selectedOrder.city}, {selectedOrder.zip_code}
                       </p>
@@ -231,7 +231,7 @@ export default function OrderManager() {
 
                 {/* Order Items */}
                 <div className="space-y-4">
-                  <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400 capitalize tracking-[0.2em]">
+                  <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400  tracking-[0.2em]">
                     <Package size={12} /> Items Ordered
                   </div>
                   <div className="border border-gray-100 rounded-2xl overflow-hidden divide-y divide-gray-50">
@@ -241,9 +241,9 @@ export default function OrderManager() {
                           <div className="h-10 w-10 rounded-lg bg-gray-50 flex items-center justify-center text-[10px] font-bold">
                             {item.quantity}x
                           </div>
-                          <p className="text-xs font-bold text-slate-900 capitalize truncate max-w-[250px]">{item.product_name}</p>
+                          <p className="text-xs font-bold text-slate-900  truncate max-w-[250px]">{item.product_name}</p>
                         </div>
-                        <p className="text-xs font-bold text-[#F54900]">${item.price}</p>
+                        <p className="text-xs font-bold text-[#0096d6]">${item.price}</p>
                       </div>
                     ))}
                   </div>
@@ -253,13 +253,13 @@ export default function OrderManager() {
                 <div className="pt-6 border-t border-gray-100">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="space-y-4">
-                      <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400 capitalize tracking-[0.2em]">
+                      <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400  tracking-[0.2em]">
                         <CreditCard size={12} /> Payment Details
                       </div>
                       <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
                         <div className="flex justify-between mb-2">
-                          <span className="text-[10px] font-bold text-slate-400 capitalize">Method</span>
-                          <span className="text-[10px] font-bold text-slate-900 capitalize">{selectedOrder.payment_method}</span>
+                          <span className="text-[10px] font-bold text-slate-400 ">Method</span>
+                          <span className="text-[10px] font-bold text-slate-900 ">{selectedOrder.payment_method}</span>
                         </div>
                         {selectedOrder.payment_details && (
                           <div className="space-y-2 mt-4 pt-4 border-t border-slate-200">
@@ -269,26 +269,26 @@ export default function OrderManager() {
                                   ? JSON.parse(selectedOrder.payment_details)
                                   : selectedOrder.payment_details;
 
-                                if (!details) return <p className="text-[9px] text-slate-400 capitalize ">No transaction data</p>;
+                                if (!details) return <p className="text-[9px] text-slate-400  ">No transaction data</p>;
 
                                 return (
                                   <>
                                     <div className="flex justify-between">
-                                      <span className="text-[9px] font-bold text-slate-400 capitalize">Transaction ID</span>
-                                      <span className="text-[9px] font-mono font-bold text-[#F54900]">{details.id || 'N/A'}</span>
+                                      <span className="text-[9px] font-bold text-slate-400 ">Transaction ID</span>
+                                      <span className="text-[9px] font-mono font-bold text-[#0096d6]">{details.id || 'N/A'}</span>
                                     </div>
                                     <div className="flex justify-between">
-                                      <span className="text-[9px] font-bold text-slate-400 capitalize">Payer Email</span>
+                                      <span className="text-[9px] font-bold text-slate-400 ">Payer Email</span>
                                       <span className="text-[9px] font-bold text-slate-900">{details.payer?.email_address || details.email || 'N/A'}</span>
                                     </div>
                                     <div className="flex justify-between">
-                                      <span className="text-[9px] font-bold text-slate-400 capitalize">Status</span>
-                                      <span className="text-[9px] font-bold text-emerald-600 capitalize">{details.status || 'COMPLETED'}</span>
+                                      <span className="text-[9px] font-bold text-slate-400 ">Status</span>
+                                      <span className="text-[9px] font-bold text-emerald-600 ">{details.status || 'COMPLETED'}</span>
                                     </div>
                                   </>
                                 );
                               } catch (e) {
-                                return <p className="text-[9px] text-slate-400 capitalize ">Invalid data format</p>;
+                                return <p className="text-[9px] text-slate-400  ">Invalid data format</p>;
                               }
                             })()}
                           </div>
@@ -296,7 +296,7 @@ export default function OrderManager() {
                       </div>
                     </div>
                     <div className="flex flex-col justify-end text-right">
-                      <span className="text-sm font-bold text-slate-400 capitalize">Total Amount</span>
+                      <span className="text-sm font-bold text-slate-400 ">Total Amount</span>
                       <span className="text-4xl font-bold text-slate-900">${selectedOrder.total_amount}</span>
                     </div>
                   </div>

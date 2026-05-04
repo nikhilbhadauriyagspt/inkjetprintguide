@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Lock, Mail } from 'lucide-react';
 import API_BASE_URL from '../config';
@@ -41,8 +41,8 @@ export default function AdminLogin() {
     <div className="min-h-screen flex items-center justify-center bg-slate-900 font-urbanist px-4">
       <div className="max-w-md w-full bg-white p-8 rounded-3xl shadow-2xl">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-slate-900 ">Print Mora<span className="text-[#F54900]">.</span></h2>
-          <p className="text-sm font-bold text-slate-400 capitalize tracking-widest mt-2">Admin Portal</p>
+          <h2 className="text-3xl font-bold text-slate-900 ">Inklivo<span className="text-[#0096d6]">.</span></h2>
+          <p className="text-sm font-bold text-slate-400  tracking-widest mt-2">Admin Portal</p>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-6">
@@ -76,7 +76,7 @@ export default function AdminLogin() {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full py-3 bg-[#F54900] hover:bg-blue-700 text-white rounded-xl font-bold tracking-wide shadow-lg shadow-blue-500/30 transition-all ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+            className={`w-full py-3 bg-[#0096d6] hover:bg-blue-700 text-white rounded-xl font-bold tracking-wide shadow-lg shadow-blue-500/30 transition-all ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
           >
             {loading ? 'Authenticating...' : 'Access Dashboard'}
           </button>
@@ -85,4 +85,5 @@ export default function AdminLogin() {
     </div>
   );
 }
+
 

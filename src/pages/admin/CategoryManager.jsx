@@ -52,14 +52,14 @@ export default function CategoryManager() {
           <h3 className="font-bold text-lg mb-4">Add Category</h3>
           <form onSubmit={handleAdd} className="space-y-4">
             <div>
-              <label className="block text-xs font-bold text-slate-500 capitalize tracking-wide mb-1">Name</label>
+              <label className="block text-xs font-bold text-slate-500  tracking-wide mb-1">Name</label>
               <input
                 className="w-full p-3 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:border-blue-500"
                 value={name} onChange={e => setName(e.target.value)} required
               />
             </div>
             <div>
-              <label className="block text-xs font-bold text-slate-500 capitalize tracking-wide mb-1">Parent Category</label>
+              <label className="block text-xs font-bold text-slate-500  tracking-wide mb-1">Parent Category</label>
               <select
                 className="w-full p-3 border border-gray-200 rounded-xl text-sm font-medium focus:outline-none focus:border-blue-500 bg-white"
                 value={parentId} onChange={e => setParentId(e.target.value)}
@@ -70,7 +70,7 @@ export default function CategoryManager() {
                 ))}
               </select>
             </div>
-            <button className="w-full py-3 bg-[#F54900] text-white rounded-xl font-bold text-sm hover:bg-blue-700 transition-all">
+            <button className="w-full py-3 bg-[#0096d6] text-white rounded-xl font-bold text-sm hover:bg-blue-700 transition-all">
               Create Category
             </button>
           </form>
@@ -88,9 +88,9 @@ export default function CategoryManager() {
                   <div key={root.id} className="border border-gray-100 rounded-xl overflow-hidden">
                     <div className="flex items-center justify-between p-4 bg-gray-50/50">
                       <div className="flex items-center gap-3">
-                        <FolderTree size={18} className="text-[#F54900]" />
+                        <FolderTree size={18} className="text-[#0096d6]" />
                         <span className="font-bold text-slate-900">{root.name}</span>
-                        <span className="px-2 py-0.5 bg-blue-100 text-[#F54900] text-[10px] font-bold rounded capitalize">Main</span>
+                        <span className="px-2 py-0.5 bg-blue-100 text-[#0096d6] text-[10px] font-bold rounded ">Main</span>
                       </div>
                       <button onClick={() => handleDelete(root.id)} className="p-2 hover:bg-red-50 text-slate-400 hover:text-red-500 rounded-lg"><Trash2 size={16} /></button>
                     </div>

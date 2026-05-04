@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import SEO from '@/components/SEO';
 import {
   Mail,
@@ -11,7 +10,8 @@ import {
   Clock,
   ChevronDown,
   Headphones,
-  Phone
+  ArrowRight,
+  MessageSquare
 } from 'lucide-react';
 import API_BASE_URL from '../config';
 
@@ -62,186 +62,167 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-white font-sans text-slate-900 pb-20">
-      <SEO title="Contact Us | Print Mora" />
+      <SEO title="Contact Us | Support Registry | Inklivo" />
 
-      {/* --- HERO SECTION --- */}
-      <section className="bg-[#f8faff] py-20 md:py-28 relative overflow-hidden">
-        <div className="max-w-[1800px] mx-auto px-4 md:px-10 relative z-10">
-          <div className="max-w-3xl">
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#2f5cab] leading-tight">
-              Get in Touch
+      {/* Section 1: Hero Banner (Same as About/FAQ) */}
+      <section className="relative h-[40vh] md:h-[50vh] flex items-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/banner/category-imges/11.avif"
+            alt="Contact Us"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-slate-900/60" />
+        </div>
+
+        <div className="max-w-[1700px] mx-auto px-6 relative z-10 w-full">
+          <div className="max-w-3xl space-y-6">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-[2px] bg-[#05718A]"></div>
+              <span className="text-[#05718A] font-bold text-sm tracking-widest uppercase">Support Center</span>
+            </div>
+            <h1 className="text-4xl md:text-7xl font-bold text-white tracking-tight leading-tight">
+              Get in <span className="text-[#05718A]">Touch.</span>
             </h1>
-            <p className="mt-6 text-slate-500 text-lg md:text-xl font-medium leading-relaxed max-w-2xl">
-              Have questions about our products or need technical support? Our team of experts is here to help you find the perfect printing solution.
+            <p className="text-slate-200 text-lg md:text-xl leading-relaxed max-w-2xl font-medium">
+              Have questions about our printers or need technical assistance? Our dedicated team is here to help you.
             </p>
           </div>
         </div>
       </section>
 
-      <div className="max-w-[1800px] mx-auto px-4 md:px-10 py-16 md:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24 items-start">
+      <div className="max-w-[1700px] mx-auto px-6 py-20 md:py-28">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
 
-          {/* --- INFO COLUMN --- */}
+          {/* Section 2: Info Column */}
           <div className="lg:col-span-4 space-y-12">
-            <div>
-              <h2 className="text-2xl font-bold text-slate-900 mb-8">Contact Information</h2>
+            <div className="space-y-10">
+              <div className="flex items-center gap-4">
+                <div className="w-1.5 h-10 bg-[#05718A] shrink-0"></div>
+                <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Our Office</h2>
+              </div>
+
               <div className="space-y-8">
                 <div className="flex gap-6 items-start group">
-                  <div className="w-14 h-14 bg-white border border-slate-100 shadow-sm text-[#2f5cab] rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-[#2f5cab] group-hover:text-white transition-all">
-                    <Mail size={24} strokeWidth={2} />
+                  <div className="w-14 h-14 rounded-2xl bg-slate-50 text-[#05718A] border border-slate-100 flex items-center justify-center shrink-0 group-hover:bg-[#05718A] group-hover:text-white transition-all duration-500">
+                    <Mail size={24} />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-400 text-[12px] uppercase tracking-widest mb-1">Email Us</h4>
-                    <p className="text-slate-900 text-lg font-bold transition-colors">info@printmora.shop</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-6 items-start group">
-                  <div className="w-14 h-14 bg-white border border-slate-100 shadow-sm text-[#2f5cab] rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-[#2f5cab] group-hover:text-white transition-all">
-                    <MapPin size={24} strokeWidth={2} />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-slate-400 text-[12px] uppercase tracking-widest mb-1">Our Location</h4>
-                    <p className="text-slate-900 text-[15px] font-semibold leading-relaxed">
-                      302 E Washington St, Bloomington, IL 61701, United States
-                    </p>
+                    <h4 className="font-bold text-slate-400 text-[11px] uppercase tracking-widest mb-1">Email Us</h4>
+                    <p className="text-slate-900 text-lg font-bold">info@inklivo.shop</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="pt-10 border-t border-slate-100 space-y-8">
-              <div>
-                <div className="flex items-center gap-3 text-slate-900 mb-4">
-                  <Clock size={20} className="text-[#2f5cab]" />
-                  <h4 className="font-bold text-[14px] uppercase tracking-wider">Business Hours</h4>
-                </div>
-                <div className="space-y-2">
-                  <p className="text-slate-500 text-[14px] font-medium flex justify-between">
-                    <span>Monday - Friday:</span>
-                    <span className="text-slate-900 font-bold">9AM - 6PM (PST)</span>
-                  </p>
-                  <p className="text-slate-500 text-[14px] font-medium flex justify-between">
-                    <span>Saturday - Sunday:</span>
-                    <span className="text-slate-900 font-bold">Closed</span>
-                  </p>
-                </div>
-              </div>
-
-              <div className="p-8 bg-blue-50/50 rounded-[30px] border border-blue-100">
-                <div className="flex items-center gap-3 mb-4">
-                  <Headphones size={24} className="text-[#2f5cab]" />
-                  <h4 className="font-bold text-[16px]">Expert Support</h4>
-                </div>
-                <p className="text-slate-600 text-[14px] leading-relaxed font-medium">
-                  Our technical team is ready to assist you with complex setups and bulk inquiries.
-                </p>
-              </div>
+            <div className="pt-12 border-t border-slate-100">
             </div>
           </div>
 
-          {/* --- FORM COLUMN --- */}
+          {/* Section 3: Form Column */}
           <div className="lg:col-span-8">
-            <div className="bg-white border border-slate-100 rounded-[40px] p-8 md:p-12 shadow-sm">
+            <div className="bg-white border border-slate-100 p-8 md:p-12 rounded-3xl shadow-xl shadow-slate-100/50">
               <AnimatePresence mode="wait">
                 {status === 'success' ? (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-center py-20"
+                  <m.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="text-center py-20 space-y-8"
                   >
-                    <div className="w-20 h-20 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-8">
-                      <CheckCircle2 size={40} strokeWidth={1.5} />
+                    <div className="w-20 h-20 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center mx-auto">
+                      <CheckCircle2 size={40} />
                     </div>
-                    <h2 className="text-3xl font-bold text-slate-900 mb-4">Message Sent Successfully!</h2>
-                    <p className="text-slate-500 mb-10 text-lg max-w-md mx-auto font-medium">
-                      Thank you for contacting us. Our team will review your message and get back to you within 24 business hours.
-                    </p>
+                    <div className="space-y-3">
+                      <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Message Sent Successfully!</h2>
+                      <p className="text-slate-500 text-lg max-w-md mx-auto">
+                        Thank you for reaching out. Our team will get back to you within 24 business hours.
+                      </p>
+                    </div>
                     <button
                       onClick={() => setStatus(null)}
-                      className="px-8 py-4 bg-[#2f5cab] text-white font-bold rounded-full hover:bg-[#234d98] transition-all active:scale-95 shadow-lg shadow-blue-600/20"
+                      className="px-10 py-4 bg-slate-900 text-white font-bold text-sm uppercase tracking-widest rounded-xl hover:bg-[#05718A] transition-all"
                     >
                       Send Another Message
                     </button>
-                  </motion.div>
+                  </m.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-10">
-                    <div className="mb-10">
-                      <h2 className="text-3xl font-bold text-slate-900 mb-2">Send us a Message</h2>
-                      <p className="text-slate-500 font-medium">Fields marked with * are required.</p>
+                    <div className="space-y-2">
+                      <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Send a Message</h2>
+                      <p className="text-slate-500 font-medium">Fill out the form below and we'll be in touch shortly.</p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                      <div className="space-y-3">
-                        <label className="text-[14px] font-bold text-slate-700 ml-1">Full Name *</label>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
+                      <div className="space-y-2">
+                        <label className="text-sm font-bold text-slate-700 ml-1">Full Name</label>
                         <input
                           required
                           type="text"
-                          placeholder="Enter your name"
+                          placeholder="Your name"
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          className="w-full h-14 px-6 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:border-[#2f5cab] focus:bg-white focus:ring-4 focus:ring-[#2f5cab]/5 transition-all text-[15px] font-medium placeholder:text-slate-300"
+                          className="w-full h-14 px-6 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#05718A] focus:bg-white transition-all text-[15px] font-medium"
                         />
                       </div>
-                      <div className="space-y-3">
-                        <label className="text-[14px] font-bold text-slate-700 ml-1">Email Address *</label>
+                      <div className="space-y-2">
+                        <label className="text-sm font-bold text-slate-700 ml-1">Email Address</label>
                         <input
                           required
                           type="email"
-                          placeholder="Enter your email"
+                          placeholder="your@email.com"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="w-full h-14 px-6 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:border-[#2f5cab] focus:bg-white focus:ring-4 focus:ring-[#2f5cab]/5 transition-all text-[15px] font-medium placeholder:text-slate-300"
+                          className="w-full h-14 px-6 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#05718A] focus:bg-white transition-all text-[15px] font-medium"
                         />
                       </div>
-                      <div className="space-y-3">
-                        <label className="text-[14px] font-bold text-slate-700 ml-1">Phone Number</label>
+                      <div className="space-y-2">
+                        <label className="text-sm font-bold text-slate-700 ml-1">Phone Number</label>
                         <input
                           type="tel"
-                          placeholder="+1 (000) 000-0000"
+                          placeholder="Your phone"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className="w-full h-14 px-6 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:border-[#2f5cab] focus:bg-white focus:ring-4 focus:ring-[#2f5cab]/5 transition-all text-[15px] font-medium placeholder:text-slate-300"
+                          className="w-full h-14 px-6 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#05718A] focus:bg-white transition-all text-[15px] font-medium"
                         />
                       </div>
-                      <div className="space-y-3">
-                        <label className="text-[14px] font-bold text-slate-700 ml-1">Subject *</label>
+                      <div className="space-y-2">
+                        <label className="text-sm font-bold text-slate-700 ml-1">Subject</label>
                         <div className="relative">
                           <select
                             value={formData.subject}
                             onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                            className="w-full h-14 px-6 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:border-[#2f5cab] focus:bg-white focus:ring-4 focus:ring-[#2f5cab]/5 appearance-none cursor-pointer text-[15px] font-medium transition-all"
+                            className="w-full h-14 px-6 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#05718A] focus:bg-white appearance-none cursor-pointer text-[15px] font-medium transition-all"
                           >
                             <option>General Inquiry</option>
                             <option>Technical Support</option>
                             <option>Order Status</option>
-                            <option>Bulk Order</option>
+                            <option>Bulk Orders</option>
                           </select>
                           <ChevronDown size={18} className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
                         </div>
                       </div>
                     </div>
 
-                    <div className="space-y-3">
-                      <label className="text-[14px] font-bold text-slate-700 ml-1">Your Message *</label>
+                    <div className="space-y-2">
+                      <label className="text-sm font-bold text-slate-700 ml-1">Your Message</label>
                       <textarea
                         required
                         rows="5"
                         placeholder="How can we help you?"
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className="w-full py-5 px-6 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:border-[#2f5cab] focus:bg-white focus:ring-4 focus:ring-[#2f5cab]/5 transition-all resize-none text-[15px] font-medium placeholder:text-slate-300"
+                        className="w-full py-5 px-6 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#05718A] focus:bg-white transition-all resize-none text-[15px] font-medium"
                       ></textarea>
                     </div>
 
-                    <div className="pt-4">
+                    <div className="pt-2">
                       <button
                         disabled={loading}
-                        className="h-16 px-12 bg-slate-900 text-white rounded-full font-bold text-[16px] transition-all hover:bg-[#2f5cab] active:scale-95 disabled:opacity-50 flex items-center gap-4 shadow-xl shadow-slate-900/10"
+                        className="h-16 px-12 bg-slate-900 text-white font-bold text-sm uppercase tracking-widest rounded-xl transition-all hover:bg-[#05718A] disabled:opacity-50 flex items-center gap-4 group shadow-lg shadow-slate-200"
                       >
                         {loading ? <Loader2 className="animate-spin" size={20} /> : (
                           <>
-                            <Send size={18} />
+                            <Send size={18} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
                             Send Message
                           </>
                         )}
@@ -249,7 +230,7 @@ export default function Contact() {
                     </div>
 
                     {status === 'error' && (
-                      <p className="text-red-500 font-semibold text-sm">There was an error sending your message. Please try again later.</p>
+                      <p className="text-red-500 font-bold text-xs uppercase tracking-widest">Something went wrong. Please try again.</p>
                     )}
                   </form>
                 )}
@@ -262,3 +243,5 @@ export default function Contact() {
     </div>
   );
 }
+
+

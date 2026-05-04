@@ -1,5 +1,7 @@
-﻿User-agent: *
+User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /users
+Disallow: /settings
 
-Sitemap: https://printmora.shop/sitemap.xml
-
+Sitemap: https://inklivo.shop/sitemap.xml

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import PolicyLayout from '../layouts/PolicyLayout';
 
 export default function TermsAndConditions() {
@@ -6,25 +6,24 @@ export default function TermsAndConditions() {
     <PolicyLayout
       title="Terms & Conditions"
       subtitle="Read our legal terms and conditions for using our services."
-      lastUpdated="Apr 16, 2026"
+      lastUpdated="Apr 22, 2026"
     >
       <section>
         <h2>Agreement To Our Legal Terms</h2>
         <p>
-          We are Print Mora LLC ("Company," "we," "us," "our"), a company registered in California, United States at 302 E Washington St, Bloomington, IL 61701, United States.
-
+          We are Inklivo LLC ("Company," "we," "us," "our"), a company registered in New York, United States.
         </p>
         <p>
-          We operate the website <a href="http://printmora.shop/">http://printmora.shop/</a> (the "Site"), as well as any other related products and services that refer or link to these legal terms (the "Legal Terms") (collectively, the "Services").
+          We operate the website <a href="http://inklivo.shop/">http://inklivo.shop/</a> (the "Site"), as well as any other related products and services that refer or link to these legal terms (the "Legal Terms") (collectively, the "Services").
         </p>
         <p>
-          Print Mora Solutions provides a wide range of high-performance printers and printing accessories from leading technology brands.
+          Inklivo Solutions provides a wide range of high-performance printers and printing accessories from leading technology brands.
         </p>
         <p>
-          You can contact us by email at <a href="mailto:info@printmora.shop">info@printmora.shop</a>, or by mail to 302 E Washington St, Bloomington, IL 61701, United States.
+          You can contact us by email at <a href="mailto:info@inklivo.shop">info@inklivo.shop</a>.
         </p>
         <p>
-          These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you"), and Print Mora LLC, concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. <strong>IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.</strong>
+          These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you"), and Inklivo LLC, concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. <strong>IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.</strong>
         </p>
         <p>
           Supplemental terms and conditions or documents that may be posted on the Services from time to time are hereby expressly incorporated herein by reference. We reserve the right, in our sole discretion, to make changes or modifications to these Legal Terms at any time and for any reason. We will alert you about any changes by updating the "Last updated" date of these Legal Terms, and you waive any right to receive specific notice of each such change. It is your responsibility to periodically review these Legal Terms to stay informed of updates. You will be subject to, and will be deemed to have been made aware of and to have accepted, the changes in any revised Legal Terms by your continued use of the Services after the date such revised Legal Terms are posted.
@@ -38,8 +37,8 @@ export default function TermsAndConditions() {
       </section>
 
       <div className="bg-gray-50 p-8 rounded-sm border border-border my-12 not-prose">
-        <h2 className="text-xl font-extrabold text-black uppercase  mb-6 ">Table Of Contents</h2>
-        <ol className="text-[11px] font-bold text-gray-500 uppercase tracking-widest grid grid-cols-1 md:grid-cols-2 gap-4 list-decimal pl-5">
+        <h2 className="text-xl font-extrabold text-black   mb-6 ">Table Of Contents</h2>
+        <ol className="text-[11px] font-bold text-gray-500  tracking-widest grid grid-cols-1 md:grid-cols-2 gap-4 list-decimal pl-5">
           <li>Our Services</li>
           <li>Intellectual Property Rights</li>
           <li>User Representations</li>
@@ -107,7 +106,7 @@ export default function TermsAndConditions() {
           Except as set out in this section or elsewhere in our Legal Terms, no part of the Services and no Content or Marks may be copied, reproduced, aggregated, republished, uploaded, posted, publicly displayed, encoded, translated, transmitted, distributed, sold, licensed, or otherwise exploited for any commercial purpose whatsoever, without our express prior written permission.
         </p>
         <p>
-          If you wish to make any use of the Services, Content, or Marks other than as set out in this section or elsewhere in our Legal Terms, please address your request to: <a href="mailto:info@printmora.shop">info@printmora.shop</a>. If we ever grant you the permission to post, reproduce, or publicly display any part of our Services or Content, you must identify us as the owners or licensors of the Services, Content, or Marks and ensure that any copyright or proprietary notice appears or is visible on posting, reproducing, or displaying our Content.
+          If you wish to make any use of the Services, Content, or Marks other than as set out in this section or elsewhere in our Legal Terms, please address your request to: <a href="mailto:info@inklivo.shop">info@inklivo.shop</a>. If we ever grant you the permission to post, reproduce, or publicly display any part of our Services or Content, you must identify us as the owners or licensors of the Services, Content, or Marks and ensure that any copyright or proprietary notice appears or is visible on posting, reproducing, or displaying our Content.
         </p>
         <p>
           We reserve all rights not expressly granted to you in and to the Services, Content, and Marks.
@@ -132,7 +131,7 @@ export default function TermsAndConditions() {
           <li>warrant and represent that your Submissions do not constitute confidential information.</li>
         </ul>
         <p>
-          You are solely responsible for your Submissions and you expressly agree to reimburse us for any and all losses that we may suffer because of your breach of (a) this section, (b) any third partyâ€™s intellectual property rights, or (c) applicable law.
+          You are solely responsible for your Submissions and you expressly agree to reimburse us for any and all losses that we may suffer because of your breach of (a) this section, (b) any third party’s intellectual property rights, or (c) applicable law.
         </p>
       </section>
 
@@ -179,7 +178,7 @@ export default function TermsAndConditions() {
       <section>
         <h2>7. Return Policy</h2>
         <p>
-          Please review our Return Policy prior to making any purchases: <a href="http://printmora.shop/return-policy">http://printmora.shop/return-policy</a>.
+          Please review our Return Policy prior to making any purchases: <a href="http://inklivo.shop/return-policy">http://inklivo.shop/return-policy</a>.
         </p>
       </section>
 
@@ -200,11 +199,11 @@ export default function TermsAndConditions() {
           <li>Make improper use of our support services or submit false reports of abuse or misconduct.</li>
           <li>Use the Services in a manner inconsistent with any applicable laws or regulations.</li>
           <li>Engage in unauthorized framing of or linking to the Services.</li>
-          <li>Upload or transmit (or attempt to upload or to transmit) viruses, Trojan horses, or other material, including excessive use of capital letters and spamming (continuous posting of repetitive text), that interferes with any partyâ€™s uninterrupted use and enjoyment of the Services or modifies, impairs, disrupts, alters, or interferes with the use, features, functions, operation, or maintenance of the Services.</li>
+          <li>Upload or transmit (or attempt to upload or to transmit) viruses, Trojan horses, or other material, including excessive use of capital letters and spamming (continuous posting of repetitive text), that interferes with any party’s uninterrupted use and enjoyment of the Services or modifies, impairs, disrupts, alters, or interferes with the use, features, functions, operation, or maintenance of the Services.</li>
           <li>Engage in any automated use of the system, such as using scripts to send comments or messages, or using any data mining, robots, or similar data gathering and extraction tools.</li>
           <li>Delete the copyright or other proprietary rights notice from any Content.</li>
           <li>Attempt to impersonate another user or person or use the username of another user.</li>
-          <li>Upload or transmit (or attempt to upload or to transmit) any material that acts as a passive or active information collection or transmission mechanism, including without limitation, clear graphics interchange formats ("gifs"), 1Ã—1 pixels, web bugs, cookies, or other similar devices (sometimes referred to as "spyware" or "passive collection mechanisms" or "pcms").</li>
+          <li>Upload or transmit (or attempt to upload or to transmit) any material that acts as a passive or active information collection or transmission mechanism, including without limitation, clear graphics interchange formats ("gifs"), 1×1 pixels, web bugs, cookies, or other similar devices (sometimes referred to as "spyware" or "passive collection mechanisms" or "pcms").</li>
           <li>Interfere with, disrupt, or create an undue burden on the Services or the networks or services connected to the Services.</li>
           <li>Harass, annoy, intimidate, or threaten any of our employees or agents engaged in providing any portion of the Services to you.</li>
           <li>Attempt to bypass any measures of the Services designed to prevent or restrict access to the Services, or any portion of the Services.</li>
@@ -267,7 +266,7 @@ export default function TermsAndConditions() {
       <section>
         <h2>12. Privacy Policy</h2>
         <p>
-          We care about data privacy and security. Please review our Privacy Policy: <a href="http://printmora.shop/privacy-policy">http://printmora.shop/privacy-policy</a>. By using the Services, you agree to be bound by our Privacy Policy, which is incorporated into these Legal Terms. Please be advised the Services are hosted in the United States. If you access the Services from any other region of the world with laws or other requirements governing personal data collection, use, or disclosure that differ from applicable laws in the United States, then through your continued use of the Services, you are transferring your data to the United States, and you expressly consent to have your data transferred to and processed in the United States.
+          We care about data privacy and security. Please review our Privacy Policy: <a href="http://inklivo.shop/privacy-policy">http://inklivo.shop/privacy-policy</a>. By using the Services, you agree to be bound by our Privacy Policy, which is incorporated into these Legal Terms. Please be advised the Services are hosted in the United States. If you access the Services from any other region of the world with laws or other requirements governing personal data collection, use, or disclosure that differ from applicable laws in the United States, then through your continued use of the Services, you are transferring your data to the United States, and you expressly consent to have your data transferred to and processed in the United States.
         </p>
       </section>
 
@@ -294,14 +293,14 @@ export default function TermsAndConditions() {
       <section>
         <h2>15. Governing Law</h2>
         <p>
-          These Legal Terms and your use of the Services are governed by and construed in accordance with the laws of the State of Nevada applicable to agreements made and to be entirely performed within the State of Nevada, without regard to its conflict of law principles.
+          These Legal Terms and your use of the Services are governed by and construed in accordance with the laws of the State of New York applicable to agreements made and to be entirely performed within the State of New York, without regard to its conflict of law principles.
         </p>
       </section>
 
       <section>
         <h2>16. Dispute Resolution</h2>
         <p>
-          Any legal action of whatever nature brought by either you or us (collectively, the "Parties" and individually, a "Party") shall be commenced or prosecuted in the state and federal courts located in Nevada, and the Parties hereby consent to, and waive all defenses of lack of personal jurisdiction and forum non conveniens with respect to venue and jurisdiction in such state and federal courts. Application of the United Nations Convention on Contracts for the International Sale of Goods and the Uniform Computer Information Transaction Act (UCITA) are excluded from these Legal Terms. In no event shall any claim, action, or proceeding brought by either Party related in any way to the Services be commenced more than one (1) years after the cause of action arose.
+          Any legal action of whatever nature brought by either you or us (collectively, the "Parties" and individually, a "Party") shall be commenced or prosecuted in the state and federal courts located in New York, and the Parties hereby consent to, and waive all defenses of lack of personal jurisdiction and forum non conveniens with respect to venue and jurisdiction in such state and federal courts. Application of the United Nations Convention on Contracts for the International Sale of Goods and the Uniform Computer Information Transaction Act (UCITA) are excluded from these Legal Terms. In no event shall any claim, action, or proceeding brought by either Party related in any way to the Services be commenced more than one (1) years after the cause of action arose.
         </p>
       </section>
 
@@ -329,7 +328,7 @@ export default function TermsAndConditions() {
       <section>
         <h2>20. Indemnification</h2>
         <p>
-          You agree to defend, indemnify, and hold us harmless, including our subsidiaries, affiliates, and all of our respective officers, agents, partners, and employees, from and against any loss, damage, liability, claim, or demand, including reasonable attorneysâ€™ fees and expenses, made by any third party due to or arising out of: (1) use of the Services; (2) breach of these Legal Terms; (3) any breach of your representations and warranties set forth in these Legal Terms; (4) your violation of the rights of a third party, including but not limited to intellectual property rights; or (5) any overt harmful act toward any other user of the Services with whom you connected via the Services. Notwithstanding the foregoing, we reserve the right, at your expense, to assume the exclusive defense and control of any matter for which you are required to indemnify us, and you agree to cooperate, at your expense, with our defense of such claims. We will use reasonable efforts to notify you of any such claim, action, or proceeding which is subject to this indemnification upon becoming aware of it.
+          You agree to defend, indemnify, and hold us harmless, including our subsidiaries, affiliates, and all of our respective officers, agents, partners, and employees, from and against any loss, damage, liability, claim, or demand, including reasonable attorneys’ fees and expenses, made by any third party due to or arising out of: (1) use of the Services; (2) breach of these Legal Terms; (3) any breach of your representations and warranties set forth in these Legal Terms; (4) your violation of the rights of a third party, including but not limited to intellectual property rights; or (5) any overt harmful act toward any other user of the Services with whom you connected via the Services. Notwithstanding the foregoing, we reserve the right, at your expense, to assume the exclusive defense and control of any matter for which you are required to indemnify us, and you agree to cooperate, at your expense, with our defense of such claims. We will use reasonable efforts to notify you of any such claim, action, or proceeding which is subject to this indemnification upon becoming aware of it.
         </p>
       </section>
 
@@ -368,16 +367,16 @@ export default function TermsAndConditions() {
           In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, please contact us at:
         </p>
         <div className="bg-gray-50 p-8 rounded-sm border border-border my-8 not-prose">
-          <address className="not- text-gray-700 font-bold leading-relaxed space-y-2 capitalize ">
-            <p className="text-black font-extrabold">Print Mora LLC</p>
-            <p>Direct Distribution</p>
-            <p>302 E Washington St, Bloomington, IL 61701, United States</p>
-            <p>United States</p>
-            <p className="pt-4 text-primary font-extrabold lowercase">Email: info@printmora.shop</p>
+          <address className="not- text-gray-700 font-bold leading-relaxed space-y-2  ">
+            <p className="text-black font-extrabold">Inklivo LLC</p>
+            <p className="pt-4 text-primary font-extrabold lowercase">Email: info@inklivo.shop</p>
           </address>
         </div>
       </section>
     </PolicyLayout>
   );
 }
+
+
+
 
