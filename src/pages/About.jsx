@@ -81,9 +81,13 @@ export default function About() {
             animate={{ opacity: 1, y: 0 }}
             className="space-y-6"
           >
-            <span className="inline-block text-[#05718A] bg-white px-4 py-1.5 text-[14px] font-blac  mb-4">
-              Our Identity
-            </span>
+            <div className="flex items-center justify-center gap-3">
+              <div className="w-10 h-[2px] bg-[#fff]"></div>
+              <span className="text-[#fff] font-bold text-sm tracking-widest uppercase"> Our Identity</span>
+              <div className="w-10 h-[2px] bg-[#fff]"></div>
+
+            </div>
+
             <h1 className="text-4xl md:text-7xl font-bold text-white  leading-none">
               About <span >Us.</span>
             </h1>
