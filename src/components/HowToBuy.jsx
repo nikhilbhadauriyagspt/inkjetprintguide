@@ -29,7 +29,7 @@ export default function HowToBuy() {
   ];
 
   return (
-    <section className="bg-[#f5f5f5] py-20 border-t border-slate-100">
+    <section className="bg-[#eef1f5] py-20 border-t border-slate-100">
       <div className="max-w-[1700px] mx-auto px-4 md:px-0">
 
         <div className="text-center max-w-2xl mx-auto mb-16">
@@ -44,13 +44,13 @@ export default function HowToBuy() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border border-slate-100">
           {steps.map((step, i) => (
             <div key={i} className="p-10 border-r border-b bg-white border-slate-100 last:border-r-0 lg:[&:nth-child(n+1)]:border-b-0 group">
-              <div className="w-14 h-14 bg-slate-50 flex items-center justify-center mb-8 border border-slate-100 group-hover:bg-[#05718A] transition-colors duration-300">
-                <step.icon size={24} className="text-[#05718A] group-hover:text-white" />
+              <div className="w-14 h-14 bg-slate-50 flex items-center justify-center mb-8 border border-slate-100 group-hover:bg-[#4254e8] transition-colors duration-300">
+                <step.icon size={24} className="text-[#4254e8] group-hover:text-white" />
               </div>
 
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
-                  <span className="text-[13px] font-bold text-[#05718A]">0{i + 1}</span>
+                  <span className="text-[13px] font-bold text-[#4254e8]">0{i + 1}</span>
                   <h3 className="text-xl font-bold text-slate-800">{step.title}</h3>
                 </div>
                 <p className="text-slate-600 text-sm leading-relaxed">

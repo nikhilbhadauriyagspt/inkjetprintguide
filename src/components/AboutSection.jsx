@@ -19,22 +19,22 @@ import rightPrinterImg from "/about/printer-right.avif";
 export default function AboutSection() {
   const features = [
     {
-      icon: <CheckCircle2 size={22} className="text-[#05718A]" />,
+      icon: <CheckCircle2 size={22} className="text-[#4254e8]" />,
       title: "Quality Performance",
       desc: "Every printer is tested for clean, sharp results."
     },
     {
-      icon: <Clock size={22} className="text-[#05718A]" />,
+      icon: <Clock size={22} className="text-[#4254e8]" />,
       title: "Fast Setup",
       desc: "Easy installation so you can start printing right away."
     },
     {
-      icon: <ShieldCheck size={22} className="text-[#05718A]" />,
+      icon: <ShieldCheck size={22} className="text-[#4254e8]" />,
       title: "Official Warranty",
       desc: "Full brand warranty and dedicated support for every unit."
     },
     {
-      icon: <Headphones size={22} className="text-[#05718A]" />,
+      icon: <Headphones size={22} className="text-[#4254e8]" />,
       title: "Expert Support",
       desc: "Our technical team is always here to help with your queries."
     }
@@ -74,7 +74,7 @@ export default function AboutSection() {
 
               <Link
                 to="/shop"
-                className="inline-flex items-center justify-center mt-8 bg-slate-900 hover:bg-[#05718A] text-white text-xs md:text-[14px] font-bold uppercase tracking-widest px-10 py-4 rounded-xl transition-all shadow-xl shadow-slate-200"
+                className="inline-flex items-center justify-center mt-8 bg-slate-900 hover:bg-[#4254e8] text-white text-xs md:text-[14px] font-bold uppercase tracking-widest px-10 py-4 rounded-xl transition-all shadow-xl shadow-slate-200"
               >
                 Explore Collection
               </Link>
@@ -84,7 +84,7 @@ export default function AboutSection() {
           {/* CENTER STAR - Hidden on mobile/tablet */}
           <div className="hidden xl:flex lg:col-span-1 justify-center pt-[200px]">
             <div className="relative w-16 h-16">
-              <div className="absolute inset-0 flex items-center justify-center text-[#05718A] text-[120px] leading-none opacity-20">
+              <div className="absolute inset-0 flex items-center justify-center text-[#4254e8] text-[120px] leading-none opacity-20">
                 ✦
               </div>
             </div>
@@ -101,9 +101,9 @@ export default function AboutSection() {
             <div className="max-w-[800px] lg:ml-auto">
               <div className="mb-10 text-center lg:text-left">
                 <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
-                  <div className="w-8 h-[2px] bg-[#05718A]"></div>
-                  <h2 className="text-xl md:text-2xl font-bold tracking-widest text-[#05718A] uppercase leading-none">
-                    About Print Sphere
+                  <div className="w-8 h-[2px] bg-[#4254e8]"></div>
+                  <h2 className="text-xl md:text-2xl font-bold tracking-widest text-[#4254e8] uppercase leading-none">
+                    About Inkjet Print Guide
                   </h2>
                 </div>
                 <h3 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight mb-6">
@@ -120,7 +120,7 @@ export default function AboutSection() {
                 <div className="flex-1 space-y-8 w-full">
                   {features.map((item, idx) => (
                     <div key={idx} className="flex gap-5 group">
-                      <div className="w-14 h-14 shrink-0 bg-blue-50 group-hover:bg-[#05718A] group-hover:text-white transition-colors rounded-2xl flex items-center justify-center">
+                      <div className="w-14 h-14 shrink-0 bg-blue-50 group-hover:bg-[#4254e8] group-hover:text-white transition-colors rounded-2xl flex items-center justify-center">
                         {React.cloneElement(item.icon, { className: "group-hover:text-white transition-colors" })}
                       </div>
                       <div>

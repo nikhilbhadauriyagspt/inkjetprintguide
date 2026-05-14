@@ -1,18 +1,21 @@
-import React, { useMemo, useState, useEffect, useCallback } from "react";
+import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import Heart from "lucide-react/dist/esm/icons/heart";
 import Eye from "lucide-react/dist/esm/icons/eye";
 import ArrowLeftRight from "lucide-react/dist/esm/icons/arrow-left-right";
 import ShoppingCart from "lucide-react/dist/esm/icons/shopping-cart";
 import { useCart } from "../context/CartContext";
-import { m, AnimatePresence } from "framer-motion";
+import ChevronRight from "lucide-react/dist/esm/icons/chevron-right";
 
-export default function PremiumProductGrid({ products = [], loading = false }) {
+export default function PremiumGridSection({
+  products = [],
+  loading = false,
+  title = "Our",
+  subtitle = "Featured Products"
+}) {
   const { addToCart, toggleWishlist, isInWishlist, toggleCompare } = useCart();
-  const [active, setActive] = useState(0);
-  const [direction, setDirection] = useState(0);
 
-  const visibleProducts = useMemo(() => products.slice(0, 10), [products]);
+  const displayProducts = useMemo(() => products.slice(0, 12), [products]);
 
   const getImagePath = (images) => {
     try {
@@ -31,19 +34,6 @@ export default function PremiumProductGrid({ products = [], loading = false }) {
     return Number.isNaN(num) ? 0 : num;
   };
 
-  const nextSlide = useCallback(() => {
-    setDirection(1);
-    setActive((prev) => (prev === 0 ? 1 : 0));
-  }, []);
-
-  useEffect(() => {
-    if (visibleProducts.length <= 5) return;
-    const timer = setInterval(nextSlide, 7000);
-    return () => clearInterval(timer);
-  }, [nextSlide, visibleProducts.length]);
-
-  const shownProducts = active === 0 ? visibleProducts.slice(0, 5) : visibleProducts.slice(5, 10);
-
   const ProductCard = ({ product, index }) => {
     const price = priceValue(product.price);
     const salePrice = priceValue(product.sale_price);
@@ -51,20 +41,21 @@ export default function PremiumProductGrid({ products = [], loading = false }) {
     const finalPrice = hasSale ? salePrice : price;
     const inWishlist = isInWishlist(product.id);
 
-    const badge = index === 1 ? "TRENDING" : index === 2 ? "NEW" : index === 3 ? "SALE" : index === 4 ? "HOT" : "";
+    const badges = ["TRENDING", "NEW", "SALE", "HOT", "LIMITED"];
+    const badge = badges[index % 5];
 
     const badgeConfig = {
       "TRENDING": { bg: "bg-[#4254e8]", triangle: "before:border-l-[#4254e8]" },
       "NEW": { bg: "bg-[#ec4899]", triangle: "before:border-l-[#ec4899]" },
       "SALE": { bg: "bg-[#10b981]", triangle: "before:border-l-[#10b981]" },
       "HOT": { bg: "bg-[#f97316]", triangle: "before:border-l-[#f97316]" },
-      "DEFAULT": { bg: "bg-[#4254e8]", triangle: "before:border-l-[#4254e8]" }
+      "LIMITED": { bg: "bg-[#4254e8]", triangle: "before:border-l-[#4254e8]" }
     };
-    const config = badgeConfig[badge] || badgeConfig["DEFAULT"];
+    const config = badgeConfig[badge] || badgeConfig["LIMITED"];
 
     return (
-      <div className="group rounded-[14px] border border-slate-200 bg-white p-[15px] transition-all duration-300 hover:shadow-md">
-        <div className="relative h-[340px] overflow-hidden rounded-[12px] bg-[#dfe3e8]">
+      <div className="group rounded-[14px] border border-slate-200 bg-white p-[15px] transition-all duration-300 hover:shadow-md h-full flex flex-col">
+        <div className="relative h-[300px] overflow-hidden rounded-[12px] bg-[#dfe3e8] shrink-0">
           <Link to={`/product/${product.slug}`} className="flex h-full w-full items-center justify-center p-6">
             <img
               src={getImagePath(product.images)}
@@ -98,12 +89,12 @@ export default function PremiumProductGrid({ products = [], loading = false }) {
           </div>
         </div>
 
-        <div className="pt-4">
+        <div className="pt-4 flex flex-col flex-1">
           <div className="mb-2 flex items-center justify-between">
-            <span className="text-[12px] font-medium uppercase text-slate-500">
+            <span className="text-[11px] font-medium uppercase text-slate-500">
               {product.category?.name || "Printer"}
             </span>
-            <span className="text-[12px] font-medium text-slate-500">
+            <span className="text-[11px] font-medium text-slate-500">
               {product.stock ? `${product.stock} In Stock` : "Available"}
             </span>
           </div>
@@ -120,22 +111,22 @@ export default function PremiumProductGrid({ products = [], loading = false }) {
             </span>
 
             {hasSale && (
-              <span className="text-[16px] text-slate-400 line-through">
+              <span className="text-[15px] text-slate-400 line-through">
                 ${price.toFixed(0)}
               </span>
             )}
           </div>
 
-          <div className="mt-4 flex items-center justify-between border-t border-slate-50 pt-3">
-            <div className={`inline-flex h-[24px] items-center ${config.bg} px-2 text-[10px] font-bold text-white before:absolute before:right-[-12px] before:top-0 before:h-0 before:w-0 before:border-y-[12px] before:border-l-[12px] before:border-y-transparent ${config.triangle} relative`}>
-              {badge || "NEW"}
+          <div className="mt-auto pt-4 flex items-center justify-between border-t border-slate-50">
+            <div className={`inline-flex h-[22px] items-center ${config.bg} px-2 text-[9px] font-bold text-white before:absolute before:right-[-11px] before:top-0 before:h-0 before:w-0 before:border-y-[11px] before:border-l-[11px] before:border-y-transparent ${config.triangle} relative`}>
+              {badge}
             </div>
 
             <button
               onClick={() => addToCart(product)}
-              className="flex h-[32px] items-center gap-2 rounded-lg bg-[#4254e8] px-3 text-[11px] font-bold text-white transition hover:bg-[#045a6e]"
+              className="flex h-[30px] items-center gap-1.5 rounded-lg bg-[#4254e8] px-2.5 text-[10px] font-bold text-white transition hover:bg-[#045a6e]"
             >
-              <ShoppingCart size={14} />
+              <ShoppingCart size={13} />
               ADD
             </button>
           </div>
@@ -144,29 +135,12 @@ export default function PremiumProductGrid({ products = [], loading = false }) {
     );
   };
 
-  const variants = {
-    enter: (direction) => ({
-      x: direction > 0 ? "100%" : "-100%",
-      opacity: 0,
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1,
-    },
-    exit: (direction) => ({
-      zIndex: 0,
-      x: direction < 0 ? "100%" : "-100%",
-      opacity: 0,
-    }),
-  };
-
   if (loading) {
     return (
-      <section className="w-full bg-[#eef1f5] py-10">
+      <section className="w-full bg-[#eef1f5] py-16">
         <div className="mx-auto max-w-[1700px] px-5">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4 2xl:grid-cols-5">
-            {[1, 2, 3, 4, 5].map((i) => (
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
               <div key={i} className="h-[460px] animate-pulse rounded-[14px] bg-white" />
             ))}
           </div>
@@ -176,50 +150,21 @@ export default function PremiumProductGrid({ products = [], loading = false }) {
   }
 
   return (
-    <section className="w-full bg-[#eef1f5] py-10 overflow-hidden">
+    <section className="w-full bg-[#eef1f5] py-16">
       <div className="mx-auto max-w-[1700px] px-3 2xl:px-0">
-        <div className="mb-8 flex items-center justify-between border-b border-slate-300/60 pb-4">
-          <h2 className="text-[24px] font-bold text-[#10142b]">
-            Printers & <span className="text-[#4254e8]">All-in-One Solutions</span>
+        <div className="mb-10 flex items-center justify-between border-b border-slate-300/60 pb-6">
+          <h2 className="text-[26px] md:text-[32px] font-bold text-[#10142b]">
+            {title} <span className="text-[#4254e8]">{subtitle}</span>
           </h2>
-
-          <div className="flex items-center gap-2">
-            {[0, 1].map((dot) => (
-              <button
-                key={dot}
-                onClick={() => {
-                  if (active === dot) return;
-                  setDirection(dot > active ? 1 : -1);
-                  setActive(dot);
-                }}
-                className={`h-[12px] rounded-full border border-[#0f2742] transition-all duration-300 ${active === dot ? "w-[28px] bg-[#4254e8] border-[#4254e8]" : "w-[12px] bg-white"
-                  }`}
-                aria-label={`Go to product slide ${dot + 1}`}
-              />
-            ))}
-          </div>
+          <Link to="/shop" className="hidden md:flex items-center gap-2 text-[13px] font-black text-[#4254e8] hover:opacity-80 uppercase tracking-widest">
+            Explore More <ChevronRight size={16} />
+          </Link>
         </div>
 
-        <div className="relative min-h-[520px]">
-          <AnimatePresence initial={false} custom={direction}>
-            <m.div
-              key={active}
-              custom={direction}
-              variants={variants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{
-                x: { type: "spring", stiffness: 200, damping: 30, mass: 1 },
-                opacity: { duration: 0.4 }
-              }}
-              className="absolute inset-0 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4 2xl:grid-cols-5"
-            >
-              {shownProducts.map((product, index) => (
-                <ProductCard key={product.id} product={product} index={index} />
-              ))}
-            </m.div>
-          </AnimatePresence>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
+          {displayProducts.map((product, index) => (
+            <ProductCard key={product.id} product={product} index={index} />
+          ))}
         </div>
       </div>
     </section>

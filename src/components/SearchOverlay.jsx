@@ -100,17 +100,17 @@ export default function SearchOverlay() {
             <div className="p-8 border-b border-slate-100 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100">
-                  <Search size={20} md:size={24} className="text-[#05718A]" />
+                  <Search size={20} md:size={24} className="text-[#4254e8]" />
                 </div>
                 <div>
                   <h2 className="text-xl md:text-2xl font-semibold text-slate-900 leading-none">Global Search</h2>
-                  <p className="text-[10px] md:text-[11px] font-bold tracking-widest text-[#05718A] mt-1.5 uppercase">Print Sphere Catalog</p>
+                  <p className="text-[10px] md:text-[11px] font-bold tracking-widest text-[#4254e8] mt-1.5 uppercase">Inkjet Print Guide Catalog</p>
                 </div>
               </div>
               <button
                 onClick={closeSearch}
                 aria-label="Close search"
-                className="h-10 w-10 md:h-11 md:w-11 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:text-[#05718A] hover:bg-blue-50 transition-all active:scale-95"
+                className="h-10 w-10 md:h-11 md:w-11 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:text-[#4254e8] hover:bg-blue-50 transition-all active:scale-95"
               >
                 <X size={20} />
               </button>
@@ -126,11 +126,11 @@ export default function SearchOverlay() {
                     placeholder="Search for printers, ink, drivers..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full h-14 md:h-16 bg-slate-50 px-6 pl-12 md:pl-14 text-[15px] md:text-[16px] font-semibold text-slate-900 outline-none border border-slate-200 rounded-2xl md:rounded-3xl focus:border-[#05718A] focus:bg-white focus:shadow-xl focus:shadow-blue-600/5 transition-all placeholder:font-medium placeholder:text-slate-400"
+                    className="w-full h-14 md:h-16 bg-slate-50 px-6 pl-12 md:pl-14 text-[15px] md:text-[16px] font-semibold text-slate-900 outline-none border border-slate-200 rounded-2xl md:rounded-3xl focus:border-[#4254e8] focus:bg-white focus:shadow-xl focus:shadow-blue-600/5 transition-all placeholder:font-medium placeholder:text-slate-400"
                   />
                   <Search
                     size={20}
-                    className="absolute left-4 md:left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#05718A] transition-colors"
+                    className="absolute left-4 md:left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#4254e8] transition-colors"
                   />
                 </form>
               </div>
@@ -160,12 +160,12 @@ export default function SearchOverlay() {
                             />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <h4 className="font-semibold text-slate-900 text-[13px] md:text-[14px] leading-tight line-clamp-2 mb-1 group-hover:text-[#05718A] transition-colors">
+                            <h4 className="font-semibold text-slate-900 text-[13px] md:text-[14px] leading-tight line-clamp-2 mb-1 group-hover:text-[#4254e8] transition-colors">
                               {product.name}
                             </h4>
-                            <p className="text-[#05718A] font-bold text-sm">${product.price}</p>
+                            <p className="text-[#4254e8] font-bold text-sm">${product.price}</p>
                           </div>
-                          <ChevronRight size={18} className="text-slate-300 group-hover:text-[#05718A] group-hover:translate-x-1 transition-all" />
+                          <ChevronRight size={18} className="text-slate-300 group-hover:text-[#4254e8] group-hover:translate-x-1 transition-all" />
                         </button>
                       ))}
 
@@ -182,14 +182,14 @@ export default function SearchOverlay() {
                     {/* Popular Searches */}
                     <div>
                       <h3 className="text-[10px] md:text-[11px] font-bold text-slate-400 tracking-widest mb-5 flex items-center gap-2 px-2 uppercase">
-                        <TrendingUp size={16} className="text-[#05718A]" /> Trending Right Now
+                        <TrendingUp size={16} className="text-[#4254e8]" /> Trending Right Now
                       </h3>
                       <div className="flex flex-wrap gap-2">
                         {['LaserJet', 'Ink Tank', 'Smart Tank', 'Pixma', 'Wireless', 'Brother'].map((tag) => (
                           <button
                             key={tag}
                             onClick={() => handleQuickSearch(tag)}
-                            className="px-5 md:px-6 py-2.5 md:py-3 bg-white hover:bg-[#05718A] hover:text-white text-[12px] font-bold rounded-xl md:rounded-2xl text-slate-600 transition-all border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-blue-600/20 active:scale-95"
+                            className="px-5 md:px-6 py-2.5 md:py-3 bg-white hover:bg-[#4254e8] hover:text-white text-[12px] font-bold rounded-xl md:rounded-2xl text-slate-600 transition-all border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-blue-600/20 active:scale-95"
                           >
                             {tag}
                           </button>
@@ -200,7 +200,7 @@ export default function SearchOverlay() {
                     {/* Categories */}
                     <div>
                       <h3 className="text-[10px] md:text-[11px] font-bold text-slate-400 tracking-widest mb-5 flex items-center gap-2 px-2 uppercase">
-                        <History size={16} className="text-[#05718A]" /> Quick Discovery
+                        <History size={16} className="text-[#4254e8]" /> Quick Discovery
                       </h3>
                       <div className="grid grid-cols-1 gap-2">
                         {['All-in-One Printers', 'LaserJet Printers', 'Inkjet Printers', 'Toner & Supplies'].map((cat) => (
@@ -209,8 +209,8 @@ export default function SearchOverlay() {
                             onClick={() => handleQuickSearch(cat)}
                             className="flex items-center justify-between w-full p-4 md:p-5 bg-slate-50 hover:bg-blue-50 rounded-xl md:rounded-2xl group transition-all border border-transparent hover:border-blue-100 active:scale-[0.99]"
                           >
-                            <span className="font-bold text-slate-700 text-[14px] group-hover:text-[#05718A] transition-colors">{cat}</span>
-                            <ChevronRight size={18} className="text-slate-300 group-hover:text-[#05718A] group-hover:translate-x-1 transition-all" />
+                            <span className="font-bold text-slate-700 text-[14px] group-hover:text-[#4254e8] transition-colors">{cat}</span>
+                            <ChevronRight size={18} className="text-slate-300 group-hover:text-[#4254e8] group-hover:translate-x-1 transition-all" />
                           </button>
                         ))}
                       </div>
@@ -226,12 +226,12 @@ export default function SearchOverlay() {
                         <p className="text-[13px] md:text-[14px] text-slate-300 mb-6 md:mb-8 font-medium leading-relaxed">Talk to our technicians for a free consultation.</p>
                         <button
                           onClick={() => { navigate('/contact'); closeSearch(); }}
-                          className="w-full py-4 bg-[#05718A] text-white font-bold tracking-widest text-[12px] rounded-xl md:rounded-2xl hover:bg-[#045d72] transition-all shadow-lg active:scale-95 uppercase"
+                          className="w-full py-4 bg-[#4254e8] text-white font-bold tracking-widest text-[12px] rounded-xl md:rounded-2xl hover:bg-[#045d72] transition-all shadow-lg active:scale-95 uppercase"
                         >
                           Talk to an expert
                         </button>
                       </div>
-                      <div className="absolute -right-20 -bottom-20 opacity-10 group-hover:scale-110 transition-transform duration-700 pointer-events-none text-[#05718A]">
+                      <div className="absolute -right-20 -bottom-20 opacity-10 group-hover:scale-110 transition-transform duration-700 pointer-events-none text-[#4254e8]">
                         <Zap size={300} className="rotate-12" />
                       </div>
                     </div>

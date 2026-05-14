@@ -12,6 +12,8 @@ import Toast from './components/Toast';
 const Header = lazy(() => import('./components/Header'));
 const Footer = lazy(() => import('./components/Footer'));
 const CartDrawer = lazy(() => import('./components/CartDrawer'));
+const WishlistDrawer = lazy(() => import('./components/WishlistDrawer'));
+const CompareDrawer = lazy(() => import('./components/CompareDrawer'));
 const SearchOverlay = lazy(() => import('./components/SearchOverlay'));
 const BottomNav = lazy(() => import('./components/BottomNav'));
 const CookieConsent = lazy(() => import('./components/CookieConsent'));
@@ -48,11 +50,12 @@ const OrderManager = lazy(() => import('./pages/admin/OrderManager'));
 const ContactManager = lazy(() => import('./pages/admin/ContactManager'));
 const NewsletterManager = lazy(() => import('./pages/admin/NewsletterManager'));
 const UserManager = lazy(() => import('./pages/admin/UserManager'));
+const ImageManager = lazy(() => import('./pages/admin/ImageManager'));
 
 // Loading component
 const PageLoader = () => (
   <div className="flex items-center justify-center min-h-[60vh]">
-    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#05718A]"></div>
+    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#4254e8]"></div>
   </div>
 );
 
@@ -81,6 +84,8 @@ function App() {
             <Toast />
             <Suspense fallback={null}>
               <CartDrawer />
+              <WishlistDrawer />
+              <CompareDrawer />
               <SearchOverlay />
               <BottomNav />
               <CookieConsent />
@@ -126,6 +131,7 @@ function App() {
                   <Route path="contacts" element={<ContactManager />} />
                   <Route path="newsletter" element={<NewsletterManager />} />
                   <Route path="users" element={<UserManager />} />
+                  <Route path="assets" element={<ImageManager />} />
                   <Route path="settings" element={<div>Settings (Coming Soon)</div>} />
                 </Route>
               </Routes>

@@ -56,14 +56,14 @@ export default function UserSignup() {
 
     return (
         <div className="min-h-screen flex bg-white font-sans overflow-hidden">
-            <SEO title="Create Your Account | Registry Enrollment | Print Sphere" />
+            <SEO title="Create Your Account | Registry Enrollment | Inkjet Print Guide" />
 
             {/* Left: Enrollment Form (50%) */}
-            <div className="w-full lg:w-1/2 flex items-center justify-center p-8 md:p-16 bg-[#f5f5f5]">
+            <div className="w-full lg:w-1/2 flex items-center justify-center p-8 md:p-16 bg-[#eef1f5]">
                 <div className="w-full max-w-[520px] bg-white p-10 md:p-12 border border-slate-100 shadow-xl rounded-2xl space-y-10">
                     <div className="lg:hidden text-center mb-8">
                         <Link to="/">
-                            <img src="/logo/logo.avif" alt="Print Sphere" className="h-10 mx-auto" />
+                            <img src="/logo/logo.avif" alt="Inkjet Print Guide" className="h-10 mx-auto" />
                         </Link>
                     </div>
 
@@ -89,7 +89,7 @@ export default function UserSignup() {
                                     placeholder="Your full name"
                                     value={formData.name}
                                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                    className="w-full h-14 pl-12 pr-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#05718A] focus:bg-white transition-all text-[15px] font-medium"
+                                    className="w-full h-14 pl-12 pr-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#4254e8] focus:bg-white transition-all text-[15px] font-medium"
                                 />
                             </div>
                         </div>
@@ -104,7 +104,7 @@ export default function UserSignup() {
                                     placeholder="your@email.com"
                                     value={formData.email}
                                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                    className="w-full h-14 pl-12 pr-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#05718A] focus:bg-white transition-all text-[15px] font-medium"
+                                    className="w-full h-14 pl-12 pr-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#4254e8] focus:bg-white transition-all text-[15px] font-medium"
                                 />
                             </div>
                         </div>
@@ -120,7 +120,7 @@ export default function UserSignup() {
                                         placeholder="••••••••"
                                         value={formData.password}
                                         onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                                        className="w-full h-14 pl-12 pr-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#05718A] focus:bg-white transition-all text-[15px] font-medium"
+                                        className="w-full h-14 pl-12 pr-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#4254e8] focus:bg-white transition-all text-[15px] font-medium"
                                     />
                                 </div>
                             </div>
@@ -135,7 +135,7 @@ export default function UserSignup() {
                                         placeholder="••••••••"
                                         value={formData.confirmPassword}
                                         onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                                        className="w-full h-14 pl-12 pr-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#05718A] focus:bg-white transition-all text-[15px] font-medium"
+                                        className="w-full h-14 pl-12 pr-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#4254e8] focus:bg-white transition-all text-[15px] font-medium"
                                     />
                                 </div>
                             </div>
@@ -146,14 +146,14 @@ export default function UserSignup() {
                                 type="checkbox"
                                 id="showPass"
                                 onChange={(e) => setShowPassword(e.target.checked)}
-                                className="w-4 h-4 rounded border-slate-300 text-[#05718A] focus:ring-[#05718A] cursor-pointer"
+                                className="w-4 h-4 rounded border-slate-300 text-[#4254e8] focus:ring-[#4254e8] cursor-pointer"
                             />
                             <label htmlFor="showPass" className="text-xs font-bold text-slate-600 cursor-pointer">Show Passwords</label>
                         </div>
 
                         <button
                             disabled={loading}
-                            className="w-full h-14 bg-slate-900 text-white font-bold text-sm uppercase tracking-wider rounded-xl hover:bg-[#05718A] transition-all flex items-center justify-center gap-3 group shadow-lg shadow-slate-200"
+                            className="w-full h-14 bg-slate-900 text-white font-bold text-sm uppercase tracking-wider rounded-xl hover:bg-[#4254e8] transition-all flex items-center justify-center gap-3 group shadow-lg shadow-slate-200"
                         >
                             {loading ? <Loader2 className="animate-spin" size={20} /> : (
                                 <>
@@ -167,7 +167,7 @@ export default function UserSignup() {
                     <div className="pt-6 border-t border-slate-100 text-center">
                         <p className="text-slate-600 font-medium">
                             Already have an account?{' '}
-                            <Link to="/login" className="text-[#05718A] font-bold hover:underline">Sign In Instead</Link>
+                            <Link to="/login" className="text-[#4254e8] font-bold hover:underline">Sign In Instead</Link>
                         </p>
                     </div>
                 </div>
@@ -184,17 +184,17 @@ export default function UserSignup() {
 
                 <div className="relative z-10 flex flex-col justify-between p-16 w-full text-right items-end">
                     <Link to="/">
-                        <img src="/logo/logo.avif" alt="Print Sphere" className="h-10 brightness-0 invert" />
+                        <img src="/logo/logo.avif" alt="Inkjet Print Guide" className="h-10 brightness-0 invert" />
                     </Link>
 
                     <div className="space-y-6">
                         <div className="flex items-center justify-end gap-3">
-                            <span className="text-[#05718A] font-bold text-sm tracking-normal uppercase text-right">Join the Community</span>
-                            <div className="w-10 h-[2px] bg-[#05718A]"></div>
+                            <span className="text-[#4254e8] font-bold text-sm tracking-normal uppercase text-right">Join the Community</span>
+                            <div className="w-10 h-[2px] bg-[#4254e8]"></div>
                         </div>
                         <h2 className="text-5xl xl:text-7xl font-bold text-white tracking-tighter leading-none text-right">
                             Start Your <br />
-                            <span className="text-[#05718A]">Journey.</span>
+                            <span className="text-[#4254e8]">Journey.</span>
                         </h2>
                         <p className="text-slate-300 text-lg max-w-md ml-auto leading-relaxed">
                             Unlock specialized pricing, priority shipping, and a streamlined printing hardware experience today.
@@ -203,7 +203,7 @@ export default function UserSignup() {
 
                     <div className="flex items-center gap-8">
                         <div className="space-y-1">
-                            <p className="text-[#05718A] font-bold text-sm uppercase">Secure Signup</p>
+                            <p className="text-[#4254e8] font-bold text-sm uppercase">Secure Signup</p>
                             <p className="text-white/40 text-[10px] uppercase font-bold tracking-widest">Privacy Protected</p>
                         </div>
                     </div>

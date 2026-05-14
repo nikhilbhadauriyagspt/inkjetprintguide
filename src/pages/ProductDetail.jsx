@@ -126,9 +126,9 @@ export default function ProductDetail() {
 
   if (!product) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen text-center px-6 bg-[#f5f5f5]">
+      <div className="flex flex-col items-center justify-center min-h-screen text-center px-6 bg-[#eef1f5]">
         <h2 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">Product Not Found</h2>
-        <Link to="/shop" className="bg-slate-900 text-white px-8 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-[#05718A] transition-all shadow-lg shadow-slate-200">Return to Shop</Link>
+        <Link to="/shop" className="bg-slate-900 text-white px-8 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-[#4254e8] transition-all shadow-lg shadow-slate-200">Return to Shop</Link>
       </div>
     );
   }
@@ -136,21 +136,21 @@ export default function ProductDetail() {
   const discount = product.old_price ? Math.round(((product.old_price - product.price) / product.old_price) * 100) : 0;
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] font-sans text-slate-900 pb-20">
+    <div className="min-h-screen bg-[#eef1f5] font-sans text-slate-900 pb-20">
       <SEO title={product.name} />
 
       {/* --- PAGE HEADER --- */}
       <div className="bg-white py-12 md:py-16 border-b border-slate-100 mb-12 shadow-sm">
         <div className="max-w-[1700px] mx-auto px-6">
           <nav className="flex items-center gap-2 text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-6">
-            <Link to="/" className="hover:text-[#05718A] transition-colors">Home</Link>
+            <Link to="/" className="hover:text-[#4254e8] transition-colors">Home</Link>
             <ChevronRight size={12} />
-            <Link to="/shop" className="hover:text-[#05718A] transition-colors">Shop</Link>
+            <Link to="/shop" className="hover:text-[#4254e8] transition-colors">Shop</Link>
             <ChevronRight size={12} />
-            <span className="text-[#05718A]">Product Details</span>
+            <span className="text-[#4254e8]">Product Details</span>
           </nav>
           <div className="flex items-start gap-4">
-            <div className="w-1.5 h-12 bg-[#05718A] rounded-full shrink-0 mt-1"></div>
+            <div className="w-1.5 h-12 bg-[#4254e8] rounded-full shrink-0 mt-1"></div>
             <h1 className="text-3xl md:text-5xl font-bold text-slate-900 leading-tight max-w-4xl tracking-tight">
               {product.name}
             </h1>
@@ -172,7 +172,7 @@ export default function ProductDetail() {
                       key={idx}
                       onMouseEnter={() => { setActiveImage(idx); setMainImage(img); }}
                       onClick={() => { setActiveImage(idx); setMainImage(img); }}
-                      className={`w-20 h-20 border-2 p-2 bg-white shrink-0 transition-all rounded-2xl ${activeImage === idx ? 'border-[#05718A] shadow-lg' : 'border-slate-100 hover:border-slate-300'}`}
+                      className={`w-20 h-20 border-2 p-2 bg-white shrink-0 transition-all rounded-2xl ${activeImage === idx ? 'border-[#4254e8] shadow-lg' : 'border-slate-100 hover:border-slate-300'}`}
                     >
                       <img src={img} alt="" className="w-full h-full object-contain mix-blend-multiply" />
                     </button>
@@ -218,7 +218,7 @@ export default function ProductDetail() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="flex items-center gap-4 p-6 bg-white border border-slate-100 rounded-3xl shadow-sm">
-                <div className="w-12 h-12 bg-blue-50 flex items-center justify-center text-[#05718A] rounded-2xl">
+                <div className="w-12 h-12 bg-blue-50 flex items-center justify-center text-[#4254e8] rounded-2xl">
                   <Truck size={24} />
                 </div>
                 <div className="flex flex-col">
@@ -227,7 +227,7 @@ export default function ProductDetail() {
                 </div>
               </div>
               <div className="flex items-center gap-4 p-6 bg-white border border-slate-100 rounded-3xl shadow-sm">
-                <div className="w-12 h-12 bg-blue-50 flex items-center justify-center text-[#05718A] rounded-2xl">
+                <div className="w-12 h-12 bg-blue-50 flex items-center justify-center text-[#4254e8] rounded-2xl">
                   <RotateCcw size={24} />
                 </div>
                 <div className="flex flex-col">
@@ -244,14 +244,14 @@ export default function ProductDetail() {
               <div className="space-y-8">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-4 bg-[#05718A] rounded-full" />
+                    <span className="w-1.5 h-4 bg-[#4254e8] rounded-full" />
                     <span className="text-[12px] font-bold text-slate-400 uppercase tracking-widest">
                       Quality Guaranteed
                     </span>
                   </div>
                   <button
                     onClick={handleShare}
-                    className="w-10 h-10 bg-slate-50 flex items-center justify-center text-slate-400 hover:text-[#05718A] transition-all rounded-xl border border-slate-100"
+                    className="w-10 h-10 bg-slate-50 flex items-center justify-center text-slate-400 hover:text-[#4254e8] transition-all rounded-xl border border-slate-100"
                   >
                     <Share2 size={18} />
                   </button>
@@ -263,7 +263,7 @@ export default function ProductDetail() {
                   )}
                   <div className="flex flex-col">
                     <div className="flex items-start">
-                      <span className="text-xl font-bold mt-2 mr-1 text-[#05718A]">$</span>
+                      <span className="text-xl font-bold mt-2 mr-1 text-[#4254e8]">$</span>
                       <span className="text-5xl font-bold text-slate-900 tracking-tight">{parseFloat(product.price).toLocaleString()}</span>
                     </div>
                     {product.old_price && (
@@ -303,7 +303,7 @@ export default function ProductDetail() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <button
                       onClick={handleAddToCart}
-                      className={`h-16 font-bold text-[14px] uppercase tracking-widest transition-all flex items-center justify-center gap-3 rounded-2xl shadow-lg ${isAdded ? 'bg-emerald-600 text-white shadow-emerald-100' : 'bg-slate-900 text-white hover:bg-[#05718A] shadow-slate-200'}`}
+                      className={`h-16 font-bold text-[14px] uppercase tracking-widest transition-all flex items-center justify-center gap-3 rounded-2xl shadow-lg ${isAdded ? 'bg-emerald-600 text-white shadow-emerald-100' : 'bg-slate-900 text-white hover:bg-[#4254e8] shadow-slate-200'}`}
                     >
                       <ShoppingCart size={20} />
                       {isAdded ? 'Added to Cart' : 'Add to Cart'}
@@ -325,15 +325,15 @@ export default function ProductDetail() {
                       product.description.split('.').map((sentence, idx) => (
                         sentence.trim() && (
                           <li key={idx} className="flex gap-4 text-[15px] text-slate-600 leading-relaxed">
-                            <div className="w-1.5 h-1.5 bg-[#05718A] rounded-full mt-2.5 shrink-0" />
+                            <div className="w-1.5 h-1.5 bg-[#4254e8] rounded-full mt-2.5 shrink-0" />
                             <span>{sentence.trim()}.</span>
                           </li>
                         )
                       ))
                     ) : (
                       <>
-                        <li className="flex gap-4 text-[15px] text-slate-600 leading-relaxed"><div className="w-1.5 h-1.5 bg-[#05718A] rounded-full mt-2.5 shrink-0" /><span>High-performance printer designed for professional excellence.</span></li>
-                        <li className="flex gap-4 text-[15px] text-slate-600 leading-relaxed"><div className="w-1.5 h-1.5 bg-[#05718A] rounded-full mt-2.5 shrink-0" /><span>Engineered for reliability and sharp, consistent output quality.</span></li>
+                        <li className="flex gap-4 text-[15px] text-slate-600 leading-relaxed"><div className="w-1.5 h-1.5 bg-[#4254e8] rounded-full mt-2.5 shrink-0" /><span>High-performance printer designed for professional excellence.</span></li>
+                        <li className="flex gap-4 text-[15px] text-slate-600 leading-relaxed"><div className="w-1.5 h-1.5 bg-[#4254e8] rounded-full mt-2.5 shrink-0" /><span>Engineered for reliability and sharp, consistent output quality.</span></li>
                       </>
                     )}
                   </ul>
@@ -342,9 +342,9 @@ export default function ProductDetail() {
             </div>
 
             {/* Specifications Box */}
-            <div className="bg-slate-900 p-10 text-white rounded-[32px] border-l-8 border-[#05718A] shadow-2xl">
+            <div className="bg-slate-900 p-10 text-white rounded-[32px] border-l-8 border-[#4254e8] shadow-2xl">
               <h3 className="text-xl font-bold mb-8 uppercase tracking-widest flex items-center gap-3">
-                <Info size={24} className="text-[#05718A]" />
+                <Info size={24} className="text-[#4254e8]" />
                 Features
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-8 gap-x-12">
@@ -369,20 +369,20 @@ export default function ProductDetail() {
           <div className="mt-24 md:mt-32">
             <div className="flex items-center justify-between mb-12 pb-6 border-b border-slate-200">
               <div className="flex items-center gap-4">
-                <div className="w-1.5 h-8 bg-[#05718A] rounded-full"></div>
+                <div className="w-1.5 h-8 bg-[#4254e8] rounded-full"></div>
                 <h3 className="text-2xl font-bold text-slate-900 tracking-tight uppercase">Recommended for You</h3>
               </div>
-              <Link to="/shop" className="text-[13px] font-bold text-[#05718A] hover:underline flex items-center gap-2 uppercase tracking-widest transition-all">
+              <Link to="/shop" className="text-[13px] font-bold text-[#4254e8] hover:underline flex items-center gap-2 uppercase tracking-widest transition-all">
                 See All Products <ArrowRight size={16} />
               </Link>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
               {relatedProducts.map((p) => (
-                <Link to={`/product/${p.slug}`} key={p.id} className="bg-white border border-slate-100 p-5 rounded-3xl hover:shadow-2xl hover:shadow-slate-200/60 transition-all flex flex-col group border-b-4 border-b-transparent hover:border-b-[#05718A]">
+                <Link to={`/product/${p.slug}`} key={p.id} className="bg-white border border-slate-100 p-5 rounded-3xl hover:shadow-2xl hover:shadow-slate-200/60 transition-all flex flex-col group border-b-4 border-b-transparent hover:border-b-[#4254e8]">
                   <div className="aspect-square bg-slate-50 rounded-2xl flex items-center justify-center mb-5 p-4 overflow-hidden border border-slate-50 transition-all group-hover:bg-white">
                     <img src={getImagePath(p.images)} alt="" className="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110" />
                   </div>
-                  <h4 className="text-[13px] font-bold text-slate-800 line-clamp-2 mb-3 h-10 group-hover:text-[#05718A] transition-colors">{p.name}</h4>
+                  <h4 className="text-[13px] font-bold text-slate-800 line-clamp-2 mb-3 h-10 group-hover:text-[#4254e8] transition-colors">{p.name}</h4>
                   <p className="text-lg font-bold text-slate-900 mt-auto tracking-tight">${parseFloat(p.price).toLocaleString()}</p>
                 </Link>
               ))}

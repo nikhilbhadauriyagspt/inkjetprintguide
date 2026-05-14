@@ -8,6 +8,8 @@ import ProductGrid from "@/components/ProductGrid";
 import HowToBuy from "@/components/HowToBuy";
 import { useGlobalData } from "../context/DataContext";
 import PremiumProductGrid from "@/components/PremiumProductGrid";
+import PremiumGridSection from "@/components/PremiumGridSection";
+import ServiceFeatures from "@/components/ServiceFeatures";
 
 import Mainsecimg from "/midbanner/images-7.avif";
 
@@ -34,22 +36,16 @@ export default function Home() {
   }, [categories, featuredProducts]);
 
   return (
-    <div className="bg-[#f5f5f5] font-sans overflow-x-hidden text-slate-900">
+    <div className="bg-[#eef1f5] font-sans overflow-x-hidden text-slate-900">
       <SEO
-        title="Print Sphere | High-Performance Printing Solutions"
-        description="Discover a wide range of high-performance printers, premium ink, and toner cartridges at Print Sphere. We provide professional business printing solutions with fast nationwide shipping."
+        title="Inkjet Print Guide | High-Performance Printing Solutions"
+        description="Discover a wide range of high-performance printers, premium ink, and toner cartridges at Inkjet Print Guide. We provide professional business printing solutions with fast nationwide shipping."
         keywords="Buy Printers Online, Ink and Toner, LaserJet, OfficeJet, Printer Accessories, Business Printing Solutions"
       />
       <Hero products={processedData.all} />
       <CategoryCarousel categories={processedData.categoriesToDisplay} loading={loading} />
 
-      <div className="w-full px-4 md:px-6 flex justify-center py-8 items-center">
-        <img
-          src={Mainsecimg}
-          alt="Main Section"
-          className="w-full max-w-[1700px] h-full md:h-[200px] lg:h-[220px] object-cover rounded-2xl md:rounded-full "
-        />
-      </div>
+
       {/* <AboutSection /> */}
 
       <PremiumProductGrid
@@ -57,13 +53,24 @@ export default function Home() {
         title="Best Selling Printers"
         loading={loading}
       />
+      <ServiceFeatures />
       <MidBannersRow />
 
-      <ProductGrid
+
+
+      <PremiumGridSection
         products={processedData.all}
         loading={loading}
+        title="Exclusive"
+        subtitle="Collection"
       />
-
+      <div className="w-full px-4 md:px-6 flex justify-center py-8 items-center">
+        <img
+          src={Mainsecimg}
+          alt="Main Section"
+          className="w-full max-w-[1700px] h-full md:h-[200px] lg:h-[220px] object-cover rounded-2xl md:rounded-full "
+        />
+      </div>
       <HowToBuy />
     </div>
   );

@@ -17,22 +17,16 @@ import Shield from 'lucide-react/dist/esm/icons/shield';
 import Truck from 'lucide-react/dist/esm/icons/truck';
 import BadgeCheck from 'lucide-react/dist/esm/icons/badge-check';
 import Headphones from 'lucide-react/dist/esm/icons/headphones';
-import Wifi from 'lucide-react/dist/esm/icons/wifi';
 import ScanLine from 'lucide-react/dist/esm/icons/scan-line';
 import FileText from 'lucide-react/dist/esm/icons/file-text';
-import Droplets from 'lucide-react/dist/esm/icons/droplets';
 import ArrowLeftRight from 'lucide-react/dist/esm/icons/arrow-left-right';
+import ShoppingCart from 'lucide-react/dist/esm/icons/shopping-cart';
 
 import { useCart } from "../context/CartContext";
 
 const formatPrice = (value) => {
   const num = parseFloat(value || 0);
   return Number.isNaN(num) ? 0 : num;
-};
-
-const getDiscountPercent = (price, salePrice) => {
-  if (!price || !salePrice || salePrice >= price) return 0;
-  return Math.round(((price - salePrice) / price) * 100);
 };
 
 const staticImages = [
@@ -58,40 +52,6 @@ const getImagePath = (images, index) => {
   return "/logo/fabicon.avif";
 };
 
-const CircleFeatureIcon = ({ icon: Icon, bg = "bg-[#f4f4f4]" }) => (
-  <div
-    className={`w-[38px] h-[38px] rounded-full border border-[#d8d8d8] ${bg} flex items-center justify-center shrink-0`}
-  >
-    <Icon size={17} className="text-[#444]" strokeWidth={1.9} />
-  </div>
-);
-
-const SideCategoryCard = ({ icon: Icon, iconBg, title, link }) => (
-  <Link
-    to={link}
-    className="bg-white border border-slate-100 rounded-[10px] px-5 py-5 min-h-[102px] flex items-center justify-between hover:border-[#05718A] transition-all"
-  >
-    <div className="flex items-center gap-4">
-      <div
-        className={`w-[58px] h-[58px] rounded-full ${iconBg} flex items-center justify-center shrink-0`}
-      >
-        <Icon size={28} className="text-[#4d5670]" strokeWidth={1.7} />
-      </div>
-
-      <div>
-        <h3 className="text-[15px] md:text-[17px] font-bold text-[#151515] uppercase leading-[1.2]">
-          {title}
-        </h3>
-        <span className="mt-2 inline-block text-[14px] text-[#2563eb] font-medium">
-          Shop now
-        </span>
-      </div>
-    </div>
-
-    <ChevronRight size={22} className="text-[#5c5c5c]" />
-  </Link>
-);
-
 const ProductCard = ({
   product,
   index,
@@ -99,181 +59,164 @@ const ProductCard = ({
   toggleWishlist,
   isInWishlist,
   toggleCompare,
-  isInCompare,
 }) => {
   const price = formatPrice(product.price);
   const salePrice = formatPrice(product.sale_price);
   const hasSale = salePrice > 0 && salePrice < price;
   const finalPrice = hasSale ? salePrice : price;
-  const discount = getDiscountPercent(price, salePrice);
+  const inWishlist = isInWishlist(product.id);
 
-  const isWishlisted = isInWishlist(product.id);
-  const isCompared = isInCompare(product.id);
+  const badge = index === 0 ? "TRENDING" : index === 1 ? "NEW" : index === 2 ? "SALE" : "HOT";
 
-  const featureIcons = [
-    Printer,
-    Wifi,
-    ScanLine,
-    FileText,
-    Droplets,
-  ];
+  const badgeConfig = {
+    "TRENDING": { bg: "bg-[#4254e8]", triangle: "before:border-l-[#4254e8]" },
+    "NEW": { bg: "bg-[#ec4899]", triangle: "before:border-l-[#ec4899]" },
+    "SALE": { bg: "bg-[#10b981]", triangle: "before:border-l-[#10b981]" },
+    "HOT": { bg: "bg-[#f97316]", triangle: "before:border-l-[#f97316]" },
+    "DEFAULT": { bg: "bg-[#4254e8]", triangle: "before:border-l-[#4254e8]" }
+  };
+  const config = badgeConfig[badge] || badgeConfig["DEFAULT"];
 
   const imgPath = getImagePath(product.images, index);
 
   return (
-    <div className="relative bg-white rounded-none px-5 pt-4 pb-5 min-h-[530px] flex flex-col h-full border border-slate-100 group/card transition-all">
-      {hasSale && (
-        <div className="absolute left-4 top-4 z-20 bg-[#ffd8d4] text-[#ff4a3d] text-[13px] font-medium px-3 py-1 rounded-[4px]">
-          Sale {discount}%
-        </div>
-      )}
-
-      <div className="absolute right-4 top-4 z-20 flex flex-col gap-3">
-        <button
-          onClick={() => toggleWishlist(product)}
-          aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
-          className={`w-9 h-9 rounded-full border border-[#ececec] flex items-center justify-center transition-colors ${isWishlisted ? 'bg-red-50' : 'bg-white'}`}
-        >
-          <Heart
-            size={16}
-            className={isWishlisted ? "text-red-500 fill-red-500" : "text-[#555]"}
-          />
-        </button>
-
-        <Link
-          to={`/product/${product.slug}`}
-          aria-label={`View ${product.name} details`}
-          className="w-9 h-9 rounded-full bg-white border border-[#ececec] flex items-center justify-center"
-        >
-          <Eye size={16} className="text-[#5c4d7d]" />
-        </Link>
-      </div>
-
-      <div className="relative h-[220px] flex items-center justify-center overflow-hidden">
-        <Link
-          to={`/product/${product.slug}`}
-          className="w-full h-full flex items-center justify-center px-5"
-        >
+    <div className="group/card rounded-[14px] border border-slate-200 bg-white p-[15px] transition-all duration-300 hover:shadow-md h-full flex flex-col">
+      <div className="relative h-[280px] overflow-hidden rounded-[12px] bg-[#dfe3e8] shrink-0">
+        <Link to={`/product/${product.slug}`} className="flex h-full w-full items-center justify-center p-6">
           <img
             src={imgPath}
             alt={product.name}
-            className="max-h-[180px] max-w-full object-contain transition-transform duration-500 group-hover/card:scale-105"
-            key={imgPath}
+            className="max-h-full max-w-full object-contain transition duration-500 group-hover/card:scale-110 mix-blend-multiply"
+            loading="lazy"
             onError={(e) => {
-              if (!e.currentTarget.src.includes('fabicon')) {
-                e.currentTarget.src = "/logo/fabicon.avif";
-              }
+              e.currentTarget.src = "/logo/fabicon.avif";
             }}
           />
         </Link>
+
+        <div className="absolute bottom-0 left-1/2 z-20 flex -translate-x-1/2 translate-y-full items-center gap-3 rounded-t-[22px] bg-white px-5 py-2 opacity-0 transition-all duration-300 group-hover/card:translate-y-0 group-hover/card:opacity-100 shadow-sm border border-slate-100">
+          <Link to={`/product/${product.slug}`} className="text-[#0f2742] hover:text-[#4254e8]">
+            <Eye size={16} />
+          </Link>
+
+          <button
+            onClick={() => toggleCompare(product)}
+            className="text-[#0f2742] hover:text-[#4254e8]"
+          >
+            <ArrowLeftRight size={16} />
+          </button>
+
+          <button
+            onClick={() => toggleWishlist(product)}
+            className={`transition hover:text-red-400 ${inWishlist ? "text-red-400" : "text-[#0f2742]"}`}
+          >
+            <Heart size={16} fill={inWishlist ? "currentColor" : "none"} />
+          </button>
+        </div>
       </div>
 
-      <div className="mt-4 space-y-2">
-        <button
-          onClick={() => addToCart(product)}
-          className="w-full h-[44px] rounded-full border border-[#05718A] bg-[#05718A] text-white text-[14px] font-bold uppercase tracking-wider hover:bg-black hover:border-black transition-all"
-        >
-          Quick Add
-        </button>
-        <button
-          onClick={() => toggleCompare(product)}
-          className={`w-full h-[44px] rounded-full border text-[14px] font-bold uppercase tracking-wider transition-all ${isCompared
-            ? 'bg-blue-600 border-blue-600 text-white'
-            : 'border-slate-200 text-slate-600 hover:border-[#05718A] hover:text-[#05718A]'
-            }`}
-        >
-          {isCompared ? 'Compared' : 'Compare'}
-        </button>
-      </div>
+      <div className="pt-4 flex flex-col flex-1">
+        <div className="mb-2 flex items-center justify-between">
+          <span className="text-[11px] font-medium uppercase text-slate-500">
+            {product.category?.name || "Printer"}
+          </span>
+          <span className="text-[11px] font-medium text-slate-500">
+            {product.stock ? `${product.stock} In Stock` : "Available"}
+          </span>
+        </div>
 
-      <div className="mt-7 text-center">
         <Link to={`/product/${product.slug}`}>
-          <h3 className="mt-3 text-[19px] leading-[1.35] text-[#202020] font-semibold min-h-[52px] hover:text-[#05718A] transition line-clamp-2">
+          <h3 className="line-clamp-2 text-[16px] font-semibold text-[#10142b] transition hover:text-[#4254e8] min-h-[44px] leading-tight">
             {product.name}
           </h3>
         </Link>
 
-        <div className="mt-4 flex items-center justify-center gap-3 flex-wrap">
+        <div className="mt-2 flex items-center gap-2">
+          <span className="text-[17px] font-bold text-black">
+            ${finalPrice.toFixed(0)}
+          </span>
+
           {hasSale && (
-            <span className="text-[16px] text-[#747474] line-through">
-              ${price.toFixed(2)}
+            <span className="text-[15px] text-slate-400 line-through">
+              ${price.toFixed(0)}
             </span>
           )}
-          <span className="text-[16px] text-[#575757]">From</span>
-          <span className="text-[20px] font-bold text-[#ff3d2e]">
-            ${finalPrice.toFixed(2)}
-          </span>
         </div>
 
-        <div className="mt-6 flex items-center justify-center gap-3 flex-wrap">
-          {featureIcons.slice(0, 4).map((Icon, idx) => (
-            <CircleFeatureIcon key={idx} icon={Icon} />
-          ))}
-          {featureIcons.length > 4 && (
-            <div className="w-[38px] h-[38px] rounded-full border border-[#d8d8d8] bg-white flex items-center justify-center text-[16px] text-[#444] font-medium">
-              +2
-            </div>
-          )}
+        <div className="mt-auto pt-4 flex items-center justify-between border-t border-slate-50">
+          <div className={`inline-flex h-[22px] items-center ${config.bg} px-2 text-[9px] font-bold text-white before:absolute before:right-[-11px] before:top-0 before:h-0 before:w-0 before:border-y-[11px] before:border-l-[11px] before:border-y-transparent ${config.triangle} relative`}>
+            {badge}
+          </div>
+
+          <button
+            onClick={() => addToCart(product)}
+            className="flex h-[30px] items-center gap-1.5 rounded-lg bg-[#4254e8] px-2.5 text-[10px] font-bold text-white transition hover:bg-[#045a6e]"
+          >
+            <ShoppingCart size={13} />
+            ADD
+          </button>
         </div>
       </div>
     </div>
   );
 };
 
-const BottomPromo = ({
-  title,
-  desc,
-  btnText,
-  link,
-  image,
-  gradient,
-}) => (
-  <div className={`relative overflow-hidden rounded-[10px] min-h-[240px] ${gradient}`}>
-    <div className="absolute top-4 right-4 grid grid-cols-4 gap-[6px] opacity-35">
-      {Array.from({ length: 16 }).map((_, i) => (
-        <span key={i} className="w-[4px] h-[4px] rounded-full bg-white" />
-      ))}
-    </div>
-
-    <div className="relative z-10 h-full px-7 py-7 flex items-center justify-between gap-4">
-      <div className=" max-w-[100%] md:max-w-[52%]">
-        <h3 className="text-white text-[24px] md:text-[18px] 2xl:text-[28px] font-extrabold leading-[1.15]">
+const SideCategoryCard = ({ icon: Icon, title, link }) => (
+  <Link
+    to={link}
+    className="bg-white border border-white rounded-[20px] px-6 py-6 min-h-[102px] flex items-center justify-between hover:border-[#4254e8] transition-all shadow-sm group"
+  >
+    <div className="flex items-center gap-5">
+      <div className="w-[52px] h-[52px] rounded-xl bg-slate-50 flex items-center justify-center shrink-0 border border-slate-100 transition-colors group-hover:bg-[#4254e8]/5">
+        <Icon size={24} className="text-[#10142b] group-hover:text-[#4254e8] transition-colors" />
+      </div>
+      <div>
+        <h3 className="text-[15px] font-black text-[#10142b] uppercase tracking-tight leading-none">
           {title}
         </h3>
-        <p className="mt-4 text-white/95 text-[15px] md:text-[12px] 2xl:text-[16px] leading-[1.5]">
-          {desc}
-        </p>
-
-        <Link
-          to={link}
-          className="mt-7 inline-flex items-center justify-center h-[42px] px-2 2xl:px-6 rounded-full bg-white text-[#335] text-[13px] 2xl:text-[15px] font-semibold hover:opacity-95 transition"
-        >
-          {btnText}
-        </Link>
+        <span className="mt-2 inline-block text-[12px] text-[#4254e8] font-bold opacity-0 group-hover:opacity-100 transition-opacity">
+          SHOP COLLECTION
+        </span>
       </div>
+    </div>
+    <ChevronRight size={20} className="text-slate-300 group-hover:text-[#4254e8] transition-colors" />
+  </Link>
+);
 
-      <div className="hidden md:block md:w-[44%] flex items-end justify-end">
-        <img
-          src={image}
-          alt={title}
-          className="max-h-[175px] md:max-h-[190px] object-contain"
-          onError={(e) => {
-            e.currentTarget.src = "/logo/fabicon.avif";
-          }}
-        />
-      </div>
+const BottomPromo = ({ title, desc, btnText, link, image }) => (
+  <div className="relative overflow-hidden rounded-[24px] bg-white p-8 flex items-center justify-between group transition-all hover:shadow-xl border border-white shadow-sm">
+    <div className="max-w-[65%] relative z-10">
+      <h3 className="text-[#10142b] text-[22px] font-black leading-tight mb-3 tracking-tighter">
+        {title}
+      </h3>
+      <p className="text-slate-500 text-[14px] leading-relaxed mb-6 font-medium">
+        {desc}
+      </p>
+      <Link
+        to={link}
+        className="inline-flex items-center text-[13px] font-black text-[#4254e8] hover:underline uppercase tracking-wider"
+      >
+        {btnText} <ChevronRight size={14} className="ml-1" />
+      </Link>
+    </div>
+    <div className="w-[35%] flex justify-end">
+      <img
+        src={image}
+        alt={title}
+        className="max-h-[140px] object-contain transition-transform duration-700 group-hover:scale-110 mix-blend-multiply"
+      />
     </div>
   </div>
 );
 
 const ServiceItem = ({ icon: Icon, title, desc }) => (
-  <div className="flex items-center gap-4 px-8 py-6">
-    <div className="w-[48px] h-[48px] rounded-full flex items-center justify-center">
-      <Icon size={30} className="text-[#2e76a5]" strokeWidth={1.8} />
+  <div className="flex items-center gap-5 px-10 py-8 group transition-colors hover:bg-slate-50/50">
+    <div className="w-[52px] h-[52px] rounded-2xl bg-slate-50 flex items-center justify-center shrink-0 border border-slate-100 group-hover:bg-white transition-colors shadow-sm">
+      <Icon size={26} className="text-[#4254e8]" strokeWidth={2} />
     </div>
     <div>
-      <h4 className="text-[14px] 2xl:text-[16px] font-bold text-[#161616]">{title}</h4>
-      <p className="text-[14px] text-[#666] mt-1">{desc}</p>
+      <h4 className="text-[15px] font-black text-[#10142b] uppercase tracking-tight">{title}</h4>
+      <p className="text-[13px] text-slate-500 font-medium mt-1 leading-tight">{desc}</p>
     </div>
   </div>
 );
@@ -282,28 +225,18 @@ export default function ProductShowcaseSection({
   products = [],
   loading = false,
 }) {
-  const { addToCart, toggleWishlist, isInWishlist, toggleCompare, isInCompare } = useCart();
-
+  const { addToCart, toggleWishlist, isInWishlist, toggleCompare } = useCart();
   const displayProducts = products.slice(0, 10);
 
   if (loading) {
     return (
-      <section className="w-full bg-white py-10">
-        <div className="max-w-[1700px] mx-auto px-4 md:px-0 animate-pulse">
-          <div className="h-8 w-80 bg-slate-200 rounded mb-8" />
-          <div className="grid grid-cols-1 xl:grid-cols-[275px_minmax(0,1fr)_300px] gap-5">
-            <div className="h-[540px] bg-slate-200 rounded-[10px]" />
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
-              <div className="h-[540px] bg-slate-200 rounded-[10px]" />
-              <div className="h-[540px] bg-slate-200 rounded-[10px]" />
-              <div className="h-[540px] bg-slate-200 rounded-[10px]" />
-            </div>
-            <div className="space-y-5">
-              <div className="h-[102px] bg-slate-200 rounded-[10px]" />
-              <div className="h-[102px] bg-slate-200 rounded-[10px]" />
-              <div className="h-[102px] bg-slate-200 rounded-[10px]" />
-              <div className="h-[102px] bg-slate-200 rounded-[10px]" />
-              <div className="h-[102px] bg-slate-200 rounded-[10px]" />
+      <section className="w-full bg-[#eef1f5] py-20">
+        <div className="max-w-[1700px] mx-auto px-5 animate-pulse">
+          <div className="h-10 w-80 bg-slate-200 rounded-lg mb-10" />
+          <div className="grid grid-cols-1 xl:grid-cols-[300px_minmax(0,1fr)_320px] gap-8">
+            <div className="h-[600px] bg-white rounded-2xl shadow-sm" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[1, 2, 3].map(i => <div key={i} className="h-[500px] bg-white rounded-2xl shadow-sm" />)}
             </div>
           </div>
         </div>
@@ -312,41 +245,46 @@ export default function ProductShowcaseSection({
   }
 
   return (
-    <section className="w-full bg-white py-16">
-      <div className="max-w-[1700px] mx-auto px-4 md:px-6">
-        <h2 className="text-[30px] md:text-[38px] font-extrabold text-[#1a1a1a] mb-10 tracking-[-0.02em]">
-          Printers & All-in-One Solutions
-        </h2>
+    <section className="w-full bg-[#eef1f5] py-20 overflow-hidden">
+      <div className="max-w-[1700px] mx-auto px-5">
+        <div className="mb-10 flex items-center justify-between border-b border-slate-300/40 pb-8">
+          <h2 className="text-[28px] md:text-[34px] font-black text-[#10142b] tracking-tighter">
+            Printers & <span className="text-[#4254e8]">All-in-One Solutions</span>
+          </h2>
+          <Link to="/shop" className="hidden md:flex items-center gap-2 text-[13px] font-black text-[#4254e8] hover:opacity-80 uppercase tracking-widest">
+            View All Catalog <ChevronRight size={16} />
+          </Link>
+        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-[300px_minmax(0,1fr)_320px] gap-8 items-stretch">
-          {/* Left sale banner */}
-          <div className="relative overflow-hidden rounded-[10px] min-h-[400px] md:min-h-[540px] bg-gradient-to-b from-[#1f67de] to-[#72c8ea] lg:col-span-2 xl:col-span-1">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_35%)]" />
-            <div className="relative z-10 h-full px-8 py-10 md:pt-14 md:pb-4 flex flex-col md:flex-row xl:flex-col justify-between items-center md:items-start xl:items-stretch">
-              <div className="text-center md:text-left xl:text-left">
-                <p className="text-white text-[18px] font-bold uppercase tracking-wide">
-                  SAVE UP TO
-                </p>
-                <h3 className="mt-4 text-[72px] md:text-[96px] leading-none font-extrabold text-white tracking-[-0.05em]">
-                  40%
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-[340px_minmax(0,1fr)_360px] gap-10 items-stretch">
+          {/* Left Hero Banner */}
+          <div className="relative overflow-hidden rounded-[24px] bg-[#10142b] shadow-2xl lg:col-span-2 xl:col-span-1 group">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#4254e8]/30" />
+            <div className="relative z-10 h-full p-12 flex flex-col justify-between">
+              <div>
+                <span className="inline-block px-3 py-1 rounded-full bg-[#4254e8] text-white text-[11px] font-black tracking-widest uppercase mb-6 shadow-lg shadow-[#4254e8]/20">
+                  Exclusive Deal
+                </span>
+                <h3 className="text-white text-[56px] leading-[0.9] font-black tracking-tighter">
+                  SAVE <br /><span className="text-[#4254e8]">40%</span>
                 </h3>
-                <p className="mt-4 text-white/95 text-[18px]">
-                  on selected printers*
+                <p className="mt-5 text-slate-400 text-[18px] font-medium leading-relaxed">
+                  The ultimate hub for <br /> professional printing.
                 </p>
 
                 <Link
                   to="/shop"
-                  className="mt-10 inline-flex items-center justify-center h-[52px] px-10 rounded-full bg-white text-[#1f67de] text-[18px] font-semibold hover:opacity-95 transition"
+                  className="mt-12 inline-flex items-center justify-center h-[56px] px-10 rounded-2xl bg-white text-[#10142b] text-[17px] font-black hover:bg-[#4254e8] hover:text-white transition-all shadow-xl shadow-black/20"
                 >
                   Shop Now
                 </Link>
               </div>
 
-              <div className="flex items-end justify-center mt-10 md:mt-0 xl:mt-auto">
+              <div className="flex items-end justify-center mt-auto pt-10">
                 <img
                   src="productsgrid/image_1_thumb.avif"
                   alt="Sale Printer"
-                  className="max-h-[240px] md:max-h-[300px] object-contain"
+                  className="max-h-[280px] object-contain transition-transform duration-1000 group-hover:scale-110 mix-blend-lighten"
                   onError={(e) => {
                     e.currentTarget.src = "/logo/fabicon.avif";
                   }}
@@ -355,8 +293,8 @@ export default function ProductShowcaseSection({
             </div>
           </div>
 
-          {/* center products with slider */}
-          <div className="relative group lg:col-span-1 xl:col-span-1 overflow-hidden">
+          {/* Center Products Slider */}
+          <div className="relative lg:col-span-1 xl:col-span-1">
             <Swiper
               modules={[Navigation, Autoplay]}
               navigation={{
@@ -364,16 +302,14 @@ export default function ProductShowcaseSection({
                 nextEl: ".product-next",
               }}
               autoplay={{ delay: 6000, disableOnInteraction: false }}
-              spaceBetween={20}
+              spaceBetween={24}
               slidesPerView={1}
               breakpoints={{
-                480: { slidesPerView: 1 },
                 640: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
                 1280: { slidesPerView: 2 },
-                1536: { slidesPerView: 3 },
+                1536: { slidesPerView: 2 },
               }}
-              className="h-full !overflow-visible md:!overflow-hidden"
+              className="h-full !overflow-visible"
             >
               {displayProducts.map((product, idx) => (
                 <SwiperSlide key={product.id}>
@@ -384,126 +320,74 @@ export default function ProductShowcaseSection({
                     toggleWishlist={toggleWishlist}
                     isInWishlist={isInWishlist}
                     toggleCompare={toggleCompare}
-                    isInCompare={isInCompare}
                   />
                 </SwiperSlide>
               ))}
             </Swiper>
 
-            {/* Slider Navigation - Hidden on small mobile */}
-            <button
-              aria-label="Previous products"
-              className="product-prev absolute -left-5 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full border border-slate-200 bg-white hidden md:flex items-center justify-center text-slate-400 hover:text-[#05718A] hover:border-[#05718A] transition-all opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0"
-            >
+            <button className="product-prev absolute -left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-2xl bg-white shadow-2xl flex items-center justify-center text-slate-400 hover:text-[#4254e8] transition-all opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 border border-slate-100">
               <ChevronLeft size={24} />
             </button>
-            <button
-              aria-label="Next products"
-              className="product-next absolute -right-5 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full border border-slate-200 bg-white hidden md:flex items-center justify-center text-slate-400 hover:text-[#05718A] hover:border-[#05718A] transition-all opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0"
-            >
+            <button className="product-next absolute -right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-2xl bg-white shadow-2xl flex items-center justify-center text-slate-400 hover:text-[#4254e8] transition-all opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 border border-slate-100">
               <ChevronRight size={24} />
             </button>
           </div>
 
-          {/* right categories */}
+          {/* Right Sidebar Categories */}
           <div className="flex flex-col gap-6 lg:col-span-1 xl:col-span-1">
-            <SideCategoryCard
-              icon={Printer}
-              iconBg="bg-[#e7f1ff]"
-              title="INK TANK PRINTERS"
-              link="/shop?category=supertank-printers"
-            />
-
-            <SideCategoryCard
-              icon={Printer}
-              iconBg="bg-[#dff5ea]"
-              title="LASER PRINTERS"
-              link="/shop?category=laser-printers"
-            />
-
-            <SideCategoryCard
-              icon={ScanLine}
-              iconBg="bg-[#ece7fa]"
-              title="ALL-IN-ONE PRINTERS"
-              link="/shop?category=all-in-one-printers"
-            />
-
-            <SideCategoryCard
-              icon={FileText}
-              iconBg="bg-[#f8ebdf]"
-              title="PRINTER ACCESSORIES"
-              link="/shop?category=printer-accessories"
-            />
+            <SideCategoryCard icon={Printer} title="INK TANK SERIES" link="/shop?category=supertank-printers" />
+            <SideCategoryCard icon={ScanLine} title="ALL-IN-ONE SMART" link="/shop?category=all-in-one-printers" />
+            <SideCategoryCard icon={Printer} title="PRO LASERJET" link="/shop?category=laser-printers" />
+            <SideCategoryCard icon={FileText} title="GENUINE SUPPLIES" link="/shop?category=printer-accessories" />
 
             <Link
               to="/shop"
-              className="bg-white rounded-[10px] px-6 py-5 min-h-[102px] flex items-center justify-between border border-slate-100 hover:border-[#05718A] transition-all"
+              className="bg-white rounded-[24px] px-8 py-7 min-h-[102px] flex items-center justify-between border border-white shadow-sm hover:border-[#4254e8] transition-all group"
             >
-              <div className="flex items-center gap-4">
-                <div className="w-[58px] h-[58px] rounded-full bg-slate-50 flex items-center justify-center border border-[#ececec]">
-                  <Grid2x2 size={26} className="text-[#333]" />
+              <div className="flex items-center gap-5">
+                <div className="w-[52px] h-[52px] rounded-xl bg-[#10142b] flex items-center justify-center shadow-lg">
+                  <Grid2x2 size={24} className="text-white" />
                 </div>
-                <span className="text-[17px] text-[#202020] font-bold">
-                  VIEW ALL DEPARTMENTS
+                <span className="text-[17px] text-[#10142b] font-black uppercase tracking-tighter">
+                  ALL DEPARTMENTS
                 </span>
               </div>
-              <ChevronRight size={22} className="text-[#5c5c5c]" />
+              <ChevronRight size={20} className="text-slate-300 group-hover:text-[#4254e8]" />
             </Link>
           </div>
         </div>
 
-        {/* bottom 3 banners */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-10">
+        {/* Bottom Three Promos */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mt-16">
           <BottomPromo
-            title="High Quality Prints for Every Day"
-            desc="Crisp text, vibrant colors and reliable performance."
-            btnText="Shop Ink Tank Printers"
+            title="Premium Ink Tank"
+            desc="Consistent high-quality results for your daily creative tasks."
+            btnText="Browse Models"
             link="/shop?category=supertank-printers"
             image="/productsgrid/image_4_thumb.avif"
-            gradient="bg-gradient-to-r from-[#246fe4] to-[#59c7e8]"
           />
-
           <BottomPromo
-            title="Powerful Printing for Your Business"
-            desc="Fast, efficient and cost-effective solutions for high productivity."
-            btnText="Shop Laser Printers"
+            title="Pro Laser Series"
+            desc="Boost your business productivity with industry-leading speed."
+            btnText="Explore Series"
             link="/shop?category=laser-printers"
             image="/productsgrid/image_3_thumb.avif"
-            gradient="bg-gradient-to-r from-[#3db8ae] to-[#79d5bf]"
           />
-
           <BottomPromo
-            title="All-in-One Smart Solutions"
-            desc="Print, scan, copy with maximum convenience."
-            btnText="Shop All-in-One Printers"
+            title="Smart Solutions"
+            desc="The perfect balance of power and convenience for modern offices."
+            btnText="Shop Now"
             link="/shop?category=all-in-one-printers"
             image="/productsgrid/image_2_thumb.avif"
-            gradient="bg-gradient-to-r from-[#8d87d8] to-[#a79ce7]"
           />
         </div>
 
-        {/* bottom service strip */}
-        <div className="mt-12 bg-white rounded-[10px] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 divide-y md:divide-y-0 xl:divide-x divide-[#ececec] border border-slate-100">
-          <ServiceItem
-            icon={Truck}
-            title="Fast Global Shipping"
-            desc="Reliable delivery to your doorstep worldwide"
-          />
-          <ServiceItem
-            icon={BadgeCheck}
-            title="Secure Payments"
-            desc="Your transactions are 100% safe and encrypted"
-          />
-          <ServiceItem
-            icon={Headphones}
-            title="Flexible Payment Options"
-            desc="Multiple secure ways to pay for your orders"
-          />
-          <ServiceItem
-            icon={Shield}
-            title="Easy Order Tracking"
-            desc="Stay updated on your delivery in real-time"
-          />
+        {/* Bottom Service Strip */}
+        <div className="mt-20 bg-white rounded-[32px] shadow-sm grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 divide-y md:divide-y-0 xl:divide-x divide-slate-100 border border-white overflow-hidden">
+          <ServiceItem icon={Truck} title="Fast Delivery" desc="Reliable worldwide shipping" />
+          <ServiceItem icon={BadgeCheck} title="Safe Payment" desc="100% secure checkout" />
+          <ServiceItem icon={Headphones} title="Expert Help" desc="24/7 priority support" />
+          <ServiceItem icon={Shield} title="Order Tracking" desc="Real-time delivery updates" />
         </div>
       </div>
     </section>

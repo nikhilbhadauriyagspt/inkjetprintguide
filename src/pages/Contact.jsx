@@ -62,7 +62,7 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-white font-sans text-slate-900 pb-20">
-      <SEO title="Contact Us | Support Registry | Print Sphere" />
+      <SEO title="Contact Us | Support Registry | Inkjet Print Guide" />
 
       {/* Section 1: Hero Banner (Same as About/FAQ) */}
       <section className="relative h-[40vh] md:h-[50vh] flex items-center overflow-hidden">
@@ -98,20 +98,20 @@ export default function Contact() {
           <div className="lg:col-span-4 space-y-12">
             <div className="space-y-10">
               <div className="flex items-center gap-4">
-                <div className="w-1.5 h-10 bg-[#05718A] shrink-0"></div>
+                <div className="w-1.5 h-10 bg-[#4254e8] shrink-0"></div>
                 <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Our Office</h2>
               </div>
 
               <div className="space-y-8">
                 <div className="flex gap-6 items-start group">
-                  <div className="w-14 h-14 rounded-2xl bg-slate-50 text-[#05718A] border border-slate-100 flex items-center justify-center shrink-0 group-hover:bg-[#05718A] group-hover:text-white transition-all duration-500">
+                  <div className="w-14 h-14 rounded-2xl bg-slate-50 text-[#4254e8] border border-slate-100 flex items-center justify-center shrink-0 group-hover:bg-[#4254e8] group-hover:text-white transition-all duration-500">
                     <Mail size={24} />
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-400 text-[11px] uppercase tracking-widest mb-1">Email Us</h4>
                     <p className="text-slate-900 text-lg font-bold"> <a
-                      href="mailto:info@printsphere.co" className="text-[#05718A] hover:underline">
-                      info@printsphere.co
+                      href="mailto:info@inkjetprintguide.co" className="text-[#4254e8] hover:underline">
+                      info@inkjetprintguide.co
                     </a></p>
                   </div>
                 </div>
@@ -143,7 +143,7 @@ export default function Contact() {
                     </div>
                     <button
                       onClick={() => setStatus(null)}
-                      className="px-10 py-4 bg-slate-900 text-white font-bold text-sm uppercase tracking-widest rounded-xl hover:bg-[#05718A] transition-all"
+                      className="px-10 py-4 bg-slate-900 text-white font-bold text-sm uppercase tracking-widest rounded-xl hover:bg-[#4254e8] transition-all"
                     >
                       Send Another Message
                     </button>
@@ -164,7 +164,7 @@ export default function Contact() {
                           placeholder="Your name"
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          className="w-full h-14 px-6 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#05718A] focus:bg-white transition-all text-[15px] font-medium"
+                          className="w-full h-14 px-6 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#4254e8] focus:bg-white transition-all text-[15px] font-medium"
                         />
                       </div>
                       <div className="space-y-2">
@@ -175,7 +175,7 @@ export default function Contact() {
                           placeholder="your@email.com"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="w-full h-14 px-6 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#05718A] focus:bg-white transition-all text-[15px] font-medium"
+                          className="w-full h-14 px-6 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#4254e8] focus:bg-white transition-all text-[15px] font-medium"
                         />
                       </div>
                       <div className="space-y-2">
@@ -185,7 +185,7 @@ export default function Contact() {
                           placeholder="Your phone"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className="w-full h-14 px-6 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#05718A] focus:bg-white transition-all text-[15px] font-medium"
+                          className="w-full h-14 px-6 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#4254e8] focus:bg-white transition-all text-[15px] font-medium"
                         />
                       </div>
                       <div className="space-y-2">
@@ -194,7 +194,7 @@ export default function Contact() {
                           <select
                             value={formData.subject}
                             onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                            className="w-full h-14 px-6 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#05718A] focus:bg-white appearance-none cursor-pointer text-[15px] font-medium transition-all"
+                            className="w-full h-14 px-6 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#4254e8] focus:bg-white appearance-none cursor-pointer text-[15px] font-medium transition-all"
                           >
                             <option>General Inquiry</option>
                             <option>Technical Support</option>
@@ -214,14 +214,14 @@ export default function Contact() {
                         placeholder="How can we help you?"
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className="w-full py-5 px-6 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#05718A] focus:bg-white transition-all resize-none text-[15px] font-medium"
+                        className="w-full py-5 px-6 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#4254e8] focus:bg-white transition-all resize-none text-[15px] font-medium"
                       ></textarea>
                     </div>
 
                     <div className="pt-2">
                       <button
                         disabled={loading}
-                        className="h-16 px-12 bg-slate-900 text-white font-bold text-sm uppercase tracking-widest rounded-xl transition-all hover:bg-[#05718A] disabled:opacity-50 flex items-center gap-4 group shadow-lg shadow-slate-200"
+                        className="h-16 px-12 bg-slate-900 text-white font-bold text-sm uppercase tracking-widest rounded-xl transition-all hover:bg-[#4254e8] disabled:opacity-50 flex items-center gap-4 group shadow-lg shadow-slate-200"
                       >
                         {loading ? <Loader2 className="animate-spin" size={20} /> : (
                           <>

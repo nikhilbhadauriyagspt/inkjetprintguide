@@ -1,3 +1,3 @@
-# printsphere.co
+# inkjetprintguide.co
 
 

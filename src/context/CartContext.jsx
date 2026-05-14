@@ -40,6 +40,8 @@ export const CartProvider = ({ children }) => {
 
   const [toast, setToast] = useState(null);
   const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
+  const [isWishlistDrawerOpen, setIsWishlistDrawerOpen] = useState(false);
+  const [isCompareDrawerOpen, setIsCompareDrawerOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const showToast = (message, type = 'success') => {
@@ -49,6 +51,12 @@ export const CartProvider = ({ children }) => {
 
   const openCartDrawer = () => setIsCartDrawerOpen(true);
   const closeCartDrawer = () => setIsCartDrawerOpen(false);
+
+  const openWishlistDrawer = () => setIsWishlistDrawerOpen(true);
+  const closeWishlistDrawer = () => setIsWishlistDrawerOpen(false);
+
+  const openCompareDrawer = () => setIsCompareDrawerOpen(true);
+  const closeCompareDrawer = () => setIsCompareDrawerOpen(false);
 
   const openSearch = () => setIsSearchOpen(true);
   const closeSearch = () => setIsSearchOpen(false);
@@ -125,6 +133,7 @@ export const CartProvider = ({ children }) => {
       }
 
       showToast(`${product.name} added to wishlist!`);
+      setIsWishlistDrawerOpen(true);
       return [...prevWishlist, product];
     });
   };
@@ -148,6 +157,7 @@ export const CartProvider = ({ children }) => {
       }
 
       showToast(`${product.name} added to comparison!`);
+      setIsCompareDrawerOpen(true);
       return [...prevCompare, product];
     });
   };
@@ -189,6 +199,12 @@ export const CartProvider = ({ children }) => {
         isCartDrawerOpen,
         openCartDrawer,
         closeCartDrawer,
+        isWishlistDrawerOpen,
+        openWishlistDrawer,
+        closeWishlistDrawer,
+        isCompareDrawerOpen,
+        openCompareDrawer,
+        closeCompareDrawer,
         isSearchOpen,
         openSearch,
         closeSearch

@@ -11,7 +11,8 @@ import {
   Bell,
   FolderTree,
   MessageCircle,
-  Mail
+  Mail,
+  Image
 } from 'lucide-react';
 
 export default function AdminLayout() {
@@ -42,6 +43,7 @@ export default function AdminLayout() {
     { name: 'Inquiries', path: '/admin/contacts', icon: MessageCircle },
     { name: 'Subscribers', path: '/admin/newsletter', icon: Mail },
     { name: 'Users', path: '/admin/users', icon: Users },
+    { name: 'Assets', path: '/admin/assets', icon: Image },
     { name: 'Settings', path: '/admin/settings', icon: Settings },
   ];
 
@@ -51,7 +53,7 @@ export default function AdminLayout() {
       {/* SIDEBAR */}
       <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-white transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:relative lg:translate-x-0`}>
         <div className="flex items-center justify-between h-16 px-6 border-b border-slate-800">
-          <span className="text-xl font-bold ">Print Sphere<span className="text-blue-500">.</span> ADMIN</span>
+          <span className="text-xl font-bold ">Inkjet Print Guide<span className="text-blue-500">.</span> ADMIN</span>
           <button onClick={() => setSidebarOpen(false)} className="lg:hidden text-slate-400 hover:text-white">
             <X size={20} />
           </button>

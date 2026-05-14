@@ -3,22 +3,17 @@ import { promises as fs } from 'fs';
 import path from 'path';
 
 const folders = [
-  'public/products',
-  'public/category',
-  'public/newproimges',
-  'public/about',
-  'public/midbanner',
-  'public/banner',
-  'public/productsgrid'
+
+  'public/banner'
 ];
 
 async function optimizeFolder(folderPath) {
   try {
     const files = await fs.readdir(folderPath, { withFileTypes: true });
-    
+
     for (const file of files) {
       const fullPath = path.join(folderPath, file.name);
-      
+
       if (file.isDirectory()) {
         await optimizeFolder(fullPath);
         continue;
@@ -43,7 +38,7 @@ async function optimizeFolder(folderPath) {
         await sharp(buffer).avif({ quality: 60 }).toFile(path.join(folderPath, `${baseName}.avif`));
         // Standard WebP
         await sharp(buffer).webp({ quality: 60 }).toFile(path.join(folderPath, `${baseName}.webp`));
-        
+
         console.log(`Optimized: ${file.name}`);
       }
     }
@@ -59,7 +54,7 @@ async function start() {
     try {
       await fs.access(absolutePath);
       await optimizeFolder(absolutePath);
-    } catch (e) {}
+    } catch (e) { }
   }
   console.log('Complete!');
 }

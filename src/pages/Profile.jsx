@@ -125,7 +125,7 @@ export default function Profile() {
 
   return (
     <div className="bg-white min-h-screen font-sans text-slate-900 pb-20">
-      <SEO title="Your Account | Profile | Print Sphere" />
+      <SEO title="Your Account | Profile | Inkjet Print Guide" />
 
       {/* --- PAGE HEADER --- */}
       <div className="bg-white border-b border-slate-100 py-12 md:py-16 mb-12">

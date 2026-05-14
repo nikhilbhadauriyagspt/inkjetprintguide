@@ -33,7 +33,7 @@ export default function Footer() {
           {/* Brand Info */}
           <div className="space-y-8">
             <Link to="/">
-              <img src="/logo/logo.png" alt="Print Sphere" className="h-10 w-auto" />
+              <img src="/logo/logo.png" alt="Inkjet Print Guide" className="h-10 w-auto" />
             </Link>
             <p className="text-slate-500 text-[14px] leading-relaxed">
               Providing professional-grade printing solutions worldwide. High-performance hardware for home, office, and enterprise environments.
@@ -44,10 +44,10 @@ export default function Footer() {
           <div className="space-y-6">
             <h4 className="text-[15px] font-bold uppercase tracking-wider text-slate-900">Company</h4>
             <ul className="space-y-3">
-              <li><Link to="/" className="text-slate-500 text-[14px] hover:text-[#05718A] transition-colors">Home</Link></li>
-              <li><Link to="/about" className="text-slate-500 text-[14px] hover:text-[#05718A] transition-colors">About Us</Link></li>
-              <li><Link to="/contact" className="text-slate-500 text-[14px] hover:text-[#05718A] transition-colors">Contact</Link></li>
-              <li><Link to="/shop" className="text-slate-500 text-[14px] hover:text-[#05718A] transition-colors">Shop</Link></li>
+              <li><Link to="/" className="text-slate-500 text-[14px] hover:text-[#4254e8] transition-colors">Home</Link></li>
+              <li><Link to="/about" className="text-slate-500 text-[14px] hover:text-[#4254e8] transition-colors">About Us</Link></li>
+              <li><Link to="/contact" className="text-slate-500 text-[14px] hover:text-[#4254e8] transition-colors">Contact</Link></li>
+              <li><Link to="/shop" className="text-slate-500 text-[14px] hover:text-[#4254e8] transition-colors">Shop</Link></li>
             </ul>
           </div>
 
@@ -57,13 +57,13 @@ export default function Footer() {
             <ul className="space-y-3">
               {categories.map(cat => (
                 <li key={cat.id}>
-                  <Link to={`/shop?category=${cat.slug}`} className="text-slate-500 text-[14px] hover:text-[#05718A] transition-colors">
+                  <Link to={`/shop?category=${cat.slug}`} className="text-slate-500 text-[14px] hover:text-[#4254e8] transition-colors">
                     {cat.name}
                   </Link>
                 </li>
               ))}
               {categories.length === 0 && (
-                <li><Link to="/shop" className="text-slate-500 text-[14px] hover:text-[#05718A]">All Printers</Link></li>
+                <li><Link to="/shop" className="text-slate-500 text-[14px] hover:text-[#4254e8]">All Printers</Link></li>
               )}
             </ul>
           </div>
@@ -72,10 +72,10 @@ export default function Footer() {
           <div className="space-y-6">
             <h4 className="text-[15px] font-bold uppercase tracking-wider text-slate-900">Policies</h4>
             <ul className="space-y-3">
-              <li><Link to="/shipping-policy" className="text-slate-500 text-[14px] hover:text-[#05718A] transition-colors">Shipping Policy</Link></li>
-              <li><Link to="/return-policy" className="text-slate-500 text-[14px] hover:text-[#05718A] transition-colors">Return Policy</Link></li>
-              <li><Link to="/privacy-policy" className="text-slate-500 text-[14px] hover:text-[#05718A] transition-colors">Privacy Policy</Link></li>
-              <li><Link to="/terms-and-conditions" className="text-slate-500 text-[14px] hover:text-[#05718A] transition-colors">Terms & Conditions</Link></li>
+              <li><Link to="/shipping-policy" className="text-slate-500 text-[14px] hover:text-[#4254e8] transition-colors">Shipping Policy</Link></li>
+              <li><Link to="/return-policy" className="text-slate-500 text-[14px] hover:text-[#4254e8] transition-colors">Return Policy</Link></li>
+              <li><Link to="/privacy-policy" className="text-slate-500 text-[14px] hover:text-[#4254e8] transition-colors">Privacy Policy</Link></li>
+              <li><Link to="/terms-and-conditions" className="text-slate-500 text-[14px] hover:text-[#4254e8] transition-colors">Terms & Conditions</Link></li>
             </ul>
           </div>
 
@@ -84,8 +84,8 @@ export default function Footer() {
             <h4 className="text-[15px] font-bold uppercase tracking-wider text-slate-900">Contact</h4>
             <div className="space-y-4">
               <div className="flex gap-3 text-slate-500">
-                <Mail size={18} className="shrink-0 text-[#05718A]" />
-                <a href="mailto:info@printsphere.co" className="text-[14px] hover:text-[#05718A]">info@printsphere.co</a>
+                <Mail size={18} className="shrink-0 text-[#4254e8]" />
+                <a href="mailto:info@inkjetprintguide.co" className="text-[14px] hover:text-[#4254e8]">info@inkjetprintguide.co</a>
               </div>
             </div>
           </div>
@@ -96,7 +96,7 @@ export default function Footer() {
         <div className="border-t border-slate-100 py-10 flex flex-col lg:flex-row justify-between items-center gap-8">
           <div className="text-center lg:text-left space-y-2">
             <p className="text-slate-600 text-sm font-medium">
-              © {new Date().getFullYear()} Print Sphere LLC. All Rights Reserved.
+              © {new Date().getFullYear()} Inkjet Print Guide LLC. All Rights Reserved.
             </p>
           </div>
 

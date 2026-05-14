@@ -1,68 +1,44 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { m, AnimatePresence } from 'framer-motion';
-import ChevronLeft from 'lucide-react/dist/esm/icons/chevron-left';
-import ChevronRight from 'lucide-react/dist/esm/icons/chevron-right';
-import Award from 'lucide-react/dist/esm/icons/award';
-import ShieldCheck from 'lucide-react/dist/esm/icons/shield-check';
-import Globe from 'lucide-react/dist/esm/icons/globe';
-import HeartHandshake from 'lucide-react/dist/esm/icons/heart-handshake';
-import { Link } from "react-router-dom";
+import { m, AnimatePresence } from "framer-motion";
+import ChevronLeft from "lucide-react/dist/esm/icons/chevron-left";
+import ChevronRight from "lucide-react/dist/esm/icons/chevron-right";
 
 const slides = [
   {
-    image: "/banner/new-banner/17.avif",
-    title: "Premium Printing",
-    description:
-      "Reliable printing solutions designed for smooth performance, rich output, and everyday convenience.",
-    primaryCta: "Shop Printers",
-    secondaryCta: "Explore Collections",
+    image: "/banner/banner_02.webp",
+    title: "Printer Banner 1",
   },
   {
-    image: "/banner/new-banner/18.avif",
-    title: "Smart Office Printing",
-    description:
-      "Modern printers built for homes, workspaces, and growing business environments.",
-    primaryCta: "Discover Now",
-    secondaryCta: "Browse Categories",
-  },
-];
-
-const featureItems = [
-  {
-    icon: Award,
-    title: "High Print Quality",
+    image: "/banner/banner_01.webp ",
+    title: "Printer Banner 2",
   },
   {
-    icon: ShieldCheck,
-    title: "Reliable Performance",
-  },
-  {
-    icon: HeartHandshake,
-    title: "Easy Care & Durable",
-  },
-  {
-    icon: Globe,
-    title: "Worldwide Shipping",
+    image: "/banner/banner_03.webp",
+    title: "Printer Banner 3",
   },
 ];
 
 export default function Hero() {
   const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(0); // 1 for next, -1 for prev
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   const nextSlide = useCallback(() => {
+    setDirection(1);
     setCurrent((prev) => (prev + 1) % slides.length);
   }, []);
 
   const prevSlide = useCallback(() => {
+    setDirection(-1);
     setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
   }, []);
 
   useEffect(() => {
     if (!isAutoPlaying) return;
+
     const timer = setInterval(() => {
       nextSlide();
-    }, 6000);
+    }, 5000);
 
     return () => clearInterval(timer);
   }, [isAutoPlaying, nextSlide]);
@@ -77,112 +53,89 @@ export default function Hero() {
     prevSlide();
   };
 
+  const variants = {
+    enter: (direction) => ({
+      x: direction > 0 ? "100%" : "-100%",
+      opacity: 0
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1
+    },
+    exit: (direction) => ({
+      zIndex: 0,
+      x: direction < 0 ? "100%" : "-100%",
+      opacity: 0
+    })
+  };
+
   return (
-    <section className="relative w-full font-sans bg-white overflow-hidden">
-      <div className="relative h-[400px] sm:h-[480px] md:h-[520px] lg:h-[580px] xl:h-[620px] 2xl:h-[700px]">
-        {/* Background Slides */}
-        <AnimatePresence mode="wait">
-          <m.div
-            key={current}
-            initial={{ opacity: 0, scale: 1.03 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.01 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="absolute inset-0"
-          >
-            <img
-              src={slides[current].image}
-              alt={slides[current].title}
-              className="w-full h-full object-cover object-center"
-              fetchPriority={current === 0 ? "high" : "auto"}
-              loading="eager"
-            />
-            <div className="absolute inset-0 bg-black/10" />
-          </m.div>
-        </AnimatePresence>
-
-        {/* Left/Right Arrows */}
-        <button
-          onClick={handlePrev}
-          className="absolute left-3 sm:left-5 md:left-7 top-1/2 -translate-y-1/2 z-30 w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/90 hover:bg-white text-slate-700 shadow-md flex items-center justify-center transition"
-          aria-label="Previous slide"
-        >
-          <ChevronLeft size={22} />
-        </button>
-
-        <button
-          onClick={handleNext}
-          className="absolute right-3 sm:right-5 md:right-7 top-1/2 -translate-y-1/2 z-30 w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/90 hover:bg-white text-slate-700 shadow-md flex items-center justify-center transition"
-          aria-label="Next slide"
-        >
-          <ChevronRight size={22} />
-        </button>
-
-        {/* Content Box */}
-        <div className="relative z-20 max-w-[1600px] mx-auto h-full px-4 sm:px-6 md:px-8 lg:px-10 flex items-center">
-          <AnimatePresence mode="wait">
+    <section className="relative w-full overflow-hidden bg-transparent px-4 py-4 pt-0 md:px-8">
+      <div className="relative mx-auto h-[360px] max-w-[1700px] overflow-visible bg-white sm:h-[430px] md:h-[500px]  2xl:h-[700px] rounded-[10px]">
+        {/* Container for sliding images to keep them within the rounded box */}
+        <div className="absolute inset-0 overflow-hidden rounded-[10px]">
+          <AnimatePresence initial={false} custom={direction}>
             <m.div
-              key={`content-${current}`}
-              initial={{ opacity: 0, x: -25 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 20 }}
-              transition={{ duration: 0.45, ease: "easeOut" }}
-              className="w-full max-w-[680px] bg-[#f5f4f4]/50 backdrop-blur-[8px] px-6 py-8 sm:px-10 sm:py-10 md:px-12 md:py-12 border border-white/20 shadow-sm"
+              key={current}
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{
+                x: { type: "spring", stiffness: 200, damping: 30, mass: 1 },
+                opacity: { duration: 0.4 }
+              }}
+              className="absolute inset-0"
             >
-              <h1 className="text-[30px] sm:text-[42px] md:text-[52px] lg:text-[60px] leading-[1.1] font-bold text-black tracking-tight">
-                {slides[current].title}
-              </h1>
-
-              <p className="mt-4 text-[15px] sm:text-[16px] md:text-[18px] text-slate-800 max-w-[520px] leading-relaxed font-medium">
-                {slides[current].description}
-              </p>
-
-              <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <Link
-                  to="/shop"
-                  className="inline-flex items-center justify-center sm:min-w-[200px] h-[52px] px-8 rounded-full bg-[#05718A] text-white text-[15px] font-bold uppercase tracking-wider hover:bg-[#045d72] transition shadow-lg shadow-blue-900/10"
-                >
-                  {slides[current].primaryCta}
-                </Link>
-
-                <Link
-                  to="/shop"
-                  className="inline-flex items-center justify-center sm:min-w-[200px] h-[52px] px-8 rounded-full border-2 border-[#05718A] text-[#05718A] text-[15px] font-bold uppercase tracking-wider hover:bg-[#05718A] hover:text-white transition"
-                >
-                  {slides[current].secondaryCta}
-                </Link>
-              </div>
+              <img
+                src={slides[current].image}
+                alt={slides[current].title}
+                className="h-full w-full object-cover object-center"
+                fetchPriority={current === 0 ? "high" : "auto"}
+                loading={current === 0 ? "eager" : "lazy"}
+              />
             </m.div>
           </AnimatePresence>
         </div>
-      </div>
 
-      {/* Bottom Feature Strip */}
-      <div className="w-full bg-[#05718A]">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10">
-          <div className="grid grid-cols-2 lg:grid-cols-4">
-            {featureItems.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={index}
-                  className={`flex items-center gap-3 md:gap-4 px-4 md:px-8 py-5 md:py-6 text-white ${index !== featureItems.length - 1
-                    ? "lg:border-r lg:border-white/20"
-                    : ""
-                    }`}
-                >
-                  <div className="shrink-0">
-                    <Icon size={26} strokeWidth={1.9} />
-                  </div>
-                  <div>
-                    <p className="text-[16px] md:text-[18px] font-semibold leading-tight">
-                      {item.title}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+        {/* Left Arrow */}
+        <button
+          onClick={handlePrev}
+          aria-label="Previous slide"
+          className="absolute left-0 top-1/2 z-30 flex h-[52px] w-[34px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-r-full bg-[#eef1f5] text-[#111827]  cursor-pointer "
+        >
+          <ChevronLeft size={25} />
+        </button>
+
+        {/* Right Arrow */}
+        <button
+          onClick={handleNext}
+          aria-label="Next slide"
+          className="absolute right-0 top-1/2 z-30 flex h-[52px] w-[34px] translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-l-full bg-[#eef1f5] text-[#111827] cursor-pointer "
+        >
+          <ChevronRight size={25} />
+        </button>
+
+        {/* Bottom Dots */}
+        <div className="absolute bottom-0 left-1/2 z-40 flex -translate-x-1/2 translate-y-1/2 items-center gap-2 rounded-t-[18px] bg-[#eef1f5] px-5 py-2 ">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                const newDirection = index > current ? 1 : -1;
+                setDirection(newDirection);
+                setCurrent(index);
+                setIsAutoPlaying(false);
+              }}
+              aria-label={`Go to slide ${index + 1}`}
+              className={`h-[13px] rounded-full border transition-all duration-300 ${current === index
+                ? "w-[28px] border-[#4254e8] bg-[#4254e8]"
+                : "w-[13px] border-[#64748b] bg-white"
+                }`}
+            />
+          ))}
         </div>
       </div>
     </section>

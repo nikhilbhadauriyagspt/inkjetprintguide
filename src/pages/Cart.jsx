@@ -23,13 +23,13 @@ export default function Cart() {
 
   if (cart.length === 0) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center px-6 bg-[#f5f5f5] text-center">
+      <div className="min-h-screen flex flex-col items-center justify-center px-6 bg-[#eef1f5] text-center">
         <div className="w-24 h-24 bg-white shadow-xl shadow-slate-200/50 rounded-3xl flex items-center justify-center mb-8 border border-slate-100">
           <ShoppingCart size={40} className="text-slate-200" />
         </div>
         <h2 className="text-3xl font-bold text-slate-900 mb-2 tracking-tight">Your Cart is Empty</h2>
         <p className="text-slate-500 mb-10 font-medium">Add some amazing printers to your cart to get started.</p>
-        <Link to="/shop" className="px-10 py-4 bg-slate-900 text-white font-bold text-sm uppercase tracking-widest rounded-xl hover:bg-[#05718A] transition-all flex items-center gap-3 shadow-lg shadow-slate-200">
+        <Link to="/shop" className="px-10 py-4 bg-slate-900 text-white font-bold text-sm uppercase tracking-widest rounded-xl hover:bg-[#4254e8] transition-all flex items-center gap-3 shadow-lg shadow-slate-200">
           <ChevronLeft size={18} />
           Explore Shop
         </Link>
@@ -38,12 +38,12 @@ export default function Cart() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] font-sans text-slate-900 pb-20">
-      <SEO title="Your Shopping Cart | Premium Printers & Ink | Print Sphere" />
+    <div className="min-h-screen bg-[#eef1f5] font-sans text-slate-900 pb-20">
+      <SEO title="Your Shopping Cart | Premium Printers & Ink | Inkjet Print Guide" />
 
       <div className="max-w-[1700px] mx-auto px-6 py-16">
         <div className="flex items-center gap-4 mb-12">
-          <div className="w-1.5 h-10 bg-[#05718A] rounded-full"></div>
+          <div className="w-1.5 h-10 bg-[#4254e8] rounded-full"></div>
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight">Shopping Cart</h1>
         </div>
 
@@ -64,7 +64,7 @@ export default function Cart() {
                     </div>
                     <div className="flex-1 min-w-0 flex flex-col">
                       <div className="flex justify-between gap-4 mb-4">
-                        <Link to={`/product/${item.slug}`} className="font-bold text-xl text-slate-900 hover:text-[#05718A] transition-colors line-clamp-2 leading-tight">{item.name}</Link>
+                        <Link to={`/product/${item.slug}`} className="font-bold text-xl text-slate-900 hover:text-[#4254e8] transition-colors line-clamp-2 leading-tight">{item.name}</Link>
                         <button onClick={() => removeFromCart(item.id)} className="text-slate-300 hover:text-red-500 transition-all p-2 bg-slate-50 hover:bg-red-50 rounded-xl" title="Remove item"><Trash2 size={20} /></button>
                       </div>
 
@@ -85,7 +85,7 @@ export default function Cart() {
               </div>
             </div>
 
-            <Link to="/shop" className="inline-flex items-center gap-3 text-sm font-bold text-slate-400 hover:text-[#05718A] transition-all uppercase tracking-widest ml-4">
+            <Link to="/shop" className="inline-flex items-center gap-3 text-sm font-bold text-slate-400 hover:text-[#4254e8] transition-all uppercase tracking-widest ml-4">
               <ChevronLeft size={18} /> Continue Shopping
             </Link>
           </div>
@@ -93,7 +93,7 @@ export default function Cart() {
           {/* Summary */}
           <div className="lg:col-span-4">
             <div className="bg-white p-10 sticky top-32 border border-slate-100 rounded-3xl shadow-2xl shadow-slate-200/60 overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-2 bg-[#05718A]"></div>
+              <div className="absolute top-0 left-0 right-0 h-2 bg-[#4254e8]"></div>
               <h3 className="text-xl font-bold mb-10 text-slate-900">Order Summary</h3>
 
               <div className="space-y-6 mb-10">
@@ -107,11 +107,11 @@ export default function Cart() {
                 </div>
                 <div className="pt-8 border-t border-slate-100 flex justify-between items-center">
                   <span className="font-bold text-slate-900 text-lg">Total Amount</span>
-                  <span className="font-bold text-3xl text-[#05718A] tracking-tight">${total.toLocaleString()}</span>
+                  <span className="font-bold text-3xl text-[#4254e8] tracking-tight">${total.toLocaleString()}</span>
                 </div>
               </div>
 
-              <Link to="/checkout" className="w-full h-16 bg-slate-900 text-white flex items-center justify-center gap-4 font-bold text-sm uppercase tracking-widest rounded-2xl hover:bg-[#05718A] transition-all shadow-xl shadow-slate-200">
+              <Link to="/checkout" className="w-full h-16 bg-slate-900 text-white flex items-center justify-center gap-4 font-bold text-sm uppercase tracking-widest rounded-2xl hover:bg-[#4254e8] transition-all shadow-xl shadow-slate-200">
                 Checkout Now
                 <ArrowRight size={20} />
               </Link>

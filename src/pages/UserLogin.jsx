@@ -41,7 +41,7 @@ export default function UserLogin() {
 
     return (
         <div className="min-h-screen flex bg-white font-sans overflow-hidden">
-            <SEO title="Sign In | Registry Access | Print Sphere" />
+            <SEO title="Sign In | Registry Access | Inkjet Print Guide" />
 
             {/* Left: Branding Image (50%) */}
             <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-slate-900">
@@ -54,17 +54,17 @@ export default function UserLogin() {
 
                 <div className="relative z-10 flex flex-col justify-between p-16 w-full">
                     <Link to="/">
-                        <img src="/logo/logo.avif" alt="Print Sphere" className="h-10 brightness-0 invert" />
+                        <img src="/logo/logo.avif" alt="Inkjet Print Guide" className="h-10 brightness-0 invert" />
                     </Link>
 
                     <div className="space-y-6">
                         <div className="flex items-center gap-3">
-                            <div className="w-10 h-[2px] bg-[#05718A]"></div>
-                            <span className="text-[#05718A] font-bold text-sm tracking-normal uppercase">Customer Portal</span>
+                            <div className="w-10 h-[2px] bg-[#4254e8]"></div>
+                            <span className="text-[#4254e8] font-bold text-sm tracking-normal uppercase">Customer Portal</span>
                         </div>
                         <h2 className="text-5xl xl:text-7xl font-bold text-white tracking-tighter leading-none">
                             Welcome <br />
-                            <span className="text-[#05718A]">Back.</span>
+                            <span className="text-[#4254e8]">Back.</span>
                         </h2>
                         <p className="text-slate-300 text-lg max-w-md leading-relaxed">
                             Sign in to manage your orders, track shipments, and access your personal wishlist and account details.
@@ -73,7 +73,7 @@ export default function UserLogin() {
 
                     <div className="flex items-center gap-8">
                         <div className="space-y-1">
-                            <p className="text-[#05718A] font-bold text-sm uppercase">Secure Login</p>
+                            <p className="text-[#4254e8] font-bold text-sm uppercase">Secure Login</p>
                             <p className="text-white/40 text-[10px] uppercase font-bold tracking-widest">Protected Session</p>
                         </div>
                     </div>
@@ -81,11 +81,11 @@ export default function UserLogin() {
             </div>
 
             {/* Right: Login Form (50%) */}
-            <div className="w-full lg:w-1/2 flex items-center justify-center p-8 md:p-16 bg-[#f5f5f5]">
+            <div className="w-full lg:w-1/2 flex items-center justify-center p-8 md:p-16 bg-[#eef1f5]">
                 <div className="w-full max-w-[480px] bg-white p-10 md:p-12 border border-slate-100 shadow-xl rounded-2xl space-y-10">
                     <div className="lg:hidden text-center mb-8">
                         <Link to="/">
-                            <img src="/logo/logo.avif" alt="Print Sphere" className="h-10 mx-auto" />
+                            <img src="/logo/logo.avif" alt="Inkjet Print Guide" className="h-10 mx-auto" />
                         </Link>
                     </div>
 
@@ -111,7 +111,7 @@ export default function UserLogin() {
                                     placeholder="your@email.com"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className="w-full h-14 pl-12 pr-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#05718A] focus:bg-white transition-all text-[15px] font-medium"
+                                    className="w-full h-14 pl-12 pr-4 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#4254e8] focus:bg-white transition-all text-[15px] font-medium"
                                 />
                             </div>
                         </div>
@@ -119,7 +119,7 @@ export default function UserLogin() {
                         <div className="space-y-2">
                             <div className="flex justify-between items-center ml-1">
                                 <label className="text-sm font-bold text-slate-700">Password</label>
-                                <Link to="#" className="text-xs font-bold text-[#05718A] hover:underline">Forgot?</Link>
+                                <Link to="#" className="text-xs font-bold text-[#4254e8] hover:underline">Forgot?</Link>
                             </div>
                             <div className="relative">
                                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
@@ -129,12 +129,12 @@ export default function UserLogin() {
                                     placeholder="••••••••"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className="w-full h-14 pl-12 pr-12 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#05718A] focus:bg-white transition-all text-[15px] font-medium"
+                                    className="w-full h-14 pl-12 pr-12 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-[#4254e8] focus:bg-white transition-all text-[15px] font-medium"
                                 />
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#05718A] transition-colors"
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#4254e8] transition-colors"
                                 >
                                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                                 </button>
@@ -143,7 +143,7 @@ export default function UserLogin() {
 
                         <button
                             disabled={loading}
-                            className="w-full h-14 bg-slate-900 text-white font-bold text-sm uppercase tracking-wider rounded-xl hover:bg-[#05718A] transition-all flex items-center justify-center gap-3 group shadow-lg shadow-slate-200"
+                            className="w-full h-14 bg-slate-900 text-white font-bold text-sm uppercase tracking-wider rounded-xl hover:bg-[#4254e8] transition-all flex items-center justify-center gap-3 group shadow-lg shadow-slate-200"
                         >
                             {loading ? <Loader2 className="animate-spin" size={20} /> : (
                                 <>
@@ -157,7 +157,7 @@ export default function UserLogin() {
                     <div className="pt-6 border-t border-slate-100 text-center space-y-6">
                         <p className="text-slate-600 font-medium">
                             New here?{' '}
-                            <Link to="/signup" className="text-[#05718A] font-bold hover:underline">Create an Account</Link>
+                            <Link to="/signup" className="text-[#4254e8] font-bold hover:underline">Create an Account</Link>
                         </p>
 
                         <div className="flex items-center justify-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
