@@ -36,13 +36,13 @@ export default function CookieConsent() {
             <div className="bg-white border border-slate-200 shadow-[0_-10px_40px_rgba(0,0,0,0.08)] rounded-2xl overflow-hidden">
               <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-6 md:px-10 md:py-8">
                 <div className="flex items-start gap-4 flex-1">
-                  <div className="w-12 h-12 rounded-full bg-[#4254e8]/10 flex items-center justify-center shrink-0 text-[#4254e8]">
+                  <div className="w-12 h-12 rounded-full bg-[#05718A]/10 flex items-center justify-center shrink-0 text-[#05718A]">
                     <ShieldCheck size={24} />
                   </div>
                   <div>
                     <h3 className="text-[17px] font-bold text-slate-900 mb-1">Cookies & Privacy</h3>
                     <p className="text-[14px] text-slate-500 leading-relaxed max-w-3xl">
-                      We use cookies to enhance your experience, analyze site traffic, and serve personalized content. By clicking "Accept", you consent to our use of cookies. Read our <Link to="/cookie-policy" className="text-[#4254e8] font-semibold hover:underline">Cookie Policy</Link> for more details.
+                      We use cookies to enhance your experience, analyze site traffic, and serve personalized content. By clicking "Accept", you consent to our use of cookies. Read our <Link to="/cookie-policy" className="text-[#05718A] font-semibold hover:underline">Cookie Policy</Link> for more details.
                     </p>
                   </div>
                 </div>
@@ -56,7 +56,7 @@ export default function CookieConsent() {
                   </button>
                   <button
                     onClick={() => handleConsent('accepted')}
-                    className="flex-1 md:flex-none h-[48px] px-8 rounded-full bg-[#4254e8] text-white text-[14px] font-bold hover:bg-[#045d72] transition-all shadow-lg shadow-[#4254e8]/20"
+                    className="flex-1 md:flex-none h-[48px] px-8 rounded-full bg-[#05718A] text-white text-[14px] font-bold hover:bg-[#045a6e] transition-all shadow-lg shadow-[#05718A]/20"
                   >
                     Accept All
                   </button>

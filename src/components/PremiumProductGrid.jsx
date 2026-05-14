@@ -161,26 +161,12 @@ export default function PremiumProductGrid({ products = [], loading = false }) {
     }),
   };
 
-  if (loading) {
-    return (
-      <section className="w-full bg-[#eef1f5] py-10">
-        <div className="mx-auto max-w-[1700px] px-5">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4 2xl:grid-cols-5">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="h-[460px] animate-pulse rounded-[14px] bg-white" />
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section className="w-full bg-[#eef1f5] py-10 overflow-hidden">
       <div className="mx-auto max-w-[1700px] px-3 2xl:px-0">
         <div className="mb-8 flex items-center justify-between border-b border-slate-300/60 pb-4">
           <h2 className="text-[24px] font-bold text-[#10142b]">
-            Printers & <span className="text-[#4254e8]">All-in-One Solutions</span>
+            Printers & <span className="text-[#05718A]">All-in-One Solutions</span>
           </h2>
 
           <div className="flex items-center gap-2">
@@ -192,7 +178,7 @@ export default function PremiumProductGrid({ products = [], loading = false }) {
                   setDirection(dot > active ? 1 : -1);
                   setActive(dot);
                 }}
-                className={`h-[12px] rounded-full border border-[#0f2742] transition-all duration-300 ${active === dot ? "w-[28px] bg-[#4254e8] border-[#4254e8]" : "w-[12px] bg-white"
+                className={`h-[12px] rounded-full border border-[#0f2742] transition-all duration-300 ${active === dot ? "w-[28px] bg-[#05718A] border-[#05718A]" : "w-[12px] bg-white"
                   }`}
                 aria-label={`Go to product slide ${dot + 1}`}
               />
@@ -201,25 +187,33 @@ export default function PremiumProductGrid({ products = [], loading = false }) {
         </div>
 
         <div className="relative min-h-[520px]">
-          <AnimatePresence initial={false} custom={direction}>
-            <m.div
-              key={active}
-              custom={direction}
-              variants={variants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{
-                x: { type: "spring", stiffness: 200, damping: 30, mass: 1 },
-                opacity: { duration: 0.4 }
-              }}
-              className="absolute inset-0 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4 2xl:grid-cols-5"
-            >
-              {shownProducts.map((product, index) => (
-                <ProductCard key={product.id} product={product} index={index} />
+          {loading ? (
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4 2xl:grid-cols-5">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <div key={i} className="h-[520px] animate-pulse rounded-[14px] bg-white shadow-sm" />
               ))}
-            </m.div>
-          </AnimatePresence>
+            </div>
+          ) : (
+            <AnimatePresence initial={false} custom={direction}>
+              <m.div
+                key={active}
+                custom={direction}
+                variants={variants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  x: { type: "spring", stiffness: 200, damping: 30, mass: 1 },
+                  opacity: { duration: 0.4 }
+                }}
+                className="absolute inset-0 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4 2xl:grid-cols-5"
+              >
+                {shownProducts.map((product, index) => (
+                  <ProductCard key={product.id} product={product} index={index} />
+                ))}
+              </m.div>
+            </AnimatePresence>
+          )}
         </div>
       </div>
     </section>

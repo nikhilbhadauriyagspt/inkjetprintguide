@@ -146,6 +146,8 @@ export default function Header() {
               src="/logo/logo.webp"
               alt="Inkjet Print Guide"
               className="h-[34px] w-auto object-contain"
+              width="160"
+              height="34"
             />
           </Link>
 
@@ -153,8 +155,8 @@ export default function Header() {
             <Link
               to="/"
               className={`text-[15px] font-[600] transition ${isActiveLink("/")
-                ? "text-[#4254e8]"
-                : "text-[#12162f] hover:text-[#4254e8]"
+                ? "text-[#05718A]"
+                : "text-[#12162f] hover:text-[#05718A]"
                 }`}
             >
               Home
@@ -163,7 +165,7 @@ export default function Header() {
             <div className="relative" ref={categoryRef}>
               <button
                 onClick={() => setIsCategoryOpen((prev) => !prev)}
-                className="flex items-center gap-1 text-[15px] font-[600] text-[#12162f] transition hover:text-[#4254e8]"
+                className="flex items-center gap-1 text-[15px] font-[600] text-[#12162f] transition hover:text-[#05718A]"
               >
                 Categories
                 <ChevronDown
@@ -186,10 +188,10 @@ export default function Header() {
                           key={cat.id}
                           to={`/shop?category=${cat.slug}`}
                           onClick={() => setIsCategoryOpen(false)}
-                          className="flex items-center justify-between px-5 py-3 text-[14px] font-medium text-slate-700 transition hover:bg-slate-50 hover:text-[#4254e8]"
+                          className="flex items-center justify-between px-5 py-3 text-[14px] font-medium text-slate-700 transition hover:bg-slate-50 hover:text-[#05718A]"
                         >
                           <span className="flex items-center gap-3">
-                            <Printer size={16} className="text-[#4254e8]" />
+                            <Printer size={16} className="text-[#05718A]" />
                             {cat.name}
                           </span>
                           <ChevronRight size={14} />
@@ -204,8 +206,8 @@ export default function Header() {
             <Link
               to="/shop"
               className={`text-[15px] font-medium transition ${location.pathname === "/shop"
-                ? "text-[#4254e8]"
-                : "text-[#12162f] hover:text-[#4254e8]"
+                ? "text-[#05718A]"
+                : "text-[#12162f] hover:text-[#05718A]"
                 }`}
             >
               Products
@@ -214,8 +216,8 @@ export default function Header() {
             <Link
               to="/about"
               className={`text-[15px] font-medium transition ${isActiveLink("/about")
-                ? "text-[#4254e8]"
-                : "text-[#12162f] hover:text-[#4254e8]"
+                ? "text-[#05718A]"
+                : "text-[#12162f] hover:text-[#05718A]"
                 }`}
             >
               About Us
@@ -224,8 +226,8 @@ export default function Header() {
             <Link
               to="/contact"
               className={`text-[15px] font-medium transition ${isActiveLink("/contact")
-                ? "text-[#4254e8]"
-                : "text-[#12162f] hover:text-[#4254e8]"
+                ? "text-[#05718A]"
+                : "text-[#12162f] hover:text-[#05718A]"
                 }`}
             >
               Contact
@@ -240,7 +242,7 @@ export default function Header() {
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
                 onFocus={() => setIsSearchDrawerOpen(true)}
-                className="h-[42px] w-[280px] rounded-full border border-slate-200 bg-slate-50 pl-11 pr-4 text-[14px] text-slate-700 outline-none transition-all focus:border-[#4254e8] focus:bg-white focus:ring-1 focus:ring-[#4254e8]"
+                className="h-[42px] w-[280px] rounded-full border border-slate-200 bg-slate-50 pl-11 pr-4 text-[14px] text-slate-700 outline-none transition-all focus:border-[#05718A] focus:bg-white focus:ring-1 focus:ring-[#05718A]"
               />
               <Search
                 size={18}
@@ -251,7 +253,7 @@ export default function Header() {
             <button
               onClick={() => setIsSearchDrawerOpen(true)}
               aria-label="Open search"
-              className="text-[#12162f] transition hover:text-[#4254e8] xl:hidden"
+              className="text-[#12162f] transition hover:text-[#05718A] xl:hidden"
             >
               <Search size={21} />
             </button>
@@ -260,7 +262,7 @@ export default function Header() {
               <button
                 onClick={() => setIsAccountOpen((prev) => !prev)}
                 aria-label="Account"
-                className="text-[#12162f] transition hover:text-[#4254e8]"
+                className="text-[#12162f] transition hover:text-[#05718A]"
               >
                 <User size={21} />
               </button>
@@ -278,7 +280,7 @@ export default function Header() {
                         <Link
                           to="/login"
                           onClick={() => setIsAccountOpen(false)}
-                          className="block rounded-lg bg-[#4254e8] py-2.5 text-center text-sm font-semibold text-white"
+                          className="block rounded-lg bg-[#05718A] py-2.5 text-center text-sm font-semibold text-white"
                         >
                           Sign In
                         </Link>
@@ -335,12 +337,12 @@ export default function Header() {
 
             <button
               onClick={openWishlistDrawer}
-              className="relative hidden text-[#12162f] transition hover:text-[#4254e8] sm:block"
+              className="relative hidden text-[#12162f] transition hover:text-[#05718A] sm:block"
               aria-label="Wishlist"
             >
               <Heart size={21} />
               {wishlistCount > 0 && (
-                <span className="absolute -right-2 -top-2 flex h-[17px] min-w-[17px] items-center justify-center rounded-full bg-[#4254e8] px-1 text-[10px] font-bold text-white">
+                <span className="absolute -right-2 -top-2 flex h-[17px] min-w-[17px] items-center justify-center rounded-full bg-[#05718A] px-1 text-[10px] font-bold text-white">
                   {wishlistCount}
                 </span>
               )}
@@ -348,12 +350,12 @@ export default function Header() {
 
             <button
               onClick={openCompareDrawer}
-              className="relative hidden text-[#12162f] transition hover:text-[#4254e8] md:block"
+              className="relative hidden text-[#12162f] transition hover:text-[#05718A] md:block"
               aria-label="Compare"
             >
               <GitCompare size={21} />
               {compareCount > 0 && (
-                <span className="absolute -right-2 -top-2 flex h-[17px] min-w-[17px] items-center justify-center rounded-full bg-[#4254e8] px-1 text-[10px] font-bold text-white">
+                <span className="absolute -right-2 -top-2 flex h-[17px] min-w-[17px] items-center justify-center rounded-full bg-[#05718A] px-1 text-[10px] font-bold text-white">
                   {compareCount}
                 </span>
               )}
@@ -361,12 +363,12 @@ export default function Header() {
 
             <button
               onClick={openCartDrawer}
-              className="relative text-[#12162f] transition hover:text-[#4254e8]"
+              className="relative text-[#12162f] transition hover:text-[#05718A]"
               aria-label="Open cart"
             >
               <ShoppingCart size={22} />
               {cartCount > 0 && (
-                <span className="absolute -right-2 -top-2 flex h-[17px] min-w-[17px] items-center justify-center rounded-full bg-[#4254e8] px-1 text-[10px] font-bold text-white">
+                <span className="absolute -right-2 -top-2 flex h-[17px] min-w-[17px] items-center justify-center rounded-full bg-[#05718A] px-1 text-[10px] font-bold text-white">
                   {cartCount}
                 </span>
               )}
@@ -545,7 +547,7 @@ export default function Header() {
                       to={link.path}
                       onClick={() => setIsMobileMenuOpen(false)}
                       className={`block rounded-xl px-4 py-3 text-[15px] font-medium ${isActiveLink(link.path)
-                        ? "bg-[#4254e8] text-white"
+                        ? "bg-[#05718A] text-white"
                         : "text-slate-700 hover:bg-slate-50"
                         }`}
                     >
@@ -584,7 +586,7 @@ export default function Header() {
                         key={cat.id}
                         to={`/shop?category=${cat.slug}`}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 hover:text-[#4254e8]"
+                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 hover:text-[#05718A]"
                       >
                         <Printer size={14} className="text-slate-400" />
                         {cat.name}
@@ -600,7 +602,7 @@ export default function Header() {
                     <Link
                       to="/login"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="rounded-xl bg-[#4254e8] py-3 text-center text-sm font-semibold text-white"
+                      className="rounded-xl bg-[#05718A] py-3 text-center text-sm font-semibold text-white"
                     >
                       Login
                     </Link>
@@ -615,7 +617,7 @@ export default function Header() {
                 ) : (
                   <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-3">
                     <div className="flex min-w-0 items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#4254e8] font-bold text-white">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#05718A] font-bold text-white">
                         {user.name?.[0] || "U"}
                       </div>
                       <p className="truncate text-sm font-semibold text-slate-800">

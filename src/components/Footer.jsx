@@ -101,7 +101,13 @@ export default function Footer() {
           </div>
 
           <div className="bg-white px-4 py-2 border border-slate-200 shrink-0">
-            <img src="https://www.paypalobjects.com/digitalassets/c/website/logo/full-text/pp_fc_hl.svg" alt="PayPal" className="h-4 opacity-40 grayscale" />
+            <img 
+              src="https://www.paypalobjects.com/digitalassets/c/website/logo/full-text/pp_fc_hl.svg" 
+              alt="PayPal" 
+              className="h-4 w-auto opacity-40 grayscale" 
+              width="80" 
+              height="16"
+            />
           </div>
         </div>
 

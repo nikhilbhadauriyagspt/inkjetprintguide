@@ -9,7 +9,7 @@ const slides = [
     title: "Printer Banner 1",
   },
   {
-    image: "/banner/banner_01.webp ",
+    image: "/banner/banner_01.webp",
     title: "Printer Banner 2",
   },
   {
@@ -131,7 +131,7 @@ export default function Hero() {
               }}
               aria-label={`Go to slide ${index + 1}`}
               className={`h-[13px] rounded-full border transition-all duration-300 ${current === index
-                ? "w-[28px] border-[#4254e8] bg-[#4254e8]"
+                ? "w-[28px] border-[#05718A] bg-[#05718A]"
                 : "w-[13px] border-[#64748b] bg-white"
                 }`}
             />

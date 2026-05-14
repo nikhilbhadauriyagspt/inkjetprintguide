@@ -19,7 +19,7 @@ const BottomNav = lazy(() => import('./components/BottomNav'));
 const CookieConsent = lazy(() => import('./components/CookieConsent'));
 
 // Lazy load pages
-const Home = lazy(() => import('./pages/Home'));
+import Home from './pages/Home';
 const Shop = lazy(() => import('./pages/Shop'));
 const ProductDetail = lazy(() => import('./pages/ProductDetail'));
 const About = lazy(() => import('./pages/About'));
