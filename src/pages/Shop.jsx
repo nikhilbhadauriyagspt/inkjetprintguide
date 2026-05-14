@@ -130,7 +130,7 @@ export default function Shop() {
           <button
             onClick={() => updateFilter('category', '')}
             className={`w-full text-left px-4 py-3 text-[13px] font-bold rounded-xl transition-all ${!category
-              ? 'bg-[#05718A] text-white shadow-lg shadow-[#05718A]/20'
+              ? 'bg-[#007aff] text-white shadow-lg shadow-[#007aff]/20'
               : 'text-slate-500 hover:bg-slate-50'
               }`}
           >
@@ -141,7 +141,7 @@ export default function Shop() {
               key={c.id}
               onClick={() => updateFilter('category', c.slug)}
               className={`w-full text-left px-4 py-3 text-[13px] font-bold rounded-xl transition-all ${category === c.slug
-                ? 'bg-[#05718A] text-white shadow-lg shadow-[#05718A]/20'
+                ? 'bg-[#007aff] text-white shadow-lg shadow-[#007aff]/20'
                 : 'text-slate-500 hover:bg-slate-50'
                 }`}
             >
@@ -153,7 +153,7 @@ export default function Shop() {
 
       <button
         onClick={() => setSearchParams({})}
-        className="w-full bg-[#10142b] text-white py-4 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] hover:bg-[#05718A] transition-all shadow-xl"
+        className="w-full bg-[#10142b] text-white py-4 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] hover:bg-[#007aff] transition-all shadow-xl"
       >
         Reset Filters
       </button>
@@ -173,7 +173,7 @@ export default function Shop() {
       "NEW": { bg: "bg-[#ec4899]", triangle: "before:border-l-[#ec4899]" },
       "SALE": { bg: "bg-[#10b981]", triangle: "before:border-l-[#10b981]" },
       "HOT": { bg: "bg-[#f97316]", triangle: "before:border-l-[#f97316]" },
-      "LIMITED": { bg: "bg-[#05718A]", triangle: "before:border-l-[#05718A]" }
+      "LIMITED": { bg: "bg-[#007aff]", triangle: "before:border-l-[#007aff]" }
     };
     const config = badgeConfig[badge] || badgeConfig["LIMITED"];
 
@@ -193,13 +193,13 @@ export default function Shop() {
           </Link>
 
           <div className="absolute bottom-0 left-1/2 z-20 flex -translate-x-1/2 translate-y-full items-center gap-3 rounded-t-[22px] bg-white px-5 py-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 shadow-sm border border-slate-100">
-            <Link to={`/product/${p.slug}`} className="text-[#0f2742] hover:text-[#05718A]">
+            <Link to={`/product/${p.slug}`} className="text-[#0f2742] hover:text-[#007aff]">
               <Eye size={16} />
             </Link>
 
             <button
               onClick={() => toggleCompare(p)}
-              className={`transition-colors ${isCompared ? 'text-[#05718A]' : 'text-[#0f2742] hover:text-[#05718A]'}`}
+              className={`transition-colors ${isCompared ? 'text-[#007aff]' : 'text-[#0f2742] hover:text-[#007aff]'}`}
             >
               <ArrowLeftRight size={16} />
             </button>
@@ -221,7 +221,7 @@ export default function Shop() {
           </div>
 
           <Link to={`/product/${p.slug}`}>
-            <h3 className="line-clamp-2 text-[15px] font-bold text-[#10142b] transition hover:text-[#05718A] min-h-[40px] leading-tight">
+            <h3 className="line-clamp-2 text-[15px] font-bold text-[#10142b] transition hover:text-[#007aff] min-h-[40px] leading-tight">
               {p.name}
             </h3>
           </Link>
@@ -240,7 +240,7 @@ export default function Shop() {
             <button
               onClick={() => handleAddToCart(p)}
               disabled={isAdded}
-              className={`flex h-[30px] items-center gap-1.5 rounded-lg px-2.5 text-[10px] font-bold text-white transition-all ${isAdded ? 'bg-emerald-500' : 'bg-[#05718A] hover:bg-[#045a6e]'}`}
+              className={`flex h-[30px] items-center gap-1.5 rounded-lg px-2.5 text-[10px] font-bold text-white transition-all ${isAdded ? 'bg-emerald-500' : 'bg-[#007aff] hover:bg-[#045a6e]'}`}
             >
               {isAdded ? <Check size={13} /> : <ShoppingCart size={13} />}
               {isAdded ? 'ADDED' : 'ADD'}
@@ -269,10 +269,10 @@ export default function Shop() {
             </div>
             <div className="bg-[#10142b] rounded-[24px] px-10 py-6 flex items-center gap-8 shadow-2xl">
               <div className="text-right">
-                <p className="text-[10px] font-black text-[#05718A] uppercase tracking-widest mb-1">UNITS DISCOVERED</p>
+                <p className="text-[10px] font-black text-[#007aff] uppercase tracking-widest mb-1">UNITS DISCOVERED</p>
                 <p className="text-4xl font-black text-white leading-none tracking-tighter">{products.length}</p>
               </div>
-              <LayoutGrid size={32} className="text-[#05718A]" />
+              <LayoutGrid size={32} className="text-[#007aff]" />
             </div>
           </div>
         </div>
@@ -299,14 +299,14 @@ export default function Shop() {
                   placeholder="Search series, model or category..."
                   value={search}
                   onChange={(e) => updateFilter('search', e.target.value)}
-                  className="w-full h-14 bg-slate-50 rounded-2xl border border-slate-100 pl-14 pr-6 text-sm font-bold outline-none focus:bg-white focus:border-[#05718A] transition-all"
+                  className="w-full h-14 bg-slate-50 rounded-2xl border border-slate-100 pl-14 pr-6 text-sm font-bold outline-none focus:bg-white focus:border-[#007aff] transition-all"
                 />
               </div>
 
               <div className="flex items-center gap-4 w-full md:w-auto">
                 <button
                   onClick={() => setShowMobileFilters(true)}
-                  className="lg:hidden flex-1 inline-flex items-center justify-center gap-2 bg-[#05718A] text-white h-14 rounded-2xl text-[11px] font-black uppercase tracking-widest shadow-lg shadow-[#05718A]/20"
+                  className="lg:hidden flex-1 inline-flex items-center justify-center gap-2 bg-[#007aff] text-white h-14 rounded-2xl text-[11px] font-black uppercase tracking-widest shadow-lg shadow-[#007aff]/20"
                 >
                   <SlidersHorizontal size={16} /> Filters
                 </button>
@@ -315,7 +315,7 @@ export default function Shop() {
                   <select
                     value={sort}
                     onChange={(e) => updateFilter('sort', e.target.value)}
-                    className="w-full appearance-none h-14 bg-white rounded-2xl border border-slate-200 pl-6 pr-12 text-[11px] font-black uppercase tracking-widest text-[#10142b] outline-none focus:border-[#05718A] transition-all"
+                    className="w-full appearance-none h-14 bg-white rounded-2xl border border-slate-200 pl-6 pr-12 text-[11px] font-black uppercase tracking-widest text-[#10142b] outline-none focus:border-[#007aff] transition-all"
                   >
                     <option value="newest">Sort: Latest Arrivals</option>
                     <option value="price_low">Price: Low to High</option>
@@ -352,7 +352,7 @@ export default function Shop() {
                 <button
                   onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                   disabled={currentPage === 1}
-                  className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-slate-400 hover:text-[#05718A] disabled:opacity-30 transition-all border border-white hover:border-[#05718A]"
+                  className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-slate-400 hover:text-[#007aff] disabled:opacity-30 transition-all border border-white hover:border-[#007aff]"
                 >
                   <ChevronLeft size={22} />
                 </button>
@@ -363,7 +363,7 @@ export default function Shop() {
                       <button
                         key={page}
                         onClick={() => setCurrentPage(page)}
-                        className={`w-14 h-14 rounded-2xl text-[14px] font-black transition-all shadow-sm ${currentPage === page ? 'bg-[#05718A] text-white' : 'bg-white text-slate-500 hover:bg-slate-50 border border-white hover:border-slate-200'}`}
+                        className={`w-14 h-14 rounded-2xl text-[14px] font-black transition-all shadow-sm ${currentPage === page ? 'bg-[#007aff] text-white' : 'bg-white text-slate-500 hover:bg-slate-50 border border-white hover:border-slate-200'}`}
                       >
                         {page}
                       </button>
@@ -375,7 +375,7 @@ export default function Shop() {
                 <button
                   onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                   disabled={currentPage === totalPages}
-                  className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-slate-400 hover:text-[#05718A] disabled:opacity-30 transition-all border border-white hover:border-[#05718A]"
+                  className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-slate-400 hover:text-[#007aff] disabled:opacity-30 transition-all border border-white hover:border-[#007aff]"
                 >
                   <ChevronRight size={22} />
                 </button>
@@ -411,7 +411,7 @@ export default function Shop() {
               <FilterSidebar />
               <button
                 onClick={() => setShowMobileFilters(false)}
-                className="w-full mt-12 h-16 rounded-[24px] bg-[#05718A] text-white text-[12px] font-black uppercase tracking-[0.2em] shadow-xl shadow-[#05718A]/30"
+                className="w-full mt-12 h-16 rounded-[24px] bg-[#007aff] text-white text-[12px] font-black uppercase tracking-[0.2em] shadow-xl shadow-[#007aff]/30"
               >
                 Apply Selection
               </button>
